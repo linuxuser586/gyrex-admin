@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.cloudfree.http.errorpagehandler.resources;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %bundle.name
+Bundle-Vendor: %provider.name
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.equinox.http.registry;bundle-version="[1.0.100,2.0.0)"

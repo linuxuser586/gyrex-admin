@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.cloudfree.toolkit.examples.simple
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %bundle.name
+Bundle-Vendor: %provider.name
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.cloudfree.toolkit;bundle-version="[0.7.0,1.0.0)",
+ org.eclipse.cloudfree.toolkit.runtime;bundle-version="[0.7.0,1.0.0)",
+ org.eclipse.equinox.common;bundle-version="[3.4.0,4.0.0)"
+Export-Package: org.eclipse.cloudfree.toolkit.examples.simple;
+  uses:="org.eclipse.core.runtime,
+   org.eclipse.cloudfree.toolkit.widgets,
+   org.eclipse.cloudfree.toolkit.runtime.lookup,
+   org.eclipse.cloudfree.toolkit.runtime.commands,
+   org.eclipse.cloudfree.toolkit.runtime"

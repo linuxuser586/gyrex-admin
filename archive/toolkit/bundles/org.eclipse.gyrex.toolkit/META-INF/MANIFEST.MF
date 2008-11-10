@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.cloudfree.toolkit;singleton:=true
+Bundle-Version: 0.7.0.qualifier
+Bundle-Name: %bundle.name
+Bundle-Vendor: %provider.name
+Bundle-Localization: plugin
+Export-Package: org.eclipse.cloudfree.toolkit,
+ org.eclipse.cloudfree.toolkit.actions,
+ org.eclipse.cloudfree.toolkit.commands;uses:="org.eclipse.cloudfree.toolkit.widgets",
+ org.eclipse.cloudfree.toolkit.content,
+ org.eclipse.cloudfree.toolkit.layout,
+ org.eclipse.cloudfree.toolkit.resources,
+ org.eclipse.cloudfree.toolkit.widgets;uses:="org.eclipse.cloudfree.toolkit.commands,org.eclipse.cloudfree.toolkit.layout",
+ org.eclipse.cloudfree.toolkit.widgets.styledtext;uses:="org.eclipse.cloudfree.toolkit.resources",
+ org.eclipse.cloudfree.toolkit.wizard;uses:="org.eclipse.cloudfree.toolkit.commands,org.eclipse.cloudfree.toolkit.widgets,org.eclipse.cloudfree.toolkit.layout"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
