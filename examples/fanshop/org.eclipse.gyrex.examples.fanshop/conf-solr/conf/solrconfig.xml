@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright (c) 2008 AGETO Service GmbH and others.
+    All rights reserved.
+     
+    This program and the accompanying materials are made available under the 
+    terms of the Eclipse Public License v1.0 which accompanies this distribution,
+    and is available at http://www.eclipse.org/legal/epl-v10.html.
+    
+    Contributors:
+        Gunnar Wagenknecht - initial API and implementation
+ -->
+ 
+<!--
+ This is the CloudFree Fanshop specific Solr configuration file. 
+ -->
+<config>
+  <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
+  <indexDefaults>
+    <useCompoundFile>false</useCompoundFile>
+    <mergeFactor>10</mergeFactor>
+    <ramBufferSizeMB>32</ramBufferSizeMB>
+    <maxMergeDocs>2147483647</maxMergeDocs>
+    <maxFieldLength>10000</maxFieldLength>
+    <writeLockTimeout>1000</writeLockTimeout>
+    <commitLockTimeout>10000</commitLockTimeout>
+    <lockType>native</lockType>
+    <unlockOnStartup>false</unlockOnStartup>
+  </indexDefaults>
+
+  <!-- the default high-performance update handler -->
+  <query>
+    <filterCache
+      class="solr.LRUCache"
+      size="512"
+      initialSize="512"
+      autowarmCount="128"/>
+    <queryResultCache
+      class="solr.LRUCache"
+      size="512"
+      initialSize="512"
+      autowarmCount="32"/>
+    <documentCache
+      class="solr.LRUCache"
+      size="512"
+      initialSize="512"
+      autowarmCount="0"/>
+    <enableLazyFieldLoading>true</enableLazyFieldLoading>
+    <useFilterForSortedQuery>true</useFilterForSortedQuery>
+    <queryResultWindowSize>50</queryResultWindowSize>
+    <queryResultMaxDocsCached>200</queryResultMaxDocsCached>
+    <HashDocSet maxSize="3000" loadFactor="0.75"/>
+
+    <listener event="newSearcher" class="solr.QuerySenderListener">
+      <arr name="queries">
+        <lst><str name="q">*:*</str> <str name="start">0</str> <str name="rows">200</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:shirts</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:gifts</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:accessories</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:underwear</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+      </arr>
+    </listener>
+
+    <listener event="firstSearcher" class="solr.QuerySenderListener">
+      <arr name="queries">
+        <lst><str name="q">*:*</str> <str name="start">0</str> <str name="rows">200</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:shirts</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:gifts</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:accessories</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+        <lst><str name="q">*:*</str> <str name="fq">category:underwear</str> <str name="start">0</str> <str name="rows">20</str> </lst>
+      </arr>
+    </listener>
+
+    <useColdSearcher>false</useColdSearcher>
+    <maxWarmingSearchers>2</maxWarmingSearchers>
+
+  </query>
+
+  <requestDispatcher handleSelect="true" >
+    <requestParsers enableRemoteStreaming="false" multipartUploadLimitInKB="2048" />
+    <httpCaching lastModifiedFrom="openTime"
+                 etagSeed="Fanshop-Solr">
+       <!-- <cacheControl>max-age=30, public</cacheControl> -->
+    </httpCaching>
+  </requestDispatcher>
+  
+      
+  <requestHandler name="standard" class="solr.SearchHandler" default="true">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+     </lst>
+  </requestHandler>
+
+
+  <requestHandler name="dismax" class="solr.SearchHandler" >
+    <lst name="defaults">
+     <str name="defType">dismax</str>
+     <str name="echoParams">explicit</str>
+     <float name="tie">0.01</float>
+     <str name="qf">
+        text^0.5 title^1.2 titleSubMatch^0.8 name^1.5 id^10.0 category^1.4 style^1.1
+     </str>
+     <str name="pf">
+        text^0.2 title^1.5 description^1.4
+     </str>
+     <str name="bf">
+        ord(popularity)^0.5 recip(rord(price),1,1000,1000)^0.3
+     </str>
+     <str name="fl">
+        id,name,title,description,price,score,img48,img150,uripath,category,tags,variationids,parentid
+     </str>
+     <str name="mm">
+        2&lt;-1 5&lt;-2 6&lt;90%
+     </str>
+     <int name="ps">100</int>
+     <str name="q.alt">*:*</str>
+    </lst>
+  </requestHandler>
+
+  <!-- optimized handler for fanshop auto complete -->
+  <requestHandler name="autocomplete" class="solr.SearchHandler" >
+    <lst name="defaults">
+     <str name="defType">dismax</str>
+     <str name="echoParams">explicit</str>
+     <float name="tie">0.01</float>
+     <str name="qf">
+        titleAutocomplete^1 title^1.2
+     </str>
+     <str name="fl">
+        id,name,title,price,score,img48,img150,uripath,category
+     </str>
+     <str name="q.alt">*:*</str>
+     <str name="hl">true</str>
+     <str name="hl.fl">title</str>
+    </lst>
+  </requestHandler>
+
+  <requestHandler name="/update" class="solr.XmlUpdateRequestHandler" />
+  <requestHandler name="/analysis" class="solr.AnalysisRequestHandler" />
+  <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
+  
+  <admin>
+    <defaultQuery>solr</defaultQuery>
+  </admin>
+</config>

@@ -18,7 +18,6 @@ import java.net.URISyntaxException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-
 import org.apache.commons.io.FileUtils;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
