@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.admin.web.gwt.client.internal.app;
 
-
 import org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp;
 import org.eclipse.cloudfree.admin.web.gwt.client.internal.shared.IAdminClientConstants;
 import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactory;
@@ -21,6 +20,8 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.ParagraphElement;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.HistoryListener;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -31,7 +32,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
  */
 public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClientConstants {
 
-	private final SimplePanel contentPanel = new SimplePanel();
+	private final SimplePanel contentHolder = new SimplePanel();
 	private Element titleElement;
 	private ParagraphElement descriptionElement;
 
@@ -67,10 +68,16 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 		}
 
 		// initialize header
-		RootPanel.get("headerArea").add(headerArea);
+		final RootPanel headerPanel = RootPanel.get("header_area");
+		if (null != headerPanel) {
+			headerPanel.add(headerArea);
+		}
 
 		// initialize content area
-		RootPanel.get("contentArea").add(contentPanel);
+		final RootPanel contentPanel = RootPanel.get("content_container");
+		if (null != contentPanel) {
+			contentPanel.add(contentHolder);
+		}
 
 		// initialize top bar
 		initialzeHeaderStatusBar("headerTopArea");
@@ -78,10 +85,33 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 		// initialize application
 		initialize();
 
+		// Setup a history listener to reselect the associate menu item
+		final HistoryListener historyListener = new HistoryListener() {
+			public void onHistoryChanged(String historyToken) {
+				if ((null == historyToken) || (historyToken.trim().length() == 0)) {
+					// fallback to the first item if the history token is empty
+					historyToken = "";
+				}
+
+				// Load the associated CWT widget
+				requestWidget(historyToken);
+			}
+		};
+		History.addHistoryListener(historyListener);
+
 		// hide the loading message
 		final RootPanel loadingMessage = RootPanel.get("initialLoading");
 		if (null != loadingMessage) {
 			loadingMessage.setVisible(false);
+		}
+
+		// Show the initial widget
+		final String initToken = History.getToken();
+		if (initToken.length() > 0) {
+			historyListener.onHistoryChanged(initToken);
+		} else {
+			// Use the first token available
+			requestWidget("");
 		}
 	}
 
@@ -93,23 +123,14 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 		// super handles window title
 		super.setContentInformation(title, description);
 
-		if (null != title) {
-			if (null != titleElement) {
-				titleElement.setInnerText(title);
-			}
-		} else {
-			if (null != titleElement) {
-				titleElement.setInnerText("");
-			}
+		// set title
+		if (null != titleElement) {
+			titleElement.setInnerText(null != title ? title : "");
 		}
 
 		// set description
 		if (null != descriptionElement) {
-			if (null != description) {
-				descriptionElement.setInnerText(description);
-			} else {
-				descriptionElement.setInnerText("");
-			}
+			descriptionElement.setInnerText(null != description ? description : "");
 		}
 	}
 
@@ -119,9 +140,9 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 	@Override
 	protected void showWidget(final CWTWidget widget) {
 		if (null == widget) {
-			contentPanel.setWidget(new HTML("&nbsp;"));
+			contentHolder.setWidget(new HTML("&nbsp;"));
 		} else {
-			contentPanel.setWidget(widget);
+			contentHolder.setWidget(widget);
 		}
 	}
 }

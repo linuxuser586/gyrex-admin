@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.admin.web.gwt.client.internal;
 
-
 import org.eclipse.cloudfree.admin.internal.AdminActivator;
 import org.eclipse.cloudfree.admin.web.gwt.client.internal.shared.IAdminClientConstants;
 import org.eclipse.cloudfree.common.logging.LogAudience;
@@ -33,7 +32,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	/**
 	 * filter string for the admin http service (value
 	 * 
-	 * <code>(&(objectClass=org.eclipse.cloudfree.gwt.service.GwtService)(http.service.other.info=org.eclipse.cloudfree.http.admin))</code>
+	 * <code>(&(objectClass=org.eclipse.cloudfree.gwt.service.GwtService)(http.service.other.info=org.eclipse.cloudfree.admin.http))</code>
 	 * )
 	 */
 	public static final String FILTER_ADMIN_GWT_SERVICE = "(&(objectClass=" + GwtService.class.getName() + ")(http.service.other.info=" + AdminActivator.TYPE_ADMIN + "))"; // use class references here to trigger lazy activation

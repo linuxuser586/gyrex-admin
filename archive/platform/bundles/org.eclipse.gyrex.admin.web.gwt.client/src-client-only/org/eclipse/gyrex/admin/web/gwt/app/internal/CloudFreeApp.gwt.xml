@@ -24,11 +24,9 @@
   <!-- don't publish template files -->
   <public path="public">
     <exclude name="**/*.template" />
-    <exclude name="images" />
-    <exclude name="styles/style.css" />
   </public>
 	
   <!-- inject common CWT/GWT specific styling -->
-  <stylesheet src="styles/cwt-style.css"/>
+  <stylesheet src="css/cwt-style.css"/>
 	
 </module>

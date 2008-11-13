@@ -28,11 +28,4 @@
   <source path='app' />
   <source path='shared' />
   
-  <!-- Internationalization support. -->
-  <extend-property name="locale" values="en"/>
-  <extend-property name="locale" values="ar"/>
-  <extend-property name="locale" values="fr"/>
-  <extend-property name="locale" values="zh"/>
-  <extend-property name="locale" values="de"/>
-
 </module>

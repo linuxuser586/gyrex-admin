@@ -18,7 +18,8 @@ fieldset,img {
 }
 
 .cwt-WizardContainer-Pages {
-	min-height: 400px;
+	height: 280px;
+	overflow: auto;
 }
 
 .cwt-WizardContainer-Buttons {
