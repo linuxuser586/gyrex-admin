@@ -15,7 +15,6 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
 import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetFactory;
 import org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.IServiceConstants;
@@ -72,7 +71,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 	}
 
 	/** plug-in ID */
-	private static final String PLUGIN_ID = "org.eclipse.cloudfree.admin.web";
+	private static final String PLUGIN_ID = "org.eclipse.cloudfree.admin.web.gwt";
 
 	/** the default alias */
 	static final String ADMIN_WIDGET_SERVICE_ALIAS = IAdminClientConstants.ENTRYPOINT_WIDGET_SERVICE;
