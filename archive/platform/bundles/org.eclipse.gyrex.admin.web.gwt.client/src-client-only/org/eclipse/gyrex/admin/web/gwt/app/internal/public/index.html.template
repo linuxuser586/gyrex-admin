@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>CloudFree Platform Application</title>
+
+		<meta name="author" content="CloudFree Platform"/>
+		<meta name="copyright" content="CloudFree.net"/>
+		<meta name="robots" content="noindex,nofollow"/>
+		<meta name="mssmarttagspreventparsing" content="true"/>
+		
+		<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+		<link rel="shortcut icon" href="favicon.ico"/>
+	</head>
+	<body>
+		<!--[if lte IE 6]>
+		<div class="warning_ie6"><span>You are using and outdated version of Internet Explorer. This page will not displayed correctly. Please upgrade to a <a href="http://www.microsoft.com/germany/windows/products/winfamily/ie/default.mspx">newer version</a> of Internet Explorer.</span></div>
+		<![endif]-->
+		<div id="initialLoading" style="width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;color:black;background:white;z-index:999;">
+			<script type="text/javascript">
+				document.write("<div style='position:absolute;top:1em;left:1em;'><img src='images/indicator.gif' alt='Loading...' />&nbsp<small>Loading...</small></div>");
+			</script>
+			<noscript>
+				<div style='position:absolute;top:1em;left:1em;'>
+					<h1>Please enable JavaScript!</h1>
+					<p>This is a rich browser application which requires JavaScript. Please activate JavaScript to view this content.</p>
+				</div>
+			</noscript>
+		</div>
+		<script type="text/javascript" src="org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminClient.nocache.js"></script> 
+		<div id="pagewrapper">
+			<div id="header">
+				<div class="headerBody">
+					<a name="top"></a>
+					<a class="headerLogo" href=""></a>
+					<div class="headerTopBar" id="headerTopArea">
+					<!-- Header Top Bar Content | <a href="">Help</a> -->
+					<!--  
+						<div class="menu"> 
+							<ul>
+								<li>
+									<a href="">Community</a>
+									<ul>
+										<li><a href="">Forum</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="">Contribute</a>
+									<ul>
+										<li><a href="">Subversion</a></li>
+										<li><a href="">Bugzilla</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						-->
+					</div>
+					<div class="headerStuff" id="headerArea">
+						<!-- <h2>Headline</h2>  -->
+						<!-- <p>Description</p>  -->
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div class="contentBody">
+					<div class="contentGradient-left">
+						<div class="contentGradient-right">
+							<div class="contentStuff" id="contentArea">
+								<!-- 
+								<div class="leftbox" id="contentArea"></div>
+								<div class="rightbox" id="contentAreaDescription"></div>
+								<div class="cleaner">&nbsp;</div>
+								 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="footer">
+				<div class="footerBg-left">
+					<div class="footerlink" id="footerArea">
+						<span class="copyright">&copy; 2008 CloudFree.net</span>
+						<!-- <a href="">Privacy</a>  -->
+						<!-- <a href="">Terms Of Use</a>  -->
+					</div>
+					<a class="toplink" href="#top" title="Nach Oben"></a>
+					<div class="footerBg-ButtonGlassEffect"></div>
+				</div>
+				<div class="footerBg-right">&nbsp;</div>
+				<div class="cleaner">&nbsp;</div>
+			</div>
+		</div>
+		<iframe id="__gwt_historyFrame" style="width:0;height:0;border:0"></iframe>
+    </body>
+</html>

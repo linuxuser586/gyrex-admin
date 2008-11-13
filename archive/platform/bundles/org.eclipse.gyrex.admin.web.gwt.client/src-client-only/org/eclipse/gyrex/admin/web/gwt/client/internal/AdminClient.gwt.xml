@@ -1,0 +1,38 @@
+<!--
+    Copyright (c) 2008 Gunnar Wagenknecht and others.
+    All rights reserved.
+     
+    This program and the accompanying materials are made available under the 
+    terms of the Eclipse Public License v1.0 which accompanies this distribution,
+    and is available at http://www.eclipse.org/legal/epl-v10.html.
+    
+    Contributors:
+        Gunnar Wagenknecht - initial API and implementation
+ -->
+<module>
+  <!-- Inherit the core Web Toolkit stuff. -->
+  <inherits name="com.google.gwt.core.Core" />
+  <inherits name='com.google.gwt.user.User' />
+  <inherits name="com.google.gwt.i18n.I18N" />
+  <inherits name="com.google.gwt.user.theme.standard.StandardResources" />
+  <inherits name="com.google.gwt.user.theme.chrome.ChromeResources" />
+  <inherits name="com.google.gwt.user.theme.dark.DarkResources" />
+
+  <!-- Inherit the backoffice app. -->
+  <inherits name='org.eclipse.cloudfree.admin.web.gwt.app.internal.CloudFreeApp' />
+	
+  <!-- Specify the app entry point class.                   -->
+  <entry-point class='org.eclipse.cloudfree.admin.web.gwt.client.internal.app.AdminClient' />
+
+  <!-- source folders -->
+  <source path='app' />
+  <source path='shared' />
+  
+  <!-- Internationalization support. -->
+  <extend-property name="locale" values="en"/>
+  <extend-property name="locale" values="ar"/>
+  <extend-property name="locale" values="fr"/>
+  <extend-property name="locale" values="zh"/>
+  <extend-property name="locale" values="de"/>
+
+</module>

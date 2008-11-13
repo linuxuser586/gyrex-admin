@@ -1,0 +1,21 @@
+.cwt-DialogField {
+  margin:0;
+  padding: .4em 0;
+}
+			
+.cwt-DialogField label, .cwt-DialogField input, .cwt-DialogField select, .cwt-DialogField button  {
+  display: block;
+}
+
+.cwt-DialogField input { 
+  width: 20em;
+}
+
+.cwt-DialogField button { 
+  width: auto;
+}
+
+.cwt-DialogField .required label {
+ font-weight: bold;
+}
+
