@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.4"?>
 
-<product name="CloudFree Fanshop" id="org.eclipse.cloudfree.examples.fanshop.product" application="org.eclipse.cloudfree.boot.server" version="0.7 M1" useFeatures="false">
+<product name="CloudFree Fanshop (Incubation)" id="org.eclipse.cloudfree.examples.fanshop.product" application="org.eclipse.cloudfree.boot.server" version="0.7 ESE2008 (Incubation)" useFeatures="false">
 
    <configIni use="default">
       <linux>/org.eclipse.cloudfree.examples.fanshop/config.ini</linux>
