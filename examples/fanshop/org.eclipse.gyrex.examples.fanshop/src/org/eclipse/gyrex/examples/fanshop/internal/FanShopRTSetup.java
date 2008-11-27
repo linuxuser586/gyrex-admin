@@ -167,7 +167,15 @@ public class FanShopRTSetup {
 				final IApplicationManager applicationManager = (IApplicationManager) service;
 				if (null != applicationManager) {
 					final String url = PlatformConfiguration.getConfigurationService().getString(FanShopDevSetup.PLUGIN_ID_FANSHOP, FanShopDevSetup.URL, FanShopDevSetup.DEFAULT_URL, null);
-					applicationManager.unmount(url);
+					try {
+						applicationManager.unmount(url);
+					} catch (final IllegalArgumentException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (final MalformedURLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					applicationManager.unregister("fanshop");
 				}
 				// unget
