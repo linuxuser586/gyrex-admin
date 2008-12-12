@@ -24,7 +24,6 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content
  * @noimplement This interface is not intended to be implemented by clients.
  * @generated generated asynchronous callback interface to be used on the client side
  */
-
 public interface WidgetServiceAsync {
 
 	/**
