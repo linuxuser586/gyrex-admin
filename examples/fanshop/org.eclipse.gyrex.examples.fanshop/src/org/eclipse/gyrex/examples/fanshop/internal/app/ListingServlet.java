@@ -31,10 +31,10 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.eclipse.cloudfree.cds.model.IListingManager;
+import org.eclipse.cloudfree.cds.model.documents.Document;
+import org.eclipse.cloudfree.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.listings.model.IListingManager;
-import org.eclipse.cloudfree.listings.model.documents.Document;
-import org.eclipse.cloudfree.listings.model.solr.ISolrQueryExecutor;
 import org.eclipse.cloudfree.model.common.ModelUtil;
 
 import com.ibm.icu.text.MeasureFormat;

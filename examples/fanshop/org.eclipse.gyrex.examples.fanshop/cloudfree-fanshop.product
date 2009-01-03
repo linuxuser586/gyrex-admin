@@ -65,8 +65,8 @@
       <plugin id="org.eclipse.cloudfree.http.errorpagehandler" fragment="true"/>
       <plugin id="org.eclipse.cloudfree.http.errorpagehandler.resources"/>
       <plugin id="org.eclipse.cloudfree.http.registry"/>
-      <plugin id="org.eclipse.cloudfree.listings.model"/>
-      <plugin id="org.eclipse.cloudfree.listings.model.solr"/>
+      <plugin id="org.eclipse.cloudfree.cds.model"/>
+      <plugin id="org.eclipse.cloudfree.cds.model.solr"/>
       <plugin id="org.eclipse.cloudfree.listings.service"/>
       <plugin id="org.eclipse.cloudfree.listings.service.solr"/>
       <plugin id="org.eclipse.cloudfree.model.common"/>
