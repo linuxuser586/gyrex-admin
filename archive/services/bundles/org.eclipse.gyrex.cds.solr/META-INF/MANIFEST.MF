@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.cloudfree.listings.model.solr
+Bundle-SymbolicName: org.eclipse.cloudfree.cds.model.solr
 Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.cloudfree.listings.model.solr.internal.ListingsSolrModelActivator
+Bundle-Activator: org.eclipse.cloudfree.cds.model.solr.internal.ListingsSolrModelActivator
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.cloudfree.common;bundle-version="[0.7.0,1.0.0)",
  org.eclipse.cloudfree.persistence;bundle-version="[0.7.0,1.0.0)",
  org.eclipse.cloudfree.persistence.solr;bundle-version="[0.7.0,1.0.0)",
  org.eclipse.cloudfree.model.common;bundle-version="[0.7.0,1.0.0)",
- org.eclipse.cloudfree.listings.model;bundle-version="[0.7.0,1.0.0)",
+ org.eclipse.cloudfree.cds.model;bundle-version="[0.7.0,1.0.0)",
  org.eclipse.core.jobs;bundle-version="[3.4.100,4.0.0)"
-Export-Package: org.eclipse.cloudfree.listings.model.solr;uses:="org.apache.solr.client.solrj.response,org.apache.solr.client.solrj",
- org.eclipse.cloudfree.listings.model.solr.internal;x-friends:="org.eclipse.cloudfree.listings.service.solr"
+Export-Package: org.eclipse.cloudfree.cds.model.solr;uses:="org.apache.solr.client.solrj.response,org.apache.solr.client.solrj",
+ org.eclipse.cloudfree.cds.model.solr.internal;x-friends:="org.eclipse.cloudfree.cds.service.solr"
