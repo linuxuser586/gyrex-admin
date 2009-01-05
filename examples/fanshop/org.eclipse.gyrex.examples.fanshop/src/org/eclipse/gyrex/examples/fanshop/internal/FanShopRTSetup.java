@@ -65,18 +65,18 @@ public class FanShopRTSetup {
 		configurationService.putString("org.eclipse.cloudfree.persistence", "repositories/" + REPOSITORY_ID + "//type", "org.eclipse.cloudfree.persistence.solr.embedded", null, false);
 		new PlatformScope().getNode("org.eclipse.cloudfree.persistence").flush();
 
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/style", "Style,field,style_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/color", "Color,field,color_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/source", "Merchant,field,source_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/size", "Size,field,size_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/category", "Category,field,category", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/thickness", "Thickness,field,thickness", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/fit", "Fit,field,fit", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/tags", "Tags,field,tags", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/paper", "Paper,field,paper", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/finish", "Finish,field,finish", null, false);
-		configurationService.putString("org.eclipse.cloudfree.listings.service.solr", "facets/price", "Price,queries,price:[* TO 10]=$10 and below;price:[10 TO 25]=$10 to $25;price:[25 TO 40]=$25 to $40;price:[40 TO *]=$40 and above", null, false);
-		new PlatformScope().getNode("org.eclipse.cloudfree.listings.service.solr").flush();
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/style", "Style,field,style_n", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/color", "Color,field,color_n", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/source", "Merchant,field,source_n", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/size", "Size,field,size_n", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/category", "Category,field,category", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/thickness", "Thickness,field,thickness", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/fit", "Fit,field,fit", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/tags", "Tags,field,tags", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/paper", "Paper,field,paper", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/finish", "Finish,field,finish", null, false);
+		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/price", "Price,queries,price:[* TO 10]=$10 and below;price:[10 TO 25]=$10 to $25;price:[25 TO 40]=$25 to $40;price:[40 TO *]=$40 and above", null, false);
+		new PlatformScope().getNode("org.eclipse.cloudfree.cds.service.solr").flush();
 	}
 
 	private void importSampleData() {
