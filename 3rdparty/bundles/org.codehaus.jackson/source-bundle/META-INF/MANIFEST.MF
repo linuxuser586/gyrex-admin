@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-Name: %bundle.name
+Bundle-Vendor: %provider.name
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.codehaus.jackson.source
+Bundle-Version: 0.9.3.qualifier
+Eclipse-SourceBundle: org.codehaus.jackson;version="0.9.3.qualifier"
+
