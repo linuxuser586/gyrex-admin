@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.toolkit.gwt.client.internal;
 
-
 import com.google.gwt.user.client.rpc.RemoteService;
 
 import org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment;
@@ -24,6 +23,7 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content
  * This service is used to locate and load widgets from the server.
  * 
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface WidgetService extends RemoteService {
 

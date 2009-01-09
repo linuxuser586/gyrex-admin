@@ -22,6 +22,7 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content
  * This service is used to locate and load widgets from the server.
  * 
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  * @generated generated asynchronous callback interface to be used on the client side
  */
 public interface WidgetServiceAsync {

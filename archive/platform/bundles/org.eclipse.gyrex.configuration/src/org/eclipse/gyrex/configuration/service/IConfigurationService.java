@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.configuration.service;
 
-
 import org.eclipse.cloudfree.common.context.IContext;
 import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 
@@ -44,8 +43,8 @@ import org.eclipse.cloudfree.configuration.PlatformConfiguration;
  * <li><strong>PLATFORM</strong> - This is the primary scope for CloudFree
  * preferences. Whenever a preferences is modified (set or removed) through API
  * provided by this service it will happen in the
- * {@link org.eclipse.cloudfree.configuration.preferences.PlatformScope
- * platform scope}.</li>
+ * {@link org.eclipse.cloudfree.configuration.preferences.PlatformScope platform
+ * scope}.</li>
  * <li><strong>DEFAULT</strong> - This is the default scope which defines
  * default preferences. Default preferences cannot be modified through API
  * defined here. Default preferences are initialized during bundle start (see
@@ -74,6 +73,7 @@ import org.eclipse.cloudfree.configuration.PlatformConfiguration;
  * @see org.eclipse.cloudfree.configuration.preferences.PlatformScope
  * @see org.eclipse.cloudfree.configuration.preferences.DefaultPreferencesInitializer
  * @noimplement This interface is not intended to be implemented by clients.
+ * @noextend This interface is not intended to be extended by clients.
  */
 public interface IConfigurationService {
 
