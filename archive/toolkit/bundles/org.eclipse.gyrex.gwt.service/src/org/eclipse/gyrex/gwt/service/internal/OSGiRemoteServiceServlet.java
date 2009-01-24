@@ -6,6 +6,8 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
  * 
+ * This file uses content originating from Google Web Toolkit.
+ * 
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *     Google Inc. - code from RemoteServiceServlet
