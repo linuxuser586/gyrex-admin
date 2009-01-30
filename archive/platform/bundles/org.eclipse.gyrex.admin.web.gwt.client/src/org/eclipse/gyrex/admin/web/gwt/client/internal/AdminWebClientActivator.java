@@ -61,7 +61,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	static final String ADMIN_ALIAS = "/admin";
 
 	/** the backoffice resource root */
-	static final String ADMIN_RESOURCE_ROOT = "/gwtmodules/org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminClient";
+	static final String ADMIN_RESOURCE_ROOT = "/resources";
 
 	/**
 	 * Creates a new instance.
