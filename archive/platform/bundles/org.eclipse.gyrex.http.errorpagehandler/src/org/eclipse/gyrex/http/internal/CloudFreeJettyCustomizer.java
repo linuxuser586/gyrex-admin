@@ -19,20 +19,20 @@ import org.mortbay.jetty.servlet.Context;
 /**
  * Customizer for Jetty
  */
-public class CloudFreeJettyCustomizer implements JettyCustomizer {
+public class CloudFreeJettyCustomizer extends JettyCustomizer {
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.equinox.http.jetty.JettyCustomizer#customizeContext(java.lang.Object, java.util.Dictionary)
 	 */
 	@Override
-	public void customizeContext(final Object contex, final Dictionary settings) {
+	public Object customizeContext(final Object contex, final Dictionary settings) {
 		if (!(contex instanceof Context)) {
-			return;
+			return contex;
 		}
 
 		final Context jettyContext = (Context) contex;
 		jettyContext.setErrorHandler(new CloudFreeErrorHandler());
-
+		return contex;
 	}
 
 }
