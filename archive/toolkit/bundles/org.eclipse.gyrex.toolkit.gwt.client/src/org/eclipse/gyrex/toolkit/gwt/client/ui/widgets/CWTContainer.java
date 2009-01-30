@@ -331,7 +331,12 @@ public class CWTContainer extends CWTWidget {
 		final Panel panel = createPanel(serializedWidget, toolkit);
 		assert panel != null;
 
-		panel.addStyleName(container.id);
+		// set container id as style if not empty
+		final String id = container.id;
+		if ((null != id) && (id.trim().length() > 0)) {
+			panel.addStyleName(id);
+		}
+
 		initPanel(panel);
 		populateChildren(serializedWidget, toolkit);
 
