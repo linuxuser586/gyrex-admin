@@ -1,36 +1,22 @@
-#midcolumnwide {
-	float:none;
-	padding-bottom:100px;
+img {
+	behavior: url('iepngfix.htc');
 }
 
-#rightcolumnwide {
-	float:left;
-	position:absolute;
-	right:0px;
-	top:125px;
-	margin-right: 3px;
+#footer {
 }
 
-.warning_ie6 {
-	width:100%; 
-	position:absolute; 
-	left:0; 
-	top:-9px; 
-	z-index:500;
+#clearFooter {
+	clear:both;
+	height:14px; /* provides space for the #footer */
 }
-	.warning_ie6 span {
-		display:block; 
-		position:relative; 
-		left:0; 
-		top:50%; 
-		border-top:solid 1px #fff; 
-		border-bottom:solid 1px #fff; 
-		background-color:red; 
-		padding:5px 10px; 
-		font-weight:bold; 
-		color:#fff;
-	}
-	.warning_ie6 a {
-		text-transform:uppercase; 
-		color:#fff;
-	}	
+#footer {
+	height: 47px;
+	margin: -20px auto; /* -2em sucks it back in & auto centers it */
+}
+
+#menu ul {
+	margin-left:10px;
+	height:24px;
+}
+
+
