@@ -1,12 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.cloudfree.toolkit.gwt.client.tests
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
-Require-Bundle: org.eclipse.cloudfree.gwt.common;bundle-version="[0.7.0,1.0.0)",
- org.eclipse.cloudfree.toolkit.gwt.client;bundle-version="[0.7.0,1.0.0)"
+Require-Bundle: org.eclipse.cloudfree.gwt.common;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.cloudfree.toolkit.gwt.client;bundle-version="[1.0.0,2.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.google.gwt.junit.client;version="[1.5.2,2.0.0)"
 Export-Package: org.eclipse.cloudfree.toolkit.gwt,

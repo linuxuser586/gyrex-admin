@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.cloudfree.toolkit.gwt.server
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
@@ -29,7 +29,7 @@ Export-Package: org.eclipse.cloudfree.toolkit.gwt.server;
  org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.resources;x-internal:=true,
  org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;x-internal:=true,
  org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.wizard;x-internal:=true
-Require-Bundle: org.eclipse.cloudfree.toolkit;bundle-version="[0.7.0,1.0.0)",
+Require-Bundle: org.eclipse.cloudfree.toolkit;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.cloudfree.toolkit.runtime;bundle-version="[0.7.0,2.0.0)",
- org.eclipse.cloudfree.toolkit.gwt.client;bundle-version="[0.7.0,1.0.0)",
- org.eclipse.cloudfree.gwt.common;bundle-version="[0.7.0,1.0.0)"
+ org.eclipse.cloudfree.toolkit.gwt.client;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.cloudfree.gwt.common;bundle-version="[1.0.0,2.0.0)"
