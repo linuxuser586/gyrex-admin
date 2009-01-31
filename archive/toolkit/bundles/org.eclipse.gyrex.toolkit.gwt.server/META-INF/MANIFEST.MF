@@ -30,6 +30,6 @@ Export-Package: org.eclipse.cloudfree.toolkit.gwt.server;
  org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;x-internal:=true,
  org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.wizard;x-internal:=true
 Require-Bundle: org.eclipse.cloudfree.toolkit;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.toolkit.runtime;bundle-version="[0.7.0,2.0.0)",
+ org.eclipse.cloudfree.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.cloudfree.toolkit.gwt.client;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.cloudfree.gwt.common;bundle-version="[1.0.0,2.0.0)"
