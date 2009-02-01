@@ -48,8 +48,20 @@ public class CWTEmailInput extends CWTTextInput {
 		}
 	};
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTTextInput#getAdapter(java.lang.Class)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T getAdapter(final Class<T> adapter) {
+		if (DialogFieldValidator.class == adapter) {
+			// see http://code.google.com/p/google-web-toolkit/issues/detail?id=2710
+			return (T) emailInputValidator;
+		}
+		return super.getAdapter(adapter);
+	}
+
 	private SEmailInput getSEmailInput() {
 		return (SEmailInput) getSerializedWidget();
 	}
-
 }
