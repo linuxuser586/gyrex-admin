@@ -14,7 +14,7 @@ package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
 
 import org.eclipse.cloudfree.toolkit.CWT;
 import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.content.SelectionFlagContent;
+import org.eclipse.cloudfree.toolkit.content.BooleanContent;
 import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter;
 import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldValidator;
 import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.ValidationContext;
@@ -65,7 +65,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 		@Override
 		public ContentObject getContent(final CWTWidget widget) {
 			final CWTRadioButton radioButton = (CWTRadioButton) widget;
-			return new SelectionFlagContent(radioButton.isSelected());
+			return new BooleanContent(radioButton.isSelected());
 		}
 
 		public boolean hasContent(final CWTWidget widget) {
@@ -76,10 +76,10 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 		@Override
 		public void setContent(final CWTWidget widget, final ContentObject content) {
 			final CWTRadioButton radioButton = (CWTRadioButton) widget;
-			final SelectionFlagContent radioButtonEntry = (SelectionFlagContent) content;
+			final BooleanContent radioButtonEntry = (BooleanContent) content;
 			final Button button = radioButton.getRadioButtonControl();
 			if ((null != button) && !button.isDisposed()) {
-				button.setSelection(radioButtonEntry.isSelected());
+				button.setSelection(radioButtonEntry.getValue());
 			}
 		}
 

@@ -16,7 +16,7 @@ import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.cloudfree.configuration.ConfigurationMode;
 import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
 import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.SelectionFlagContent;
+import org.eclipse.cloudfree.toolkit.content.BooleanContent;
 import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup;
 import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRules;
@@ -70,14 +70,14 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
 		try {
 			// check if production mode is selected
-			SelectionFlagContent content = (SelectionFlagContent) finishEvent.getContentSet().getEntry("modeProduction");
-			if ((null != content) && content.isSelected()) {
+			BooleanContent content = (BooleanContent) finishEvent.getContentSet().getEntry("modeProduction");
+			if ((null != content) && content.getValue()) {
 				ConfigurationActivator.getInstance().persistConfigurationMode(ConfigurationMode.PRODUCTION);
 			}
 
 			// check if development mode is selected
-			content = (SelectionFlagContent) finishEvent.getContentSet().getEntry("modeDevelopment");
-			if ((null != content) && content.isSelected()) {
+			content = (BooleanContent) finishEvent.getContentSet().getEntry("modeDevelopment");
+			if ((null != content) && content.getValue()) {
 				ConfigurationActivator.getInstance().persistConfigurationMode(ConfigurationMode.DEVELOPMENT);
 			}
 		} catch (final IllegalStateException e) {

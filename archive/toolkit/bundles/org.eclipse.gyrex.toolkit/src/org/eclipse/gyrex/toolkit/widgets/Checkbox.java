@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.content.SelectionFlagContent;
+import org.eclipse.cloudfree.toolkit.content.BooleanContent;
 
 /**
  * A dialog field with a check-box to represent a boolean state (on/off, yes/no,
@@ -21,7 +21,7 @@ import org.eclipse.cloudfree.toolkit.content.SelectionFlagContent;
  * CWT implementation.
  * </p>
  */
-public class Checkbox extends DialogField<SelectionFlagContent> {
+public class Checkbox extends DialogField<BooleanContent> {
 	/** serialVersionUID */
 	private static final long serialVersionUID = -5770686514166691314L;
 
@@ -36,6 +36,6 @@ public class Checkbox extends DialogField<SelectionFlagContent> {
 	 *            the widget style
 	 */
 	public Checkbox(final String id, final Container parent, final int style) {
-		super(id, parent, style, SelectionFlagContent.class);
+		super(id, parent, style, BooleanContent.class);
 	}
 }

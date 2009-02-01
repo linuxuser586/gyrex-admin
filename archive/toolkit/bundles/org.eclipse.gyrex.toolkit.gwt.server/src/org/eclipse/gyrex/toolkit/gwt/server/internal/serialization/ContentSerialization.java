@@ -19,7 +19,7 @@ import java.util.Map;
 import org.eclipse.cloudfree.toolkit.content.ContentObject;
 import org.eclipse.cloudfree.toolkit.content.ContentSet;
 import org.eclipse.cloudfree.toolkit.content.NumberContent;
-import org.eclipse.cloudfree.toolkit.content.SelectionFlagContent;
+import org.eclipse.cloudfree.toolkit.content.BooleanContent;
 import org.eclipse.cloudfree.toolkit.content.TextContent;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
@@ -44,7 +44,7 @@ public class ContentSerialization {
 		} else if (value instanceof SNumberEntry) {
 			return new NumberContent(((SNumberEntry) value).number);
 		} else if (value instanceof SSelectionFlagEntry) {
-			return new SelectionFlagContent(((SSelectionFlagEntry) value).selected);
+			return new BooleanContent(((SSelectionFlagEntry) value).selected);
 		}
 		return null;
 	}

@@ -18,32 +18,32 @@ package org.eclipse.cloudfree.toolkit.content;
  * CWT implementation.
  * </p>
  */
-public class SelectionFlagContent extends ContentObject {
+public class BooleanContent extends ContentObject {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 3295485395967920248L;
 
 	/** selection state */
-	private final boolean selected;
+	private final boolean value;
 
 	/**
 	 * Creates a new instance.
 	 * 
-	 * @param selected
+	 * @param value
 	 *            the selection status
 	 */
-	public SelectionFlagContent(final boolean selected) {
+	public BooleanContent(final boolean value) {
 		super();
-		this.selected = selected;
+		this.value = value;
 	}
 
 	/**
-	 * Returns the selection status.
+	 * Returns the boolean value.
 	 * 
-	 * @return <code>true</code> if selected, <code>false</code> otherwise
+	 * @return <code>true</code> or <code>false</code>
 	 */
-	public boolean isSelected() {
-		return selected;
+	public boolean getValue() {
+		return value;
 	}
 
 	/* (non-Javadoc)
@@ -51,6 +51,6 @@ public class SelectionFlagContent extends ContentObject {
 	 */
 	@Override
 	public String toString() {
-		return String.format("SelectionFlag[%b]", selected);
+		return String.format("Boolean[%b]", value);
 	}
 }

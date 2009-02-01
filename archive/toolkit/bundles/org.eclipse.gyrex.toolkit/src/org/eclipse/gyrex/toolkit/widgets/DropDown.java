@@ -21,6 +21,7 @@ import org.eclipse.cloudfree.toolkit.content.NoContent;
  * </p>
  */
 public class DropDown extends StructuredDialogField<NoContent> {
+
 	/** serialVersionUID */
 	private static final long serialVersionUID = 701063106767451943L;
 
