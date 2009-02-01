@@ -39,7 +39,7 @@ public class CWTEmailInput extends CWTTextInput {
 			}
 
 			// validate email address
-			if ((text.length() > 0) && !text.matches("[\\w\\.\\-]{2,50}[@]{1}[\\w\\.\\-]{2,50}[\\.]{1}[a-zA-Z]{2,5}")) {
+			if ((text.length() > 0) && !text.matches("[\\w\\.\\-\\+\\_]{2,50}[@]{1}[\\w\\.\\-]{2,50}[\\.]{1}[a-zA-Z]{2,5}")) {
 				return ValidationResult.ERROR;
 			}
 
