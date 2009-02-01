@@ -11,6 +11,7 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
 
+import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.ChangeListener;
@@ -28,6 +29,7 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SNumberEntry;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
+import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput.Type;
 
 /**
  * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.TextInput</code>.
@@ -172,6 +174,30 @@ public class CWTNumberInput extends CWTDialogField {
 
 	};
 
+	/**
+	 * Compares two numbers
+	 * 
+	 * @param number
+	 * @param number2
+	 * @return 0 if the numbers are equal, 1 if number is greater than number2
+	 *         and -1 if number is lesser than number2
+	 *         <code>number2 - number</code> is returned
+	 */
+	private static int compare(final Number number, final Number number2) {
+		if (number instanceof Float) {
+			final float result = number.floatValue() - number2.floatValue();
+			return result == 0 ? 0 : result > 0 ? 1 : -1;
+		} else if (number instanceof Double) {
+			final double result = number.doubleValue() - number2.doubleValue();
+			return result == 0 ? 0 : result > 0 ? 1 : -1;
+		}
+
+		// fallback to integer
+		final float result = number.intValue() - number2.intValue();
+		return result == 0 ? 0 : result > 0 ? 1 : -1;
+
+	}
+
 	private final ChangeListener validationListener = new ChangeListener() {
 
 		public void onChange(final Widget sender) {
@@ -246,11 +272,32 @@ public class CWTNumberInput extends CWTDialogField {
 
 		if (text.length() > 0) {
 			try {
-				final Integer number = Integer.parseInt(text);
+				Type type = sNumberInput.type;
+				if (null == type) {
+					type = Type.INTEGER;
+				}
+
+				Number number;
+				switch (type) {
+					case INTEGER:
+						number = NumberFormat.getFormat("###0").parse(text);
+						break;
+					case CURRENY:
+						number = NumberFormat.getCurrencyFormat().parse(text);
+						break;
+					case PERCENTAGE:
+						number = NumberFormat.getPercentFormat().parse(text);
+						break;
+					case DECIMAL:
+					default:
+						number = NumberFormat.getDecimalFormat().parse(text);
+						break;
+				}
 
 				// validate upper limit
-				if (null != sNumberInput.upperLimit) {
-					final int result = number.compareTo(new Integer(sNumberInput.upperLimit.intValue()));
+				final Number upperLimit = sNumberInput.upperLimit;
+				if (null != upperLimit) {
+					final int result = compare(number, upperLimit);
 					if (sNumberInput.upperLimitInclusive && (result > 0)) {
 						return false;
 					}
@@ -260,8 +307,9 @@ public class CWTNumberInput extends CWTDialogField {
 				}
 
 				// validate lower limit
-				if (null != sNumberInput.lowerLimit) {
-					final int result = number.compareTo(new Integer(sNumberInput.lowerLimit.intValue()));
+				final Number lowerLimit = sNumberInput.lowerLimit;
+				if (null != lowerLimit) {
+					final int result = compare(number, lowerLimit);
 					if (sNumberInput.lowerLimitInclusive && (result < 0)) {
 						return false;
 					}

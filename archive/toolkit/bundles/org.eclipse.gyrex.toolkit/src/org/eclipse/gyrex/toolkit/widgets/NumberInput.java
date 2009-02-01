@@ -117,6 +117,7 @@ public class NumberInput extends DialogField<NumberContent> {
 	 */
 	public void setLowerLimit(final Number lowerLimit, final boolean inclusive) {
 		this.lowerLimit = lowerLimit;
+		lowerLimitInclusive = inclusive;
 	}
 
 	/**
@@ -143,5 +144,6 @@ public class NumberInput extends DialogField<NumberContent> {
 	 */
 	public void setUpperLimit(final Number upperLimit, final boolean inclusive) {
 		this.upperLimit = upperLimit;
+		upperLimitInclusive = inclusive;
 	}
 }

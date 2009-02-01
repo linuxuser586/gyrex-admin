@@ -9,6 +9,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5,
  JavaSE-1.6
 Import-Package: com.google.gwt.core.client;version="[1.5.2,2.0.0)",
  com.google.gwt.dom.client;version="[1.5.2,2.0.0)",
+ com.google.gwt.i18n.client,
  com.google.gwt.user.client;version="[1.5.2,2.0.0)",
  com.google.gwt.user.client.rpc;version="[1.5.2,2.0.0)",
  com.google.gwt.user.client.ui;version="[1.5.2,2.0.0)"
