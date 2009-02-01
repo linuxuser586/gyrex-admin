@@ -40,15 +40,19 @@ public class CWTTextInput extends CWTDialogField {
 		private final Element labelElem;
 
 		public TextInputPanel() {
+			this(new TextBox(), "textInput");
+		}
+
+		protected TextInputPanel(final TextBox textBox, final String uidPrefix) {
 			setElement(DOM.createSpan());
 
 			labelElem = DOM.createLabel();
 			DOM.appendChild(getElement(), labelElem);
 
-			textBox = new TextBox();
+			this.textBox = textBox;
 			add(textBox, getElement());
 
-			final String uid = "textInput" + (++uniqueId);
+			final String uid = uidPrefix + (++uniqueId);
 			DOM.setElementProperty(textBox.getElement(), "id", uid);
 			DOM.setElementProperty(labelElem, "htmlFor", uid);
 		}
@@ -77,7 +81,7 @@ public class CWTTextInput extends CWTDialogField {
 		}
 	}
 
-	private static final DialogFieldValidator textInputValidator = new DialogFieldValidator() {
+	static final DialogFieldValidator textInputValidator = new DialogFieldValidator() {
 
 		@Override
 		public ValidationResult validate(final CWTDialogField dialogField, final ValidationContext context) {
@@ -95,7 +99,8 @@ public class CWTTextInput extends CWTDialogField {
 			return ValidationResult.OK;
 		}
 	};
-	private static final IContentAdapter textContentAdapter = new IContentAdapter() {
+
+	static final IContentAdapter textContentAdapter = new IContentAdapter() {
 
 		public SContentEntry getContent(final CWTWidget widget) {
 			final CWTTextInput textInput = (CWTTextInput) widget;
@@ -120,6 +125,12 @@ public class CWTTextInput extends CWTDialogField {
 	};
 
 	private TextInputPanel textInputPanel;
+
+	protected TextInputPanel createTextInput() {
+		final TextInputPanel textInputPanel = new TextInputPanel();
+		textInputPanel.setStyleName("cwt-TextInput");
+		return textInputPanel;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -152,7 +163,7 @@ public class CWTTextInput extends CWTDialogField {
 		return (STextInput) getSerializedWidget();
 	}
 
-	private TextBox getTextBoxWidget() {
+	protected TextBox getTextBoxWidget() {
 		if (null == textInputPanel) {
 			return null;
 		}
@@ -174,8 +185,7 @@ public class CWTTextInput extends CWTDialogField {
 			label = "";
 		}
 
-		textInputPanel = new TextInputPanel();
-		textInputPanel.setStyleName("cwt-TextInput");
+		textInputPanel = createTextInput();
 		textInputPanel.setLabelText(label);
 
 		if (textInput.maxLength > 0) {

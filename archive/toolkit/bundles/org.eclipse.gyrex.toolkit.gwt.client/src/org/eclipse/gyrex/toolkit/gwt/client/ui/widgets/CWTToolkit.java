@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
 
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Timer;
@@ -34,7 +33,9 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
+import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
+import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SPasswordInput;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SRadioButton;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
 import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
@@ -140,7 +141,7 @@ public class CWTToolkit {
 				final Timer timer = new Timer() {
 					@Override
 					public void run() {
-						History.onHistoryChanged(token);
+						History.newItem(token);
 					}
 				};
 				if (delay == 0) {
@@ -422,6 +423,12 @@ public class CWTToolkit {
 
 		if (serializedWidgetType.equals(STextInput.class)) {
 			return GWT.create(CWTTextInput.class);
+		}
+		if (serializedWidgetType.equals(SPasswordInput.class)) {
+			return GWT.create(CWTPasswordInput.class);
+		}
+		if (serializedWidgetType.equals(SEmailInput.class)) {
+			return GWT.create(CWTEmailInput.class);
 		}
 		if (serializedWidgetType.equals(SNumberInput.class)) {
 			return GWT.create(CWTNumberInput.class);
