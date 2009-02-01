@@ -23,12 +23,12 @@
 	<target name="sync.module" depends="compile.module">
 		<echo level="info" message="Removing existing cache files" />
 		<delete>
-			<fileset dir="resources">
+			<fileset dir="${sync.target}">
 				<include name="*.cache.*" />
 			</fileset>
 		</delete>
 		<echo level="info" message="Synchronizing module files..." />
-		<copy todir="resources">
+		<copy todir="${sync.target}">
 			<fileset dir="${module.output}" excludes="**/.svn/**,**/CVS/**" />
 		</copy>
 	</target>
