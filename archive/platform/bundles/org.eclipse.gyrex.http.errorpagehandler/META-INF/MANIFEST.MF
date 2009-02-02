@@ -11,5 +11,5 @@ Import-Package: org.mortbay.jetty;version="[6.1.7,7.0.0)",
  org.mortbay.jetty.handler;version="[6.1.7,7.0.0)",
  org.mortbay.jetty.servlet;version="[6.1.7,7.0.0)",
  org.mortbay.util;version="[6.1.7,7.0.0)"
-Require-Bundle: org.eclipse.equinox.common;bundle-version="3.5.0",
+Require-Bundle: org.eclipse.equinox.common;bundle-version="3.4.0",
  org.eclipse.cloudfree.configuration;bundle-version="1.0.0"
