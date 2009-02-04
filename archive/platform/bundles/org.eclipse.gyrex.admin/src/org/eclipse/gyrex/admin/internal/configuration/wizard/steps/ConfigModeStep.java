@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;
 
-
 import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.cloudfree.configuration.ConfigurationMode;
 import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
@@ -53,7 +52,7 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 		prodModeButton.setLabel("Production");
 		prodModeButton.setToolTipText("Select to enable production mode.");
 		prodModeButton.setDescription("Select this option if the system is operating in a production like environment. It enables typical production settings like strict security, error logging with alert messaging, customer client friendly error pages and specific cluster layouts.");
-		prodModeButton.setEnablementRule(DialogFieldRules.never());
+		//prodModeButton.setEnablementRule(DialogFieldRules.never());
 
 		final RadioButton devModeButton = new RadioButton("modeDevelopment", configModeFieldGroup, CWT.REQUIRED);
 		devModeButton.setLabel("Development");
