@@ -25,6 +25,7 @@
 		<delete>
 			<fileset dir="${sync.target}">
 				<include name="*.cache.*" />
+                <include name="*.gwt.rpc" />
 			</fileset>
 		</delete>
 		<echo level="info" message="Synchronizing module files..." />
