@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;
 
-
 import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
@@ -27,6 +26,9 @@ import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
 import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
 import org.osgi.service.prefs.BackingStoreException;
 
+/**
+ * TODO should also configure SSL
+ */
 public class WebServerStep extends ConfigurationWizardStep {
 
 	/**

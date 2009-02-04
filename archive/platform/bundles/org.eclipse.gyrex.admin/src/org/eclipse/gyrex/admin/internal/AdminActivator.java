@@ -23,7 +23,6 @@ import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWi
 import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardServiceImpl;
 import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardServiceRegistryHelper;
 import org.eclipse.cloudfree.admin.internal.configuration.wizard.steps.ConfigModeStep;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.steps.WebServerStep;
 import org.eclipse.cloudfree.admin.internal.widgets.AdminWidgetAdapterServiceImpl;
 import org.eclipse.cloudfree.admin.internal.widgets.AdminWidgetServiceImpl;
 import org.eclipse.cloudfree.admin.widgets.IAdminWidgetAdapterService;
@@ -378,7 +377,9 @@ public class AdminActivator extends BaseBundleActivator {
 
 		// add our registration
 		configurationWizardService.addStep(new ConfigModeStep());
-		configurationWizardService.addStep(new WebServerStep());
+
+		// TODO: move into separate bundle shipped with Jetty only
+		//configurationWizardService.addStep(new WebServerStep());
 	}
 
 	private synchronized void stopAdminWidgetAdapterService(final BundleContext context) {
