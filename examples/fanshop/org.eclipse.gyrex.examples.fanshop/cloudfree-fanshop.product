@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?pde version="3.4"?>
+<?pde version="3.5"?>
 
-<product name="CloudFree Fanshop (Incubation)" id="org.eclipse.cloudfree.examples.fanshop.product" application="org.eclipse.cloudfree.boot.server" version="0.7 ESE2008 (Incubation)" useFeatures="false">
+<product name="CloudFree Fanshop (Incubation)" id="org.eclipse.cloudfree.examples.fanshop.product" application="org.eclipse.cloudfree.boot.server" version="1.0 EclipseCon2009 (Incubation)" useFeatures="false">
 
    <configIni use="default">
       <linux>/org.eclipse.cloudfree.examples.fanshop/config.ini</linux>
@@ -12,7 +12,7 @@
 
    <launcherArgs>
       <programArgs>-console -nosplash</programArgs>
-      <vmArgs>-Dorg.eclipse.equinox.http.jetty.autostart=false</vmArgs>
+      <vmArgs>-Dorg.eclipse.equinox.http.jetty.autostart=false -server -XX:+UseParallelGC -XX:MaxPermSize=128m</vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
@@ -33,16 +33,13 @@
       <plugin id="com.ibm.icu"/>
       <plugin id="javanet.staxutils"/>
       <plugin id="javax.servlet"/>
-      <plugin id="javax.servlet.jsp"/>
       <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.csv"/>
-      <plugin id="org.apache.commons.el"/>
       <plugin id="org.apache.commons.fileupload"/>
       <plugin id="org.apache.commons.httpclient"/>
       <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.commons.lang"/>
       <plugin id="org.apache.commons.logging"/>
-      <plugin id="org.apache.jasper"/>
       <plugin id="org.apache.lucene"/>
       <plugin id="org.apache.solr.client.solrj"/>
       <plugin id="org.apache.solr.client.solrj.embedded"/>
@@ -55,6 +52,10 @@
       <plugin id="org.eclipse.cloudfree.admin.web.gwt.client"/>
       <plugin id="org.eclipse.cloudfree.boot"/>
       <plugin id="org.eclipse.cloudfree.boot.defaultroles"/>
+      <plugin id="org.eclipse.cloudfree.cds.model"/>
+      <plugin id="org.eclipse.cloudfree.cds.model.solr"/>
+      <plugin id="org.eclipse.cloudfree.cds.service"/>
+      <plugin id="org.eclipse.cloudfree.cds.service.solr"/>
       <plugin id="org.eclipse.cloudfree.common"/>
       <plugin id="org.eclipse.cloudfree.configuration"/>
       <plugin id="org.eclipse.cloudfree.configuration.impl"/>
@@ -64,11 +65,8 @@
       <plugin id="org.eclipse.cloudfree.http"/>
       <plugin id="org.eclipse.cloudfree.http.errorpagehandler" fragment="true"/>
       <plugin id="org.eclipse.cloudfree.http.errorpagehandler.resources"/>
+      <plugin id="org.eclipse.cloudfree.http.jetty"/>
       <plugin id="org.eclipse.cloudfree.http.registry"/>
-      <plugin id="org.eclipse.cloudfree.cds.model"/>
-      <plugin id="org.eclipse.cloudfree.cds.model.solr"/>
-      <plugin id="org.eclipse.cloudfree.listings.service"/>
-      <plugin id="org.eclipse.cloudfree.listings.service.solr"/>
       <plugin id="org.eclipse.cloudfree.model.common"/>
       <plugin id="org.eclipse.cloudfree.monitoring"/>
       <plugin id="org.eclipse.cloudfree.persistence"/>
@@ -78,28 +76,48 @@
       <plugin id="org.eclipse.cloudfree.toolkit.gwt.client"/>
       <plugin id="org.eclipse.cloudfree.toolkit.gwt.server"/>
       <plugin id="org.eclipse.cloudfree.toolkit.runtime"/>
+      <plugin id="org.eclipse.core.commands"/>
+      <plugin id="org.eclipse.core.commands.source"/>
       <plugin id="org.eclipse.core.contenttype"/>
+      <plugin id="org.eclipse.core.contenttype.source"/>
+      <plugin id="org.eclipse.core.expressions"/>
+      <plugin id="org.eclipse.core.expressions.source"/>
       <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.jobs.source"/>
       <plugin id="org.eclipse.core.runtime"/>
+      <plugin id="org.eclipse.core.runtime.source"/>
       <plugin id="org.eclipse.equinox.app"/>
+      <plugin id="org.eclipse.equinox.app.source"/>
       <plugin id="org.eclipse.equinox.common"/>
+      <plugin id="org.eclipse.equinox.common.source"/>
       <plugin id="org.eclipse.equinox.http.jetty"/>
       <plugin id="org.eclipse.equinox.http.registry"/>
+      <plugin id="org.eclipse.equinox.http.registry.source"/>
       <plugin id="org.eclipse.equinox.http.servlet"/>
-      <plugin id="org.eclipse.equinox.jsp.jasper"/>
+      <plugin id="org.eclipse.equinox.http.servlet.source"/>
       <plugin id="org.eclipse.equinox.launcher"/>
-      <plugin id="org.eclipse.equinox.launcher.win32.win32.x86"/>
+      <plugin id="org.eclipse.equinox.launcher.source"/>
+      <plugin id="org.eclipse.equinox.launcher.win32.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.equinox.preferences"/>
+      <plugin id="org.eclipse.equinox.preferences.source"/>
       <plugin id="org.eclipse.equinox.registry"/>
+      <plugin id="org.eclipse.equinox.registry.source"/>
       <plugin id="org.eclipse.equinox.security"/>
       <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.equinox.transforms.hook" fragment="true"/>
+      <plugin id="org.eclipse.equinox.transforms.hook.source"/>
+      <plugin id="org.eclipse.equinox.util"/>
+      <plugin id="org.eclipse.equinox.util.source"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.osgi.services.source"/>
       <plugin id="org.eclipse.osgi.source"/>
       <plugin id="org.eclipse.osgi.util"/>
+      <plugin id="org.eclipse.osgi.util.source"/>
       <plugin id="org.eclipse.update.configurator"/>
       <plugin id="org.mortbay.jetty.server"/>
       <plugin id="org.mortbay.jetty.util"/>
    </plugins>
+
 
 </product>

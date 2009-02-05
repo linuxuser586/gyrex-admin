@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.examples.fanshop.internal.setup;
 
-
 import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
 import org.eclipse.cloudfree.configuration.service.IConfigurationService;
