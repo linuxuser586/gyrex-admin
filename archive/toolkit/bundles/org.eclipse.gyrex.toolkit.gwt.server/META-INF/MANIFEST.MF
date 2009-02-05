@@ -8,7 +8,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: com.google.gwt.user.client.rpc;version="[1.5.2,2.0.0)",
  com.google.gwt.user.server.rpc;version="[1.5.2,2.0.0)",
- com.ibm.icu.util;version="[3.6.0,4.0.0)",
+ com.ibm.icu.util;version="[3.8.1,5.0.0)",
  javax.servlet;version="[2.5.0,3.0.0)",
  javax.servlet.http;version="[2.5.0,3.0.0)",
  org.apache.commons.codec;version="[1.3.0,2.0.0)",
