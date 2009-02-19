@@ -12,7 +12,6 @@
 package org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;
 
 import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
 import org.eclipse.cloudfree.toolkit.CWT;
 import org.eclipse.cloudfree.toolkit.content.NumberContent;
@@ -24,6 +23,7 @@ import org.eclipse.cloudfree.toolkit.widgets.NumberType;
 import org.eclipse.cloudfree.toolkit.widgets.StyledText;
 import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
 import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**
@@ -75,8 +75,9 @@ public class WebServerStep extends ConfigurationWizardStep {
 			// check if production mode is selected
 			final NumberContent content = (NumberContent) finishEvent.getContentSet().getEntry("webserver-port");
 			if ((null != content) && (null != content.getNumber())) {
-				PlatformConfiguration.getConfigurationService().putInt("org.eclipse.cloudfree.http", "port", content.getNumber().intValue(), null, false);
-				new PlatformScope().getNode("org.eclipse.cloudfree.http").flush();
+				final IEclipsePreferences eclipsePreferences = new PlatformScope().getNode("org.eclipse.cloudfree.http.jetty");
+				eclipsePreferences.putInt("port", content.getNumber().intValue());
+				eclipsePreferences.flush();
 			}
 		} catch (final IllegalStateException e) {
 			// inactive
