@@ -13,7 +13,6 @@ package org.eclipse.cloudfree.admin.internal.configuration.wizard;
 
 import java.util.concurrent.TimeUnit;
 
-
 import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.cloudfree.admin.internal.AdminActivator;
 import org.eclipse.cloudfree.configuration.PlatformConfiguration;
@@ -158,8 +157,8 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 		// add a restart button
 		if (!ConfigurationModeHolder.isConfigurationModeInitialized() || AdminActivator.getInstance().shouldRestartServer()) {
 			final Button button = new Button("restart-button", container, CWT.NONE);
-			button.setLabel("Shutdown");
-			button.setDescription("Press the button to shutdown the platform.");
+			button.setLabel("Restart");
+			button.setDescription("Press the button to restart the platform.");
 			button.setCommand(new Command(CMD_RESTART));
 		}
 
