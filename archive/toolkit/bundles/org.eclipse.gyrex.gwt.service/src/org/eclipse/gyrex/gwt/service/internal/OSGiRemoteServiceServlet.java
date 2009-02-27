@@ -42,6 +42,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.cloudfree.gwt.service.GwtRequestResponseListener;
+import org.osgi.framework.Bundle;
 
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -64,21 +65,28 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 
 	private final ClassLoader remoteServiceClassLoader = new ClassLoader() {
 
-		/* (non-Javadoc)
-		 * @see java.lang.ClassLoader#findClass(java.lang.String)
-		 */
 		@Override
 		protected Class<?> findClass(final String name) throws ClassNotFoundException {
-			// try the bundle which defined the service
+			// try the bundle which defined the remote service
 			try {
 				return remoteService.getClass().getClassLoader().loadClass(name);
 			} catch (final Exception e) {
 				// ignore
 			}
 
-			// try the bundle which registered the service
+			// try the bundle which registered the remote service
 			try {
 				return gwtService.getBundle().loadClass(name);
+			} catch (final Exception e) {
+				// ignore
+			}
+
+			// try our bundle (we import the default GWT custom serializers)
+			try {
+				final Bundle bundle = GwtServiceActivator.getBundle();
+				if (null != bundle) {
+					return bundle.loadClass(name);
+				}
 			} catch (final Exception e) {
 				// ignore
 			}
@@ -93,16 +101,13 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// fail
+			// give up
 			return super.findClass(name);
 		}
 
-		/* (non-Javadoc)
-		 * @see java.lang.ClassLoader#findResource(java.lang.String)
-		 */
 		@Override
 		protected URL findResource(final String name) {
-			// try the bundle which defined the service
+			// try the bundle which defined the remote service
 			try {
 				final URL resource = remoteService.getClass().getClassLoader().getResource(name);
 				if (null != resource) {
@@ -112,11 +117,21 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// try the bundle which registered the service
+			// try the bundle which registered the remote service
 			try {
 				final URL resource = gwtService.getBundle().getResource(name);
 				if (null != resource) {
 					return resource;
+				}
+			} catch (final Exception e) {
+				// ignore
+			}
+
+			// try our bundle (we import the default GWT custom serializers)
+			try {
+				final Bundle bundle = GwtServiceActivator.getBundle();
+				if (null != bundle) {
+					return bundle.getResource(name);
 				}
 			} catch (final Exception e) {
 				// ignore
@@ -135,17 +150,14 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// fail
+			// give up
 			return super.findResource(name);
 		}
 
-		/* (non-Javadoc)
-		 * @see java.lang.ClassLoader#findResources(java.lang.String)
-		 */
 		@SuppressWarnings("unchecked")
 		@Override
 		protected Enumeration<URL> findResources(final String name) throws IOException {
-			// try the bundle which defined the service
+			// try the bundle which defined the remote service
 			try {
 				final Enumeration<URL> resources = remoteService.getClass().getClassLoader().getResources(name);
 				if (resources.hasMoreElements()) {
@@ -155,11 +167,24 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// try the bundle which registered the service
+			// try the bundle which registered the remote service
 			try {
 				final Enumeration<URL> resources = gwtService.getBundle().getResources(name);
 				if (resources.hasMoreElements()) {
 					return resources;
+				}
+			} catch (final Exception e) {
+				// ignore
+			}
+
+			// try our bundle (we import the default GWT custom serializers)
+			try {
+				final Bundle bundle = GwtServiceActivator.getBundle();
+				if (null != bundle) {
+					final Enumeration<URL> resources = bundle.getResources(name);
+					if (resources.hasMoreElements()) {
+						return resources;
+					}
 				}
 			} catch (final Exception e) {
 				// ignore
@@ -209,9 +234,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.server.rpc.RemoteServiceServlet#doGetSerializationPolicy(javax.servlet.http.HttpServletRequest, java.lang.String, java.lang.String)
-	 */
 	@Override
 	protected SerializationPolicy doGetSerializationPolicy(final HttpServletRequest request, final String moduleBaseURL, final String strongName) {
 		// the serialization policy file
@@ -236,13 +258,11 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 						return policy;
 					}
 
-					// TODO: consider logging not accessible classes
 					// this may indicate a deployment problem, i.e. some unsatisfied version dependencies.
 					for (final ClassNotFoundException classNotFoundException : exceptions) {
 						getServletContext().log(MessageFormat.format("Could not load class \"{0}\" using bundle \"{1}\"", classNotFoundException.getMessage(), gwtService.getBundle().getSymbolicName()));
 					}
 				} catch (final Exception e) {
-					// TODO consider logging this
 					getServletContext().log(MessageFormat.format("Error while reading serialization policy for module \"{0}\".", moduleId), e);
 				} finally {
 					if (is != null) {
@@ -260,14 +280,32 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		getServletContext().log(MessageFormat.format("Serialization policy file \"{0}\" not available in module \"{1}\". Falling back to legacy policy.", serializationPolicyFile, moduleId));
 
 		// fallback to a legacy policy
-		// TODO: consider logging this
 		return RPC.getDefaultSerializationPolicy();
+	}
+
+	private String invokeAndEncodeResponse(final RPCRequest rpcRequest) throws SerializationException {
+		// we use reflection (the patch for GWT issue 1888 may eventually be available in 1.6)
+		try {
+			final Method method = RPC.class.getDeclaredMethod("invokeAndEncodeResponse", Method.class, Object[].class, SerializationPolicy.class, ClassLoader.class);
+			return (String) method.invoke(null, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy(), remoteServiceClassLoader);
+		} catch (final Exception e) {
+			// ignore, fallback bellow
+		}
+
+		// override the TCCL 
+		final ClassLoader contextFinder = Thread.currentThread().getContextClassLoader();
+		try {
+			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
+			return RPC.invokeAndEncodeResponse(this, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
+		} finally {
+			Thread.currentThread().setContextClassLoader(contextFinder);
+		}
 	}
 
 	private SerializationPolicy loadSerializationPolicy(final InputStream is, final List<ClassNotFoundException> exceptions) throws IOException, ParseException {
 		// we use reflection (the patch for GWT issue 1888 may eventually be available in 1.6)
 		try {
-			final Method method = SerializationPolicyLoader.class.getMethod("loadFromStream", InputStream.class, List.class, ClassLoader.class);
+			final Method method = SerializationPolicyLoader.class.getDeclaredMethod("loadFromStream", InputStream.class, List.class, ClassLoader.class);
 			return (SerializationPolicy) method.invoke(null, is, exceptions, remoteServiceClassLoader);
 		} catch (final Exception e) {
 			// ignore, fallback bellow
@@ -283,9 +321,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.server.rpc.RemoteServiceServlet#onAfterResponseSerialized(java.lang.String)
-	 */
 	@Override
 	protected void onAfterResponseSerialized(final String serializedResponse) {
 		if (null != requestResponseAdapter) {
@@ -293,9 +328,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.server.rpc.RemoteServiceServlet#onBeforeRequestDeserialized(java.lang.String)
-	 */
 	@Override
 	protected void onBeforeRequestDeserialized(final String serializedRequest) {
 		if (null != requestResponseAdapter) {
@@ -303,9 +335,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.server.rpc.RemoteServiceServlet#processCall(java.lang.String)
-	 */
 	@Override
 	public String processCall(final String payload) throws SerializationException {
 		try {
@@ -313,7 +342,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				requestResponseAdapter.onBeforeProcessCall(getThreadLocalRequest(), getThreadLocalResponse());
 			}
 			final RPCRequest rpcRequest = decodeRequest(payload);
-			return RPC.invokeAndEncodeResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
+			return invokeAndEncodeResponse(rpcRequest);
 		} catch (final IncompatibleRemoteServiceException ex) {
 			// TODO consider logging this
 			//getServletContext().log("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);

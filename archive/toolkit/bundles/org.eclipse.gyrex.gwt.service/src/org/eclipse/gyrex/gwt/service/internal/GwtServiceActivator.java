@@ -14,6 +14,7 @@ package org.eclipse.cloudfree.gwt.service.internal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -24,7 +25,27 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 public class GwtServiceActivator implements BundleActivator, ServiceTrackerCustomizer {
 
+	private static GwtServiceActivator instance;
+
+	/**
+	 * Returns the current active bundle instance.
+	 * 
+	 * @return the bundle instance (maybe <code>null</code> if inactive)
+	 */
+	static Bundle getBundle() {
+		final GwtServiceActivator instance = GwtServiceActivator.instance;
+		if (null == instance) {
+			return null;
+		}
+		final BundleContext bundleContext = instance.context;
+		if (null == bundleContext) {
+			return null;
+		}
+		return bundleContext.getBundle();
+	}
+
 	private ServiceTracker httpServiceTracker;
+
 	private BundleContext context;
 
 	private Map<String, GwtServiceRegistry> registryByHttpServicePid;
@@ -98,6 +119,7 @@ public class GwtServiceActivator implements BundleActivator, ServiceTrackerCusto
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(final BundleContext context) throws Exception {
+		instance = this;
 		this.context = context;
 
 		// check state
@@ -118,6 +140,9 @@ public class GwtServiceActivator implements BundleActivator, ServiceTrackerCusto
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(final BundleContext context) throws Exception {
+		instance = null;
+		this.context = null;
+
 		// stop
 		if (null != httpServiceTracker) {
 			httpServiceTracker.close();
