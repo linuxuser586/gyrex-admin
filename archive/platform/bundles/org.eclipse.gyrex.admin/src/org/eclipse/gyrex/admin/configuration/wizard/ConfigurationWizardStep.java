@@ -11,7 +11,6 @@
  *******************************************************************************/
 package org.eclipse.cloudfree.admin.configuration.wizard;
 
-
 import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
 
@@ -73,9 +72,10 @@ public abstract class ConfigurationWizardStep {
 	 * @param finishEvent
 	 *            the event triggered as a result of pressing the wizard finish
 	 *            button
-	 * @return <code>true</code> if the configuration was processed
-	 *         successfully and the wizard can finish, <code>false</code>
-	 *         otherwise
+	 * @return <code>true</code> if the configuration was processed successfully
+	 *         and the wizard can finish, <code>false</code> otherwise
 	 */
+	// TODO: add IProgressMonitor support
+	// TODO: changed to IStatus based return value
 	public abstract boolean wizardFinished(final CommandExecutionEvent finishEvent);
 }
