@@ -143,7 +143,6 @@ public class GwtServiceActivator implements BundleActivator, ServiceTrackerCusto
 	 */
 	public void stop(final BundleContext context) throws Exception {
 		instance = null;
-		this.context = null;
 
 		// stop
 		if (null != httpServiceTracker) {
@@ -158,6 +157,10 @@ public class GwtServiceActivator implements BundleActivator, ServiceTrackerCusto
 			}
 			registryByHttpServicePid = null;
 		}
+
+		// unset at last
+		this.context = null;
+
 	}
 
 	private synchronized void updateHttpService(final HttpService service, final ServiceReference reference) {
