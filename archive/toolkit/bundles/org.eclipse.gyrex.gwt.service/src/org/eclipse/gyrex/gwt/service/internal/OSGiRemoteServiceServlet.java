@@ -94,7 +94,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 			// try the context finder
 			try {
 				final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-				if (null != contextClassLoader) {
+				if ((null != contextClassLoader) && (contextClassLoader != this)) {
 					return contextClassLoader.loadClass(name);
 				}
 			} catch (final Exception e) {
