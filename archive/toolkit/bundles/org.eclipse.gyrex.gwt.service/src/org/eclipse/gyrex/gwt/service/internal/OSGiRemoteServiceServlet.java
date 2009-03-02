@@ -91,15 +91,8 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// try the context finder
-			try {
-				final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-				if ((null != contextClassLoader) && (contextClassLoader != this)) {
-					return contextClassLoader.loadClass(name);
-				}
-			} catch (final Exception e) {
-				// ignore
-			}
+			// note, we should ideally try the old TCCL here as well
+			// we should investigate if this is worthwhile (eg. performance)
 
 			// give up
 			return super.findClass(name);
@@ -137,18 +130,8 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// try the context finder
-			try {
-				final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-				if (null != contextClassLoader) {
-					final URL resource = contextClassLoader.getResource(name);
-					if (null != resource) {
-						return resource;
-					}
-				}
-			} catch (final Exception e) {
-				// ignore
-			}
+			// note, we should ideally try the old TCCL here as well
+			// we should investigate if this is worthwhile (eg. performance)
 
 			// give up
 			return super.findResource(name);
@@ -190,18 +173,8 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 				// ignore
 			}
 
-			// try the context finder
-			try {
-				final ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
-				if (null != contextClassLoader) {
-					final Enumeration<URL> resources = contextClassLoader.getResources(name);
-					if (resources.hasMoreElements()) {
-						return resources;
-					}
-				}
-			} catch (final Exception e) {
-				// ignore
-			}
+			// note, we should ideally try the old TCCL here as well
+			// we should investigate if this is worthwhile (eg. performance)
 
 			// fail
 			return super.findResources(name);
