@@ -296,7 +296,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		final ClassLoader contextFinder = Thread.currentThread().getContextClassLoader();
 		try {
 			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
-			return RPC.invokeAndEncodeResponse(this, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
+			return RPC.invokeAndEncodeResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
 		} finally {
 			Thread.currentThread().setContextClassLoader(contextFinder);
 		}
