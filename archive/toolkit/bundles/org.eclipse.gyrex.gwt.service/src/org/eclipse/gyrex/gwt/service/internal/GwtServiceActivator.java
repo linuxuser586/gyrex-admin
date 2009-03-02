@@ -101,7 +101,9 @@ public class GwtServiceActivator implements BundleActivator, ServiceTrackerCusto
 		if (service instanceof HttpService) {
 			removeHttpService((HttpService) service, reference);
 		}
-		context.ungetService(reference);
+		if (null != context) {
+			context.ungetService(reference);
+		}
 	}
 
 	private synchronized void removeHttpService(final HttpService service, final ServiceReference reference) {
