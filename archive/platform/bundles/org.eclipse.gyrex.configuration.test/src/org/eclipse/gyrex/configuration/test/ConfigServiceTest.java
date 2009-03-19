@@ -9,22 +9,22 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.test;
+package org.eclipse.gyrex.configuration.test;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
 
 
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.configuration.internal.impl.ConfigurationServiceImpl;
-import org.eclipse.cloudfree.configuration.internal.impl.PreferencesUtil;
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.equinox.security.storage.EncodingUtils;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.configuration.internal.impl.ConfigurationServiceImpl;
+import org.eclipse.gyrex.configuration.internal.impl.PreferencesUtil;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.junit.Test;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
@@ -47,7 +47,7 @@ public class ConfigServiceTest {
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.common.context.IContext#getContextPath()
+		 * @see org.eclipse.gyrex.common.context.IContext#getContextPath()
 		 */
 		@Override
 		public IPath getContextPath() {

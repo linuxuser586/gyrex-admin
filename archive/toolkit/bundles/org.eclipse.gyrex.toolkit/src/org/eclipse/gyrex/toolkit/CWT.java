@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit;
+package org.eclipse.gyrex.toolkit;
 
-import org.eclipse.cloudfree.toolkit.actions.ShowWidgetAction;
-import org.eclipse.cloudfree.toolkit.widgets.CalendarInput;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup;
-import org.eclipse.cloudfree.toolkit.widgets.StructuredDialogField;
+import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
+import org.eclipse.gyrex.toolkit.widgets.CalendarInput;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
+import org.eclipse.gyrex.toolkit.widgets.StructuredDialogField;
 
 /**
- * The CloudFree Widget Toolkit (CWT).
+ * The Gyrex Widget Toolkit (CWT).
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
  * CWT implementation.

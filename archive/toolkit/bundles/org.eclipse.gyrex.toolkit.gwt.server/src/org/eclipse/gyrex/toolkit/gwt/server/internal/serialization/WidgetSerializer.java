@@ -9,30 +9,30 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SMultiDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
-import org.eclipse.cloudfree.toolkit.layout.LayoutHint;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
-import org.eclipse.cloudfree.toolkit.widgets.MultiDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule.FieldSelectionType;
-import org.eclipse.cloudfree.toolkit.widgets.MultiDialogFieldRule.Condition;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SMultiDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
+import org.eclipse.gyrex.toolkit.layout.LayoutHint;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldSelectionType;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule.Condition;
 
 /**
  * Abstract base class for widget serializers.

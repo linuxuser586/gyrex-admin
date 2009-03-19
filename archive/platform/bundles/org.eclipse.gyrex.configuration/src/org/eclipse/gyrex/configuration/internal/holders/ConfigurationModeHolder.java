@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.holders;
+package org.eclipse.gyrex.configuration.internal.holders;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 
-import org.eclipse.cloudfree.common.debug.BundleDebug;
-import org.eclipse.cloudfree.configuration.ConfigurationMode;
-import org.eclipse.cloudfree.configuration.internal.ConfigDebug;
+import org.eclipse.gyrex.common.debug.BundleDebug;
+import org.eclipse.gyrex.configuration.ConfigurationMode;
+import org.eclipse.gyrex.configuration.internal.ConfigDebug;
 
 public class ConfigurationModeHolder {
 

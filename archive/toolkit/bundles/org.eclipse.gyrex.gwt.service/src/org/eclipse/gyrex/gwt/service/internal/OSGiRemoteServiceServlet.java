@@ -27,7 +27,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.eclipse.cloudfree.gwt.service.internal;
+package org.eclipse.gyrex.gwt.service.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,7 +41,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.cloudfree.gwt.service.GwtRequestResponseListener;
+import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
 import org.osgi.framework.Bundle;
 
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;

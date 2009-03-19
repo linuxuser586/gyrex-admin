@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.layout;
+package org.eclipse.gyrex.toolkit.layout;
 
 /**
  * Aligns children in a grid.

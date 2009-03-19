@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal;
+package org.eclipse.gyrex.configuration.internal;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,19 +20,19 @@ import java.net.URL;
 import java.util.concurrent.atomic.AtomicReference;
 
 
-import org.eclipse.cloudfree.common.runtime.BaseBundleActivator;
-import org.eclipse.cloudfree.common.services.IServiceProxy;
-import org.eclipse.cloudfree.configuration.ConfigurationMode;
-import org.eclipse.cloudfree.configuration.IConfigurationConstants;
-import org.eclipse.cloudfree.configuration.internal.holders.ConfigurationModeHolder;
-import org.eclipse.cloudfree.configuration.service.IConfigurationService;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.common.services.IServiceProxy;
+import org.eclipse.gyrex.configuration.ConfigurationMode;
+import org.eclipse.gyrex.configuration.IConfigurationConstants;
+import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
- * Activates the <code>org.eclipse.cloudfree.configuration</code> plug-in.
+ * Activates the <code>org.eclipse.gyrex.configuration</code> plug-in.
  * <p>
  * This plug-in is split into an implementation part and an API part. The API
  * part registers an extension with the extension registry. It is therefore
@@ -50,7 +50,7 @@ public class ConfigurationActivator extends BaseBundleActivator {
 	private static final String PRODUCTION = "production";
 
 	/** PLUGIN_ID */
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.configuration";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.configuration";
 
 	/** the shared instance */
 	private static final AtomicReference<ConfigurationActivator> sharedInstance = new AtomicReference<ConfigurationActivator>();
@@ -83,7 +83,7 @@ public class ConfigurationActivator extends BaseBundleActivator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
@@ -102,7 +102,7 @@ public class ConfigurationActivator extends BaseBundleActivator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
@@ -120,7 +120,7 @@ public class ConfigurationActivator extends BaseBundleActivator {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#getDebugOptions()
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#getDebugOptions()
 	 */
 	@Override
 	protected Class getDebugOptions() {

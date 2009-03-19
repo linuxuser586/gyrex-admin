@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.lookup;
+package org.eclipse.gyrex.toolkit.runtime.lookup;
 
 
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * The base widget registry implementation.
@@ -50,7 +50,7 @@ public class BaseWidgetRegistry extends BaseRegistry<IWidgetFactory> implements 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment)
 	 */
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 		final IWidgetFactory factory = lookupFactory(id);
@@ -64,7 +64,7 @@ public class BaseWidgetRegistry extends BaseRegistry<IWidgetFactory> implements 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetRegistry#registerFactory(org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory,
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry#registerFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory,
 	 *      java.lang.String[])
 	 */
 	public void registerFactory(final IWidgetFactory factory, final String... widgetIds) throws RegistrationException {
@@ -74,7 +74,7 @@ public class BaseWidgetRegistry extends BaseRegistry<IWidgetFactory> implements 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetRegistry#unregisterFactory(org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry#unregisterFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory)
 	 */
 	public void unregisterFactory(final IWidgetFactory factory) {
 		removeFactory(factory);

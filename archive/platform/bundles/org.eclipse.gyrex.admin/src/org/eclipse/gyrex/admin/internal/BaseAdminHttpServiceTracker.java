@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal;
+package org.eclipse.gyrex.admin.internal;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;
@@ -18,13 +18,13 @@ import org.osgi.service.http.HttpService;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * Base HTTP service tracker for the CloudFree Platform Admin HTTP service.
+ * Base HTTP service tracker for Gyrex Admin HTTP service.
  */
 public abstract class BaseAdminHttpServiceTracker extends ServiceTracker {
 
 	/**
 	 * filter string for the admin http service (value
-	 * <code>(&(objectClass=org.osgi.service.http.HttpService)(other.info=org.eclipse.cloudfree.http.admin))</code>)
+	 * <code>(&(objectClass=org.osgi.service.http.HttpService)(other.info=org.eclipse.gyrex.http.admin))</code>)
 	 */
 	private static final String FILTER_ADMIN_HTTP_SERVICE = "(&(objectClass=" + HttpService.class.getName() + ")(other.info=" + AdminActivator.TYPE_ADMIN + "))";
 

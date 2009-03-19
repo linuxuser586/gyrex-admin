@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldRuleEventHandler;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldRuleEventHandler;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -28,7 +28,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * Renders a <code>org.eclipse.cloudfree.toolkit.widgets.DialogField</code> into
+ * Renders a <code>org.eclipse.gyrex.toolkit.widgets.DialogField</code> into
  * SWT/JFace/Forms UI.
  * <p>
  * A dialog field may consist of multiple controls which are arranged in a
@@ -58,7 +58,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
+		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
 		protected void handleRuleEvaluationResult(final boolean evaluationResult) {
@@ -124,7 +124,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 	 * @param parent
 	 *            the parent composite
 	 * @return the created control (may not be <code>null</code>)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 * @see #getLabelControl()
 	 * @see #getDescriptionControl()
 	 */
@@ -175,7 +175,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
 	 */
 	@Override
 	public Object getAdapter(final Class adapter) {
@@ -277,7 +277,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#onWidgetControlCreated()
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#onWidgetControlCreated()
 	 */
 	@Override
 	protected void onWidgetControlCreated() {
@@ -293,7 +293,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#onWidgetControlDisposed()
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#onWidgetControlDisposed()
 	 */
 	@Override
 	protected void onWidgetControlDisposed() {

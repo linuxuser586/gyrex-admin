@@ -9,17 +9,17 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.content.TextContent;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.ValidationContext;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.ValidationResult;
-import org.eclipse.cloudfree.toolkit.widgets.TextInput;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.content.TextContent;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationContext;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationResult;
+import org.eclipse.gyrex.toolkit.widgets.TextInput;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -52,7 +52,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	private static final IContentAdapter CONTENT_ADAPTER = new IContentAdapter() {
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter#getContent(org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget)
+		 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter#getContent(org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget)
 		 */
 		@Override
 		public ContentObject getContent(final CWTWidget widget) {
@@ -61,7 +61,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter#hasContent(org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget)
+		 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter#hasContent(org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget)
 		 */
 		@Override
 		public boolean hasContent(final CWTWidget widget) {
@@ -81,7 +81,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	private Text textControl;
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {
@@ -107,7 +107,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
 	 */
 	@Override
 	protected void fillIntoGrid(final int columns) {
@@ -126,7 +126,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
 	 */
 	@Override
 	protected int getNumberOfColumns() {
@@ -158,7 +158,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

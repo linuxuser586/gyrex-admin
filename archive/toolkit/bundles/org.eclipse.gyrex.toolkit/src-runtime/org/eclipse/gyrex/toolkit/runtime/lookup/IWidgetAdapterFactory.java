@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.lookup;
+package org.eclipse.gyrex.toolkit.runtime.lookup;
 
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 
 /**
  * An adapter factory is responsible for creating widget adapters.

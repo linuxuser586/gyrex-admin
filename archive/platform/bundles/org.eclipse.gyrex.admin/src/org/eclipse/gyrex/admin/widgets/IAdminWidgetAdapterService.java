@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.widgets;
+package org.eclipse.gyrex.admin.widgets;
 
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterRegistry;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterRegistry;
 
 /**
  * The admin widget adapter service is a

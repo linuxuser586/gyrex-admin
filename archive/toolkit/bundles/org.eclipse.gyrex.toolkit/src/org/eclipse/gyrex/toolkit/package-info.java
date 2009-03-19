@@ -10,9 +10,9 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 /**
- * CloudFree Widget Toolkit (CWT).
+ * Gyrex Widget Toolkit (CWT).
  * <p>
- * The CloudFree Widget Toolkit (CWT) is ans attempt to define a 
+ * The Gyrex Widget Toolkit (CWT) is ans attempt to define a 
  * cross-technology toolkit. Its base concept is a widget model for defining 
  * the user interface. This model is rendered by technology specific renders.
  * For example, one could generate an Eclipse Forms UI based user
@@ -41,5 +41,5 @@
  * officially released.
  * </p>
  */
-package org.eclipse.cloudfree.toolkit;
+package org.eclipse.gyrex.toolkit;
 

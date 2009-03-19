@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services;
 
 /**
  * Interface with shared service constants
@@ -17,7 +17,7 @@ package org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.service
 public interface IServiceConstants {
 
 	/** the common entry point prefix */
-	String COMMON_ENTRYPOINT_PREFIX = "/org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services";
+	String COMMON_ENTRYPOINT_PREFIX = "/org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services";
 
 	/** the configuration service entry point */
 	String ENTRYPOINT_CONFIGURATION_SERVICE = COMMON_ENTRYPOINT_PREFIX + "/configuration";

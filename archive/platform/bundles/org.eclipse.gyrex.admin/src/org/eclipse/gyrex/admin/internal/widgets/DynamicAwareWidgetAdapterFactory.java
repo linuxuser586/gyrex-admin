@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.widgets;
+package org.eclipse.gyrex.admin.internal.widgets;
 
 
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetAdapterService;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetAdapterService;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 
 /**
  * {@link IWidgetAdapterFactory} which is able to handle the inactive case.

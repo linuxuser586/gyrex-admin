@@ -9,41 +9,41 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SAggregateHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SBreakSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SDecoratedParagraph;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SImageHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SImageSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SObjectSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SParagraph;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SParagraphSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextSegment;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SObjectSegment.VerticalAlign;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.WidgetSerializer;
-import org.eclipse.cloudfree.toolkit.resources.ImageResource;
-import org.eclipse.cloudfree.toolkit.widgets.StyledText;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.AggregateHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.BreakSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.DecoratedParagraph;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.IHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ImageHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ImageSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ObjectSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.Paragraph;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ParagraphSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.TextHyperlinkSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.TextSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SAggregateHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SBreakSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SDecoratedParagraph;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SImageHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SImageSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SObjectSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SParagraph;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SParagraphSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextSegment;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SObjectSegment.VerticalAlign;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
+import org.eclipse.gyrex.toolkit.widgets.StyledText;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.AggregateHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.BreakSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.DecoratedParagraph;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ImageHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ImageSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ObjectSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.Paragraph;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ParagraphSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.TextHyperlinkSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.TextSegment;
 
 /**
  * {@link StyledText} serializer.

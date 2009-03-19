@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.ui.ChangeListener;
 import com.google.gwt.user.client.ui.ChangeListenerCollection;
@@ -18,17 +18,17 @@ import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.SourcesChangeEvents;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationContext;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SSelectionFlagEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationContext;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SSelectionFlagEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.RadioButton</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.RadioButton</code>.
  */
 public class CWTCheckbox extends CWTDialogField {
 
@@ -128,7 +128,7 @@ public class CWTCheckbox extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -214,7 +214,7 @@ public class CWTCheckbox extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

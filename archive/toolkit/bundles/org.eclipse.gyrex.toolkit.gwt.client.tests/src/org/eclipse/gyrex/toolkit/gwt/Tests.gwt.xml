@@ -12,5 +12,5 @@
 <module>
     <inherits name='com.google.gwt.user.User'/>
     <inherits name='com.google.gwt.i18n.I18N'/>
-    <inherits name='org.eclipse.cloudfree.toolkit.gwt.Ui'/>
+    <inherits name='org.eclipse.gyrex.toolkit.gwt.Ui'/>
 </module>

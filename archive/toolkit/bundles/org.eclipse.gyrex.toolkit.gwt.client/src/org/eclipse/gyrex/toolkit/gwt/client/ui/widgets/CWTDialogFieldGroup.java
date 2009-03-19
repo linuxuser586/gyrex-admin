@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
@@ -17,12 +17,12 @@ import com.google.gwt.user.client.ui.ComplexPanel;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
 
 /**
  * Composite for
- * <code>org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup</code>.
+ * <code>org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup</code>.
  */
 public class CWTDialogFieldGroup extends CWTContainer {
 

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.common.adaptable;
+package org.eclipse.gyrex.gwt.common.adaptable;
 
 /**
  * An interface for an adaptable object.

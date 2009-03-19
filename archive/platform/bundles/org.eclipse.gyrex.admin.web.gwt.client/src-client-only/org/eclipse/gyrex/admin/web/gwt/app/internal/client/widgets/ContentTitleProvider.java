@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.client.widgets;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.client.widgets;
 
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
 
 /**
  * A title and description provider for the {@link Content} widget.

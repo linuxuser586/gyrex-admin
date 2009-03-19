@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.resources;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.resources;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedResource;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ResourceSerializer;
-import org.eclipse.cloudfree.toolkit.resources.ImageResource;
-import org.eclipse.cloudfree.toolkit.resources.Resource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ResourceSerializer;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
+import org.eclipse.gyrex.toolkit.resources.Resource;
 
 /**
  * {@link ImageResource} serializer.
@@ -24,7 +24,7 @@ import org.eclipse.cloudfree.toolkit.resources.Resource;
 public class ImageResourceSerializer extends ResourceSerializer {
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ResourceSerializer#serialize(org.eclipse.cloudfree.toolkit.resources.Resource)
+	 * @see org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ResourceSerializer#serialize(org.eclipse.gyrex.toolkit.resources.Resource)
 	 */
 	@Override
 	public ISerializedResource serialize(final Resource resource) {

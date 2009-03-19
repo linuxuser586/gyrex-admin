@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.cloudfree.configuration.test
+Bundle-SymbolicName: org.eclipse.gyrex.configuration.test
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.cloudfree.configuration.test.Activator
+Bundle-Activator: org.eclipse.gyrex.configuration.test.Activator
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Import-Package: org.osgi.framework;version="[1.3.0,2.0.0)"
 Require-Bundle: org.junit4;bundle-version="[4.5.0,5.0.0)",
- org.eclipse.cloudfree.common;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.configuration;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.configuration.impl;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.common;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.configuration;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.configuration.impl;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.equinox.preferences;bundle-version="[3.2.300,4.0.0)",
  org.eclipse.equinox.security;bundle-version="[1.0.100,2.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.cloudfree.configuration.test;uses:="org.osgi.framework"
+Export-Package: org.eclipse.gyrex.configuration.test;uses:="org.osgi.framework"

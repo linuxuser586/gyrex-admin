@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
 
 /**
  * A dialog field is a UI element for querying user input in a common way.
@@ -97,7 +97,7 @@ public abstract class DialogField<T extends ContentObject> extends Widget {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.Widget#getNameText()
+	 * @see org.eclipse.gyrex.toolkit.widgets.Widget#getNameText()
 	 */
 	@Override
 	protected String getNameText() {

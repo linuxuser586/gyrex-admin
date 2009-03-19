@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.examples.simple;
+package org.eclipse.gyrex.toolkit.examples.simple;
 
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 
 /**
  * 
@@ -25,7 +25,7 @@ public class Simple1WidgetAdapterFactory implements IWidgetAdapterFactory {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
 	 */
 	public <T> T getAdapter(final String widgetId, final Class<T> adapterType, final IWidgetEnvironment environment) {
 		if (adapterType.equals(ICommandHandler.class)) {

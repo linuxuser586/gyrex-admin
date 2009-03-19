@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipseguru.gwt.core.launch.browser">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/org.eclipse.cloudfree.admin.web.gwt.client"/>
+<listEntry value="/org.eclipse.gyrex.admin.web.gwt.client"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="4"/>
@@ -9,11 +9,11 @@
 <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
 <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
 </listAttribute>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.cloudfree.admin.web.gwt.client"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.gyrex.admin.web.gwt.client"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:+UseParallelGC -ea:net.cloudfree..."/>
 <booleanAttribute key="org.eclipseguru.gwt.core.launch.attribute.customURL" value="true"/>
 <stringAttribute key="org.eclipseguru.gwt.core.launch.attribute.loglevel" value="DEBUG"/>
-<stringAttribute key="org.eclipseguru.gwt.core.launch.attribute.moduleId" value="org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminClient"/>
+<stringAttribute key="org.eclipseguru.gwt.core.launch.attribute.moduleId" value="org.eclipse.gyrex.admin.web.gwt.client.internal.AdminClient"/>
 <booleanAttribute key="org.eclipseguru.gwt.core.launch.attribute.noserver" value="true"/>
 <stringAttribute key="org.eclipseguru.gwt.core.launch.attribute.style" value="DETAILED"/>
 <stringAttribute key="org.eclipseguru.gwt.core.launch.attribute.url" value="http://localhost:3110/admin/AdminClient.html"/>

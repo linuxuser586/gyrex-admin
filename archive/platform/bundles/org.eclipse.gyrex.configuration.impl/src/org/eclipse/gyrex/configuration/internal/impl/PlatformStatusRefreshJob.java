@@ -9,16 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.impl;
+package org.eclipse.gyrex.configuration.internal.impl;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-import org.eclipse.cloudfree.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
-import org.eclipse.cloudfree.configuration.internal.holders.PlatformStatusHolder;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -26,9 +23,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
+import org.eclipse.gyrex.configuration.internal.holders.PlatformStatusHolder;
 
 /**
- * This job refreshes the configuration status of the CloudFree Platform.
+ * This job refreshes the configuration status of Gyrex.
  * <p>
  * It must always be scheduled through {@link #scheduleRefreshIfPermitted()}.
  * </p>

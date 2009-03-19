@@ -9,18 +9,18 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server;
+package org.eclipse.gyrex.toolkit.gwt.server;
 
 import java.security.Principal;
 import java.util.Collections;
 import java.util.Map;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.BaseWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.BaseWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 
 import com.ibm.icu.util.ULocale;
 

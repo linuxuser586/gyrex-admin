@@ -9,23 +9,23 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.content.NumberContent;
-import org.eclipse.cloudfree.toolkit.content.BooleanContent;
-import org.eclipse.cloudfree.toolkit.content.TextContent;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SNumberEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SSelectionFlagEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.STextEntry;
+import org.eclipse.gyrex.toolkit.content.BooleanContent;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.content.NumberContent;
+import org.eclipse.gyrex.toolkit.content.TextContent;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SNumberEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SSelectionFlagEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.STextEntry;
 
 /**
  * This is a util for translating CWT content elements to the serializable GWT

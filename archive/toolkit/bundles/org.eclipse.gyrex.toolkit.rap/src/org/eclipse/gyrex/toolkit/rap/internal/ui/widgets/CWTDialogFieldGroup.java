@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.widgets.Composite;
@@ -23,7 +23,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup</code>.
  */
 public class CWTDialogFieldGroup extends CWTContainer<DialogFieldGroup> {
 
@@ -51,7 +51,7 @@ public class CWTDialogFieldGroup extends CWTContainer<DialogFieldGroup> {
 	//	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTContainer#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {

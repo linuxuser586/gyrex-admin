@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.gwt.common.adaptable.AdapterManager;
-import org.eclipse.cloudfree.gwt.common.adaptable.IsAdaptable;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
+import org.eclipse.gyrex.gwt.common.adaptable.AdapterManager;
+import org.eclipse.gyrex.gwt.common.adaptable.IsAdaptable;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
 
 /**
  * Base class that renders a {@link ISerializedWidget serialized widget} for
- * <code>org.eclipse.cloudfree.toolkit.widgets.Widget</code>.
+ * <code>org.eclipse.gyrex.toolkit.widgets.Widget</code>.
  * <p>
  * Typically, rendered widgets are instantiated from the rendering framework.
  * The rendering framework then calls
@@ -66,7 +66,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
+		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
 		protected void handleRuleEvaluationResult(final boolean evaluationResult) {
@@ -104,7 +104,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.gwt.common.adaptable.IsAdaptable#getAdapter(java.lang.Class)
+	 * @see org.eclipse.gyrex.gwt.common.adaptable.IsAdaptable#getAdapter(java.lang.Class)
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getAdapter(final Class<T> adapter) {

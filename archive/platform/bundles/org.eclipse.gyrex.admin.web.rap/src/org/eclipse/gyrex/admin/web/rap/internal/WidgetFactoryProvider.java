@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.rap.internal;
+package org.eclipse.gyrex.admin.web.rap.internal;
 
 
-import org.eclipse.cloudfree.toolkit.rap.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.rap.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTToolkit;
 import org.eclipse.rwt.RWT;
 import org.eclipse.rwt.SessionSingletonBase;
 import org.eclipse.rwt.service.SessionStoreEvent;

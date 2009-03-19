@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.examples;
+package org.eclipse.gyrex.toolkit.gwt.examples;
 
 
-import org.eclipse.cloudfree.gwt.service.GwtService;
-import org.eclipse.cloudfree.toolkit.gwt.examples.client.Simple1Constants;
-import org.eclipse.cloudfree.toolkit.gwt.examples.simple1.Simple1WidgetService;
+import org.eclipse.gyrex.gwt.service.GwtService;
+import org.eclipse.gyrex.toolkit.gwt.examples.client.Simple1Constants;
+import org.eclipse.gyrex.toolkit.gwt.examples.simple1.Simple1WidgetService;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -24,9 +24,9 @@ public class Activator implements BundleActivator {
 
 	static class GwtServiceTracker extends ServiceTracker {
 
-		/** NET_CLOUDFREE_TOOLKIT_GWT_EXAMPLES_SIMPLE1 */
-		private static final String MODULE_ID_SIMPLE1 = "org.eclipse.cloudfree.toolkit.gwt.examples.Simple1";
-		private static final String ALIAS_SIMPLE1_MODULE = "/cloudfree/gwt/examples/simple1";
+		/** NET_Gyrex_TOOLKIT_GWT_EXAMPLES_SIMPLE1 */
+		private static final String MODULE_ID_SIMPLE1 = "org.eclipse.gyrex.toolkit.gwt.examples.Simple1";
+		private static final String ALIAS_SIMPLE1_MODULE = "/gyrex/gwt/examples/simple1";
 		private static final String ALIAS_SIMPLE1_REMOTE_SERVICE_WS = Simple1Constants.EP_SIMPLE1_WIDGETSERVICE;
 
 		/**
@@ -54,7 +54,7 @@ public class Activator implements BundleActivator {
 			}
 
 			try {
-				gwtService.registerModule(ALIAS_SIMPLE1_MODULE, MODULE_ID_SIMPLE1, "/generated/org.eclipse.cloudfree.toolkit.gwt.examples.Simple1", "Simple1.html", null);
+				gwtService.registerModule(ALIAS_SIMPLE1_MODULE, MODULE_ID_SIMPLE1, "/generated/org.eclipse.gyrex.toolkit.gwt.examples.Simple1", "Simple1.html", null);
 				System.out.println("Registered " + ALIAS_SIMPLE1_MODULE);
 
 				gwtService.registerRemoteService(ALIAS_SIMPLE1_REMOTE_SERVICE_WS, MODULE_ID_SIMPLE1, new Simple1WidgetService(), null, null);

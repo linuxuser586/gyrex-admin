@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 import java.util.EventListener;
 

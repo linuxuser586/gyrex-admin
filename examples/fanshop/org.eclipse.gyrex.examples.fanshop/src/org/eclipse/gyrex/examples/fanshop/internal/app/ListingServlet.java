@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal.app;
+package org.eclipse.gyrex.examples.fanshop.internal.app;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,11 +31,11 @@ import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.FacetField.Count;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
-import org.eclipse.cloudfree.cds.model.IListingManager;
-import org.eclipse.cloudfree.cds.model.documents.Document;
-import org.eclipse.cloudfree.cds.model.solr.ISolrQueryExecutor;
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.model.common.ModelUtil;
+import org.eclipse.gyrex.cds.model.IListingManager;
+import org.eclipse.gyrex.cds.model.documents.Document;
+import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.model.common.ModelUtil;
 
 import com.ibm.icu.text.MeasureFormat;
 import com.ibm.icu.util.CurrencyAmount;
@@ -204,12 +204,12 @@ public class ListingServlet extends HttpServlet {
 		writer.println("<html><head>");
 		writer.println("<title>");
 		writer.println(path);
-		writer.println(" - CloudFree Listings</title>");
+		writer.println(" - Gyrex Listings</title>");
 		writer.println("</head><body>");
 
 		writer.println("<h1>Found Listings</h1>");
 		writer.println("<p>");
-		writer.println("CloudFree found <strong>" + results.getNumFound() + "</strong> products in " + (response.getQTime() < 1000 ? "less than a second." : (response.getQTime() + "ms.")));
+		writer.println("Gyrex found <strong>" + results.getNumFound() + "</strong> products in " + (response.getQTime() < 1000 ? "less than a second." : (response.getQTime() + "ms.")));
 		if (results.size() < results.getNumFound()) {
 			writer.println("<br/>");
 			if (results.getStart() == 0) {

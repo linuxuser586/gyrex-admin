@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.rap.internal;
+package org.eclipse.gyrex.admin.web.rap.internal;
 
 
-import org.eclipse.cloudfree.toolkit.rap.client.editor.WidgetFormEditorInput;
+import org.eclipse.gyrex.toolkit.rap.client.editor.WidgetFormEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -26,7 +26,7 @@ import org.eclipse.ui.application.WorkbenchWindowAdvisor;
  */
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	private static final String PERSPECTIVE_ID = "org.eclipse.cloudfree.admin.web.rap.perspective";
+	private static final String PERSPECTIVE_ID = "org.eclipse.gyrex.admin.web.rap.perspective";
 
 	@Override
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(final IWorkbenchWindowConfigurer configurer) {
@@ -49,7 +49,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 			final IWorkbenchPage workbenchPage = workbenchWindow.getActivePage();
 			if (null != workbenchPage) {
 				try {
-					workbenchPage.openEditor(new WidgetFormEditorInput(""), CloudFreeAdminEditorFactory.EDITOR_ID);
+					workbenchPage.openEditor(new WidgetFormEditorInput(""), GyrexAdminEditorFactory.EDITOR_ID);
 				} catch (final PartInitException e) {
 					// TODO should log
 					e.printStackTrace();

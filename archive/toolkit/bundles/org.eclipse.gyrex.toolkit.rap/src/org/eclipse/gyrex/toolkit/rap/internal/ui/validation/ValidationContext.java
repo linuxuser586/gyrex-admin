@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.validation;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.validation;
 
 import java.util.HashMap;
 import java.util.Map;

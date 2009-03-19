@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.actions;
+package org.eclipse.gyrex.toolkit.actions;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * Instructs the UI to refresh the current widget.

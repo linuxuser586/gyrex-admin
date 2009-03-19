@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard;
+package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 
 /**
  * The Setup Wizard adapter factory.
@@ -29,7 +29,7 @@ public class ConfigurationWizardAdapterFactory implements IWidgetAdapterFactory 
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
 	 */
 	public <T> T getAdapter(final String widgetId, final Class<T> adapterType, final IWidgetEnvironment environment) {
 		if (ICommandHandler.class.equals(adapterType)) {

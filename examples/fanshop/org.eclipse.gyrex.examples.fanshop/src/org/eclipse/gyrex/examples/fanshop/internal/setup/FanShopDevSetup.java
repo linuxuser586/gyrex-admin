@@ -9,29 +9,29 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal.setup;
+package org.eclipse.gyrex.examples.fanshop.internal.setup;
 
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
-import org.eclipse.cloudfree.configuration.service.IConfigurationService;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
 import org.osgi.service.prefs.BackingStoreException;
 
 public class FanShopDevSetup {
 
 	public static final String DEFAULT_URL = "http://fans.eclipse.org/";
-	public static final String PLUGIN_ID_FANSHOP = "org.eclipse.cloudfree.examples.fanshop";
+	public static final String PLUGIN_ID_FANSHOP = "org.eclipse.gyrex.examples.fanshop";
 	public static final String URL = "url";
 
 	public static void enableFanShopRole() throws BackingStoreException {
-		//"org.eclipse.cloudfree.examples.fanshop"
-		String roles = PlatformConfiguration.getConfigurationService().getString("org.eclipse.cloudfree.boot", "rolesToStart", null, null);
+		//"org.eclipse.gyrex.examples.fanshop"
+		String roles = PlatformConfiguration.getConfigurationService().getString("org.eclipse.gyrex.boot", "rolesToStart", null, null);
 		if ((null == roles) || (roles.length() == 0)) {
 			roles = PLUGIN_ID_FANSHOP;
 		} else {
-			roles += ",org.eclipse.cloudfree.examples.fanshop";
+			roles += ",org.eclipse.gyrex.examples.fanshop";
 		}
-		PlatformConfiguration.getConfigurationService().putString("org.eclipse.cloudfree.boot", "rolesToStart", roles, null, false);
-		new PlatformScope().getNode("org.eclipse.cloudfree.boot").flush();
+		PlatformConfiguration.getConfigurationService().putString("org.eclipse.gyrex.boot", "rolesToStart", roles, null, false);
+		new PlatformScope().getNode("org.eclipse.gyrex.boot").flush();
 	}
 
 	public static void setFanShopUrl(final String url) throws BackingStoreException {

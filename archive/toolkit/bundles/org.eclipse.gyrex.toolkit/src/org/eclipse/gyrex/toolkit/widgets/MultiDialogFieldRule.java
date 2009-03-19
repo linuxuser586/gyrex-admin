@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * A {@link DialogFieldRule} extension which allows to combine multiple rules
@@ -86,7 +86,7 @@ public class MultiDialogFieldRule extends DialogFieldRule {
 	 * {@link MultiDialogFieldRule}.
 	 * 
 	 * @return <code>true</code>
-	 * @see org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule#isMulti()
+	 * @see org.eclipse.gyrex.toolkit.widgets.DialogFieldRule#isMulti()
 	 */
 	@Override
 	public boolean isMulti() {
@@ -94,7 +94,7 @@ public class MultiDialogFieldRule extends DialogFieldRule {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule#toString()
+	 * @see org.eclipse.gyrex.toolkit.widgets.DialogFieldRule#toString()
 	 */
 	@Override
 	public String toString() {
@@ -110,7 +110,7 @@ public class MultiDialogFieldRule extends DialogFieldRule {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule#validateRule()
+	 * @see org.eclipse.gyrex.toolkit.widgets.DialogFieldRule#validateRule()
 	 */
 	@Override
 	void validateRule() {

@@ -9,19 +9,19 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;
+package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.configuration.ConfigurationMode;
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.BooleanContent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRules;
-import org.eclipse.cloudfree.toolkit.widgets.RadioButton;
-import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
-import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.configuration.ConfigurationMode;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.content.BooleanContent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
+import org.eclipse.gyrex.toolkit.widgets.RadioButton;
+import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
+import org.eclipse.gyrex.toolkit.wizard.WizardPage;
 
 public class ConfigModeStep extends ConfigurationWizardStep {
 
@@ -35,7 +35,7 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.cloudfree.toolkit.wizard.WizardContainer)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.gyrex.toolkit.wizard.WizardContainer)
 	 */
 	@Override
 	public void createPages(final WizardContainer wizard) {
@@ -63,7 +63,7 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 	 */
 	@Override
 	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {

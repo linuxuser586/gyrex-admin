@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.content.NoContent;
+import org.eclipse.gyrex.toolkit.content.NoContent;
 
 /**
  * A dialog field that presents data in a table.

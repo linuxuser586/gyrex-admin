@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.actions;
+package org.eclipse.gyrex.toolkit.actions;
 
 /**
  * {@link Action} which operates on/with a single widget.

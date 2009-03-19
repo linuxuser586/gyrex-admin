@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal;
+package org.eclipse.gyrex.configuration.internal;
 
-import org.eclipse.cloudfree.common.debug.BundleDebug;
+import org.eclipse.gyrex.common.debug.BundleDebug;
 
 public class ConfigDebug extends BundleDebug {
 	public static boolean debug;

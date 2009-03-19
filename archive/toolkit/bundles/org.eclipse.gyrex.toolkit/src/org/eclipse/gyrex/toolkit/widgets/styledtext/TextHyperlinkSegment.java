@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
 /**
  * A text hyperlink.
@@ -37,7 +37,7 @@ public class TextHyperlinkSegment extends TextSegment implements IHyperlinkSegme
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.styledtext.IHyperlinkSegment#getHref()
+	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment#getHref()
 	 */
 	@Override
 	public String getHref() {

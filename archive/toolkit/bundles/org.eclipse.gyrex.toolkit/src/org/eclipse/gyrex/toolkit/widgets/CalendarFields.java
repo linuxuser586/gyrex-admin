@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
 /**
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Date Pattern</b></em>',
  * and utility methods for working with them. <!-- end-user-doc -->
  * 
- * @see org.eclipse.cloudfree.toolkit.widgets.internal.impl.RICPackageImpl#getDatePattern()
+ * @see org.eclipse.gyrex.toolkit.widgets.internal.impl.RICPackageImpl#getDatePattern()
  * @generated
  */
 public enum CalendarFields {

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client;
+package org.eclipse.gyrex.toolkit.gwt.client;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 

@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.content;
+package org.eclipse.gyrex.toolkit.content;
 
 import java.util.Collections;
 import java.util.Map;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * A collection of widget content.

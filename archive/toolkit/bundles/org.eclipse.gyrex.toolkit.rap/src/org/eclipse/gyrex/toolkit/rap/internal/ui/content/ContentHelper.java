@@ -9,18 +9,18 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.content;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.content;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldRuleHelper;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldRuleHelper;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
 
 /**
  * Utility class.

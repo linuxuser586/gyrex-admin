@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal;
+package org.eclipse.gyrex.examples.fanshop.internal;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,17 +24,17 @@ import org.apache.solr.client.solrj.embedded.EmbeddedSolrServer;
 import org.apache.solr.client.solrj.request.CoreAdminRequest;
 import org.apache.solr.core.CoreContainer;
 import org.apache.solr.core.SolrCore;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
-import org.eclipse.cloudfree.configuration.service.IConfigurationService;
-import org.eclipse.cloudfree.examples.fanshop.internal.app.FanShopApplicationProvider;
-import org.eclipse.cloudfree.examples.fanshop.internal.setup.FanShopDevSetup;
-import org.eclipse.cloudfree.http.application.manager.ApplicationRegistrationException;
-import org.eclipse.cloudfree.http.application.manager.IApplicationManager;
-import org.eclipse.cloudfree.http.application.manager.MountConflictException;
-import org.eclipse.cloudfree.http.internal.apps.dummy.RootContext;
-import org.eclipse.cloudfree.persistence.solr.internal.SolrActivator;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
+import org.eclipse.gyrex.examples.fanshop.internal.app.FanShopApplicationProvider;
+import org.eclipse.gyrex.examples.fanshop.internal.setup.FanShopDevSetup;
+import org.eclipse.gyrex.http.application.manager.ApplicationRegistrationException;
+import org.eclipse.gyrex.http.application.manager.IApplicationManager;
+import org.eclipse.gyrex.http.application.manager.MountConflictException;
+import org.eclipse.gyrex.http.internal.apps.dummy.RootContext;
+import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.prefs.BackingStoreException;
@@ -61,22 +61,22 @@ public class FanShopRTSetup {
 
 	private void configureRepositories() throws BackingStoreException {
 		final IConfigurationService configurationService = PlatformConfiguration.getConfigurationService();
-		configurationService.putString("org.eclipse.cloudfree.persistence", "repositories//application/x-cf-listings-solr", REPOSITORY_ID, null, false);
-		configurationService.putString("org.eclipse.cloudfree.persistence", "repositories/" + REPOSITORY_ID + "//type", "org.eclipse.cloudfree.persistence.solr.embedded", null, false);
-		new PlatformScope().getNode("org.eclipse.cloudfree.persistence").flush();
+		configurationService.putString("org.eclipse.gyrex.persistence", "repositories//application/x-cf-listings-solr", REPOSITORY_ID, null, false);
+		configurationService.putString("org.eclipse.gyrex.persistence", "repositories/" + REPOSITORY_ID + "//type", "org.eclipse.gyrex.persistence.solr.embedded", null, false);
+		new PlatformScope().getNode("org.eclipse.gyrex.persistence").flush();
 
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/style", "Style,field,style_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/color", "Color,field,color_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/source", "Merchant,field,source_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/size", "Size,field,size_n", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/category", "Category,field,category", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/thickness", "Thickness,field,thickness", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/fit", "Fit,field,fit", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/tags", "Tags,field,tags", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/paper", "Paper,field,paper", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/finish", "Finish,field,finish", null, false);
-		configurationService.putString("org.eclipse.cloudfree.cds.service.solr", "facets/price", "Price,queries,price:[* TO 10]=$10 and below;price:[10 TO 25]=$10 to $25;price:[25 TO 40]=$25 to $40;price:[40 TO *]=$40 and above", null, false);
-		new PlatformScope().getNode("org.eclipse.cloudfree.cds.service.solr").flush();
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/style", "Style,field,style_n", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/color", "Color,field,color_n", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/source", "Merchant,field,source_n", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/size", "Size,field,size_n", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/category", "Category,field,category", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/thickness", "Thickness,field,thickness", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/fit", "Fit,field,fit", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/tags", "Tags,field,tags", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/paper", "Paper,field,paper", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/finish", "Finish,field,finish", null, false);
+		configurationService.putString("org.eclipse.gyrex.cds.service.solr", "facets/price", "Price,queries,price:[* TO 10]=$10 and below;price:[10 TO 25]=$10 to $25;price:[25 TO 40]=$25 to $40;price:[40 TO *]=$40 and above", null, false);
+		new PlatformScope().getNode("org.eclipse.gyrex.cds.service.solr").flush();
 	}
 
 	private void importSampleData() {

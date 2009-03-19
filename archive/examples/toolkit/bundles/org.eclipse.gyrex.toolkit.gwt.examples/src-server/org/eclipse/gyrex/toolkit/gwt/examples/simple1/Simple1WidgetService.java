@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.examples.simple1;
+package org.eclipse.gyrex.toolkit.gwt.examples.simple1;
 
 
-import org.eclipse.cloudfree.toolkit.examples.simple.Simple1WidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.examples.simple.Simple1WidgetFactory;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetService;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetServiceServlet;
+import org.eclipse.gyrex.toolkit.examples.simple.Simple1WidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.examples.simple.Simple1WidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetService;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceServlet;
 
 /**
  * {@link WidgetServiceServlet} for example Simple1

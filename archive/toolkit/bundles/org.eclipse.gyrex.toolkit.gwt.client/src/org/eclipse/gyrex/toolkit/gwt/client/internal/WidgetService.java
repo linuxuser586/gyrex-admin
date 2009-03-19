@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.internal;
+package org.eclipse.gyrex.toolkit.gwt.client.internal;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 
 /**
  * This service is used to locate and load widgets from the server.

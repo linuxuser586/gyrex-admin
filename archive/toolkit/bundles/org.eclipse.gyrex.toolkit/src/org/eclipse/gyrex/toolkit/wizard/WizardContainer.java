@@ -10,15 +10,15 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.cloudfree.toolkit.wizard;
+package org.eclipse.gyrex.toolkit.wizard;
 
 import java.util.Arrays;
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.layout.Layout;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.layout.Layout;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * A container to show a wizard to the end user.

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.lookup;
+package org.eclipse.gyrex.toolkit.runtime.lookup;
 
 
 import java.util.Arrays;
@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * A base registry implementation for registering a factory <code>T</code> for

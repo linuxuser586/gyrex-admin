@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.widgets.StyledText;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.Paragraph;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ParagraphSegment;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.TextSegment;
+import org.eclipse.gyrex.toolkit.widgets.StyledText;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.Paragraph;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ParagraphSegment;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.TextSegment;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Text;
 public class CWTStyledText extends CWTWidget<StyledText> {
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {

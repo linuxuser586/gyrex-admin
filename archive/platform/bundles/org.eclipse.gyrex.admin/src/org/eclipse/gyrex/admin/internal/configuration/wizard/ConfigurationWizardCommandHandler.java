@@ -9,22 +9,22 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard;
+package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.admin.internal.RunConfigWizardConfigConstraint;
-import org.eclipse.cloudfree.boot.internal.app.ServerApplication;
-import org.eclipse.cloudfree.toolkit.actions.RefreshAction;
-import org.eclipse.cloudfree.toolkit.actions.ShowWidgetAction;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
+import org.eclipse.gyrex.boot.internal.app.ServerApplication;
+import org.eclipse.gyrex.toolkit.actions.RefreshAction;
+import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
 
 public class ConfigurationWizardCommandHandler implements ICommandHandler {
 	private final class RelaunchJob extends Job {

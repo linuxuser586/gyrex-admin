@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.commands;
+package org.eclipse.gyrex.toolkit.runtime.commands;
 
 
-import org.eclipse.cloudfree.toolkit.actions.Action;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gyrex.toolkit.actions.Action;
 
 /**
  * Data object returned by a {@link ICommandHandler command execution handler}

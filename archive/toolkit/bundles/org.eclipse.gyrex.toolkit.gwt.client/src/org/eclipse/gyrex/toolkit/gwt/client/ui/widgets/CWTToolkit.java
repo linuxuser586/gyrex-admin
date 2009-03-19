@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.History;
@@ -22,31 +22,31 @@ import com.google.gwt.user.client.ui.Widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.actions.IActionHandler;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.wizard.CWTWizardPage;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SButton;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SPasswordInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SRadioButton;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.actions.IActionHandler;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SButton;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SPasswordInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SRadioButton;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
 /**
- * The toolkit is responsible for creating GWT widgets from serialized CloudFree
+ * The toolkit is responsible for creating GWT widgets from serialized Gyrex
  * widgets. In addition to applying default presentation properties (styles,
  * etc.), various listeners are attached to make them behave correctly in the
- * CloudFree context.
+ * Gyrex context.
  * <p>
  * Typically, one toolkit object is created per widget factory and not shared
  * between factories.

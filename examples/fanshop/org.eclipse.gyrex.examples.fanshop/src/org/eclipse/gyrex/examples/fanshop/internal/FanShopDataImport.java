@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal;
+package org.eclipse.gyrex.examples.fanshop.internal;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,17 +25,17 @@ import org.apache.commons.csv.CSVStrategy;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
-import org.eclipse.cloudfree.cds.model.IListingManager;
-import org.eclipse.cloudfree.cds.model.documents.Document;
-import org.eclipse.cloudfree.cds.model.documents.DoubleField;
-import org.eclipse.cloudfree.cds.model.documents.Field;
-import org.eclipse.cloudfree.cds.model.documents.StringField;
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.model.common.ModelUtil;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.gyrex.cds.model.IListingManager;
+import org.eclipse.gyrex.cds.model.documents.Document;
+import org.eclipse.gyrex.cds.model.documents.DoubleField;
+import org.eclipse.gyrex.cds.model.documents.Field;
+import org.eclipse.gyrex.cds.model.documents.StringField;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.model.common.ModelUtil;
 import org.osgi.framework.Bundle;
 
 /**

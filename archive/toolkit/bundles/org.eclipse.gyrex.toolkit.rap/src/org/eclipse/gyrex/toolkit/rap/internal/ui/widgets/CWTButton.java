@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.commands.ExecuteCommandCallback;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.ContentHelper;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.widgets.Button;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.commands.ExecuteCommandCallback;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.content.ContentHelper;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.widgets.Button;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -30,7 +30,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.Button</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.Button</code>.
  */
 public class CWTButton extends CWTDialogField<Button> {
 
@@ -72,7 +72,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createDescriptionControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createDescriptionControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected void createDescriptionControl(final Composite parent) {
@@ -80,7 +80,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createLabelControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createLabelControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected void createLabelControl(final Composite parent) {
@@ -88,7 +88,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {
@@ -104,7 +104,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
 	 */
 	@Override
 	protected void fillIntoGrid(final int columns) {
@@ -126,7 +126,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
 	 */
 	@Override
 	protected int getNumberOfColumns() {
@@ -143,7 +143,7 @@ public class CWTButton extends CWTDialogField<Button> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

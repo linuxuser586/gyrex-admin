@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
@@ -24,15 +24,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayout;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayout;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.Container</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.Container</code>.
  */
 public class CWTContainer extends CWTWidget {
 
@@ -215,7 +215,7 @@ public class CWTContainer extends CWTWidget {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#getAdaptableHierarchy()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdaptableHierarchy()
 	 */
 	@Override
 	protected Class[] getAdaptableHierarchy() {

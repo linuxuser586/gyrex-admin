@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
 
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 
 /**
  * Serializable StyledText

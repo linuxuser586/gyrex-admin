@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.holders;
+package org.eclipse.gyrex.configuration.internal.holders;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 
-import org.eclipse.cloudfree.configuration.IConfigurationConstants;
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.gyrex.configuration.IConfigurationConstants;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
 
 public class PlatformStatusHolder {
 

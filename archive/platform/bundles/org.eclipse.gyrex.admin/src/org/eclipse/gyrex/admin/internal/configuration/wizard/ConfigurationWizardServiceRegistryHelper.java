@@ -9,16 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard;
+package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.common.logging.LogAudience;
-import org.eclipse.cloudfree.common.logging.LogImportance;
-import org.eclipse.cloudfree.common.logging.LogSource;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
@@ -27,6 +20,13 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.IRegistryChangeEvent;
 import org.eclipse.core.runtime.IRegistryChangeListener;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.common.logging.LogAudience;
+import org.eclipse.gyrex.common.logging.LogImportance;
+import org.eclipse.gyrex.common.logging.LogSource;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -51,7 +51,7 @@ public class ConfigurationWizardServiceRegistryHelper implements IRegistryChange
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.cloudfree.toolkit.wizard.WizardContainer)
+		 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.gyrex.toolkit.wizard.WizardContainer)
 		 */
 		@Override
 		public void createPages(final WizardContainer wizard) {
@@ -67,7 +67,7 @@ public class ConfigurationWizardServiceRegistryHelper implements IRegistryChange
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent)
+		 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 		 */
 		@Override
 		public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
@@ -83,7 +83,7 @@ public class ConfigurationWizardServiceRegistryHelper implements IRegistryChange
 	private static final String ELEMENT_STEP = "step";
 	private static final String POINT_WIZARD = "wizard";
 
-	private static final String NAMESPACE_CONFIGURATION = "org.eclipse.cloudfree.admin.configuration";
+	private static final String NAMESPACE_CONFIGURATION = "org.eclipse.gyrex.admin.configuration";
 
 	private static final IExtension[] EMPTY_EXTENSION_ARRAY = new IExtension[0];
 

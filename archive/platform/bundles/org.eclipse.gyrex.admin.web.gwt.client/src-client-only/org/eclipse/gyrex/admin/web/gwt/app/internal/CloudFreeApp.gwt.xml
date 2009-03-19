@@ -15,11 +15,11 @@
   <inherits name='com.google.gwt.user.User' />
 	
   <!-- Inherit the CWT stuff. -->
-  <inherits name='org.eclipse.cloudfree.gwt.common.Common' />
-  <inherits name='org.eclipse.cloudfree.toolkit.gwt.Ui' />
+  <inherits name='org.eclipse.gyrex.gwt.common.Common' />
+  <inherits name='org.eclipse.gyrex.toolkit.gwt.Ui' />
 
   <!-- Inherit the APP services. -->
-  <inherits name='org.eclipse.cloudfree.admin.web.gwt.app.internal.services.CloudFreeAppServices' />
+  <inherits name='org.eclipse.gyrex.admin.web.gwt.app.internal.services.GyrexAppServices' />
 	
   <!-- don't publish template files -->
   <public path="public">

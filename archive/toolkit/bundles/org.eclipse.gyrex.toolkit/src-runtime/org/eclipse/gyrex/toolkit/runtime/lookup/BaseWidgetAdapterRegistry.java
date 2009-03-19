@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.lookup;
+package org.eclipse.gyrex.toolkit.runtime.lookup;
 
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 
 /**
  * The base widget registry implementation.
@@ -48,7 +48,7 @@ public class BaseWidgetAdapterRegistry extends BaseRegistry<IWidgetAdapterFactor
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
 	 */
 	@Override
 	public <T> T getAdapter(final String widgetId, final Class<T> adapterType, final IWidgetEnvironment environment) {
@@ -61,7 +61,7 @@ public class BaseWidgetAdapterRegistry extends BaseRegistry<IWidgetAdapterFactor
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterRegistry#registerFactory(org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory, java.lang.String[])
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterRegistry#registerFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory, java.lang.String[])
 	 */
 	@Override
 	public void registerFactory(final IWidgetAdapterFactory factory, final String... widgetIds) throws RegistrationException {
@@ -69,7 +69,7 @@ public class BaseWidgetAdapterRegistry extends BaseRegistry<IWidgetAdapterFactor
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterRegistry#unregisterFactory(org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterRegistry#unregisterFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory)
 	 */
 	@Override
 	public void unregisterFactory(final IWidgetAdapterFactory factory) {

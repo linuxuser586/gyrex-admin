@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal.app;
+package org.eclipse.gyrex.examples.fanshop.internal.app;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +34,7 @@ import org.apache.solr.request.SolrRequestHandler;
 import org.apache.solr.servlet.SolrRequestParsers;
 import org.apache.solr.servlet.cache.HttpCacheHeaderUtil;
 import org.apache.solr.servlet.cache.Method;
-import org.eclipse.cloudfree.http.application.ApplicationException;
+import org.eclipse.gyrex.http.application.ApplicationException;
 
 public class SolrServlet extends HttpServlet {
 

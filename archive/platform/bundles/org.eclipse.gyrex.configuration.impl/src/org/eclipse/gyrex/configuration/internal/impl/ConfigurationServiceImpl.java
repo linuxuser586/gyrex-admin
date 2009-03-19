@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.impl;
+package org.eclipse.gyrex.configuration.internal.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ import java.util.List;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.math.NumberUtils;
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.configuration.service.IConfigurationService;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
@@ -39,7 +39,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getBoolean(java.lang.String, java.lang.String, boolean, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getBoolean(java.lang.String, java.lang.String, boolean, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public boolean getBoolean(final String qualifier, final String key, final boolean defaultValue, final IContext context) {
@@ -48,7 +48,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getByteArray(java.lang.String, java.lang.String, byte[], org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getByteArray(java.lang.String, java.lang.String, byte[], org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public byte[] getByteArray(final String qualifier, final String key, final byte[] defaultValue, final IContext context) {
@@ -56,12 +56,12 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 		try {
 			return result == null ? defaultValue : Base64.decodeBase64(result.getBytes(UTF_8));
 		} catch (final UnsupportedEncodingException e) {
-			throw new IllegalStateException("CloudFree requires a platform which supports UTF-8.", e);
+			throw new IllegalStateException("Gyrex requires a platform which supports UTF-8.", e);
 		}
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getDouble(java.lang.String, java.lang.String, double, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getDouble(java.lang.String, java.lang.String, double, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public double getDouble(final String qualifier, final String key, final double defaultValue, final IContext context) {
@@ -70,7 +70,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getFloat(java.lang.String, java.lang.String, float, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getFloat(java.lang.String, java.lang.String, float, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public float getFloat(final String qualifier, final String key, final float defaultValue, final IContext context) {
@@ -79,7 +79,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getInt(java.lang.String, java.lang.String, int, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getInt(java.lang.String, java.lang.String, int, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public int getInt(final String qualifier, final String key, final int defaultValue, final IContext context) {
@@ -88,7 +88,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getLong(java.lang.String, java.lang.String, long, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getLong(java.lang.String, java.lang.String, long, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public long getLong(final String qualifier, final String key, final long defaultValue, final IContext context) {
@@ -146,7 +146,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#getString(java.lang.String, java.lang.String, java.lang.String, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#getString(java.lang.String, java.lang.String, java.lang.String, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public String getString(final String qualifier, final String key, final String defaultValue, final IContext context) {
@@ -159,7 +159,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putBoolean(java.lang.String, java.lang.String, boolean, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putBoolean(java.lang.String, java.lang.String, boolean, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putBoolean(final String qualifier, final String key, final boolean value, final IContext context, final boolean encrypt) {
@@ -167,7 +167,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putByteArray(java.lang.String, java.lang.String, byte[], org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putByteArray(java.lang.String, java.lang.String, byte[], org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putByteArray(final String qualifier, final String key, final byte[] value, final IContext context, final boolean encrypt) {
@@ -177,13 +177,13 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 			try {
 				put(qualifier, key, new String(Base64.encodeBase64(value), UTF_8), context, encrypt);
 			} catch (final UnsupportedEncodingException e) {
-				throw new IllegalStateException("CloudFree requires a platform which supports UTF-8.", e);
+				throw new IllegalStateException("Gyrex requires a platform which supports UTF-8.", e);
 			}
 		}
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putDouble(java.lang.String, java.lang.String, double, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putDouble(java.lang.String, java.lang.String, double, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putDouble(final String qualifier, final String key, final double value, final IContext context, final boolean encrypt) {
@@ -191,7 +191,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putFloat(java.lang.String, java.lang.String, float, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putFloat(java.lang.String, java.lang.String, float, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putFloat(final String qualifier, final String key, final float value, final IContext context, final boolean encrypt) {
@@ -199,7 +199,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putInt(java.lang.String, java.lang.String, int, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putInt(java.lang.String, java.lang.String, int, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putInt(final String qualifier, final String key, final int value, final IContext context, final boolean encrypt) {
@@ -207,7 +207,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putLong(java.lang.String, java.lang.String, long, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putLong(java.lang.String, java.lang.String, long, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putLong(final String qualifier, final String key, final long value, final IContext context, final boolean encrypt) {
@@ -215,7 +215,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#putString(java.lang.String, java.lang.String, java.lang.String, org.eclipse.cloudfree.common.context.IContext, boolean)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#putString(java.lang.String, java.lang.String, java.lang.String, org.eclipse.gyrex.common.context.IContext, boolean)
 	 */
 	@Override
 	public void putString(final String qualifier, final String key, final String value, final IContext context, final boolean encrypt) {
@@ -227,7 +227,7 @@ public class ConfigurationServiceImpl implements IConfigurationService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.configuration.service.IConfigurationService#remove(java.lang.String, java.lang.String, org.eclipse.cloudfree.common.context.IContext)
+	 * @see org.eclipse.gyrex.configuration.service.IConfigurationService#remove(java.lang.String, java.lang.String, org.eclipse.gyrex.common.context.IContext)
 	 */
 	@Override
 	public void remove(final String qualifier, final String key, final IContext context) {

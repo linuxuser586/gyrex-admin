@@ -9,17 +9,17 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.client.editor;
+package org.eclipse.gyrex.toolkit.rap.client.editor;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.rap.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.rap.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -33,7 +33,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.part.EditorPart;
 
 /**
- * This class forms a base of form editor that typically shows a CloudFree
+ * This class forms a base of form editor that typically shows a Gyrex
  * widget of the editor input.
  */
 public class WidgetFormEditor extends EditorPart {

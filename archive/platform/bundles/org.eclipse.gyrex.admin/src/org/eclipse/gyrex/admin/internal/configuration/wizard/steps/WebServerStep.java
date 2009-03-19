@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;
+package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.NumberContent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldGroup;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRules;
-import org.eclipse.cloudfree.toolkit.widgets.NumberInput;
-import org.eclipse.cloudfree.toolkit.widgets.NumberType;
-import org.eclipse.cloudfree.toolkit.widgets.StyledText;
-import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
-import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.content.NumberContent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
+import org.eclipse.gyrex.toolkit.widgets.NumberInput;
+import org.eclipse.gyrex.toolkit.widgets.NumberType;
+import org.eclipse.gyrex.toolkit.widgets.StyledText;
+import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
+import org.eclipse.gyrex.toolkit.wizard.WizardPage;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**
@@ -41,7 +41,7 @@ public class WebServerStep extends ConfigurationWizardStep {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.cloudfree.toolkit.wizard.WizardContainer)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#createPages(org.eclipse.gyrex.toolkit.wizard.WizardContainer)
 	 */
 	@Override
 	public void createPages(final WizardContainer wizard) {
@@ -50,7 +50,7 @@ public class WebServerStep extends ConfigurationWizardStep {
 		webServerPage.setDescription("Configure the Jetty HTTP server.");
 
 		final StyledText text = new StyledText("webserver-intro", webServerPage, CWT.NONE);
-		text.setText("The CloudFree Platform uses an embedded Jetty HTTP server. You may configure the server here.", false, false);
+		text.setText("Gyrex uses an embedded Jetty HTTP server. You may configure the server here.", false, false);
 
 		final DialogFieldGroup container = new DialogFieldGroup("webserver-intro", webServerPage, CWT.NONE);
 		container.setTitle("HTTP Server Port");
@@ -67,7 +67,7 @@ public class WebServerStep extends ConfigurationWizardStep {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 	 */
 	@Override
 	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
@@ -75,7 +75,7 @@ public class WebServerStep extends ConfigurationWizardStep {
 			// check if production mode is selected
 			final NumberContent content = (NumberContent) finishEvent.getContentSet().getEntry("webserver-port");
 			if ((null != content) && (null != content.getNumber())) {
-				final IEclipsePreferences eclipsePreferences = new PlatformScope().getNode("org.eclipse.cloudfree.http.jetty");
+				final IEclipsePreferences eclipsePreferences = new PlatformScope().getNode("org.eclipse.gyrex.http.jetty");
 				eclipsePreferences.putInt("port", content.getNumber().intValue());
 				eclipsePreferences.flush();
 			}

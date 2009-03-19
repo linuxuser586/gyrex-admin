@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.test;
+package org.eclipse.gyrex.configuration.test;
 
 import static org.junit.Assert.assertNotNull;
 
 
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.junit.Test;
 
 public class PlatformStatusTest {

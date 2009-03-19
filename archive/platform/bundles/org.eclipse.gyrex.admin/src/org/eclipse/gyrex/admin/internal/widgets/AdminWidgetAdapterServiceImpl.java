@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.widgets;
+package org.eclipse.gyrex.admin.internal.widgets;
 
 
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetAdapterService;
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetService;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.BaseWidgetAdapterRegistry;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetAdapterService;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
+import org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetAdapterRegistry;
 
 /**
  * The {@link IAdminWidgetService} implementation.
@@ -22,7 +22,7 @@ import org.eclipse.cloudfree.toolkit.runtime.lookup.BaseWidgetAdapterRegistry;
 public class AdminWidgetAdapterServiceImpl extends BaseWidgetAdapterRegistry implements IAdminWidgetAdapterService {
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.BaseRegistry#clear()
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseRegistry#clear()
 	 */
 	@Override
 	public void clear() {

@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.examples.simple;
+package org.eclipse.gyrex.toolkit.examples.simple;
 
 
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.content.TextContent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.content.TextContent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
 
 /**
  * 
@@ -27,7 +27,7 @@ public class Simple1CommandHandler implements ICommandHandler {
 	public static final Simple1CommandHandler INSTANCE = new Simple1CommandHandler();
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler#execute(org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent, org.eclipse.core.runtime.IProgressMonitor)
+	 * @see org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler#execute(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	public CommandExecutionResult execute(final CommandExecutionEvent executionEvent, final IProgressMonitor progressMonitor) {
 		if (isGenerateCommand(executionEvent)) {

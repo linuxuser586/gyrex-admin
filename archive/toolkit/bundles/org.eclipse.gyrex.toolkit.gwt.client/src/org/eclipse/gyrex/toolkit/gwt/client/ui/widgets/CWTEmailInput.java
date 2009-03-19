@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationContext;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationContext;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.EmailInput</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.EmailInput</code>.
  */
 public class CWTEmailInput extends CWTTextInput {
 	static final DialogFieldValidator emailInputValidator = new DialogFieldValidator() {
@@ -49,7 +49,7 @@ public class CWTEmailInput extends CWTTextInput {
 	};
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTTextInput#getAdapter(java.lang.Class)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTTextInput#getAdapter(java.lang.Class)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

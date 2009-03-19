@@ -12,5 +12,5 @@
         Gunnar Wagenknecht - initial API and implementation
  -->
 <plugin>
-   <extension-point id="org.eclipse.cloudfree.admin.configuration.wizard" name="Configuration Wizard Extension Point" schema="schema/org.eclipse.cloudfree.admin.configuration.wizard.exsd"/>
+   <extension-point id="org.eclipse.gyrex.admin.configuration.wizard" name="Configuration Wizard Extension Point" schema="schema/org.eclipse.gyrex.admin.configuration.wizard.exsd"/>
 </plugin>

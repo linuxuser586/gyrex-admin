@@ -9,27 +9,27 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard;
+package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.configuration.internal.holders.ConfigurationModeHolder;
-import org.eclipse.cloudfree.configuration.internal.impl.PlatformStatusRefreshJob;
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
-import org.eclipse.cloudfree.toolkit.widgets.Button;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRules;
-import org.eclipse.cloudfree.toolkit.widgets.StyledText;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
-import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
-import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
+import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.widgets.Button;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
+import org.eclipse.gyrex.toolkit.widgets.StyledText;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
+import org.eclipse.gyrex.toolkit.wizard.WizardPage;
 
 /**
  * The Setup Wizard factory.
@@ -119,13 +119,13 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 		introPage.setDescription("Welcome to the Platform Configuration wizard.");
 
 		final StyledText introText = new StyledText("overview-text", introPage, CWT.NONE);
-		introText.setText("This wizard will walk you through the initial configuration of the CloudFree platform. It is shown automatically when the platform is started for the first time and whenever a new central platform component has been installed which requires initial configuration.", false, false);
+		introText.setText("This wizard will walk you through the initial configuration of Gyrex. It is shown automatically when the platform is started for the first time and whenever a new central platform component has been installed which requires initial configuration.", false, false);
 
 		return introPage;
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment)
 	 */
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 		if (ID_CONFIGURATION_WIZARD_FINISHED.equals(id)) {

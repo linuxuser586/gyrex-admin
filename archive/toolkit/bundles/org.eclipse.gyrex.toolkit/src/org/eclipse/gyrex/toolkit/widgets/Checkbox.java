@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.content.BooleanContent;
+import org.eclipse.gyrex.toolkit.content.BooleanContent;
 
 /**
  * A dialog field with a check-box to represent a boolean state (on/off, yes/no,

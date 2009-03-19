@@ -3,11 +3,11 @@
 <!--
     Copyright (c) 2008 Gunnar Wagenknecht and others.
     All rights reserved.
-     
-    This program and the accompanying materials are made available under the 
+
+    This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v1.0 which accompanies this distribution,
     and is available at http://www.eclipse.org/legal/epl-v10.html.
-    
+
     Contributors:
         Gunnar Wagenknecht - initial API and implementation
  -->
@@ -16,71 +16,48 @@
    <extension
          point="org.eclipse.rap.ui.entrypoint">
       <entrypoint
-            class="org.eclipse.cloudfree.admin.web.rap.internal.AdminRapApplication"
+            class="org.eclipse.gyrex.admin.web.rap.internal.AdminRapApplication"
             parameter="admin"
-            id="org.eclipse.cloudfree.admin.web.rap.internal.AdminRapApplication">
+            id="org.eclipse.gyrex.admin.web.rap.internal.AdminRapApplication">
       </entrypoint>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            name="CloudFree Admininistration"
-            class="org.eclipse.cloudfree.admin.web.rap.internal.Perspective"
-            id="org.eclipse.cloudfree.admin.web.rap.perspective">
+            name="Gyrex Admininistration"
+            class="org.eclipse.gyrex.admin.web.rap.internal.Perspective"
+            id="org.eclipse.gyrex.admin.web.rap.perspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.views">
       <view
-            name="CloudFree Admin"
-            class="org.eclipse.cloudfree.admin.web.rap.internal.View"
-            id="org.eclipse.cloudfree.admin.web.rap.view">
+            name="Gyrex Admin"
+            class="org.eclipse.gyrex.admin.web.rap.internal.View"
+            id="org.eclipse.gyrex.admin.web.rap.view">
       </view>
    </extension>
    <extension
          point="org.eclipse.rap.ui.branding">
       <branding
-            defaultEntrypointId="org.eclipse.cloudfree.admin.web.rap.internal.AdminRapApplication"
-            id="org.eclipse.cloudfree.admin.web.rap.branding.internal.AdminRapApplication"
+            defaultEntrypointId="org.eclipse.gyrex.admin.web.rap.internal.AdminRapApplication"
+            id="org.eclipse.gyrex.admin.web.rap.branding.internal.AdminRapApplication"
             servletName="admin-rap"
-            title="CloudFree Admin">
+            title="Gyrex Admin">
          <httpServiceSelector
-               filter="(other.info=org.eclipse.cloudfree.admin.http)">
+               filter="(other.info=org.eclipse.gyrex.admin.http)">
          </httpServiceSelector>
       </branding>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.cloudfree.admin.web.rap.internal.CloudFreeAdminEditorFactory"
+            class="org.eclipse.gyrex.admin.web.rap.internal.GyrexAdminEditorFactory"
             default="false"
-            icon="icons/cloudfree.png"
-            id="org.eclipse.cloudfree.admin.web.rap.widgetEditor"
-            name="CloudFree Admin">
+            icon="icons/gyrex.png"
+            id="org.eclipse.gyrex.admin.web.rap.widgetEditor"
+            name="Gyrex Admin">
       </editor>
-   </extension>
-   <extension
-         point="org.eclipse.cloudfree.boot.serverroles">
-      <role
-            defaultStart="inDevelopmentMode"
-            id="admin-rap"
-            name="CloudFree Admin UI (RAP based)">
-         <requireBundle
-               symbolicName="org.eclipse.rap.rwt">
-         </requireBundle>
-         <requireBundle
-               symbolicName="org.eclipse.rap.ui">
-         </requireBundle>
-         <requireBundle
-               symbolicName="org.eclipse.cloudfree.admin">
-         </requireBundle>
-         <requireBundle
-               symbolicName="org.eclipse.cloudfree.admin.web.rap">
-         </requireBundle>
-         <requireBundle
-               symbolicName="org.eclipse.equinox.http.registry">
-         </requireBundle>
-      </role>
    </extension>
 
 </plugin>

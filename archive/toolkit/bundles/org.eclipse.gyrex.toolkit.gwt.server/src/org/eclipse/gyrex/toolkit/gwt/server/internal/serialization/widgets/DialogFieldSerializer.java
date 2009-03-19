@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.WidgetSerializer;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * {@link DialogField} serializer.

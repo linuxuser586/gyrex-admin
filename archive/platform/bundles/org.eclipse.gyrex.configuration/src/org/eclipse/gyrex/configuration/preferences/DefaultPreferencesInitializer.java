@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.preferences;
+package org.eclipse.gyrex.configuration.preferences;
 
 
-import org.eclipse.cloudfree.configuration.ConfigurationMode;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
+import org.eclipse.gyrex.configuration.ConfigurationMode;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
 
 /**
  * Abstract class used to aid in default preference value initialization for the
- * CloudFree platform.
+ * Gyrex.
  * <p>
  * This class is based on {@link AbstractPreferenceInitializer} and provides a
  * specialized implementation of
@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
  * <p>
  * As an alternative to registering a subclass of this with the
  * <code>org.eclipse.core.runtime.preferences</code> extension point clients may
- * also simply register them as OSGi services of this class. The CloudFree
+ * also simply register them as OSGi services of this class. The Gyrex
  * platform will ensure that {@link #initializeDefaultPreferences()} is called
  * on new registered services. This behavior might be desired for clients that
  * do not wish to use the extension registry. However,

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.i18n.client.NumberFormat;
 import com.google.gwt.user.client.DOM;
@@ -21,18 +21,18 @@ import com.google.gwt.user.client.ui.SourcesChangeEvents;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationContext;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.ValidationResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SNumberEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput.Type;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationContext;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SNumberEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput.Type;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.TextInput</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.TextInput</code>.
  */
 public class CWTNumberInput extends CWTDialogField {
 
@@ -224,7 +224,7 @@ public class CWTNumberInput extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
@@ -333,10 +333,10 @@ public class CWTNumberInput extends CWTDialogField {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTDialogField#onLoad()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField#onLoad()
 	 */
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTDialogField#onUnload()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField#onUnload()
 	 */
 	@Override
 	protected void onUnload() {
@@ -348,8 +348,8 @@ public class CWTNumberInput extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#renderFieldWidget(org.eclipse.cloudfree.toolkit.gwt.client.rwt.ISerializedWidget,
-	 *      org.eclipse.cloudfree.toolkit.gwt.client.ui.RenderingToolkit)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#renderFieldWidget(org.eclipse.gyrex.toolkit.gwt.client.rwt.ISerializedWidget,
+	 *      org.eclipse.gyrex.toolkit.gwt.client.ui.RenderingToolkit)
 	 */
 	@Override
 	protected Widget renderFieldWidget(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
@@ -380,7 +380,7 @@ public class CWTNumberInput extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

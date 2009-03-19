@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal;
+package org.eclipse.gyrex.admin.internal;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -17,25 +17,25 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import org.eclipse.cloudfree.admin.configuration.wizard.IConfigurationWizardService;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardAdapterFactory;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardFactory;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardServiceImpl;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardServiceRegistryHelper;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.steps.ConfigModeStep;
-import org.eclipse.cloudfree.admin.internal.widgets.AdminWidgetAdapterServiceImpl;
-import org.eclipse.cloudfree.admin.internal.widgets.AdminWidgetServiceImpl;
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetAdapterService;
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetService;
-import org.eclipse.cloudfree.common.runtime.BaseBundleActivator;
-import org.eclipse.cloudfree.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.cloudfree.configuration.internal.impl.PlatformStatusRefreshJob;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.RegistrationException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.equinox.http.jetty.JettyConfigurator;
 import org.eclipse.equinox.http.jetty.JettyConstants;
+import org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardAdapterFactory;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceImpl;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceRegistryHelper;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.steps.ConfigModeStep;
+import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetAdapterServiceImpl;
+import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetServiceImpl;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetAdapterService;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
+import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
@@ -58,7 +58,7 @@ public class AdminActivator extends BaseBundleActivator {
 	}
 
 	/** the plug-in id */
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.admin";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.admin";
 
 	/** the default port for the admin server */
 	public static final int DEFAULT_ADMIN_PORT = 3110;
@@ -67,16 +67,16 @@ public class AdminActivator extends BaseBundleActivator {
 	public static final String TYPE_ADMIN = PLUGIN_ID + ".http";
 
 	/** the service vendor */
-	private static final String DEFAULT_SERVICE_VENDOR = "CloudFree.net";
+	private static final String DEFAULT_SERVICE_VENDOR = "Gyrex.net";
 
 	/** the service description */
-	private static final String DEFAULT_SERVICE_DESCRIPTION_WIDGET_SERVICE = "CloudFree Platform Admin Widget Service";
+	private static final String DEFAULT_SERVICE_DESCRIPTION_WIDGET_SERVICE = "Gyrex Admin Widget Service";
 
 	/** the service description */
-	private static final String DEFAULT_SERVICE_DESCRIPTION_WIDGET_ADAPTER_SERVICE = "CloudFree Platform Admin Widget Adapter Service";
+	private static final String DEFAULT_SERVICE_DESCRIPTION_WIDGET_ADAPTER_SERVICE = "Gyrex Admin Widget Adapter Service";
 
 	/** the service description */
-	private static final String DEFAULT_SERVICE_DESCRIPTION_CONFIG_WIZARD_SERVICE = "CloudFree Platform Admin Configuration Wizard Service";
+	private static final String DEFAULT_SERVICE_DESCRIPTION_CONFIG_WIZARD_SERVICE = "Gyrex Admin Configuration Wizard Service";
 
 	/** the shared instance */
 	private static AdminActivator sharedInstance;
@@ -155,7 +155,7 @@ public class AdminActivator extends BaseBundleActivator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
@@ -185,7 +185,7 @@ public class AdminActivator extends BaseBundleActivator {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {

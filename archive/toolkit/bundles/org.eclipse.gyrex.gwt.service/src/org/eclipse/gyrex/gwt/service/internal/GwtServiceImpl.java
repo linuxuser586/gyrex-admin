@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.service.internal;
+package org.eclipse.gyrex.gwt.service.internal;
 
 import java.util.Dictionary;
 import java.util.HashSet;
@@ -19,8 +19,8 @@ import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
 
-import org.eclipse.cloudfree.gwt.service.GwtRequestResponseListener;
-import org.eclipse.cloudfree.gwt.service.GwtService;
+import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
+import org.eclipse.gyrex.gwt.service.GwtService;
 import org.osgi.framework.Bundle;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
@@ -124,7 +124,7 @@ public class GwtServiceImpl implements GwtService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.gwt.service.GwtService#registerServlet(java.lang.String, java.lang.String, javax.servlet.Servlet, java.util.Dictionary, org.osgi.service.http.HttpContext)
+	 * @see org.eclipse.gyrex.gwt.service.GwtService#registerServlet(java.lang.String, java.lang.String, javax.servlet.Servlet, java.util.Dictionary, org.osgi.service.http.HttpContext)
 	 */
 	@Override
 	public void registerServlet(final String alias, final String moduleId, final Servlet servlet, final Dictionary initparams, final HttpContext context) throws ServletException, NamespaceException {
@@ -162,7 +162,7 @@ public class GwtServiceImpl implements GwtService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.gwt.service.GwtService#unregister(java.lang.String)
+	 * @see org.eclipse.gyrex.gwt.service.GwtService#unregister(java.lang.String)
 	 */
 	@Override
 	public synchronized void unregister(final String alias) {

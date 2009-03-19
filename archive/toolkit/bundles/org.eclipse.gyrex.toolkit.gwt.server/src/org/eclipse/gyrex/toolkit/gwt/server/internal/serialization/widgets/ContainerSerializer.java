@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.WidgetSerializer;
-import org.eclipse.cloudfree.toolkit.layout.Layout;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer;
+import org.eclipse.gyrex.toolkit.layout.Layout;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * {@link Container} serializer.
@@ -45,9 +45,9 @@ public class ContainerSerializer extends WidgetSerializer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.WidgetSerializer#populateAttributes(org.eclipse.cloudfree.toolkit.widgets.Widget,
-	 *      org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget,
-	 *      org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer)
+	 * @see org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer#populateAttributes(org.eclipse.gyrex.toolkit.widgets.Widget,
+	 *      org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget,
+	 *      org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer)
 	 */
 	@Override
 	protected ISerializedWidget populateAttributes(Widget widget, ISerializedWidget serializedWidget, SContainer parent) {

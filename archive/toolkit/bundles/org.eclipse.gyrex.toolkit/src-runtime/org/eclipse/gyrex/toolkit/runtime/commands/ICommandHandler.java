@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.commands;
+package org.eclipse.gyrex.toolkit.runtime.commands;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 

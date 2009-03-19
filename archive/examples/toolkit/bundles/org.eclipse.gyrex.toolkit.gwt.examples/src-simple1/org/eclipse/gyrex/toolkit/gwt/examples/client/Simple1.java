@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.examples.client;
+package org.eclipse.gyrex.toolkit.gwt.examples.client;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.GetWidgetCallback;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.client.GetWidgetCallback;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.DOM;

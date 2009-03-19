@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.examples.client;
+package org.eclipse.gyrex.toolkit.gwt.examples.client;
 
 /**
  * Shared constants.
@@ -17,6 +17,6 @@ package org.eclipse.cloudfree.toolkit.gwt.examples.client;
 public interface Simple1Constants {
 
 	/** Widget service entry point */
-	public static final String EP_SIMPLE1_WIDGETSERVICE = "/cloudfree/gwt/examples/simple1.widgetservice";
+	public static final String EP_SIMPLE1_WIDGETSERVICE = "/gyrex/gwt/examples/simple1.widgetservice";
 
 }

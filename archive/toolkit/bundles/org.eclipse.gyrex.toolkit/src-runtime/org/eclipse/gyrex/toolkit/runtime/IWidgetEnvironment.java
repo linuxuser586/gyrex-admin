@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime;
+package org.eclipse.gyrex.toolkit.runtime;
 
 import com.ibm.icu.util.ULocale;
 

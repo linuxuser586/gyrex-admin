@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.content;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.content;
 
 
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
 
 /**
  * The content adapter is responsible for reading and writing content to a

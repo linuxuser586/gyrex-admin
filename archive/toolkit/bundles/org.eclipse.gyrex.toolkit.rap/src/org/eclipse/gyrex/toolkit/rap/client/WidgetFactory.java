@@ -9,22 +9,22 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.client;
+package org.eclipse.gyrex.toolkit.rap.client;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.CWTException;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.rap.WidgetService;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWTException;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.rap.WidgetService;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * This is the factory for creating SWT/JFace/Forms UI widgets exposed by a

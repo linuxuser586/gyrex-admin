@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedResource;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.resources.SResource;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.ResourceUrlEncoder;
-import org.eclipse.cloudfree.toolkit.resources.Resource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SResource;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.ResourceUrlEncoder;
+import org.eclipse.gyrex.toolkit.resources.Resource;
 
 /**
  * Abstract base class for resource serializers.

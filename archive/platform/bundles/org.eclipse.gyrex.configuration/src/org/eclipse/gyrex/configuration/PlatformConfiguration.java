@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration;
+package org.eclipse.gyrex.configuration;
 
 
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
-import org.eclipse.cloudfree.configuration.internal.holders.ConfigurationModeHolder;
-import org.eclipse.cloudfree.configuration.internal.holders.PlatformStatusHolder;
-import org.eclipse.cloudfree.configuration.service.IConfigurationService;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
+import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
+import org.eclipse.gyrex.configuration.internal.holders.PlatformStatusHolder;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
 
 /**
  * A convenient class to streamline access to the Eclipse Preferences API and to
@@ -24,11 +24,11 @@ import org.eclipse.core.runtime.IStatus;
  * <p>
  * This class provides a thin layer on top the Eclipse Preferences API. It's
  * purpose is to simplify working with the preferences and to better integrate
- * with the CloudFree contextual runtime.
+ * with the Gyrex contextual runtime.
  * </p>
  * <p>
  * Although it's still possible to use the Eclipse Preferences API directly,
- * care must be taken when doing it that way. The CloudFree Platform and its
+ * care must be taken when doing it that way. Gyrex and its
  * applications may rely on an implementation specific behavior which is exposed
  * by this class.
  * </p>
@@ -36,7 +36,7 @@ import org.eclipse.core.runtime.IStatus;
  * For convenience reason this class provides static methods. Additionally, the
  * backing implementation is delivered in its own set of OSGi bundles so that
  * updates to the implementation do not cause massive bundle refreshes/restarts
- * across the board. The <code>org.eclipse.cloudfree.configuration</code>
+ * across the board. The <code>org.eclipse.gyrex.configuration</code>
  * bundle is assumed to be a <em>very</em> fundamental bundle which others
  * should heavily make use of.
  * </p>
@@ -50,7 +50,7 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	/**
 	 * Returns the platform configuration mode.
 	 * <p>
-	 * The CloudFree Platform uses the concept of configuration modes to behave
+	 * Gyrex uses the concept of configuration modes to behave
 	 * differently in a secure production environment and in a relaxed
 	 * development environment.
 	 * </p>
@@ -63,7 +63,7 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	 * different default values in production than for development.
 	 * </p>
 	 * <p>
-	 * Note, although the CloudFree Platform is a dynamic platform, the
+	 * Note, although Gyrex is a dynamic platform, the
 	 * configuration mode is static information. It is not anticipated that the
 	 * platform changes its configuration mode. Once set it should be
 	 * <strong>assumed for lifetime</strong>. A new installation has to be made
@@ -88,7 +88,7 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	}
 
 	/**
-	 * Return the interface into the CloudFree preference mechanisms. The
+	 * Return the interface into the Gyrex preference mechanisms. The
 	 * returned object can be used for such operations as searching for
 	 * preference in a convenient way.
 	 * <p>
@@ -96,7 +96,7 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	 * service via OSGi mechanisms and use it for preference functions.
 	 * </p>
 	 * 
-	 * @return an object to interface into the CloudFree preference mechanism
+	 * @return an object to interface into the Gyrex preference mechanism
 	 * @throws IllegalStateException
 	 *             if the configuration service is not available
 	 */
@@ -105,10 +105,10 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	}
 
 	/**
-	 * Returns the current status of the CloudFree Platform.
+	 * Returns the current status of Gyrex.
 	 * <p>
 	 * The returned status can be used to obtain detailed status information
-	 * about the configuration of the CloudFree Platform.
+	 * about the configuration of Gyrex.
 	 * <code>{@link IStatus#isOK()}</code> returns <code>true</code> if the
 	 * platform is configured properly and in a state ready for executing core
 	 * operations and core services. The platform would be useless otherwise.

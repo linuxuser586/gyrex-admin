@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.equinox.preferences.preferences">
       <scope
-            class="org.eclipse.cloudfree.configuration.internal.preferences.PlatformPreferences"
+            class="org.eclipse.gyrex.configuration.internal.preferences.PlatformPreferences"
             name="platform">
       </scope>
    </extension>

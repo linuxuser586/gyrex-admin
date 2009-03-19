@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
@@ -25,7 +25,7 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
 
 /**
- * Renders a <code>org.eclipse.cloudfree.toolkit.widgets.Container</code> into
+ * Renders a <code>org.eclipse.gyrex.toolkit.widgets.Container</code> into
  * SWT/JFace/Forms UI.
  */
 public class CWTContainer<T extends Container> extends CWTWidget<T> {
@@ -123,7 +123,7 @@ public class CWTContainer<T extends Container> extends CWTWidget<T> {
 	 * @param parent
 	 *            the parent composite
 	 * @return the created control
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {

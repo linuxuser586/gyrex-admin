@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * A multi purpose rule for runtime aspects.

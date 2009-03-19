@@ -9,11 +9,11 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.commands;
+package org.eclipse.gyrex.toolkit.commands;
 
 import java.io.Serializable;
 
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
 
 /**
  * A lightweight description of a command to be triggered through the user

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal;
+package org.eclipse.gyrex.admin.internal;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.tests;
+package org.eclipse.gyrex.toolkit.gwt.client.tests;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
-import org.eclipse.cloudfree.gwt.common.adaptable.AdapterManager;
-import org.eclipse.cloudfree.gwt.common.adaptable.IsAdaptable;
+import org.eclipse.gyrex.gwt.common.adaptable.AdapterManager;
+import org.eclipse.gyrex.gwt.common.adaptable.IsAdaptable;
 
 /**
  * Test case for the {@link AdapterManager}
@@ -50,7 +50,7 @@ public class AdapterManagerTest extends GWTTestCase {
 	 * @see com.google.gwt.junit.client.GWTTestCase#getModuleName()
 	 */
 	public String getModuleName() {
-		return "org.eclipse.cloudfree.toolkit.gwt.Tests";
+		return "org.eclipse.gyrex.toolkit.gwt.Tests";
 	}
 
 	/**

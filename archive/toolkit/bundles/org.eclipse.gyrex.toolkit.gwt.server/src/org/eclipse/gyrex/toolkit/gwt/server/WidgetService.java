@@ -9,17 +9,17 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server;
+package org.eclipse.gyrex.toolkit.gwt.server;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.WidgetServiceImpl;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.WidgetServiceImpl;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
 /**
- * This GWT remote service is responsible for delivering CloudFree widgets to
+ * This GWT remote service is responsible for delivering Gyrex widgets to
  * any GWT client.
  * <p>
  * A {@link IWidgetFactory} is used to lookup widgets be their ids. The

@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.cloudfree.toolkit.examples.simple
+Bundle-SymbolicName: org.eclipse.gyrex.toolkit.examples.simple
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.eclipse.cloudfree.toolkit;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
+Require-Bundle: org.eclipse.gyrex.toolkit;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.equinox.common;bundle-version="[3.4.0,4.0.0)"
-Export-Package: org.eclipse.cloudfree.toolkit.examples.simple;
+Export-Package: org.eclipse.gyrex.toolkit.examples.simple;
   uses:="org.eclipse.core.runtime,
-   org.eclipse.cloudfree.toolkit.widgets,
-   org.eclipse.cloudfree.toolkit.runtime.lookup,
-   org.eclipse.cloudfree.toolkit.runtime.commands,
-   org.eclipse.cloudfree.toolkit.runtime"
+   org.eclipse.gyrex.toolkit.widgets,
+   org.eclipse.gyrex.toolkit.runtime.lookup,
+   org.eclipse.gyrex.toolkit.runtime.commands,
+   org.eclipse.gyrex.toolkit.runtime"

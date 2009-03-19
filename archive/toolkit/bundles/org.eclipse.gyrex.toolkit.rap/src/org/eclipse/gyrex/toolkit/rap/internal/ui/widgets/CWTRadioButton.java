@@ -9,18 +9,18 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.content.ContentObject;
-import org.eclipse.cloudfree.toolkit.content.BooleanContent;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.DialogFieldValidator;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.ValidationContext;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.validation.ValidationResult;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.RadioButton;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.content.BooleanContent;
+import org.eclipse.gyrex.toolkit.content.ContentObject;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldValidator;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationContext;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationResult;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.RadioButton;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -90,7 +90,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	private Label emptyLabelControl;
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createDescriptionControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createDescriptionControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected void createDescriptionControl(final Composite parent) {
@@ -98,7 +98,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createLabelControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createLabelControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected void createLabelControl(final Composite parent) {
@@ -106,7 +106,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#createWidgetControl(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
 	protected Control createWidgetControl(final Composite parent) {
@@ -123,7 +123,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#fillIntoGrid(int)
 	 */
 	@Override
 	protected void fillIntoGrid(final int columns) {
@@ -150,7 +150,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField#getNumberOfColumns()
 	 */
 	@Override
 	protected int getNumberOfColumns() {
@@ -184,7 +184,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

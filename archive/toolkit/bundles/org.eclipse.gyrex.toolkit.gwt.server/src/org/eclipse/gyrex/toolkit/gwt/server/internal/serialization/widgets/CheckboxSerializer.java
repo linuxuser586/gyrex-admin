@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
-import org.eclipse.cloudfree.toolkit.widgets.Checkbox;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SCheckbox;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
+import org.eclipse.gyrex.toolkit.widgets.Checkbox;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
 
 /**
  * {@link Checkbox} serializer.

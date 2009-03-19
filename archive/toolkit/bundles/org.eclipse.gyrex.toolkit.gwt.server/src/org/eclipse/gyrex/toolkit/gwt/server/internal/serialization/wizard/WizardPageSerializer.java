@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.wizard;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.wizard;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.widgets.ContainerSerializer;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.wizard.WizardPage;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets.ContainerSerializer;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.wizard.WizardPage;
 
 /**
  * {@link WizardPage} serializer.

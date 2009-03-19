@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.impl;
+package org.eclipse.gyrex.configuration.internal.impl;
 
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 
-import org.eclipse.cloudfree.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;

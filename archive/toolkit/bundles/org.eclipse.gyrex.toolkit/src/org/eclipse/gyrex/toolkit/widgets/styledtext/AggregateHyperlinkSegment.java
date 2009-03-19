@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +59,7 @@ public class AggregateHyperlinkSegment extends ParagraphSegment implements IHype
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.styledtext.IHyperlinkSegment#getText()
+	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment#getText()
 	 */
 	@Override
 	public String getText() {
@@ -72,7 +72,7 @@ public class AggregateHyperlinkSegment extends ParagraphSegment implements IHype
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.styledtext.ParagraphSegment#getTooltipText()
+	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.ParagraphSegment#getTooltipText()
 	 */
 	@Override
 	public String getTooltipText() {

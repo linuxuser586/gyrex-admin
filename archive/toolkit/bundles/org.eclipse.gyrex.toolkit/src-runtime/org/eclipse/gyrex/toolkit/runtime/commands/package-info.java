@@ -16,5 +16,5 @@
  * officially released.
  * </p>
  */
-package org.eclipse.cloudfree.toolkit.runtime.commands;
+package org.eclipse.gyrex.toolkit.runtime.commands;
 

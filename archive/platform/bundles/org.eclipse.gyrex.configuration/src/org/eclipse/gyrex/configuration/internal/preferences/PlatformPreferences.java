@@ -9,18 +9,18 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.preferences;
+package org.eclipse.gyrex.configuration.internal.preferences;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IPreferenceNodeVisitor;
 import org.eclipse.core.runtime.preferences.IScope;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 

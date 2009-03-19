@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.validation;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.validation;
 
 import java.util.HashSet;
 import java.util.Set;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTDialogField;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
-import org.eclipse.cloudfree.toolkit.widgets.MultiDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule.FieldSelectionType;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldSelectionType;
 
 /**
  * Helper for working with dialog field rules.

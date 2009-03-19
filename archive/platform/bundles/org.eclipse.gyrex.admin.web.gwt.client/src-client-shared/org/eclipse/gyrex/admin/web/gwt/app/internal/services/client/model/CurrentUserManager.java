@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.model;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.model;
 
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.ServiceRegistry;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.ServiceRegistry;
 
 import com.google.gwt.user.client.Cookies;
 import com.google.gwt.user.client.rpc.AsyncCallback;

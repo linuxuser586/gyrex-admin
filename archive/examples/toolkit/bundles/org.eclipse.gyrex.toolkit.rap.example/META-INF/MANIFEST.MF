@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.cloudfree.toolkit.rap.example;singleton:=true
+Bundle-SymbolicName: org.eclipse.gyrex.toolkit.rap.example;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.cloudfree.toolkit.rap.example.internal.Activator
+Bundle-Activator: org.eclipse.gyrex.toolkit.rap.example.internal.Activator
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
@@ -11,4 +11,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.servlet;version="[2.5.0,3.0.0)",
  javax.servlet.http;version="[2.5.0,3.0.0)"
-Export-Package: org.eclipse.cloudfree.toolkit.rap.example.internal;x-internal:=true
+Export-Package: org.eclipse.gyrex.toolkit.rap.example.internal;x-internal:=true

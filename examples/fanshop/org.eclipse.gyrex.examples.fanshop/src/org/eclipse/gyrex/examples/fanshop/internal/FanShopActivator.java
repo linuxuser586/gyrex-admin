@@ -9,23 +9,23 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal;
+package org.eclipse.gyrex.examples.fanshop.internal;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 
-import org.eclipse.cloudfree.common.runtime.BaseBundleActivator;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.examples.fanshop.internal.app.FanShopApplication;
-import org.eclipse.cloudfree.examples.fanshop.internal.app.FanShopApplicationProvider;
-import org.eclipse.cloudfree.examples.fanshop.service.IFanShopService;
-import org.eclipse.cloudfree.http.application.provider.ApplicationProvider;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.examples.fanshop.internal.app.FanShopApplication;
+import org.eclipse.gyrex.examples.fanshop.internal.app.FanShopApplicationProvider;
+import org.eclipse.gyrex.examples.fanshop.service.IFanShopService;
+import org.eclipse.gyrex.http.application.provider.ApplicationProvider;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
@@ -34,7 +34,7 @@ import org.osgi.util.tracker.ServiceTracker;
 
 public class FanShopActivator extends BaseBundleActivator {
 
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.examples.fanshop";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.examples.fanshop";
 
 	private static final AtomicReference<FanShopActivator> instance = new AtomicReference<FanShopActivator>();
 
@@ -60,14 +60,14 @@ public class FanShopActivator extends BaseBundleActivator {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		instance.set(this);
 
 		// register fan shop provider
-		getServiceHelper().registerService(ApplicationProvider.class.getName(), new FanShopApplicationProvider(), "CloudFree.net", "Application provider for the extensible Fan Shop application.", null, null);
+		getServiceHelper().registerService(ApplicationProvider.class.getName(), new FanShopApplicationProvider(), "Gyrex.net", "Application provider for the extensible Fan Shop application.", null, null);
 
 		// create default environment in dev mode
 		if (PlatformConfiguration.isOperatingInDevelopmentMode()) {
@@ -95,7 +95,7 @@ public class FanShopActivator extends BaseBundleActivator {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
@@ -141,7 +141,7 @@ public class FanShopActivator extends BaseBundleActivator {
 			if (fanshopServiceRegistrations.containsKey(application)) {
 				return;
 			}
-			final ServiceRegistration serviceRegistration = getServiceHelper().registerService(IFanShopService.class.getName(), application, "CloudFree.net", "Fan Shop Service for extending Fan Shop applications", null, null);
+			final ServiceRegistration serviceRegistration = getServiceHelper().registerService(IFanShopService.class.getName(), application, "Gyrex.net", "Fan Shop Service for extending Fan Shop applications", null, null);
 			fanshopServiceRegistrations.put(application, serviceRegistration);
 		}
 	}

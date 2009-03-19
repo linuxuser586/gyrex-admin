@@ -9,19 +9,19 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.examples.simple;
+package org.eclipse.gyrex.toolkit.examples.simple;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
-import org.eclipse.cloudfree.toolkit.widgets.Button;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRules;
-import org.eclipse.cloudfree.toolkit.widgets.StyledText;
-import org.eclipse.cloudfree.toolkit.widgets.TextInput;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.widgets.Button;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
+import org.eclipse.gyrex.toolkit.widgets.StyledText;
+import org.eclipse.gyrex.toolkit.widgets.TextInput;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 public class Simple1WidgetFactory implements IWidgetFactory {
 
@@ -59,14 +59,14 @@ public class Simple1WidgetFactory implements IWidgetFactory {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment)
 	 */
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 
 		// usually, you would perform a lookup based on the id here
 		// and return the appropriate widget or null
 
-		// in the future, CloudFree will assist you with the lookup 
+		// in the future, Gyrex will assist you with the lookup 
 		// by integrating with the extension registry and/or OSGi
 
 		// we don't care about the id in this simple example

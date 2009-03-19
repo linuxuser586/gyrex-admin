@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.service;
+package org.eclipse.gyrex.configuration.service;
 
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
 
 /**
  * Provides a thin layer on top of the Eclipse Preferences API to streamline
@@ -27,7 +27,7 @@ import org.eclipse.cloudfree.configuration.PlatformConfiguration;
  * instance area (i.e., apply to an actual running framework instance).
  * </p>
  * <p>
- * The CloudFree Platform adds a new scope to the set of scopes. This scope
+ * Gyrex adds a new scope to the set of scopes. This scope
  * allows to store preferences in a global repository which can be accessed by
  * framework instances running on different machines. This repository could be a
  * relational database or and LDAP directory.
@@ -35,20 +35,20 @@ import org.eclipse.cloudfree.configuration.PlatformConfiguration;
  * <p>
  * In order to streamline preferences access, this service provides convenience
  * methods for reading and setting preferences. It uses the various scopes as
- * anticipated by the CloudFree Platform.
+ * anticipated by Gyrex.
  * </p>
  * <p>
- * The following scopes will be used in the CloudFree platform.
+ * The following scopes will be used in Gyrex.
  * <ul>
- * <li><strong>PLATFORM</strong> - This is the primary scope for CloudFree
+ * <li><strong>PLATFORM</strong> - This is the primary scope for Gyrex
  * preferences. Whenever a preferences is modified (set or removed) through API
  * provided by this service it will happen in the
- * {@link org.eclipse.cloudfree.configuration.preferences.PlatformScope platform
+ * {@link org.eclipse.gyrex.configuration.preferences.PlatformScope platform
  * scope}.</li>
  * <li><strong>DEFAULT</strong> - This is the default scope which defines
  * default preferences. Default preferences cannot be modified through API
  * defined here. Default preferences are initialized during bundle start (see
- * {@link org.eclipse.cloudfree.configuration.preferences.DefaultPreferencesInitializer}
+ * {@link org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer}
  * ).</li>
  * </ul>
  * All other scopes (i.e., INSTANCE, CONFIGURATION, PROJECT) will
@@ -65,13 +65,13 @@ import org.eclipse.cloudfree.configuration.PlatformConfiguration;
  * If a preference value is to be encrypted it will be stored encrypted in the
  * PLATFORM scope backing store and not using Equinox
  * <code>ISecurePreferences</code>. The encryption will be done using the
- * CloudFree platform encryption conventions. Decryption will happen
+ * Gyrex encryption conventions. Decryption will happen
  * transparently at read time.
  * </p>
  * 
  * @see PlatformConfiguration
- * @see org.eclipse.cloudfree.configuration.preferences.PlatformScope
- * @see org.eclipse.cloudfree.configuration.preferences.DefaultPreferencesInitializer
+ * @see org.eclipse.gyrex.configuration.preferences.PlatformScope
+ * @see org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
  */
@@ -80,7 +80,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -108,7 +108,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -129,7 +129,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -157,7 +157,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -178,7 +178,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -206,7 +206,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -227,7 +227,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -255,7 +255,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -276,7 +276,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -304,7 +304,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -325,7 +325,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -353,7 +353,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -374,7 +374,7 @@ public interface IConfigurationService {
 	/**
 	 * Return the value stored in the preference store for the given key. If the
 	 * key is not defined then return the specified default value. Use the
-	 * canonical CloudFree scope lookup order for finding the preference value.
+	 * canonical Gyrex scope lookup order for finding the preference value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -402,7 +402,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -423,7 +423,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -452,7 +452,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -475,7 +475,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -504,7 +504,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -529,7 +529,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -558,7 +558,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -581,7 +581,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -610,7 +610,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -633,7 +633,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -662,7 +662,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -685,7 +685,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -714,7 +714,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -737,7 +737,7 @@ public interface IConfigurationService {
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
 	 * key is defined the existing value will be overridden with the specified
-	 * value. Use the canonical CloudFree scope lookup order for finding the
+	 * value. Use the canonical Gyrex scope lookup order for finding the
 	 * preference to set the value.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
@@ -766,7 +766,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>
@@ -791,7 +791,7 @@ public interface IConfigurationService {
 	/**
 	 * Removes the value stored in the preference store for the given key. If
 	 * the key is not defined then nothing will be removes. Use the canonical
-	 * CloudFree scope lookup order for finding the preference to remove.
+	 * Gyrex scope lookup order for finding the preference to remove.
 	 * <p>
 	 * The specified key may either refer to a simple key or be the
 	 * concatenation of the path of a child node and key. If the key contains a
@@ -819,7 +819,7 @@ public interface IConfigurationService {
 	 * calculate the node. Otherwise a default calculation algorithm is used.
 	 * </p>
 	 * <p>
-	 * An example of a qualifier for a CloudFree preference is the plug-in
+	 * An example of a qualifier for a Gyrex preference is the plug-in
 	 * identifier (aka. bundle symbolic name). (e.g.
 	 * "org.eclipse.core.resources" for "description.autobuild")
 	 * </p>

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.client;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.client;
 
 /**
  * A menu entry

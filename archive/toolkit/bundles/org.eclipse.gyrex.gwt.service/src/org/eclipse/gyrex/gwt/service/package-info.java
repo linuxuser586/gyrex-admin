@@ -10,13 +10,13 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 /**
- * CloudFree GWT Service.
+ * Gyrex GWT Service.
  * <p>
- * The {@link GwtService CloudFree GWT Service} is an attempt to simplify working with GWT modules
+ * The {@link GwtService Gyrex GWT Service} is an attempt to simplify working with GWT modules
  * in the OSGi world. It provides API to define GWT modules and their associated 
  * GWT RPC service implementations. The GWT Service in turn uses the OSGi HTTP 
  * Service to register the resources. It aims to reduce complexity.
  * </p>
  */
-package org.eclipse.cloudfree.gwt.service;
+package org.eclipse.gyrex.gwt.service;
 

@@ -1,5 +1,5 @@
 # global debug option
-org.eclipse.cloudfree.configuration/debug=true
+org.eclipse.gyrex.configuration/debug=true
 
 # debug roles
-org.eclipse.cloudfree.configuration/debugMode=true
+org.eclipse.gyrex.configuration/debugMode=true

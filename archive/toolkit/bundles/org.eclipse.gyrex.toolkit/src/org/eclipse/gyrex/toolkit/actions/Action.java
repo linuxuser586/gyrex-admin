@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.actions;
+package org.eclipse.gyrex.toolkit.actions;
 
-import org.eclipse.cloudfree.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.commands.Command;
 
 /**
  * A lightweight description of an action to be performed in the user interface.

@@ -9,16 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.CWTException;
-import org.eclipse.cloudfree.toolkit.layout.LayoutHint;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWTException;
+import org.eclipse.gyrex.toolkit.layout.LayoutHint;
 
 /**
  * A widget is the base class for all UI elements.
@@ -39,8 +39,8 @@ public abstract class Widget implements Serializable {
 	private static final Set<String> ALLOWED_PACKAGE_PREFIXS;
 	static {
 		final Set<String> allowedPackagePrefixes = new HashSet<String>(2);
-		allowedPackagePrefixes.add("org.eclipse.cloudfree.toolkit.widgets."); //$NON-NLS-1$
-		allowedPackagePrefixes.add("org.eclipse.cloudfree.toolkit.wizard."); //$NON-NLS-1$
+		allowedPackagePrefixes.add("org.eclipse.gyrex.toolkit.widgets."); //$NON-NLS-1$
+		allowedPackagePrefixes.add("org.eclipse.gyrex.toolkit.wizard."); //$NON-NLS-1$
 		ALLOWED_PACKAGE_PREFIXS = Collections.unmodifiableSet(allowedPackagePrefixes);
 	}
 
@@ -264,7 +264,7 @@ public abstract class Widget implements Serializable {
 	 * Returns the parent container.
 	 * 
 	 * @return the parent container.
-	 * @see org.eclipse.cloudfree.toolkit.widgets.Container#getWidgets
+	 * @see org.eclipse.gyrex.toolkit.widgets.Container#getWidgets
 	 */
 	public Container getParent() {
 		return parent;

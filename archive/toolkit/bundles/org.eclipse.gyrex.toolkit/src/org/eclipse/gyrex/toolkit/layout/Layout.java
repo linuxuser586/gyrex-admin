@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.layout;
+package org.eclipse.gyrex.toolkit.layout;
 
 /**
  * A container layout specified how the widgets inside a container are aligned.

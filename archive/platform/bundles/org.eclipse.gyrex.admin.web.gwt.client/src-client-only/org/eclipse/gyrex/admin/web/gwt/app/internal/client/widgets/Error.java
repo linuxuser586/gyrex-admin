@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.client.widgets;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.client.widgets;
 
 
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp;
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.client.widgets.SError;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.client.widgets.SError;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -64,8 +64,8 @@ public class Error extends CWTWidget {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#render(org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget,
-	 *      org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#render(org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget,
+	 *      org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit)
 	 */
 	protected Widget render(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 		final FlowPanel flowPanel = new FlowPanel();
@@ -76,7 +76,7 @@ public class Error extends CWTWidget {
 				break;
 
 			default:
-				if (CloudFreeApp.isPlatformOperatingInDevelopmentMode()) {
+				if (GyrexApp.isPlatformOperatingInDevelopmentMode()) {
 					flowPanel.add(new HTML("<h1>Upps..</h1>"));
 					flowPanel.add(new Label("An error occurred while processing your request."));
 					createDetails(error, flowPanel);

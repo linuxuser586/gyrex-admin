@@ -9,23 +9,23 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.gwt.common.status.IStatus;
-import org.eclipse.cloudfree.toolkit.gwt.client.ExecuteCommandCallback;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.content.ContentHelper;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SButton;
+import org.eclipse.gyrex.gwt.common.status.IStatus;
+import org.eclipse.gyrex.toolkit.gwt.client.ExecuteCommandCallback;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content.ContentHelper;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SButton;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.Button</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.Button</code>.
  */
 public class CWTButton extends CWTDialogField {
 
@@ -112,7 +112,7 @@ public class CWTButton extends CWTDialogField {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
 	public void setEnabled(final boolean enabled) {

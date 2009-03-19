@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime;
+package org.eclipse.gyrex.toolkit.runtime;
 
 
 import com.ibm.icu.util.ULocale;
@@ -17,7 +17,7 @@ import com.ibm.icu.util.ULocale;
 import java.security.Principal;
 import java.util.Map;
 
-import org.eclipse.cloudfree.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.CWT;
 
 /**
  * Public base implementation of {@link IWidgetEnvironment}.
@@ -48,7 +48,7 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment#getAttribute(java.lang.String)
+	 * @see org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment#getAttribute(java.lang.String)
 	 */
 	@Override
 	public Object getAttribute(final String name) {
@@ -65,7 +65,7 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetEnvironment#getLocale()
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment#getLocale()
 	 */
 	@Override
 	public ULocale getLocale() {
@@ -73,7 +73,7 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetEnvironment#getAuthenticationToken()
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment#getAuthenticationToken()
 	 */
 	@Override
 	public Principal getUserPrincipal() {

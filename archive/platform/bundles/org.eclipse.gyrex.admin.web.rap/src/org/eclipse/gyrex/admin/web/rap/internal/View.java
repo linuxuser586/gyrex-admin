@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.rap.internal;
+package org.eclipse.gyrex.admin.web.rap.internal;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -24,7 +24,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 
 public class View extends ViewPart {
-	public static final String ID = "org.eclipse.cloudfree.admin.web.rap.view";
+	public static final String ID = "org.eclipse.gyrex.admin.web.rap.view";
 
 	private TableViewer viewer;
 

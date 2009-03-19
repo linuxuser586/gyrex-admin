@@ -1,27 +1,27 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.cloudfree.admin;singleton:=true
+Bundle-SymbolicName: org.eclipse.gyrex.admin;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.cloudfree.admin.internal.AdminActivator
-Require-Bundle: org.eclipse.cloudfree.boot;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.common;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.configuration;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.configuration.impl;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.toolkit;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.cloudfree.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
+Bundle-Activator: org.eclipse.gyrex.admin.internal.AdminActivator
+Require-Bundle: org.eclipse.gyrex.boot;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.common;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.configuration;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.configuration.impl;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.toolkit;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.equinox.http.jetty;bundle-version="[2.0.0,3.0.0)",
  org.eclipse.equinox.registry;bundle-version="[3.4.100,4.0.0)";resolution:=optional,
  org.eclipse.core.jobs;bundle-version="[3.4.100,4.0.0)",
  org.eclipse.equinox.preferences;bundle-version="[3.2.300,4.0.0)"
-Export-Package: org.eclipse.cloudfree.admin.configuration.wizard;uses:="org.eclipse.cloudfree.toolkit.runtime.commands,org.eclipse.cloudfree.toolkit.wizard",
- org.eclipse.cloudfree.admin.internal;x-friends:="org.eclipse.cloudfree.admin.web.gwt.client,org.eclipse.cloudfree.admin.web.rap,org.eclipse.cloudfree.admin.web.gwt",
- org.eclipse.cloudfree.admin.internal.configuration.wizard;x-friends:="org.eclipse.cloudfree.admin.web.gwt.client,org.eclipse.cloudfree.admin.web.rap,org.eclipse.cloudfree.admin.web.gwt",
- org.eclipse.cloudfree.admin.internal.configuration.wizard.steps;x-internal:=true,
- org.eclipse.cloudfree.admin.internal.widgets;x-friends:="org.eclipse.cloudfree.admin.web.gwt.client,org.eclipse.cloudfree.admin.web.rap,org.eclipse.cloudfree.admin.web.gwt",
- org.eclipse.cloudfree.admin.widgets;uses:="org.eclipse.cloudfree.toolkit.runtime.lookup"
+Export-Package: org.eclipse.gyrex.admin.configuration.wizard,
+ org.eclipse.gyrex.admin.internal;x-friends:="org.eclipse.gyrex.admin.web.gwt,org.eclipse.gyrex.admin.web.gwt.client,org.eclipse.gyrex.admin.web.rap",
+ org.eclipse.gyrex.admin.internal.configuration.wizard;x-friends:="org.eclipse.gyrex.admin.web.gwt,org.eclipse.gyrex.admin.web.gwt.client,org.eclipse.gyrex.admin.web.rap",
+ org.eclipse.gyrex.admin.internal.configuration.wizard.steps;x-internal:=true,
+ org.eclipse.gyrex.admin.internal.widgets;x-friends:="org.eclipse.gyrex.admin.web.gwt,org.eclipse.gyrex.admin.web.gwt.client,org.eclipse.gyrex.admin.web.rap",
+ org.eclipse.gyrex.admin.widgets
 Bundle-ActivationPolicy: lazy
 Import-Package: javax.servlet;version="[2.5.0,3.0.0)",
  javax.servlet.http;version="[2.5.0,3.0.0)",

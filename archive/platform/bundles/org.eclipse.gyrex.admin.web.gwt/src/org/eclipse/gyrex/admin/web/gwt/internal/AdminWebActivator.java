@@ -9,27 +9,27 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.internal;
+package org.eclipse.gyrex.admin.web.gwt.internal;
 
 import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
-import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetFactory;
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.IServiceConstants;
-import org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminWebClientActivator;
-import org.eclipse.cloudfree.admin.web.gwt.client.internal.shared.IAdminClientConstants;
-import org.eclipse.cloudfree.common.logging.LogAudience;
-import org.eclipse.cloudfree.common.logging.LogImportance;
-import org.eclipse.cloudfree.common.logging.LogSource;
-import org.eclipse.cloudfree.common.runtime.BaseBundleActivator;
-import org.eclipse.cloudfree.gwt.service.GwtRequestResponseListener;
-import org.eclipse.cloudfree.gwt.service.GwtService;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetResourceServlet;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetService;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetServiceAdvisor;
+import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
+import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetFactory;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.IServiceConstants;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.AdminWebClientActivator;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminClientConstants;
+import org.eclipse.gyrex.common.logging.LogAudience;
+import org.eclipse.gyrex.common.logging.LogImportance;
+import org.eclipse.gyrex.common.logging.LogSource;
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
+import org.eclipse.gyrex.gwt.service.GwtService;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetResourceServlet;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetService;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceAdvisor;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
@@ -62,7 +62,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 		};
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.toolkit.gwt.server.WidgetServiceAdvisor#getUserPrincipal(org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment)
+		 * @see org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceAdvisor#getUserPrincipal(org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment)
 		 */
 		@Override
 		protected Principal getUserPrincipal(final WidgetClientEnvironment environment) {
@@ -71,7 +71,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 	}
 
 	/** plug-in ID */
-	private static final String PLUGIN_ID = "org.eclipse.cloudfree.admin.web.gwt";
+	private static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.gwt";
 
 	/** the default alias */
 	static final String ADMIN_WIDGET_SERVICE_ALIAS = IAdminClientConstants.ENTRYPOINT_WIDGET_SERVICE;
@@ -109,7 +109,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
@@ -122,7 +122,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {

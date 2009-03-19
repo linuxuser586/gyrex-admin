@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
 /**
  * This segment serves as break within a paragraph. It has no data - just starts

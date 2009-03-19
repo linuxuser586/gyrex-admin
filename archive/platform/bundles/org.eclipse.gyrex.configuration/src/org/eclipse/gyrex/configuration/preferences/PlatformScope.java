@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.preferences;
+package org.eclipse.gyrex.configuration.preferences;
 
 
-import org.eclipse.cloudfree.configuration.ConfigurationMode;
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IScopeContext;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.gyrex.configuration.ConfigurationMode;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
 
 /**
  * Object representing the platform scope in the Eclipse preferences hierarchy.
@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
  * <p>
  * Platform preferences are stored on a per cluster basis depending on the
  * configuration mode. In {@link ConfigurationMode#PRODUCTION production mode}
- * the preferences are shared across a CloudFree platform cluster. In
+ * the preferences are shared across a Gyrex cluster. In
  * {@link ConfigurationMode.DEVELOPMENT development mode} the preferences are
  * actually backed by {@link InstanceScope instance preferences} . No location
  * is provided for platform preferences.

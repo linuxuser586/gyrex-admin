@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.configuration.wizard;
+package org.eclipse.gyrex.admin.configuration.wizard;
 
 /**
  * A service to add pages (aka. "steps") to the configuration wizard.
  * <p>
  * This service is made available to clients as an OSGi service. For
  * convenience, there is also the
- * <code>org.eclipse.cloudfree.admin.configuration.wizard</code> extension
+ * <code>org.eclipse.gyrex.admin.configuration.wizard</code> extension
  * point available to register wizard steps if the
  * <code>org.eclipse.core.runtime.IExtensionRegistry</code> is available.
  * </p>

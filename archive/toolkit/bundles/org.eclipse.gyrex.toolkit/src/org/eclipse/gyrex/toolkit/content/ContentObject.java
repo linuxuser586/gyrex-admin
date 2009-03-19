@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.content;
+package org.eclipse.gyrex.toolkit.content;
 
 import java.io.Serializable;
 

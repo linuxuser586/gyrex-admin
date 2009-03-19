@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.layout;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.layout;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.LayoutHintSerializer;
-import org.eclipse.cloudfree.toolkit.layout.GridLayoutHint;
-import org.eclipse.cloudfree.toolkit.layout.LayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.LayoutHintSerializer;
+import org.eclipse.gyrex.toolkit.layout.GridLayoutHint;
+import org.eclipse.gyrex.toolkit.layout.LayoutHint;
 
 /**
  * {@link GridLayoutHint} serializer.

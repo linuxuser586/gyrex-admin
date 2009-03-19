@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.wizard;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.wizard;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Button;
@@ -22,20 +22,20 @@ import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ExecuteCommandCallback;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.content.ContentHelper;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.client.ExecuteCommandCallback;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content.ContentHelper;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
 /**
  * Composite for
- * <code>org.eclipse.cloudfree.toolkit.wizard.WizardContainer</code>.
+ * <code>org.eclipse.gyrex.toolkit.wizard.WizardContainer</code>.
  */
 public class CWTWizardContainer extends CWTContainer {
 

@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.commands;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.commands;
 
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
 
 /**
  * This is the callback interface to use when executing a command using the

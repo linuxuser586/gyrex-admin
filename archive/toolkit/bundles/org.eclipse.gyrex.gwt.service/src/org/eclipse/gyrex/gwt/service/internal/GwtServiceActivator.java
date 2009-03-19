@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.service.internal;
+package org.eclipse.gyrex.gwt.service.internal;
 
 import java.util.HashMap;
 import java.util.Map;

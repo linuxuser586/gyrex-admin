@@ -9,20 +9,20 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogField;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.widgets.DialogField</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.widgets.DialogField</code>.
  */
 public abstract class CWTDialogField extends CWTWidget {
 
@@ -99,7 +99,7 @@ public abstract class CWTDialogField extends CWTWidget {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
+		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
 		protected void handleRuleEvaluationResult(final boolean evaluationResult) {
@@ -139,7 +139,7 @@ public abstract class CWTDialogField extends CWTWidget {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#onLoad()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onLoad()
 	 */
 	@Override
 	protected void onLoad() {
@@ -160,7 +160,7 @@ public abstract class CWTDialogField extends CWTWidget {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#onUnload()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onUnload()
 	 */
 	@Override
 	protected void onUnload() {

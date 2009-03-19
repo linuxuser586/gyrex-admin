@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.runtime.lookup;
+package org.eclipse.gyrex.toolkit.runtime.lookup;
 
 /**
  * A widget adapter registry extends a

@@ -27,7 +27,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.eclipse.cloudfree.toolkit.gwt.server.internal;
+package org.eclipse.gyrex.toolkit.gwt.server.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,7 +39,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetServiceServlet;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceServlet;
 
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -55,7 +55,7 @@ import com.google.gwt.user.server.rpc.SerializationPolicyProvider;
  * This is the internal {@link WidgetServiceServlet} implementation.
  * <p>
  * This class is not intended to be instantiated or subclassed outside the
- * CloudFree GWT rendering framework.
+ * Gyrex GWT rendering framework.
  * </p>
  */
 public class TargetedRemoteServiceServlet extends RemoteServiceServlet {

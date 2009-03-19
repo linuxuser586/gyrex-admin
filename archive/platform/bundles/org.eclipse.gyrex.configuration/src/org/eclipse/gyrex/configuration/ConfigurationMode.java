@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration;
+package org.eclipse.gyrex.configuration;
 
 /**
  * The platform configuration mode.
  * <p>
- * The CloudFree Platform uses the concept of configuration modes to behave
+ * Gyrex uses the concept of configuration modes to behave
  * differently in a secure production environment and in a relaxed development
  * environment.
  * </p>
@@ -27,7 +27,7 @@ package org.eclipse.cloudfree.configuration;
  * production than for development.
  * </p>
  * <p>
- * Note, although the CloudFree Platform is a dynamic platform, the
+ * Note, although Gyrex is a dynamic platform, the
  * configuration mode is static information. It is not anticipated that the
  * platform changes its configuration mode. Once set it should be
  * <strong>assumed for lifetime</strong>. A new installation has to be made to

@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.content.ContentSet;
-import org.eclipse.cloudfree.toolkit.rap.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.commands.ExecuteCommandCallback;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.content.ContentSet;
+import org.eclipse.gyrex.toolkit.rap.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.commands.ExecuteCommandCallback;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -31,9 +31,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
  * The toolkit is responsible for creating SWT/JFace/Forms UI widgets from
- * CloudFree widgets. In addition to applying default presentation properties
+ * Gyrex widgets. In addition to applying default presentation properties
  * (styles, etc.), various listeners are attached to make them behave correctly
- * in the CloudFree context.
+ * in the Gyrex context.
  * <p>
  * Typically, one toolkit object is created per widget services and not shared
  * between them.
@@ -54,7 +54,7 @@ public class CWTToolkit {
 	static class DefaultWidget<T extends Widget> extends CWTWidget<T> {
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
+		 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget#createWidgetControl(org.eclipse.swt.widgets.Composite)
 		 */
 		@Override
 		protected Control createWidgetControl(final Composite parent) {
@@ -174,11 +174,11 @@ public class CWTToolkit {
 	public <T extends Widget> CWTWidget<T> createWidget(final T widget) {
 
 		String widgetClassName = widget.getClass().getPackage().getName();
-		if (widgetClassName.startsWith("org.eclipse.cloudfree.toolkit.")) {
-			widgetClassName = widgetClassName.substring("org.eclipse.cloudfree.toolkit.".length());
+		if (widgetClassName.startsWith("org.eclipse.gyrex.toolkit.")) {
+			widgetClassName = widgetClassName.substring("org.eclipse.gyrex.toolkit.".length());
 		}
 
-		widgetClassName = "org.eclipse.cloudfree.toolkit.rap.internal.ui.".concat(widgetClassName);
+		widgetClassName = "org.eclipse.gyrex.toolkit.rap.internal.ui.".concat(widgetClassName);
 		widgetClassName = widgetClassName.concat(".CWT").concat(widget.getClass().getSimpleName());
 
 		try {

@@ -9,19 +9,19 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.content;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content;
 
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleHelper;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTDialogField;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleHelper;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
 
 /**
  * Utility class.

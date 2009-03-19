@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
 import java.io.InputStream;
 
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.Paragraph;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.StyledTextModel;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.Paragraph;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.StyledTextModel;
 
 /**
  * A styled read-only text widget that allows to apply different styles to its
@@ -51,7 +51,7 @@ import org.eclipse.cloudfree.toolkit.widgets.styledtext.StyledTextModel;
  * can be specified using the 'alt' attribute.</li>
  * <li><b>a</b> - to render a hyperlink. Element accepts attribute 'href' which
  * specifies either an external or an internal hyperlink. Internal hyperlinks
- * are in the form 'cloudfree:///<command_id>' and trigger a {@link Command
+ * are in the form 'gyrex:///<command_id>' and trigger a {@link Command
  * command}. External hyperlinks will be opened at runtime directly. The element
  * also accepts 'nowrap' attribute (default is <code>false</code>). When set to
  * 'true', the hyperlink will not be wrapped. Hyperlinks automatically created

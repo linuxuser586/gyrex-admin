@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.example.internal;
+package org.eclipse.gyrex.toolkit.rap.example.internal;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.toolkit.rap.example";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.toolkit.rap.example";
 
 	// The shared instance
 	private static Activator plugin;

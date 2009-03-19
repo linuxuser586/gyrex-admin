@@ -9,23 +9,23 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization;
 
 import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayout;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayoutHint;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedResource;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
-import org.eclipse.cloudfree.toolkit.layout.Layout;
-import org.eclipse.cloudfree.toolkit.layout.LayoutHint;
-import org.eclipse.cloudfree.toolkit.resources.Resource;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayout;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.layout.Layout;
+import org.eclipse.gyrex.toolkit.layout.LayoutHint;
+import org.eclipse.gyrex.toolkit.resources.Resource;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * This is a util for translating CWT elements to the serializable GWT
@@ -41,8 +41,8 @@ public class ToolkitSerialization {
 	/** the package prefix containing the serializers */
 	private static final String SERIALIZERS_PACKAGE_PREFIX = ToolkitSerialization.class.getPackage().getName().concat(".");
 
-	/** the package prefix <code>org.eclipse.cloudfree.toolkit.</code> */
-	private static final String CWT_PACKAGE_PREFIX = "org.eclipse.cloudfree.toolkit.";
+	/** the package prefix <code>org.eclipse.gyrex.toolkit.</code> */
+	private static final String CWT_PACKAGE_PREFIX = "org.eclipse.gyrex.toolkit.";
 
 	/** the class post fix <code>Serializer</code> */
 	private static final String SERIALIZER = "Serializer";

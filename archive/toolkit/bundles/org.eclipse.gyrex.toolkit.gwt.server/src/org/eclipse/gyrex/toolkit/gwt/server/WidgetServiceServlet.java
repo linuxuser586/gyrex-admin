@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server;
+package org.eclipse.gyrex.toolkit.gwt.server;
 
 import java.io.IOException;
 
@@ -19,16 +19,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.TargetedRemoteServiceServlet;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.TargetedRemoteServiceServlet;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.SerializationPolicy;
 import com.google.gwt.user.server.rpc.SerializationPolicyProvider;
 
 /**
- * This servlet is responsible for delivering CloudFree widgets to any GWT
+ * This servlet is responsible for delivering Gyrex widgets to any GWT
  * client.
  * <p>
  * A {@link IWidgetFactory} is used to lookup containers be their ids. The

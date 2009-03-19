@@ -9,17 +9,17 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.widgets;
+package org.eclipse.gyrex.admin.internal.widgets;
 
 
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.admin.internal.RunConfigWizardConfigConstraint;
-import org.eclipse.cloudfree.admin.internal.configuration.wizard.ConfigurationWizardFactory;
-import org.eclipse.cloudfree.admin.widgets.IAdminWidgetService;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.BaseWidgetRegistry;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.RegistrationException;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
+import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetRegistry;
+import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * The {@link IAdminWidgetService} implementation.
@@ -46,7 +46,7 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.BaseRegistry#clear()
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseRegistry#clear()
 	 */
 	@Override
 	public void clear() {
@@ -54,7 +54,7 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.runtime.lookup.BaseWidgetRegistry#getWidget(java.lang.String, org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetRegistry#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
 	 */
 	@Override
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal;
+package org.eclipse.gyrex.toolkit.gwt.server.internal;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
@@ -18,13 +18,13 @@ import java.net.URL;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.resources.Resource;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.resources.Resource;
 
 /**
  * A registry to <em>hide</em> resource internals.
  * <p>
- * The CloudFree Toolkit defines resources as directly accessible by
+ * The Gyrex Toolkit defines resources as directly accessible by
  * {@link Resource#getUrl() an URL}. However, these URLs might be internals and
  * sensitive which should not be exposed. Therefore a resource registry exists
  * to create a mapping between a public exposable value and the actual resource

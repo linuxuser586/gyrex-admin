@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
@@ -19,5 +19,5 @@ import java.util.Map;
  * Serializable ContentSet
  */
 public class SContentSet implements IsSerializable {
-	public Map<java.lang.String, org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry> entries;
+	public Map<java.lang.String, org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry> entries;
 }

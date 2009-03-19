@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTDialogField;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField;
 
 public abstract class DialogFieldValidator {
 

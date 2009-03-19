@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.impl;
+package org.eclipse.gyrex.configuration.internal.impl;
 
 
-import org.eclipse.cloudfree.configuration.preferences.DefaultPreferencesInitializer;
+import org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;

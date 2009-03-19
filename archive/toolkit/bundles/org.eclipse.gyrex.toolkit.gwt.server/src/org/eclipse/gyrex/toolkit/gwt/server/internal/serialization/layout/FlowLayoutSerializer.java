@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.layout;
+package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.layout;
 
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayout;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.layout.SFlowLayout;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.LayoutSerializer;
-import org.eclipse.cloudfree.toolkit.layout.FlowLayout;
-import org.eclipse.cloudfree.toolkit.layout.Layout;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayout;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SFlowLayout;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.LayoutSerializer;
+import org.eclipse.gyrex.toolkit.layout.FlowLayout;
+import org.eclipse.gyrex.toolkit.layout.Layout;
 
 /**
  * {@link FlowLayout} serializer.

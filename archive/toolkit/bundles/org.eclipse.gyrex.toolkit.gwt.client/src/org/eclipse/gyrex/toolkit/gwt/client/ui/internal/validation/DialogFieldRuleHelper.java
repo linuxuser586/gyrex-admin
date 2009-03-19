@@ -9,20 +9,20 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation;
 
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.content.IContentAdapter;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTDialogField;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SMultiDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SMultiDialogFieldRule;
 
 /**
  * Helper for working with dialog field rules.

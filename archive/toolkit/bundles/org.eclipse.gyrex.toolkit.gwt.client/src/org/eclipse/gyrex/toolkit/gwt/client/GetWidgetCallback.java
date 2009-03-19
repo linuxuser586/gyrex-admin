@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client;
+package org.eclipse.gyrex.toolkit.gwt.client;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 
 /**
  * This is the callback interface for receiving a {@link CWTWidget widget} from

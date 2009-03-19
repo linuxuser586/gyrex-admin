@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal;
+package org.eclipse.gyrex.admin.internal;
 
 import java.io.IOException;
 
@@ -19,9 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import org.eclipse.cloudfree.common.logging.LogAudience;
-import org.eclipse.cloudfree.common.logging.LogImportance;
-import org.eclipse.cloudfree.common.logging.LogSource;
+import org.eclipse.gyrex.common.logging.LogAudience;
+import org.eclipse.gyrex.common.logging.LogImportance;
+import org.eclipse.gyrex.common.logging.LogSource;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpService;

@@ -9,18 +9,18 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal;
+package org.eclipse.gyrex.toolkit.rap.internal;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.rap.IWidgetServiceUICallback;
-import org.eclipse.cloudfree.toolkit.rap.WidgetService;
-import org.eclipse.cloudfree.toolkit.rap.WidgetServiceAdvisor;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.rap.IWidgetServiceUICallback;
+import org.eclipse.gyrex.toolkit.rap.WidgetService;
+import org.eclipse.gyrex.toolkit.rap.WidgetServiceAdvisor;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * This class is the internal {@link WidgetService} implementation.

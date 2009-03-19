@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.internal.impl;
+package org.eclipse.gyrex.configuration.internal.impl;
 
-import org.eclipse.cloudfree.configuration.internal.ConfigurationActivator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
 
 /**
  * Utility for working with Eclipse preferences.

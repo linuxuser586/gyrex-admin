@@ -11,11 +11,11 @@
  -->
 <module>
 
-    <!-- Inherit the CloudFree GWT stuff.  -->
-    <inherits name="org.eclipse.cloudfree.gwt.common.Common"/>
-    <inherits name="org.eclipse.cloudfree.toolkit.gwt.Ui"/>
+    <!-- Inherit the Gyrex GWT stuff.  -->
+    <inherits name="org.eclipse.gyrex.gwt.common.Common"/>
+    <inherits name="org.eclipse.gyrex.toolkit.gwt.Ui"/>
 
     <!-- Specify the app entry point class.                   -->
-    <entry-point class="org.eclipse.cloudfree.toolkit.gwt.examples.client.Simple1"/>
+    <entry-point class="org.eclipse.gyrex.toolkit.gwt.examples.client.Simple1"/>
   
 </module>

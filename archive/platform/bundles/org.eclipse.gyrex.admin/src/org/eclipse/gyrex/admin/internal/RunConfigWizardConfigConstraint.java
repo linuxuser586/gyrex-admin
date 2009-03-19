@@ -9,20 +9,20 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal;
+package org.eclipse.gyrex.admin.internal;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.client.internal.shared;
+package org.eclipse.gyrex.admin.web.gwt.client.internal.shared;
 
 /**
  * Constances shared by the client GWT module and the server side.
@@ -17,10 +17,10 @@ package org.eclipse.cloudfree.admin.web.gwt.client.internal.shared;
 public interface IAdminClientConstants {
 
 	/** the module id */
-	String MODULE_ID = "org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminClient";
+	String MODULE_ID = "org.eclipse.gyrex.admin.web.gwt.client.internal.AdminClient";
 
 	/** the default entry point prefix */
-	String DEFAULT_ENTRYPOINT_PREFIX = "/org.eclipse.cloudfree.admin.web.gwt.client.internal";
+	String DEFAULT_ENTRYPOINT_PREFIX = "/org.eclipse.gyrex.admin.web.gwt.client.internal";
 
 	/** the widget service entry point */
 	String ENTRYPOINT_WIDGET_SERVICE = DEFAULT_ENTRYPOINT_PREFIX + "/widget-service";

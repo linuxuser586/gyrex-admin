@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
 
 /**
  * Serializable MultiDialogFieldRule.

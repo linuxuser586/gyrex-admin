@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
 import com.google.gwt.user.client.ui.PasswordTextBox;
 
 /**
  * Composite for
- * <code>org.eclipse.cloudfree.toolkit.widgets.PasswordInput</code>.
+ * <code>org.eclipse.gyrex.toolkit.widgets.PasswordInput</code>.
  */
 public class CWTPasswordInput extends CWTTextInput {
 
@@ -28,7 +28,7 @@ public class CWTPasswordInput extends CWTTextInput {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTTextInput#createTextInput()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTTextInput#createTextInput()
 	 */
 	@Override
 	protected TextInputPanel createTextInput() {

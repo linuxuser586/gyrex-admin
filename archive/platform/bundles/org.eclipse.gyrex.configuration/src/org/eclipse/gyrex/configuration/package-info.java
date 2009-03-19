@@ -11,10 +11,10 @@
  *******************************************************************************/
 
 /**
- * This package defines the API for configuring the CloudFree Platform and 
+ * This package defines the API for configuring Gyrex and 
  * verifying the configuration state.
  * <p>
- * The CloudFree Platform allows for several ways of configuring it. It is
+ * Gyrex allows for several ways of configuring it. It is
  * expected that some base configuration is necessary before the platform is in
  * a usable and reliable state.
  * </p>
@@ -22,12 +22,12 @@
  * The following possibilities exist:
  * <dl>
  * <dt>Debug Configuration</dt>
- * <dd>In this configuration a CloudFree Platform instance maintains its
+ * <dd>In this configuration a Gyrex instance maintains its
  * own configuration. The mode is typically used on a development system.
  * Several settings may already set to reasonable defaults for a single
  * instance development system.</dd>
  * <dt>Production Configuration</dt>
- * <dd>In this configuration multiple CloudFree Platform instances share the
+ * <dd>In this configuration multiple Gyrex instances share the
  * same configuration. Each instance may be used as a source for
  * obtaining and modifying configuration data. Configuration changes are
  * propagated to all instances. This mode is typically used in a production 
@@ -38,11 +38,11 @@
  * </dl>
  * </p>
  * <p>
- * The CloudFree Platform configuration API is based on the Eclipse Preferences API.
+ * Gyrex configuration API is based on the Eclipse Preferences API.
  * However, it adds a thin layer on top of it to provide a common and simplified way
- * of using it and for better integration with the CloudFree contextual runtime.
+ * of using it and for better integration with the Gyrex contextual runtime.
  * </p>
  * 
  */
-package org.eclipse.cloudfree.configuration;
+package org.eclipse.gyrex.configuration;
 

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server.internal;
+package org.eclipse.gyrex.toolkit.gwt.server.internal;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -19,31 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import org.eclipse.cloudfree.gwt.common.status.IStatus;
-import org.eclipse.cloudfree.gwt.common.status.MultiStatus;
-import org.eclipse.cloudfree.gwt.common.status.Status;
-import org.eclipse.cloudfree.toolkit.actions.Action;
-import org.eclipse.cloudfree.toolkit.actions.RefreshAction;
-import org.eclipse.cloudfree.toolkit.actions.ShowWidgetAction;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetClientEnvironment;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryException;
-import org.eclipse.cloudfree.toolkit.gwt.client.internal.WidgetService;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.server.WidgetServiceAdvisor;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ContentSerialization;
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
-import org.eclipse.cloudfree.toolkit.runtime.IWidgetEnvironment;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.runtime.commands.ICommandHandler;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetAdapterFactory;
-import org.eclipse.cloudfree.toolkit.runtime.lookup.IWidgetFactory;
-import org.eclipse.cloudfree.toolkit.widgets.Widget;
+import org.eclipse.gyrex.gwt.common.status.IStatus;
+import org.eclipse.gyrex.gwt.common.status.MultiStatus;
+import org.eclipse.gyrex.gwt.common.status.Status;
+import org.eclipse.gyrex.toolkit.actions.Action;
+import org.eclipse.gyrex.toolkit.actions.RefreshAction;
+import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceAdvisor;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ContentSerialization;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
+import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
+import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
+import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * This class is the internal {@link WidgetService} implementation.
@@ -117,7 +117,7 @@ public class WidgetServiceImpl implements WidgetService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.WidgetService#executeCommand(java.lang.String, java.lang.String, org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet, org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService#executeCommand(java.lang.String, java.lang.String, org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet, org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryEnvironment)
 	 */
 	public final SCommandExecutionResult executeCommand(final String commandId, final String sourceWidgetId, final SContentSet contentSet, final WidgetClientEnvironment environment) throws WidgetFactoryException {
 		// get adapter factory
@@ -146,7 +146,7 @@ public class WidgetServiceImpl implements WidgetService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.internal.WidgetService#getWidget(java.lang.String, org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactoryEnvironment)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryEnvironment)
 	 */
 	public final ISerializedWidget getWidget(final String widgetId, final WidgetClientEnvironment environment) throws WidgetFactoryException {
 		// get the factory
@@ -220,7 +220,7 @@ public class WidgetServiceImpl implements WidgetService {
 		return null;
 	}
 
-	private org.eclipse.cloudfree.gwt.common.status.IStatus serializeStatus(final org.eclipse.core.runtime.IStatus status) {
+	private org.eclipse.gyrex.gwt.common.status.IStatus serializeStatus(final org.eclipse.core.runtime.IStatus status) {
 		if (status.isMultiStatus()) {
 			final org.eclipse.core.runtime.IStatus[] children = status.getChildren();
 			final List<IStatus> newChildren = new ArrayList<IStatus>(children.length);

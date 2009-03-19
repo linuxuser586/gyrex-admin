@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.rap.internal;
+package org.eclipse.gyrex.admin.web.rap.internal;
 
 
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
-import org.eclipse.cloudfree.admin.internal.widgets.DynamicAwareWidgetFactory;
-import org.eclipse.cloudfree.toolkit.rap.WidgetService;
-import org.eclipse.cloudfree.toolkit.rap.WidgetServiceAdvisor;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
+import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetFactory;
+import org.eclipse.gyrex.toolkit.rap.WidgetService;
+import org.eclipse.gyrex.toolkit.rap.WidgetServiceAdvisor;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -30,7 +30,7 @@ public class AdminRapWebActivator extends AbstractUIPlugin {
 	private static final String ADMIN_RAP = "/admin-rap";
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.admin.web.rap";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.rap";
 
 	// The shared instance
 	private static AdminRapWebActivator plugin;

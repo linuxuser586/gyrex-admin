@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.configuration.wizard;
+package org.eclipse.gyrex.admin.configuration.wizard;
 
-import org.eclipse.cloudfree.toolkit.runtime.commands.CommandExecutionEvent;
-import org.eclipse.cloudfree.toolkit.wizard.WizardContainer;
+import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
+import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 
 /**
  * A setup wizard step which will be integrated into the setup wizard.

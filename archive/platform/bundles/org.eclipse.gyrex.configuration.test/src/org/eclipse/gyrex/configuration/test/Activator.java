@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.test;
+package org.eclipse.gyrex.configuration.test;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
 public class Activator implements BundleActivator {
 
-	public static final String PLUGIN_ID = "org.eclipse.cloudfree.configuration.test";
+	public static final String PLUGIN_ID = "org.eclipse.gyrex.configuration.test";
 
 	private static Activator sharedInstance;
 

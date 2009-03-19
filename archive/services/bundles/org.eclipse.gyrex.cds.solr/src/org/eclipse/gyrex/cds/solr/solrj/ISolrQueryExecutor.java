@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.cds.model.solr;
+package org.eclipse.gyrex.cds.model.solr;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
@@ -37,7 +37,7 @@ public interface ISolrQueryExecutor {
 	 * Executes a SolrJ query.
 	 * <p>
 	 * Note, this API depends on the SolrJ and Solr API. Thus, it is bound to
-	 * the evolution of external API which might not follow the CloudFree <a
+	 * the evolution of external API which might not follow the Gyrex <a
 	 * href="http://wiki.eclipse.org/Evolving_Java-based_APIs"
 	 * target="_blank">API evolution</a> and <a
 	 * href="http://wiki.eclipse.org/Version_Numbering"

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client;
+package org.eclipse.gyrex.toolkit.gwt.client;
 
 
 import com.google.gwt.core.client.GWT;
@@ -20,15 +20,15 @@ import com.google.gwt.user.client.ui.Composite;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.internal.WidgetService;
-import org.eclipse.cloudfree.toolkit.gwt.client.internal.WidgetServiceAsync;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService;
+import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetServiceAsync;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 
 /**
  * This is the factory for creating GWT widgets exposed by a server.
@@ -56,7 +56,7 @@ import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets
  * content handling.
  * </p>
  * 
- * @see org.eclipse.cloudfree.toolkit.gwt.server.WidgetService
+ * @see org.eclipse.gyrex.toolkit.gwt.server.WidgetService
  * @noextend This class is not intended to be subclassed by clients.
  */
 public final class WidgetFactory {

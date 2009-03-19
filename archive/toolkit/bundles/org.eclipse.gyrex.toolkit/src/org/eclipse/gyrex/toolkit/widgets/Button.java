@@ -10,10 +10,10 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.commands.Command;
-import org.eclipse.cloudfree.toolkit.content.NoContent;
+import org.eclipse.gyrex.toolkit.commands.Command;
+import org.eclipse.gyrex.toolkit.content.NoContent;
 
 /**
  * A dialog field with a button to press.

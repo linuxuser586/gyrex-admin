@@ -10,10 +10,10 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.resources;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedResource;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
 
 /**
  * Serializable Resource.

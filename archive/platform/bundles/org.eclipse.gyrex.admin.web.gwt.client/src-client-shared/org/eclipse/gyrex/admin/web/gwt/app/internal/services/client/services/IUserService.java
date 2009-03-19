@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services;
 
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.model.User;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.model.User;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 

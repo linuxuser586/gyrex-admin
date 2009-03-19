@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.client.internal;
+package org.eclipse.gyrex.admin.web.gwt.client.internal;
 
-import org.eclipse.cloudfree.admin.internal.AdminActivator;
-import org.eclipse.cloudfree.admin.web.gwt.client.internal.shared.IAdminClientConstants;
-import org.eclipse.cloudfree.common.logging.LogAudience;
-import org.eclipse.cloudfree.common.logging.LogImportance;
-import org.eclipse.cloudfree.common.logging.LogSource;
-import org.eclipse.cloudfree.common.runtime.BaseBundleActivator;
-import org.eclipse.cloudfree.gwt.service.GwtService;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminClientConstants;
+import org.eclipse.gyrex.common.logging.LogAudience;
+import org.eclipse.gyrex.common.logging.LogImportance;
+import org.eclipse.gyrex.common.logging.LogSource;
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.gwt.service.GwtService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.NamespaceException;
@@ -32,13 +32,13 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	/**
 	 * filter string for the admin http service (value
 	 * 
-	 * <code>(&(objectClass=org.eclipse.cloudfree.gwt.service.GwtService)(http.service.other.info=org.eclipse.cloudfree.admin.http))</code>
+	 * <code>(&(objectClass=org.eclipse.gyrex.gwt.service.GwtService)(http.service.other.info=org.eclipse.gyrex.admin.http))</code>
 	 * )
 	 */
 	public static final String FILTER_ADMIN_GWT_SERVICE = "(&(objectClass=" + GwtService.class.getName() + ")(http.service.other.info=" + AdminActivator.TYPE_ADMIN + "))"; // use class references here to trigger lazy activation
 
 	/** PLUGIN_ID */
-	private static final String PLUGIN_ID = "org.eclipse.cloudfree.admin.web.gwt.client";
+	private static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.gwt.client";
 
 	/** the shared instance */
 	private static AdminWebClientActivator sharedInstance;
@@ -89,7 +89,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
@@ -106,7 +106,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {

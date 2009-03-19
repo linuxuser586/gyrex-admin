@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.cloudfree.toolkit.content.TextContent;
+import org.eclipse.gyrex.toolkit.content.TextContent;
 
 /**
  * A dialog field with a single-line text input field and optionally an action

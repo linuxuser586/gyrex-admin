@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal.app;
+package org.eclipse.gyrex.examples.fanshop.internal.app;
 
 import java.io.IOException;
 
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.solr.core.CoreContainer;
 import org.apache.solr.core.SolrCore;
-import org.eclipse.cloudfree.examples.fanshop.internal.FanShopActivator;
 import org.eclipse.equinox.jsp.jasper.JspServlet;
+import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
 
 public class SolrAdminJspServlet extends JspServlet {
 

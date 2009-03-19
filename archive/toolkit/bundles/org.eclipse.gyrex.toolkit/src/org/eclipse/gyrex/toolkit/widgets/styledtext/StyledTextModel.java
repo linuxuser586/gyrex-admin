@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -23,9 +23,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 
-import org.eclipse.cloudfree.toolkit.CWT;
-import org.eclipse.cloudfree.toolkit.resources.ImageResource;
-import org.eclipse.cloudfree.toolkit.widgets.styledtext.ObjectSegment.VerticalAlign;
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
+import org.eclipse.gyrex.toolkit.widgets.styledtext.ObjectSegment.VerticalAlign;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;

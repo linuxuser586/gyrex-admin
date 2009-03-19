@@ -13,7 +13,7 @@
  * The Setup Wizards allows the initial configuration of a new system.
  * <p>
  * The Setup Wizard automatically detects if the platform is a new installation. 
- * If this is the case a wizard is shown in CloudFree Admin and the user is requested 
+ * If this is the case a wizard is shown in Gyrex Admin and the user is requested 
  * to go through the wizard and perform the initial system configuration.
  * </p>
  * <p>
@@ -23,5 +23,5 @@
  * optional but encouraged.
  * </p> 
  */
-package org.eclipse.cloudfree.admin.configuration.wizard;
+package org.eclipse.gyrex.admin.configuration.wizard;
 

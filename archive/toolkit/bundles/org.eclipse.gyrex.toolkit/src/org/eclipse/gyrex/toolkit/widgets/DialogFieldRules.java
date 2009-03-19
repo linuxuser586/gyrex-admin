@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.widgets;
 
 import java.util.ArrayList;
 
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule.FieldCondition;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule.FieldSelectionType;
-import org.eclipse.cloudfree.toolkit.widgets.MultiDialogFieldRule.Condition;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldCondition;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldSelectionType;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule.Condition;
 
 /**
  * A factory for {@link DialogFieldRule dialog field rules}.

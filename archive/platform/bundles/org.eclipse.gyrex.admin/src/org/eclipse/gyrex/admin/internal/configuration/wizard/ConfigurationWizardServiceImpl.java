@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.internal.configuration.wizard;
+package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +19,10 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 
-import org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.cloudfree.admin.configuration.wizard.IConfigurationWizardService;
-import org.eclipse.cloudfree.admin.internal.RunConfigWizardConfigConstraint;
-import org.eclipse.cloudfree.configuration.internal.impl.PlatformStatusRefreshJob;
+import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService;
+import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
+import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
 
 /**
  * Internal implementation of {@link IConfigurationWizardService}.
@@ -35,7 +35,7 @@ public class ConfigurationWizardServiceImpl implements IConfigurationWizardServi
 	private final Lock stepRegistrationLock = new ReentrantLock();
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.IConfigurationWizardService#addStep(java.lang.String, org.eclipse.cloudfree.admin.configuration.wizard.ConfigurationWizardStep)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService#addStep(java.lang.String, org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep)
 	 */
 	@Override
 	public void addStep(final ConfigurationWizardStep step) {
@@ -100,7 +100,7 @@ public class ConfigurationWizardServiceImpl implements IConfigurationWizardServi
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.configuration.wizard.IConfigurationWizardService#removeStep(java.lang.String)
+	 * @see org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService#removeStep(java.lang.String)
 	 */
 	@Override
 	public void removeStep(final String id) {

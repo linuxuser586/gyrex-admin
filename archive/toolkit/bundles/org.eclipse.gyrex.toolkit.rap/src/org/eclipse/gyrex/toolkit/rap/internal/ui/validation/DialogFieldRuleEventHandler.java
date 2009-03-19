@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.rap.internal.ui.validation;
+package org.eclipse.gyrex.toolkit.rap.internal.ui.validation;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTToolkitListener;
-import org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.widgets.Container;
-import org.eclipse.cloudfree.toolkit.widgets.DialogField;
-import org.eclipse.cloudfree.toolkit.widgets.DialogFieldRule;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTToolkitListener;
+import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.widgets.Container;
+import org.eclipse.gyrex.toolkit.widgets.DialogField;
+import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
 
 /**
  * A generic {@link CWTToolkitListener toolkit listener} to evaluate dialog
@@ -146,7 +146,7 @@ public abstract class DialogFieldRuleEventHandler implements CWTToolkitListener 
 	 * fields if any.
 	 * </p>
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.rap.internal.ui.widgets.gwt.client.ui.widgets.CWTToolkitListener#widgetChanged(org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget)
+	 * @see org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.gwt.client.ui.widgets.CWTToolkitListener#widgetChanged(org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget)
 	 */
 	public void widgetChanged(final CWTWidget source) {
 		// performance: don't evaluate twice

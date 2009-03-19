@@ -9,13 +9,13 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard;
 
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 
 /**
  * Serializable WizardContainer

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.service.internal;
+package org.eclipse.gyrex.gwt.service.internal;
 
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-import org.eclipse.cloudfree.gwt.service.GwtService;
+import org.eclipse.gyrex.gwt.service.GwtService;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
@@ -103,9 +103,9 @@ public class GwtServiceRegistry implements ServiceFactory {
 
 		// properties
 		final Dictionary<String, Object> properties = new Hashtable<String, Object>();
-		properties.put(Constants.SERVICE_PID, "org.eclipse.cloudfree.gwt.service." + reference.getProperty(Constants.SERVICE_ID));
-		properties.put(Constants.SERVICE_VENDOR, "CloudFree.net");
-		properties.put(Constants.SERVICE_DESCRIPTION, "CloudFree GWT Service for registering GWT modules and remote services");
+		properties.put(Constants.SERVICE_PID, "org.eclipse.gyrex.gwt.service." + reference.getProperty(Constants.SERVICE_ID));
+		properties.put(Constants.SERVICE_VENDOR, "Gyrex.net");
+		properties.put(Constants.SERVICE_DESCRIPTION, "Gyrex GWT Service for registering GWT modules and remote services");
 		final String[] httpServicePropertyKeys = reference.getPropertyKeys();
 		for (final String key : httpServicePropertyKeys) {
 			properties.put(GwtService.HTTP_SERVICE_PROPERTY_PREFIX.concat(key), reference.getProperty(key));

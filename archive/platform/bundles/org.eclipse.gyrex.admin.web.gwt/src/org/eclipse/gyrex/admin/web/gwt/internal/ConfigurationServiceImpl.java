@@ -9,21 +9,21 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.internal;
+package org.eclipse.gyrex.admin.web.gwt.internal;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.ICloudFreeAppUIService;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.IGyrexAppUIService;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 
-public class ConfigurationServiceImpl implements ICloudFreeAppUIService, RemoteService {
+public class ConfigurationServiceImpl implements IGyrexAppUIService, RemoteService {
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.ICloudFreeAppUIService#getServerString()
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.IGyrexAppUIService#getServerString()
 	 */
 	@Override
 	public String getServerString() {
@@ -35,7 +35,7 @@ public class ConfigurationServiceImpl implements ICloudFreeAppUIService, RemoteS
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services.ICloudFreeAppUIService#isOperatingInDevelopmentMode()
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.IGyrexAppUIService#isOperatingInDevelopmentMode()
 	 */
 	@Override
 	public boolean isOperatingInDevelopmentMode() {

@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
-import org.eclipse.cloudfree.toolkit.resources.ImageResource;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
 
 /**
  * An image hyperlink.
@@ -37,7 +37,7 @@ public class ImageHyperlinkSegment extends ImageSegment implements IHyperlinkSeg
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.styledtext.IHyperlinkSegment#getHref()
+	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment#getHref()
 	 */
 	@Override
 	public String getHref() {
@@ -45,7 +45,7 @@ public class ImageHyperlinkSegment extends ImageSegment implements IHyperlinkSeg
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.widgets.styledtext.IHyperlinkSegment#getText()
+	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment#getText()
 	 */
 	@Override
 	public String getText() {

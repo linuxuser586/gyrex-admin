@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration;
+package org.eclipse.gyrex.configuration;
 
 /**
  * Interface with shared configuration constants.
@@ -22,9 +22,9 @@ public interface IConfigurationConstants {
 	int ERROR_NOT_INITIALIZED = 100;
 
 	/**
-	 * property key '<code>org.eclipse.cloudfree.configuration.mode</code>' for
+	 * property key '<code>org.eclipse.gyrex.configuration.mode</code>' for
 	 * <code>config.ini</code>
 	 */
-	String PROPERTY_KEY_CONFIGURATION_MODE = "org.eclipse.cloudfree.configuration.mode";
+	String PROPERTY_KEY_CONFIGURATION_MODE = "org.eclipse.gyrex.configuration.mode";
 
 }

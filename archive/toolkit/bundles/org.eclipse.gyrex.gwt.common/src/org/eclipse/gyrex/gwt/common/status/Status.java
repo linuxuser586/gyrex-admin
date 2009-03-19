@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.common.status;
+package org.eclipse.gyrex.gwt.common.status;
 
 /**
  * A concrete status implementation, suitable either for instantiating or
@@ -22,7 +22,7 @@ package org.eclipse.cloudfree.gwt.common.status;
 public class Status implements IStatus {
 
 	/** module id */
-	private static final String PLUGIN_ID = "org.eclipse.cloudfree.gwt.common";
+	private static final String PLUGIN_ID = "org.eclipse.gyrex.gwt.common";
 
 	/**
 	 * A standard OK status with no message.

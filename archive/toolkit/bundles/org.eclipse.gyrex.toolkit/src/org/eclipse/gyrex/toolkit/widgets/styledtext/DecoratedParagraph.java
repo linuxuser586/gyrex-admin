@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.widgets.styledtext;
+package org.eclipse.gyrex.toolkit.widgets.styledtext;
 
-import org.eclipse.cloudfree.toolkit.resources.ImageResource;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
 
 /**
  * A decorated paragraph (<code>&lt;li&gt;</code>) element.

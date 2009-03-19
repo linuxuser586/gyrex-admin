@@ -9,15 +9,15 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation;
 
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkitListener;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkitListener;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
 
 
 /**
@@ -122,7 +122,7 @@ public abstract class DialogFieldRuleEventHandler implements CWTToolkitListener 
 	 * fields if any.
 	 * </p>
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkitListener#widgetChanged(org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkitListener#widgetChanged(org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget)
 	 */
 	public void widgetChanged(final CWTWidget source) {
 		// performance: don't evaluate twice

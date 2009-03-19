@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.internal.app;
+package org.eclipse.gyrex.examples.fanshop.internal.app;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -19,14 +19,14 @@ import java.util.Set;
 import javax.servlet.ServletException;
 
 
-import org.eclipse.cloudfree.common.context.IContext;
-import org.eclipse.cloudfree.configuration.PlatformConfiguration;
-import org.eclipse.cloudfree.examples.fanshop.internal.FanShopActivator;
-import org.eclipse.cloudfree.examples.fanshop.service.IFanShopService;
-import org.eclipse.cloudfree.http.application.Application;
-import org.eclipse.cloudfree.http.application.servicesupport.IResourceProvider;
-import org.eclipse.cloudfree.persistence.solr.internal.SolrActivator;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
+import org.eclipse.gyrex.examples.fanshop.service.IFanShopService;
+import org.eclipse.gyrex.http.application.Application;
+import org.eclipse.gyrex.http.application.servicesupport.IResourceProvider;
+import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
 
 /**
  * A fan shop application instance.
@@ -38,7 +38,7 @@ public class FanShopApplication extends Application implements IFanShopService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.http.application.Application#doDestroy()
+	 * @see org.eclipse.gyrex.http.application.Application#doDestroy()
 	 */
 	@Override
 	protected void doDestroy() {
@@ -46,7 +46,7 @@ public class FanShopApplication extends Application implements IFanShopService {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.http.application.Application#doInit()
+	 * @see org.eclipse.gyrex.http.application.Application#doInit()
 	 */
 	@Override
 	protected void doInit() throws CoreException {

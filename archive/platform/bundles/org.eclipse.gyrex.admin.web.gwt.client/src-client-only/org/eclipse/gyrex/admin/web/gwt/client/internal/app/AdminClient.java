@@ -9,12 +9,12 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.client.internal.app;
+package org.eclipse.gyrex.admin.web.gwt.client.internal.app;
 
-import org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp;
-import org.eclipse.cloudfree.admin.web.gwt.client.internal.shared.IAdminClientConstants;
-import org.eclipse.cloudfree.toolkit.gwt.client.WidgetFactory;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminClientConstants;
+import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.ParagraphElement;
@@ -30,14 +30,14 @@ import com.google.gwt.user.client.ui.SimplePanel;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClientConstants {
+public class AdminClient extends GyrexApp implements EntryPoint, IAdminClientConstants {
 
 	private final SimplePanel contentHolder = new SimplePanel();
 	private Element titleElement;
 	private ParagraphElement descriptionElement;
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp#createWidgetFactory()
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp#createWidgetFactory()
 	 */
 	@Override
 	protected WidgetFactory createWidgetFactory() {
@@ -47,11 +47,11 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp#getApplicationTitle()
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp#getApplicationTitle()
 	 */
 	@Override
 	protected String getApplicationTitle() {
-		return "CloudFree Platform System Admin";
+		return "Gyrex System Admin";
 	}
 
 	public void onModuleLoad() {
@@ -116,7 +116,7 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp#setContentInformation(java.lang.String, java.lang.String)
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp#setContentInformation(java.lang.String, java.lang.String)
 	 */
 	@Override
 	protected void setContentInformation(final String title, final String description) {
@@ -135,7 +135,7 @@ public class AdminClient extends CloudFreeApp implements EntryPoint, IAdminClien
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.admin.web.gwt.app.internal.client.CloudFreeApp#showWidget(org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget)
+	 * @see org.eclipse.gyrex.admin.web.gwt.app.internal.client.GyrexApp#showWidget(org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget)
 	 */
 	@Override
 	protected void showWidget(final CWTWidget widget) {

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.examples.fanshop.service;
+package org.eclipse.gyrex.examples.fanshop.service;
 
 /**
  * The fan shop service allows other bundle to contribute extensions to fan shop

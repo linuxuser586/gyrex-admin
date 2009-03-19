@@ -16,26 +16,26 @@
    <extension
          point="org.eclipse.rap.ui.entrypoint">
       <entrypoint
-            class="org.eclipse.cloudfree.toolkit.rap.example.internal.RapExampleApplication"
+            class="org.eclipse.gyrex.toolkit.rap.example.internal.RapExampleApplication"
             parameter="hello"
-            id="org.eclipse.cloudfree.toolkit.rap.example.internal.RapExampleApplication">
+            id="org.eclipse.gyrex.toolkit.rap.example.internal.RapExampleApplication">
       </entrypoint>
    </extension>
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
             name="RAP Perspective"
-            class="org.eclipse.cloudfree.toolkit.rap.example.internal.Perspective"
-            id="org.eclipse.cloudfree.toolkit.rap.example.perspective">
+            class="org.eclipse.gyrex.toolkit.rap.example.internal.Perspective"
+            id="org.eclipse.gyrex.toolkit.rap.example.perspective">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.rap.ui.branding">
       <branding
-            defaultEntrypointId="org.eclipse.cloudfree.toolkit.rap.example.internal.RapExampleApplication"
-            id="org.eclipse.cloudfree.toolkit.rap.example.internal.RapExampleBranding"
+            defaultEntrypointId="org.eclipse.gyrex.toolkit.rap.example.internal.RapExampleApplication"
+            id="org.eclipse.gyrex.toolkit.rap.example.internal.RapExampleBranding"
             servletName="rap-examples"
-            title="CloudFree RAP Examples">
+            title="Gyrex RAP Examples">
       </branding>
    </extension>
 

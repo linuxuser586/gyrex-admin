@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.client.widgets;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.client.widgets;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 
 public class SError implements ISerializedWidget {
 	public String getId() {

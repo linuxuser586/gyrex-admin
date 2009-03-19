@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.resources;
+package org.eclipse.gyrex.toolkit.resources;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -89,7 +89,7 @@ public class ImageResource extends Resource {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.resources.Resource#getUrl()
+	 * @see org.eclipse.gyrex.toolkit.resources.Resource#getUrl()
 	 */
 	@Override
 	public URL getUrl() {

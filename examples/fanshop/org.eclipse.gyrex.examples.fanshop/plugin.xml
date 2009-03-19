@@ -3,47 +3,47 @@
 <!--
     Copyright (c) 2008 Gunnar Wagenknecht and others.
     All rights reserved.
-     
-    This program and the accompanying materials are made available under the 
+
+    This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v1.0 which accompanies this distribution,
     and is available at http://www.eclipse.org/legal/epl-v10.html.
-    
+
     Contributors:
         Gunnar Wagenknecht - initial API and implementation
  -->
 <plugin>
    <extension
-         point="org.eclipse.cloudfree.boot.serverroles">
+         point="org.eclipse.gyrex.boot.serverroles">
       <role
-            id="org.eclipse.cloudfree.examples.fanshop"
+            id="org.eclipse.gyrex.examples.fanshop"
             name="Eclipse Fan Shop">
          <requireBundle
-               symbolicName="org.eclipse.cloudfree.examples.fanshop">
+               symbolicName="org.eclipse.gyrex.examples.fanshop">
          </requireBundle>
          <requireBundle
-               symbolicName="org.eclipse.cloudfree.cds.model.solr">
+               symbolicName="org.eclipse.gyrex.cds.model.solr">
          </requireBundle>
          <requireBundle
-               symbolicName="org.eclipse.cloudfree.cds.service.solr">
+               symbolicName="org.eclipse.gyrex.cds.service.solr">
          </requireBundle>
          <requireBundle
-               symbolicName="org.eclipse.cloudfree.persistence.solr">
+               symbolicName="org.eclipse.gyrex.persistence.solr">
          </requireBundle>
       </role>
    </extension>
    <extension
-         point="org.eclipse.cloudfree.admin.configuration.wizard">
+         point="org.eclipse.gyrex.admin.configuration.wizard">
       <step
-            class="org.eclipse.cloudfree.examples.fanshop.internal.setup.FanShopSetupStep"
-            id="org.eclipse.cloudfree.examples.fanshop.setup">
+            class="org.eclipse.gyrex.examples.fanshop.internal.setup.FanShopSetupStep"
+            id="org.eclipse.gyrex.examples.fanshop.setup">
       </step>
    </extension>
    <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.eclipse.cloudfree.boot.server"
-            name="CloudFree Fanshop">
+            application="org.eclipse.gyrex.boot.server"
+            name="Gyrex Fanshop">
       </product>
    </extension>
 

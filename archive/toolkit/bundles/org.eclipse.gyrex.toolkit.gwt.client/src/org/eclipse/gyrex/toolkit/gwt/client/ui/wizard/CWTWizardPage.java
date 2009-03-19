@@ -9,20 +9,20 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.wizard;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.wizard;
 
 import com.google.gwt.user.client.ui.Panel;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit;
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkitListener;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldRuleEventHandler;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkitListener;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
 /**
- * Composite for <code>org.eclipse.cloudfree.toolkit.wizard.WizardPage</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.wizard.WizardPage</code>.
  */
 public class CWTWizardPage extends CWTContainer {
 
@@ -44,7 +44,7 @@ public class CWTWizardPage extends CWTContainer {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
+		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
 		protected void handleRuleEvaluationResult(final boolean evaluationResult) {
@@ -56,7 +56,7 @@ public class CWTWizardPage extends CWTContainer {
 	private ContinueHandler continueHandler;
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTContainer#createPanel(org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedWidget, org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTToolkit)
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer#createPanel(org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget, org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit)
 	 */
 	@Override
 	protected Panel createPanel(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
@@ -110,7 +110,7 @@ public class CWTWizardPage extends CWTContainer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#onLoad()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onLoad()
 	 */
 	@Override
 	protected void onLoad() {
@@ -131,7 +131,7 @@ public class CWTWizardPage extends CWTContainer {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget#onUnload()
+	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onUnload()
 	 */
 	@Override
 	protected void onUnload() {

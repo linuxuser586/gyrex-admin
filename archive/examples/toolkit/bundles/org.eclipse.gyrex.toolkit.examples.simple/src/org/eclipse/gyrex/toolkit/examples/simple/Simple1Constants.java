@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.examples.simple;
+package org.eclipse.gyrex.toolkit.examples.simple;
 
 /**
  * 

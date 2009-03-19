@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.common.status;
+package org.eclipse.gyrex.gwt.common.status;
 
 /**
  * A concrete multi-status implementation, suitable either for instantiating or

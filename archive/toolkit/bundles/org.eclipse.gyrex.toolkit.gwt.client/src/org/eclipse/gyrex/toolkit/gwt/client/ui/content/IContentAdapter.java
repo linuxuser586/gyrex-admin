@@ -9,10 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.client.ui.content;
+package org.eclipse.gyrex.toolkit.gwt.client.ui.content;
 
-import org.eclipse.cloudfree.toolkit.gwt.client.ui.widgets.CWTWidget;
-import org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry;
 
 /**
  * The content adapter is responsible for reading and writing content to a

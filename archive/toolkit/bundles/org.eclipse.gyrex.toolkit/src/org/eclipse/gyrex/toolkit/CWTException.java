@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit;
+package org.eclipse.gyrex.toolkit;
 
 /**
  * This exception is thrown whenever a recoverable exception occurred in CWT.

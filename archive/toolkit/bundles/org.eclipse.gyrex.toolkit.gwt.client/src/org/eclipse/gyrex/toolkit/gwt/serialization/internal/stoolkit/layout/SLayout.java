@@ -9,9 +9,9 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.serialization.internal.stoolkit.layout;
+package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout;
 
-import org.eclipse.cloudfree.toolkit.gwt.serialization.ISerializedLayout;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayout;
 
 /**
  * Serializable Layout

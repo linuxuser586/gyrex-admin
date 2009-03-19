@@ -16,5 +16,5 @@
  * officially released.
  * </p>
  */
-package org.eclipse.cloudfree.toolkit.wizard;
+package org.eclipse.gyrex.toolkit.wizard;
 

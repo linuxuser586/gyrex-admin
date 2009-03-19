@@ -9,14 +9,14 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.configuration.test;
+package org.eclipse.gyrex.configuration.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 
-import org.eclipse.cloudfree.configuration.preferences.PlatformScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.junit.Test;
 
 public class PlatfromScopeTest {

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.admin.web.gwt.app.internal.services.client.services;
+package org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
@@ -23,19 +23,19 @@ public class ServiceRegistry {
 	/** userService */
 	private static IUserServiceAsync userService;
 
-	private static ICloudFreeAppUIServiceAsync configurationService;
+	private static IGyrexAppUIServiceAsync configurationService;
 
 	/**
 	 * Returns the configuration service.
 	 * 
 	 * @return the configuration service
 	 */
-	public static ICloudFreeAppUIServiceAsync getConfigurationService() {
+	public static IGyrexAppUIServiceAsync getConfigurationService() {
 		if (null != configurationService) {
 			return configurationService;
 		}
 
-		configurationService = (ICloudFreeAppUIServiceAsync) GWT.create(ICloudFreeAppUIService.class);
+		configurationService = (IGyrexAppUIServiceAsync) GWT.create(IGyrexAppUIService.class);
 		((ServiceDefTarget) configurationService).setServiceEntryPoint(IServiceConstants.ENTRYPOINT_CONFIGURATION_SERVICE);
 		return configurationService;
 

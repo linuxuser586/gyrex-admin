@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.gwt.service.tests;
+package org.eclipse.gyrex.gwt.service.tests;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -19,9 +19,9 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 
-import org.eclipse.cloudfree.gwt.service.GwtService;
 import org.eclipse.equinox.http.jetty.JettyConfigurator;
 import org.eclipse.equinox.http.jetty.JettyConstants;
+import org.eclipse.gyrex.gwt.service.GwtService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

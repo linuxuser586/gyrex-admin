@@ -12,7 +12,7 @@
  -->
 <project default="publish" basedir=".">
 
-	<property name="module" value="org.eclipse.cloudfree.admin.web.gwt.client.internal.AdminClient"/>
+	<property name="module" value="org.eclipse.gyrex.admin.web.gwt.client.internal.AdminClient"/>
 	<property name="module.output" location="bin.gwt/${module}"/>
 	<property name="sync.target" location="resources"/>
 

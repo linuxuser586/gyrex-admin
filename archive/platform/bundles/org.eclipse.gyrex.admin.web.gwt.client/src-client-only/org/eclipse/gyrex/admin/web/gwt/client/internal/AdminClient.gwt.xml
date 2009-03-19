@@ -19,10 +19,10 @@
   <inherits name="com.google.gwt.user.theme.dark.DarkResources" />
 
   <!-- Inherit the backoffice app. -->
-  <inherits name='org.eclipse.cloudfree.admin.web.gwt.app.internal.CloudFreeApp' />
+  <inherits name='org.eclipse.gyrex.admin.web.gwt.app.internal.GyrexApp' />
 	
   <!-- Specify the app entry point class.                   -->
-  <entry-point class='org.eclipse.cloudfree.admin.web.gwt.client.internal.app.AdminClient' />
+  <entry-point class='org.eclipse.gyrex.admin.web.gwt.client.internal.app.AdminClient' />
 
   <!-- source folders -->
   <source path='app' />

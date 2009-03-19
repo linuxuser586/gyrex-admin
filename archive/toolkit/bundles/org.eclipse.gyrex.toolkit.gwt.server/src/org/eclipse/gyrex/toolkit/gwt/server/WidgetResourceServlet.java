@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.cloudfree.toolkit.gwt.server;
+package org.eclipse.gyrex.toolkit.gwt.server;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,10 +22,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.cloudfree.toolkit.gwt.server.internal.ResourceUrlEncoder;
+import org.eclipse.gyrex.toolkit.gwt.server.internal.ResourceUrlEncoder;
 
 /**
- * This servlet is responsible for delivering CloudFree widget resources to any
+ * This servlet is responsible for delivering Gyrex widget resources to any
  * GWT client.
  * <p>
  * This class is intended to be instantiated and/or extended by clients. It
