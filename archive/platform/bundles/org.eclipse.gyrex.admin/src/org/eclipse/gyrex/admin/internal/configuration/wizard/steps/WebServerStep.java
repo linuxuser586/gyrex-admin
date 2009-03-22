@@ -1,18 +1,26 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
+import java.io.File;
+import java.net.URL;
+
+import org.apache.commons.io.FileUtils;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.equinox.http.jetty.JettyConstants;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.eclipse.gyrex.toolkit.CWT;
 import org.eclipse.gyrex.toolkit.content.NumberContent;
@@ -24,7 +32,6 @@ import org.eclipse.gyrex.toolkit.widgets.NumberType;
 import org.eclipse.gyrex.toolkit.widgets.StyledText;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.gyrex.toolkit.wizard.WizardPage;
-import org.osgi.service.prefs.BackingStoreException;
 
 /**
  * TODO should also configure SSL
@@ -63,6 +70,13 @@ public class WebServerStep extends ConfigurationWizardStep {
 		port.setUpperLimit(new Integer(65535), false);
 		port.setLowerLimit(new Integer(0), false);
 
+		final NumberInput sslPort = new NumberInput("webserver-ssl-port", container, CWT.NONE);
+		sslPort.setLabel("SSL Port:");
+		sslPort.setToolTipText("Set the port the server should listen for SSL requests. Default is none.");
+		sslPort.setType(NumberType.INTEGER);
+		sslPort.setUpperLimit(new Integer(65535), false);
+		sslPort.setLowerLimit(new Integer(0), false);
+
 		webServerPage.setContinueRule(DialogFieldRules.allFields().areValid());
 	}
 
@@ -72,19 +86,36 @@ public class WebServerStep extends ConfigurationWizardStep {
 	@Override
 	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
 		try {
-			// check if production mode is selected
+			final IEclipsePreferences preferences = new PlatformScope().getNode("org.eclipse.gyrex.http.jetty");
+
+			// configure port
 			final NumberContent content = (NumberContent) finishEvent.getContentSet().getEntry("webserver-port");
 			if ((null != content) && (null != content.getNumber())) {
-				final IEclipsePreferences eclipsePreferences = new PlatformScope().getNode("org.eclipse.gyrex.http.jetty");
-				eclipsePreferences.putInt("port", content.getNumber().intValue());
-				eclipsePreferences.flush();
+				preferences.putInt("port", content.getNumber().intValue());
+				preferences.flush();
 			}
-		} catch (final IllegalStateException e) {
-			// inactive
-			return false;
-		} catch (final BackingStoreException e) {
+
+			// configure SSL
+			final NumberContent sslPort = (NumberContent) finishEvent.getContentSet().getEntry("webserver-ssl-port");
+			if ((null != sslPort) && (null != sslPort.getNumber())) {
+				final File keystoreFileSource = new File(FileLocator.toFileURL(AdminActivator.getInstance().getBundle().getEntry("jetty-ssl-keystore")).getFile());
+				final URL instanceLocation = AdminActivator.getInstance().getInstanceLocation().getURL();
+				if (null == instanceLocation) {
+					throw new IllegalStateException("no instance location available");
+				}
+				final File jettyKeystore = new Path(instanceLocation.getFile()).append("jetty-keystore").toFile();
+				if (!jettyKeystore.exists()) {
+					FileUtils.copyFile(keystoreFileSource, jettyKeystore);
+				}
+				preferences.put(JettyConstants.SSL_KEYSTORE, jettyKeystore.getAbsolutePath());
+				preferences.put(JettyConstants.SSL_PASSWORD, "cloudfree");
+				preferences.put(JettyConstants.SSL_KEYPASSWORD, "cloudfree");
+				preferences.putInt(JettyConstants.HTTPS_PORT, sslPort.getNumber().intValue());
+				preferences.flush();
+			}
+		} catch (final Exception e) {
 			// could not save preferences
-			e.printStackTrace();
+			AdminActivator.getInstance().getLog().log("Error while configuring Jetty. " + e.getMessage(), e);
 			return false;
 		}
 

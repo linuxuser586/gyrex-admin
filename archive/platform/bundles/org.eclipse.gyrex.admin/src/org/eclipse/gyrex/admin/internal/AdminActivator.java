@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -16,6 +16,7 @@ import java.util.Hashtable;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -28,14 +29,17 @@ import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizard
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceImpl;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceRegistryHelper;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.steps.ConfigModeStep;
+import org.eclipse.gyrex.admin.internal.configuration.wizard.steps.WebServerStep;
 import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetAdapterServiceImpl;
 import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetServiceImpl;
 import org.eclipse.gyrex.admin.widgets.IAdminWidgetAdapterService;
 import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.common.services.IServiceProxy;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
 import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
+import org.eclipse.osgi.service.datalocation.Location;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
@@ -115,6 +119,7 @@ public class AdminActivator extends BaseBundleActivator {
 	/** the service registration of the configuration wizard service */
 	private ServiceRegistration configurationWizardServiceRegistration;
 
+	private final AtomicReference<IServiceProxy<Location>> instanceLocationRef = new AtomicReference<IServiceProxy<Location>>();
 	private final Set<String> adminApplicationBases = new CopyOnWriteArraySet<String>();
 	boolean mustRestartPlatform;
 
@@ -154,7 +159,7 @@ public class AdminActivator extends BaseBundleActivator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -172,6 +177,9 @@ public class AdminActivator extends BaseBundleActivator {
 
 		openRegistryServiceTracker(context);
 
+		// get instance location
+		instanceLocationRef.set(getServiceHelper().trackService(Location.class, context.createFilter(Location.INSTANCE_FILTER)));
+
 		// start the admin server
 		JettyConfigurator.startServer("admin", createAdminSettings());
 
@@ -184,7 +192,7 @@ public class AdminActivator extends BaseBundleActivator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -246,6 +254,15 @@ public class AdminActivator extends BaseBundleActivator {
 	 */
 	public ConfigurationWizardServiceImpl getConfigurationWizardService() {
 		return configurationWizardService;
+	}
+
+	public Location getInstanceLocation() {
+		final IServiceProxy<Location> serviceProxy = instanceLocationRef.get();
+		if (null == serviceProxy) {
+			throw createBundleInactiveException();
+		}
+
+		return serviceProxy.getService();
 	}
 
 	private void openRegistryServiceTracker(final BundleContext context) {
@@ -379,7 +396,7 @@ public class AdminActivator extends BaseBundleActivator {
 		configurationWizardService.addStep(new ConfigModeStep());
 
 		// TODO: move into separate bundle shipped with Jetty only
-		//configurationWizardService.addStep(new WebServerStep());
+		configurationWizardService.addStep(new WebServerStep());
 	}
 
 	private synchronized void stopAdminWidgetAdapterService(final BundleContext context) {
