@@ -15,12 +15,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.osgi.service.prefs.BackingStoreException;
@@ -89,7 +87,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 	 */
 	public static boolean shouldBringUpSetupWizard() throws IllegalStateException {
 		try {
-			final String stepsExecutedOk = PlatformConfiguration.getConfigurationService().getString(AdminActivator.PLUGIN_ID, PREF_KEY_CONFIG_WIZARD_STEPS_OK, null, null);
+			final String stepsExecutedOk = new PlatformScope().getNode(AdminActivator.PLUGIN_ID).get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
 			if (null == stepsExecutedOk) {
 				return true; // nothing executed yet
 			}
