@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2009 AGETO Service GmbH and others.
- * All rights reserved. 
- * 
- * This program and the accompanying materials are made available under the terms of the 
+ * All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the terms of the
  * Eclipse Public License v1.0 which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  */
@@ -52,23 +52,23 @@ public class StaticLoggerBinder implements LoggerFactoryBinder {
 		return instance;
 	}
 
+	private final GyrexSlf4jLoggerFactory loggerFactory;
+
 	/**
 	 * Hidden constructor
 	 */
 	private StaticLoggerBinder() {
-		// empty
+		loggerFactory = new GyrexSlf4jLoggerFactory();
 	}
 
 	@Override
 	public ILoggerFactory getLoggerFactory() {
-		// TODO Auto-generated method stub
-		return null;
+		return loggerFactory;
 	}
 
 	@Override
 	public String getLoggerFactoryClassStr() {
-		// TODO Auto-generated method stub
-		return null;
+		return GyrexSlf4jLoggerFactory.class.getName();
 	}
 
 }

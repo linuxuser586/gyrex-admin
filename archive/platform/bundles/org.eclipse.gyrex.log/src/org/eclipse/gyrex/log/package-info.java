@@ -19,19 +19,25 @@ package org.eclipse.gyrex.log;
 /**
  * This package and its sub packages host the Gyrex log system.
  * <p>
- * Gyrex takes logging seriously. It strictly separates logging
- * from debugging/tracing. Typically, logging may not be limited to technical
- * message logging about the system which usually targets developers or system
+ * Gyrex takes logging seriously. It strictly separates logging from
+ * debugging/tracing. Typically, logging may not be limited to technical message
+ * logging about the system which usually targets developers or system
  * administrators. Logging is also suitable for logging application logic
  * specific messages targeted at a difference audience (eg. application users).
  * </p>
  * <p>
  * The Gyrex log system is based on <a href="http://www.slf4j.org/"
  * target="_blank">SLF4J</a>. It provides a native SLF4J implementation so that
- * any client code uses SLF4J works without modifications with the Gyrex log
- * system. Additionally, SLF4J provides re-implementations of other common
+ * any client code which uses SLF4J works without modifications with the Gyrex
+ * log system. Additionally, SLF4J provides re-implementations of other common
  * logging APIs. This allows any 3rd party code which depends on one of those
  * implementations to be redirected to SLF4J as well.
+ * </p>
+ * <p>
+ * To distinguish the different type of log messages Gyrex uses the concept of
+ * tags. Log messages can be tagged and a Gyrex system may be configured to
+ * perform filtering and routing of log messages based on tags. In SLF4J this is
+ * mapped to markers.
  * </p>
  * 
  * @see <a href="http://www.slf4j.org/" target="_blank">SLF4J</a>
