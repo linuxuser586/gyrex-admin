@@ -35,6 +35,10 @@ public class LogActivator extends BaseBundleActivator {
 	protected void doStart(final BundleContext context) throws Exception {
 		instanceRef.set(this);
 		extendedLogServiceRef.set(getServiceHelper().trackService(ExtendedLogService.class));
+
+		final LogReaderServiceTracker logReaderServiceTracker = new LogReaderServiceTracker(context);
+		logReaderServiceTracker.open();
+		addShutdownParticipant(logReaderServiceTracker);
 	}
 
 	@Override

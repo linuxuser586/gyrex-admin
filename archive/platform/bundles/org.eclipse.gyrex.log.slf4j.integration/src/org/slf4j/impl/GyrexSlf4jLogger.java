@@ -23,7 +23,6 @@ import org.eclipse.gyrex.log.internal.LogEventLevel;
 import org.eclipse.gyrex.log.internal.LogEventSourceData;
 import org.eclipse.gyrex.log.internal.LogSystem;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.slf4j.Marker;
@@ -42,11 +41,13 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private static Set<String> collectTags(final Marker marker, final Set<String> tags) {
-		final String tag = marker.getName();
-		if (!tags.contains(tag)) {
-			tags.add(tag);
-			for (final Iterator stream = marker.iterator(); stream.hasNext();) {
-				collectTags((Marker) stream.next(), tags);
+		if (null != marker) {
+			final String tag = marker.getName();
+			if (!tags.contains(tag)) {
+				tags.add(tag);
+				for (final Iterator stream = marker.iterator(); stream.hasNext();) {
+					collectTags((Marker) stream.next(), tags);
+				}
 			}
 		}
 		return tags;
@@ -191,7 +192,7 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 		final StackTraceElement caller = findCallerStackInCurrentThreadStackTrace(null != fqcn ? fqcn : FQCN);
 
 		// get the bundle
-		final Bundle bundle = null != caller ? FrameworkUtil.getBundle(caller.getClass()) : null;
+		final Bundle bundle = BundleFinder.findCallingBundle(null != fqcn ? fqcn : FQCN);
 
 		// sent event to the log system
 		LogSystem.log(bundle, name, createLogEvent(caller, marker, level, t, message, args));
@@ -394,7 +395,7 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 	 */
 	protected boolean shouldLog(final int level, final Marker marker, final Throwable t) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
