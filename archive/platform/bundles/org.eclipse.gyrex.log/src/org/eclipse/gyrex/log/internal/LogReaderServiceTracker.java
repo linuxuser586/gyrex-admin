@@ -27,6 +27,7 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 
 	private final AtomicInteger firePhpRefCount = new AtomicInteger();
 	private FirePHPLogger firePHPLogger;
+	private final ConsoleLogger consoleLogger = new ConsoleLogger();
 
 	/**
 	 * Creates a new instance.
@@ -53,6 +54,7 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 		}
 		firePhpRefCount.incrementAndGet();
 		logReaderService.addLogListener(firePHPLogger);
+		logReaderService.addLogListener(consoleLogger);
 
 		return logReaderService;
 	}
@@ -68,6 +70,8 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 		if (firePhpRefCount.decrementAndGet() == 0) {
 			firePHPLogger = null;
 		}
+
+		logReaderService.removeLogListener(consoleLogger);
 
 		// unget service
 		super.removedService(reference, service);

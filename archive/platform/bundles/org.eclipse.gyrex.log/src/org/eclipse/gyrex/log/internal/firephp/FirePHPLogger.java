@@ -24,6 +24,7 @@ import org.codehaus.jackson.JsonGenerator;
 import org.eclipse.equinox.log.ExtendedLogEntry;
 import org.eclipse.equinox.log.SynchronousLogListener;
 import org.eclipse.gyrex.log.internal.LogEvent;
+import org.eclipse.gyrex.log.internal.LogEventSourceData;
 import org.osgi.service.log.LogEntry;
 import org.osgi.service.log.LogService;
 
@@ -34,6 +35,64 @@ public class FirePHPLogger implements SynchronousLogListener {
 
 	private static final ThreadLocal<HttpServletResponse> responseHolder = new ThreadLocal<HttpServletResponse>();
 	private static final ThreadLocal<AtomicInteger> sequenceHolder = new ThreadLocal<AtomicInteger>();
+
+	public static String getFile(final LogEntry entry) {
+		final LogEvent event = getLogEvent(entry);
+		if (null != event) {
+			return event.getSourceData().getFileName();
+		}
+
+		return null;
+	}
+
+	public static String getLabel(final LogEntry entry) {
+		final LogEvent logEvent = getLogEvent(entry);
+		if (null != logEvent) {
+			final LogEventSourceData sourceData = logEvent.getSourceData();
+			return String.format("[%S] (%s#%s, line %d) - %s", logEvent.getLevel(), sourceData.getClassName(), sourceData.getMethodName(), sourceData.getLineNumber(), logEvent.getMessage());
+		}
+		return entry.getMessage();
+	}
+
+	public static int getLine(final LogEntry entry) {
+		final LogEvent event = getLogEvent(entry);
+		if (null != event) {
+			return event.getSourceData().getLineNumber();
+		}
+
+		return 0;
+	}
+
+	public static LogEvent getLogEvent(final LogEntry entry) {
+		if (entry instanceof ExtendedLogEntry) {
+			final Object context = ((ExtendedLogEntry) entry).getContext();
+			if (context instanceof LogEvent) {
+				return (LogEvent) context;
+			}
+		}
+		return null;
+	}
+
+	public static String getType(final LogEntry entry) {
+		String type;
+		switch (entry.getLevel()) {
+			case LogService.LOG_INFO:
+				type = "INFO";
+				break;
+			case LogService.LOG_WARNING:
+				type = "WARN";
+				break;
+			case LogService.LOG_ERROR:
+				type = "ERROR";
+				break;
+
+			case LogService.LOG_DEBUG:
+			default:
+				type = "LOG";
+				break;
+		}
+		return type;
+	}
 
 	public static void setResponse(final HttpServletResponse resp) {
 		responseHolder.set(resp);
@@ -132,63 +191,6 @@ public class FirePHPLogger implements SynchronousLogListener {
 		json.flush();
 
 		return writer.toString();
-	}
-
-	private String getFile(final LogEntry entry) {
-		final LogEvent event = getLogEvent(entry);
-		if (null != event) {
-			return event.getSourceData().getFileName();
-		}
-
-		return null;
-	}
-
-	private String getLabel(final LogEntry entry) {
-		final LogEvent logEvent = getLogEvent(entry);
-		if (null != logEvent) {
-			return logEvent.getLevel().toString() + " - " + logEvent.getMessage();
-		}
-		return entry.getMessage();
-	}
-
-	private int getLine(final LogEntry entry) {
-		final LogEvent event = getLogEvent(entry);
-		if (null != event) {
-			return event.getSourceData().getLineNumber();
-		}
-
-		return 0;
-	}
-
-	private LogEvent getLogEvent(final LogEntry entry) {
-		if (entry instanceof ExtendedLogEntry) {
-			final Object context = ((ExtendedLogEntry) entry).getContext();
-			if (context instanceof LogEvent) {
-				return (LogEvent) context;
-			}
-		}
-		return null;
-	}
-
-	private String getType(final LogEntry entry) {
-		String type;
-		switch (entry.getLevel()) {
-			case LogService.LOG_INFO:
-				type = "INFO";
-				break;
-			case LogService.LOG_WARNING:
-				type = "WARN";
-				break;
-			case LogService.LOG_ERROR:
-				type = "ERROR";
-				break;
-
-			case LogService.LOG_DEBUG:
-			default:
-				type = "LOG";
-				break;
-		}
-		return type;
 	}
 
 	/* (non-Javadoc)

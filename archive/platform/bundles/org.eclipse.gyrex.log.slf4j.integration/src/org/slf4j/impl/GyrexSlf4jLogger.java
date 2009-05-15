@@ -192,6 +192,7 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 		final StackTraceElement caller = findCallerStackInCurrentThreadStackTrace(null != fqcn ? fqcn : FQCN);
 
 		// get the bundle
+		// TODO: we need to discuss whether this is always the same bundle and should be discovered at logger creation time (performance)
 		final Bundle bundle = BundleFinder.findCallingBundle(null != fqcn ? fqcn : FQCN);
 
 		// sent event to the log system
