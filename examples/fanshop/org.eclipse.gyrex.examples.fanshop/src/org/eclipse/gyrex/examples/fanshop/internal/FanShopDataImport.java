@@ -34,7 +34,7 @@ import org.eclipse.gyrex.cds.model.documents.Document;
 import org.eclipse.gyrex.cds.model.documents.DoubleField;
 import org.eclipse.gyrex.cds.model.documents.Field;
 import org.eclipse.gyrex.cds.model.documents.StringField;
-import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
 import org.osgi.framework.Bundle;
 
@@ -80,7 +80,7 @@ public class FanShopDataImport extends Job {
 		return uri.toString();
 	}
 
-	private final IContext context;
+	private final IRuntimeContext context;
 
 	/**
 	 * Creates a new instance.
@@ -88,7 +88,7 @@ public class FanShopDataImport extends Job {
 	 * @param context
 	 * @param name
 	 */
-	public FanShopDataImport(final IContext context) {
+	public FanShopDataImport(final IRuntimeContext context) {
 		super("fan shop data import");
 		this.context = context;
 		setPriority(LONG);
@@ -178,7 +178,7 @@ public class FanShopDataImport extends Job {
 	 * 
 	 * @return the context
 	 */
-	public IContext getContext() {
+	public IRuntimeContext getContext() {
 		return context;
 	}
 

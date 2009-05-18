@@ -1,16 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.configuration;
-
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
@@ -28,17 +27,16 @@ import org.eclipse.gyrex.configuration.service.IConfigurationService;
  * </p>
  * <p>
  * Although it's still possible to use the Eclipse Preferences API directly,
- * care must be taken when doing it that way. Gyrex and its
- * applications may rely on an implementation specific behavior which is exposed
- * by this class.
+ * care must be taken when doing it that way. Gyrex and its applications may
+ * rely on an implementation specific behavior which is exposed by this class.
  * </p>
  * <p>
  * For convenience reason this class provides static methods. Additionally, the
  * backing implementation is delivered in its own set of OSGi bundles so that
  * updates to the implementation do not cause massive bundle refreshes/restarts
- * across the board. The <code>org.eclipse.gyrex.configuration</code>
- * bundle is assumed to be a <em>very</em> fundamental bundle which others
- * should heavily make use of.
+ * across the board. The <code>org.eclipse.gyrex.configuration</code> bundle is
+ * assumed to be a <em>very</em> fundamental bundle which others should heavily
+ * make use of.
  * </p>
  * 
  * @see IConfigurationService
@@ -50,9 +48,8 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	/**
 	 * Returns the platform configuration mode.
 	 * <p>
-	 * Gyrex uses the concept of configuration modes to behave
-	 * differently in a secure production environment and in a relaxed
-	 * development environment.
+	 * Gyrex uses the concept of configuration modes to behave differently in a
+	 * secure production environment and in a relaxed development environment.
 	 * </p>
 	 * <p>
 	 * For example, in a production environment it is not desired to confront
@@ -63,12 +60,12 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	 * different default values in production than for development.
 	 * </p>
 	 * <p>
-	 * Note, although Gyrex is a dynamic platform, the
-	 * configuration mode is static information. It is not anticipated that the
-	 * platform changes its configuration mode. Once set it should be
-	 * <strong>assumed for lifetime</strong>. A new installation has to be made
-	 * to rebuild a system using a different configuration mode. Security and a
-	 * clean environment are some of the reasons for this strict decision.
+	 * Note, although Gyrex is a dynamic platform, the configuration mode is
+	 * static information. It is not anticipated that the platform changes its
+	 * configuration mode. Once set it should be <strong>assumed for
+	 * lifetime</strong>. A new installation has to be made to rebuild a system
+	 * using a different configuration mode. Security and a clean environment
+	 * are some of the reasons for this strict decision.
 	 * </p>
 	 * <p>
 	 * The default configuration mode is
@@ -88,9 +85,9 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	}
 
 	/**
-	 * Return the interface into the Gyrex preference mechanisms. The
-	 * returned object can be used for such operations as searching for
-	 * preference in a convenient way.
+	 * Return the interface into the Gyrex preference mechanisms. The returned
+	 * object can be used for such operations as searching for preference in a
+	 * convenient way.
 	 * <p>
 	 * Clients are also able to acquire the {@link IConfigurationService}
 	 * service via OSGi mechanisms and use it for preference functions.
@@ -99,7 +96,9 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	 * @return an object to interface into the Gyrex preference mechanism
 	 * @throws IllegalStateException
 	 *             if the configuration service is not available
+	 * @deprecated please use the context preferences where appropriate
 	 */
+	@Deprecated
 	public static IConfigurationService getConfigurationService() throws IllegalStateException {
 		return ConfigurationActivator.getInstance().getConfigurationService();
 	}
@@ -108,10 +107,10 @@ public final class PlatformConfiguration implements IConfigurationConstants {
 	 * Returns the current status of Gyrex.
 	 * <p>
 	 * The returned status can be used to obtain detailed status information
-	 * about the configuration of Gyrex.
-	 * <code>{@link IStatus#isOK()}</code> returns <code>true</code> if the
-	 * platform is configured properly and in a state ready for executing core
-	 * operations and core services. The platform would be useless otherwise.
+	 * about the configuration of Gyrex. <code>{@link IStatus#isOK()}</code>
+	 * returns <code>true</code> if the platform is configured properly and in a
+	 * state ready for executing core operations and core services. The platform
+	 * would be useless otherwise.
 	 * </p>
 	 * <p>
 	 * To obtain the configuration status of a particular service use

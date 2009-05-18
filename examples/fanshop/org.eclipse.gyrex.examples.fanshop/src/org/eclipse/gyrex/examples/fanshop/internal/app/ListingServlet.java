@@ -34,7 +34,7 @@ import org.apache.solr.common.SolrDocumentList;
 import org.eclipse.gyrex.cds.model.IListingManager;
 import org.eclipse.gyrex.cds.model.documents.Document;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
-import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
 
 import com.ibm.icu.text.MeasureFormat;
@@ -91,7 +91,7 @@ public class ListingServlet extends HttpServlet {
 	/** serialVersionUID */
 	private static final long serialVersionUID = 1L;
 
-	private final IContext context;
+	private final IRuntimeContext context;
 	private final Map<String, FacetFilter> facetFilters = new HashMap<String, FacetFilter>();
 
 	/**
@@ -99,7 +99,7 @@ public class ListingServlet extends HttpServlet {
 	 * 
 	 * @param context
 	 */
-	public ListingServlet(final IContext context) {
+	public ListingServlet(final IRuntimeContext context) {
 		this.context = context;
 
 		// initialize facet filters
@@ -303,7 +303,7 @@ public class ListingServlet extends HttpServlet {
 	 * 
 	 * @return the context
 	 */
-	public IContext getContext() {
+	public IRuntimeContext getContext() {
 		return context;
 	}
 

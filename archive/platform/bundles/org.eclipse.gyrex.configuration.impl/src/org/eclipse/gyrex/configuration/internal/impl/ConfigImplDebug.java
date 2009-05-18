@@ -11,9 +11,9 @@
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.internal.impl;
 
-import org.eclipse.gyrex.common.debug.BundleDebug;
+import org.eclipse.gyrex.common.debug.BundleDebugOptions;
 
-public class ConfigImplDebug extends BundleDebug {
+public class ConfigImplDebug extends BundleDebugOptions {
 	public static boolean debug;
 	public static boolean debugMode;
 }

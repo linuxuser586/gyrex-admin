@@ -20,8 +20,8 @@ import javax.servlet.ServletException;
 
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.gyrex.common.context.IContext;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
 import org.eclipse.gyrex.examples.fanshop.service.IFanShopService;
 import org.eclipse.gyrex.http.application.Application;
@@ -33,7 +33,7 @@ import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
  */
 public class FanShopApplication extends Application implements IFanShopService {
 
-	FanShopApplication(final String id, final IContext context) {
+	FanShopApplication(final String id, final IRuntimeContext context) {
 		super(id, context);
 	}
 

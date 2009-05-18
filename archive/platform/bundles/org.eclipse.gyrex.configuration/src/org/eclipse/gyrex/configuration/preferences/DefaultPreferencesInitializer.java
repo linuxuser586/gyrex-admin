@@ -1,16 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.preferences;
-
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.gyrex.configuration.ConfigurationMode;
@@ -28,10 +27,10 @@ import org.eclipse.gyrex.configuration.PlatformConfiguration;
  * <p>
  * As an alternative to registering a subclass of this with the
  * <code>org.eclipse.core.runtime.preferences</code> extension point clients may
- * also simply register them as OSGi services of this class. The Gyrex
- * platform will ensure that {@link #initializeDefaultPreferences()} is called
- * on new registered services. This behavior might be desired for clients that
- * do not wish to use the extension registry. However,
+ * also simply register them as OSGi services of this class. The Gyrex platform
+ * will ensure that {@link #initializeDefaultPreferences()} is called on new
+ * registered services. This behavior might be desired for clients that do not
+ * wish to use the extension registry. However,
  * {@link #initializeDefaultPreferences()} is called on every registered
  * service. Thus, if multiple versions of your bundles are active, care must be
  * taken to not override the defaults of the others.
@@ -94,8 +93,6 @@ public abstract class DefaultPreferencesInitializer extends AbstractPreferenceIn
 	 * </p>
 	 * 
 	 * @noreference This method is not intended to be referenced by clients.
-	 * @nooverride This method is not intended to be re-implemented or extended
-	 *             by clients.
 	 */
 	@Override
 	public final void initializeDefaultPreferences() {

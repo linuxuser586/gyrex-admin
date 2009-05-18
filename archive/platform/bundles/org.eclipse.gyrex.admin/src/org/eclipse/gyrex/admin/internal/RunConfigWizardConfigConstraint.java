@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.osgi.service.prefs.BackingStoreException;
 
 /**

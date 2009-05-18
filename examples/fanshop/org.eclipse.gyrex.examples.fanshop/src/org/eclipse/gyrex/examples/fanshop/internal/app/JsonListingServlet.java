@@ -46,7 +46,7 @@ import org.eclipse.gyrex.cds.service.query.ListingQuery.SortDirection;
 import org.eclipse.gyrex.cds.service.result.IListingResult;
 import org.eclipse.gyrex.cds.service.result.IListingResultFacet;
 import org.eclipse.gyrex.cds.service.result.IListingResultFacetValue;
-import org.eclipse.gyrex.common.context.IContext;
+import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.http.application.ApplicationException;
 import org.eclipse.gyrex.model.common.ModelUtil;
 import org.eclipse.gyrex.services.common.ServiceUtil;
@@ -82,14 +82,14 @@ public class JsonListingServlet extends HttpServlet {
 		return builder;
 	}
 
-	private final IContext context;
+	private final IRuntimeContext context;
 
 	/**
 	 * Creates a new instance.
 	 * 
 	 * @param context
 	 */
-	public JsonListingServlet(final IContext context) {
+	public JsonListingServlet(final IRuntimeContext context) {
 		this.context = context;
 	}
 
@@ -326,7 +326,7 @@ public class JsonListingServlet extends HttpServlet {
 	 * 
 	 * @return the context
 	 */
-	public IContext getContext() {
+	public IRuntimeContext getContext() {
 		return context;
 	}
 

@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
 
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.junit.Test;
 
 public class PlatfromScopeTest {

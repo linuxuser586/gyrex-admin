@@ -26,15 +26,11 @@ import org.apache.solr.core.CoreContainer;
 import org.apache.solr.core.SolrCore;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.eclipse.gyrex.configuration.service.IConfigurationService;
-import org.eclipse.gyrex.examples.fanshop.internal.app.FanShopApplicationProvider;
 import org.eclipse.gyrex.examples.fanshop.internal.setup.FanShopDevSetup;
-import org.eclipse.gyrex.http.application.manager.ApplicationRegistrationException;
 import org.eclipse.gyrex.http.application.manager.IApplicationManager;
-import org.eclipse.gyrex.http.application.manager.MountConflictException;
-import org.eclipse.gyrex.http.internal.apps.dummy.RootContext;
 import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.prefs.BackingStoreException;
@@ -81,7 +77,7 @@ public class FanShopRTSetup {
 
 	private void importSampleData() {
 		// let's populate some default data in dev mode
-		new FanShopDataImport(new RootContext()).schedule();
+		//		new FanShopDataImport(new RootContext()).schedule();
 	}
 
 	private void initializeSolrCore() throws URISyntaxException, IOException, SolrServerException, ParserConfigurationException, SAXException {
@@ -138,23 +134,23 @@ public class FanShopRTSetup {
 			public Object addingService(final ServiceReference reference) {
 				final IApplicationManager applicationManager = (IApplicationManager) super.addingService(reference);
 				if (null != applicationManager) {
-					try {
-						applicationManager.register("fanshop", FanShopApplicationProvider.ID, new RootContext(), null);
-					} catch (final ApplicationRegistrationException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-					try {
-						final String url = PlatformConfiguration.getConfigurationService().getString(FanShopDevSetup.PLUGIN_ID_FANSHOP, FanShopDevSetup.URL, FanShopDevSetup.DEFAULT_URL, null);
-						applicationManager.mount(url, "fanshop");
-					} catch (final MountConflictException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (final MalformedURLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					//					try {
+					//						applicationManager.register("fanshop", FanShopApplicationProvider.ID, new RootContext(), null);
+					//					} catch (final ApplicationRegistrationException e) {
+					//						// TODO Auto-generated catch block
+					//						e.printStackTrace();
+					//					}
+					//
+					//					try {
+					//						final String url = PlatformConfiguration.getConfigurationService().getString(FanShopDevSetup.PLUGIN_ID_FANSHOP, FanShopDevSetup.URL, FanShopDevSetup.DEFAULT_URL, null);
+					//						applicationManager.mount(url, "fanshop");
+					//					} catch (final MountConflictException e) {
+					//						// TODO Auto-generated catch block
+					//						e.printStackTrace();
+					//					} catch (final MalformedURLException e) {
+					//						// TODO Auto-generated catch block
+					//						e.printStackTrace();
+					//					}
 				}
 				return applicationManager;
 			}

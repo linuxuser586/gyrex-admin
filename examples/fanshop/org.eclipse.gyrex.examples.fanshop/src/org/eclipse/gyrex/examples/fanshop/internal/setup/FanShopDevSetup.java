@@ -12,8 +12,8 @@
 package org.eclipse.gyrex.examples.fanshop.internal.setup;
 
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
 import org.eclipse.gyrex.configuration.service.IConfigurationService;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.osgi.service.prefs.BackingStoreException;
 
 public class FanShopDevSetup {

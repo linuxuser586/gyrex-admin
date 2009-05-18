@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.equinox.http.jetty.JettyConstants;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.eclipse.gyrex.toolkit.CWT;
 import org.eclipse.gyrex.toolkit.content.NumberContent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;

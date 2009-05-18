@@ -15,16 +15,15 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Random;
 
-
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.equinox.security.storage.EncodingUtils;
-import org.eclipse.gyrex.common.context.IContext;
 import org.eclipse.gyrex.configuration.internal.impl.ConfigurationServiceImpl;
 import org.eclipse.gyrex.configuration.internal.impl.PreferencesUtil;
-import org.eclipse.gyrex.configuration.preferences.PlatformScope;
+import org.eclipse.gyrex.context.IRuntimeContext;
+import org.eclipse.gyrex.preferences.PlatformScope;
 import org.junit.Test;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
@@ -34,7 +33,7 @@ import org.osgi.service.prefs.Preferences;
  */
 public class ConfigServiceTest {
 
-	private static class TestContext extends PlatformObject implements IContext {
+	private static class TestContext extends PlatformObject implements IRuntimeContext {
 		private final IPath path;
 
 		/**
@@ -47,7 +46,16 @@ public class ConfigServiceTest {
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipse.gyrex.common.context.IContext#getContextPath()
+		 * @see org.eclipse.gyrex.context.IRuntimeContext#get(java.lang.Class)
+		 */
+		@Override
+		public <T> T get(final Class<T> type) throws IllegalArgumentException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.gyrex.context.IRuntimeContext#getContextPath()
 		 */
 		@Override
 		public IPath getContextPath() {
@@ -135,13 +143,13 @@ public class ConfigServiceTest {
 		testRemove(TEST_CONTEXT);
 	}
 
-	private void testDefault(final IContext context) {
+	private void testDefault(final IRuntimeContext context) {
 		testDefault(context, SIMPLE_KEY);
 		testDefault(context, COMPLEX_KEY_1);
 		testDefault(context, COMPLEX_KEY_2);
 	}
 
-	private void testDefault(final IContext context, final String key) {
+	private void testDefault(final IRuntimeContext context, final String key) {
 		final ConfigurationServiceImpl serviceImpl = new ConfigurationServiceImpl();
 		final String VALUE = generateValue();
 		final String childPath = PreferencesUtil.makeRelative(PreferencesUtil.decodePath(key)[0]);
@@ -154,13 +162,13 @@ public class ConfigServiceTest {
 		assertEquals(VALUE, serviceImpl.getString(Activator.PLUGIN_ID, key, null, context));
 	}
 
-	private void testPut(final IContext context) throws BackingStoreException {
+	private void testPut(final IRuntimeContext context) throws BackingStoreException {
 		testPut(context, SIMPLE_KEY);
 		testPut(context, COMPLEX_KEY_1);
 		testPut(context, COMPLEX_KEY_2);
 	}
 
-	private void testPut(final IContext context, final String key) throws BackingStoreException {
+	private void testPut(final IRuntimeContext context, final String key) throws BackingStoreException {
 		final String VALUE = generateValue();
 		new DefaultScope().getNode(Activator.PLUGIN_ID).removeNode();
 		final ConfigurationServiceImpl serviceImpl = new ConfigurationServiceImpl();
@@ -169,13 +177,13 @@ public class ConfigServiceTest {
 		assertEquals(VALUE, serviceImpl.getString(Activator.PLUGIN_ID, key, null, context));
 	}
 
-	private void testRemove(final IContext context) throws BackingStoreException {
+	private void testRemove(final IRuntimeContext context) throws BackingStoreException {
 		testRemove(context, SIMPLE_KEY);
 		testRemove(context, COMPLEX_KEY_1);
 		testRemove(context, COMPLEX_KEY_2);
 	}
 
-	private void testRemove(final IContext context, final String key) throws BackingStoreException {
+	private void testRemove(final IRuntimeContext context, final String key) throws BackingStoreException {
 		new DefaultScope().getNode(Activator.PLUGIN_ID).removeNode();
 		final ConfigurationServiceImpl serviceImpl = new ConfigurationServiceImpl();
 		serviceImpl.remove(Activator.PLUGIN_ID, key, context);

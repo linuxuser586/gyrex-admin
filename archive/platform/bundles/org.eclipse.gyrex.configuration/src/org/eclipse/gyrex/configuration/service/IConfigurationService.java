@@ -1,18 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.service;
 
-import org.eclipse.gyrex.common.context.IContext;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.context.IRuntimeContext;
 
 /**
  * Provides a thin layer on top of the Eclipse Preferences API to streamline
@@ -27,9 +27,9 @@ import org.eclipse.gyrex.configuration.PlatformConfiguration;
  * instance area (i.e., apply to an actual running framework instance).
  * </p>
  * <p>
- * Gyrex adds a new scope to the set of scopes. This scope
- * allows to store preferences in a global repository which can be accessed by
- * framework instances running on different machines. This repository could be a
+ * Gyrex adds a new scope to the set of scopes. This scope allows to store
+ * preferences in a global repository which can be accessed by framework
+ * instances running on different machines. This repository could be a
  * relational database or and LDAP directory.
  * </p>
  * <p>
@@ -43,13 +43,11 @@ import org.eclipse.gyrex.configuration.PlatformConfiguration;
  * <li><strong>PLATFORM</strong> - This is the primary scope for Gyrex
  * preferences. Whenever a preferences is modified (set or removed) through API
  * provided by this service it will happen in the
- * {@link org.eclipse.gyrex.configuration.preferences.PlatformScope platform
- * scope}.</li>
+ * {@link org.eclipse.gyrex.preferences.PlatformScope platform scope}.</li>
  * <li><strong>DEFAULT</strong> - This is the default scope which defines
  * default preferences. Default preferences cannot be modified through API
  * defined here. Default preferences are initialized during bundle start (see
- * {@link org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer}
- * ).</li>
+ * {@link org.eclipse.gyrex.preferences.DefaultPreferencesInitializer} ).</li>
  * </ul>
  * All other scopes (i.e., INSTANCE, CONFIGURATION, PROJECT) will
  * <strong>not</strong> be consulted when searching or modifying preferences
@@ -64,17 +62,18 @@ import org.eclipse.gyrex.configuration.PlatformConfiguration;
  * <p>
  * If a preference value is to be encrypted it will be stored encrypted in the
  * PLATFORM scope backing store and not using Equinox
- * <code>ISecurePreferences</code>. The encryption will be done using the
- * Gyrex encryption conventions. Decryption will happen
- * transparently at read time.
+ * <code>ISecurePreferences</code>. The encryption will be done using the Gyrex
+ * encryption conventions. Decryption will happen transparently at read time.
  * </p>
  * 
  * @see PlatformConfiguration
- * @see org.eclipse.gyrex.configuration.preferences.PlatformScope
- * @see org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer
+ * @see org.eclipse.gyrex.preferences.PlatformScope
+ * @see org.eclipse.gyrex.preferences.DefaultPreferencesInitializer
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
+ * @deprecated please use the context preferences where appropriate
  */
+@Deprecated
 public interface IConfigurationService {
 
 	/**
@@ -124,7 +123,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	boolean getBoolean(String qualifier, String key, boolean defaultValue, IContext context);
+	boolean getBoolean(String qualifier, String key, boolean defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -173,7 +172,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	byte[] getByteArray(String qualifier, String key, byte[] defaultValue, IContext context);
+	byte[] getByteArray(String qualifier, String key, byte[] defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -222,7 +221,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	double getDouble(String qualifier, String key, double defaultValue, IContext context);
+	double getDouble(String qualifier, String key, double defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -271,7 +270,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	float getFloat(String qualifier, String key, float defaultValue, IContext context);
+	float getFloat(String qualifier, String key, float defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -320,7 +319,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	int getInt(String qualifier, String key, int defaultValue, IContext context);
+	int getInt(String qualifier, String key, int defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -369,7 +368,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	long getLong(String qualifier, String key, long defaultValue, IContext context);
+	long getLong(String qualifier, String key, long defaultValue, IRuntimeContext context);
 
 	/**
 	 * Return the value stored in the preference store for the given key. If the
@@ -418,7 +417,7 @@ public interface IConfigurationService {
 	 *            to search, or <code>null</code>
 	 * @return the value of the preference or the given default value
 	 */
-	String getString(String qualifier, String key, String defaultValue, IContext context);
+	String getString(String qualifier, String key, String defaultValue, IRuntimeContext context);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -470,7 +469,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putBoolean(String qualifier, String key, boolean value, IContext context, boolean encrypt);
+	void putBoolean(String qualifier, String key, boolean value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -515,7 +514,7 @@ public interface IConfigurationService {
 	 *            the name of the preference (optionally including its path)
 	 * @param value
 	 *            the value to set, or <code>null</code> to
-	 *            {@link #remove(String, String, IContext) remove} the
+	 *            {@link #remove(String, String, IRuntimeContext) remove} the
 	 *            preference if it is defined
 	 * @param context
 	 *            optional context object to help scopes determine at which node
@@ -524,7 +523,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putByteArray(String qualifier, String key, byte[] value, IContext context, boolean encrypt);
+	void putByteArray(String qualifier, String key, byte[] value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -576,7 +575,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putDouble(String qualifier, String key, double value, IContext context, boolean encrypt);
+	void putDouble(String qualifier, String key, double value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -628,7 +627,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putFloat(String qualifier, String key, float value, IContext context, boolean encrypt);
+	void putFloat(String qualifier, String key, float value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -680,7 +679,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putInt(String qualifier, String key, int value, IContext context, boolean encrypt);
+	void putInt(String qualifier, String key, int value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -732,7 +731,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putLong(String qualifier, String key, long value, IContext context, boolean encrypt);
+	void putLong(String qualifier, String key, long value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Sets the value stored in the preference store for the given key. If the
@@ -777,7 +776,7 @@ public interface IConfigurationService {
 	 *            the name of the preference (optionally including its path)
 	 * @param value
 	 *            the value to set, or <code>null</code> to
-	 *            {@link #remove(String, String, IContext) remove} the
+	 *            {@link #remove(String, String, IRuntimeContext) remove} the
 	 *            preference if it is defined
 	 * @param context
 	 *            optional context object to help scopes determine at which node
@@ -786,7 +785,7 @@ public interface IConfigurationService {
 	 *            <code>true</code> if value is to be encrypted,
 	 *            <code>false</code> value does not need to be encrypted
 	 */
-	void putString(String qualifier, String key, String value, IContext context, boolean encrypt);
+	void putString(String qualifier, String key, String value, IRuntimeContext context, boolean encrypt);
 
 	/**
 	 * Removes the value stored in the preference store for the given key. If
@@ -832,6 +831,6 @@ public interface IConfigurationService {
 	 *            optional context object to help scopes determine which node to
 	 *            remove, or <code>null</code>
 	 */
-	void remove(String qualifier, String key, IContext context);
+	void remove(String qualifier, String key, IRuntimeContext context);
 
 }

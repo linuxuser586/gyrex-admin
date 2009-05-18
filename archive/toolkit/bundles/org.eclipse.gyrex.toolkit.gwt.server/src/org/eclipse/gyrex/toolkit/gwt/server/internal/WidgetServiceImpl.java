@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -17,7 +17,6 @@ import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
 
 import org.eclipse.gyrex.gwt.common.status.IStatus;
 import org.eclipse.gyrex.gwt.common.status.MultiStatus;
@@ -44,6 +43,8 @@ import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class is the internal {@link WidgetService} implementation.
@@ -56,6 +57,8 @@ import org.eclipse.gyrex.toolkit.widgets.Widget;
  * @noextend This class is not intended to be subclassed by clients.
  */
 public class WidgetServiceImpl implements WidgetService {
+
+	private static final Logger LOG = LoggerFactory.getLogger(WidgetServiceImpl.class);
 
 	public static boolean debugPerformance = true;
 
@@ -241,7 +244,7 @@ public class WidgetServiceImpl implements WidgetService {
 			throw new WidgetFactoryException(WidgetFactoryException.WIDGET_SERIALIZATION_FAILED, message, createDetailInfo(e), e);
 		} finally {
 			if (debugPerformance) {
-				System.out.println(MessageFormat.format("[WidgetService] [PERFORMANCE] Widget ''{0}'': {1}ms", widget.getId(), System.currentTimeMillis() - start));
+				LOG.debug(MessageFormat.format("[WidgetService] [PERFORMANCE] Widget ''{0}'': {1}ms", widget.getId(), System.currentTimeMillis() - start));
 			}
 		}
 	}

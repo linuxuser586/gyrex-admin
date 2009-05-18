@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -13,12 +13,14 @@ package org.eclipse.gyrex.configuration.internal.holders;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-
-import org.eclipse.gyrex.common.debug.BundleDebug;
 import org.eclipse.gyrex.configuration.ConfigurationMode;
 import org.eclipse.gyrex.configuration.internal.ConfigDebug;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigurationModeHolder {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ConfigurationModeHolder.class);
 
 	/**
 	 * the configuration mode
@@ -62,7 +64,7 @@ public class ConfigurationModeHolder {
 		// only set when never set before
 		if (configurationMode.compareAndSet(null, mode)) {
 			if (ConfigDebug.debugMode) {
-				BundleDebug.debug("initialized configuration mode: " + mode);
+				LOG.debug("initialized configuration mode: " + mode);
 			}
 		}
 	}

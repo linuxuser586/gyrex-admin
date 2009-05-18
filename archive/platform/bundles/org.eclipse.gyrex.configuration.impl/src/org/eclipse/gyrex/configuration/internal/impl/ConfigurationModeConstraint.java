@@ -1,28 +1,28 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.internal.impl;
-
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.gyrex.common.debug.BundleDebug;
 import org.eclipse.gyrex.configuration.ConfigurationMode;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
 import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This constraint issues a warning when the platform is in development mode.
@@ -30,6 +30,8 @@ import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
  * @see PlatformConfiguration#getConfigurationMode()
  */
 public class ConfigurationModeConstraint extends PlatformConfigurationConstraint {
+
+	private static final Logger LOG = LoggerFactory.getLogger(ConfigurationModeConstraint.class);
 
 	/**
 	 * preference key holding the last known config mode (value
@@ -39,7 +41,7 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.configuration.service.ConfigurationConstraint#evaluateConfiguration(org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
@@ -47,7 +49,7 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 		// 1st: check that the configuration mode has been initialized correctly
 		if (!ConfigurationModeHolder.isConfigurationModeInitialized()) {
 			if (ConfigImplDebug.debugMode) {
-				BundleDebug.debug("[ConfigurationModeConstraint] not initialized");
+				LOG.debug("[ConfigurationModeConstraint] not initialized");
 			}
 			return new Status(IStatus.WARNING, ConfigurationActivator.PLUGIN_ID, "The platform configuration mode has not been initialized. The platform will operate in development mode. Please complete the inital platform configuration and restart the server.");
 		}
@@ -64,13 +66,13 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 				preferences.put(PREF_KEY_LAST_KNOWN_CONFIG_MODE, configurationMode.name());
 			} else if (!lastKnownConfigMode.equalsIgnoreCase(configurationMode.name())) {
 				if (ConfigImplDebug.debugMode) {
-					BundleDebug.debug("[ConfigurationModeConstraint] configuration has been changed");
+					LOG.debug("[ConfigurationModeConstraint] configuration has been changed");
 				}
 				return new Status(IStatus.ERROR, ConfigurationActivator.PLUGIN_ID, "The platform configuration has been changed. Please restart the server.");
 			}
 		} catch (final Exception e) {
 			if (ConfigImplDebug.debugMode) {
-				BundleDebug.debug("[ConfigurationModeConstraint] failed to verify");
+				LOG.debug("[ConfigurationModeConstraint] failed to verify");
 			}
 			return new Status(IStatus.WARNING, ConfigurationActivator.PLUGIN_ID, "Failed to verify the configuration mode. Is the preference service is available?", e);
 		}
@@ -78,7 +80,7 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 		// issue a message in development mode
 		if (configurationMode == ConfigurationMode.DEVELOPMENT) {
 			if (ConfigImplDebug.debugMode) {
-				BundleDebug.debug("[ConfigurationModeConstraint] development");
+				LOG.debug("[ConfigurationModeConstraint] development");
 			}
 			return new Status(IStatus.INFO, ConfigurationActivator.PLUGIN_ID, "The platform operates in development mode.");
 		}
