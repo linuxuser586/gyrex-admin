@@ -49,7 +49,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 		final LogEvent logEvent = getLogEvent(entry);
 		if (null != logEvent) {
 			final LogEventSourceData sourceData = logEvent.getSourceData();
-			return String.format("[%S] (%s#%s, line %d) - %s", logEvent.getLevel(), sourceData.getClassName(), sourceData.getMethodName(), sourceData.getLineNumber(), logEvent.getMessage());
+			return String.format("[%S] %s (%s#%s, line %d)", logEvent.getLevel(), logEvent.getMessage(), sourceData.getClassName(), sourceData.getMethodName(), sourceData.getLineNumber());
 		}
 		return entry.getMessage();
 	}
@@ -74,24 +74,18 @@ public class FirePHPLogger implements SynchronousLogListener {
 	}
 
 	public static String getType(final LogEntry entry) {
-		String type;
 		switch (entry.getLevel()) {
 			case LogService.LOG_INFO:
-				type = "INFO";
-				break;
+				return "INFO";
 			case LogService.LOG_WARNING:
-				type = "WARN";
-				break;
+				return "WARN";
 			case LogService.LOG_ERROR:
-				type = "ERROR";
-				break;
+				return "ERROR";
 
 			case LogService.LOG_DEBUG:
 			default:
-				type = "LOG";
-				break;
+				return "LOG";
 		}
-		return type;
 	}
 
 	public static void setResponse(final HttpServletResponse resp) {
@@ -117,11 +111,23 @@ public class FirePHPLogger implements SynchronousLogListener {
 		json.writeFieldName("Type");
 		json.writeString(type);
 		json.writeFieldName("File");
-		json.writeString(file);
+		if (null != file) {
+			json.writeString(file);
+		} else {
+			json.writeNull();
+		}
 		json.writeFieldName("Line");
-		json.writeNumber(line);
+		if (line > 0) {
+			json.writeNumber(line);
+		} else {
+			json.writeNull();
+		}
 		json.writeFieldName("Label");
-		json.writeString(label);
+		if (null != label) {
+			json.writeString(label);
+		} else {
+			json.writeNull();
+		}
 		json.writeEndObject();
 
 		// body

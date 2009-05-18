@@ -11,10 +11,17 @@
  *******************************************************************************/
 package org.eclipse.gyrex.http.internal;
 
+import java.io.IOException;
 import java.util.Dictionary;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.eclipse.equinox.http.jetty.JettyCustomizer;
+import org.eclipse.gyrex.log.internal.firephp.FirePHPLogger;
 import org.mortbay.jetty.servlet.Context;
+import org.mortbay.jetty.servlet.ServletHandler;
 
 /**
  * Customizer for Jetty
@@ -31,8 +38,30 @@ public class GyrexJettyCustomizer extends JettyCustomizer {
 		}
 
 		final Context jettyContext = (Context) contex;
+
+		// set error handler
 		jettyContext.setErrorHandler(new GyrexErrorHandler());
-		return contex;
+
+		// set servlet handler
+		jettyContext.setServletHandler(new ServletHandler() {
+
+			@Override
+			public void handle(final String target, final HttpServletRequest request, final HttpServletResponse response, final int type) throws IOException, ServletException {
+				try {
+					// hook with the logging system
+					// TODO: this should be generalized with some extensible API (i.e. the other way around)
+					FirePHPLogger.setResponse(response);
+
+					// handle the request
+					super.handle(target, request, response, type);
+				} finally {
+					// remove from logging
+					FirePHPLogger.setResponse(null);
+				}
+
+			}
+		});
+		return jettyContext;
 	}
 
 }

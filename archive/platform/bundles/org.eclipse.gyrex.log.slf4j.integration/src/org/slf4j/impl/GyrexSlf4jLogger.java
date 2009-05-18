@@ -80,7 +80,7 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 				return LogEventLevel.INFO;
 
 			case WARN_INT:
-				return LogEventLevel.INFO;
+				return LogEventLevel.WARNING;
 
 			case ERROR_INT:
 				return LogEventLevel.ERROR;
