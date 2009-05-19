@@ -80,7 +80,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 		if (null != logEvent) {
 			final LogEventSourceData sourceData = logEvent.getSourceData();
 			if (null != sourceData) {
-				body.append("(").append(sourceData.getClassName()).append(", line ").append(sourceData.getLineNumber()).append(") ");
+				body.append("(").append(sourceData.getFileName()).append(", line ").append(sourceData.getLineNumber()).append(") ");
 			}
 		}
 		if (null != entry.getException()) {
