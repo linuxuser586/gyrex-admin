@@ -120,6 +120,21 @@ public final class LogEventSourceData implements Serializable {
 		return methodName;
 	}
 
+	/**
+	 * Returns the className as simple class name. This is the name of the class
+	 * without the package name.
+	 * 
+	 * @return the simple class name
+	 */
+	public String getSimpleClassName() {
+		String string = getClassName();
+		final int index = string.lastIndexOf('.');
+		if (index != -1) {
+			string = string.substring(index + 1, string.length());
+		}
+		return string;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

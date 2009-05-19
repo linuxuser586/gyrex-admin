@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.eclipse.equinox.log.ExtendedLogEntry;
 import org.eclipse.equinox.log.SynchronousLogListener;
@@ -49,7 +50,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 		final LogEvent logEvent = getLogEvent(entry);
 		if (null != logEvent) {
 			final LogEventSourceData sourceData = logEvent.getSourceData();
-			return String.format("[%S] %s (%s#%s, line %d)", logEvent.getLevel(), logEvent.getMessage(), sourceData.getClassName(), sourceData.getMethodName(), sourceData.getLineNumber());
+			return String.format("[%S] [%s] %s", logEvent.getLevel(), null != sourceData ? sourceData.getSimpleClassName() : null, logEvent.getMessage());
 		}
 		return entry.getMessage();
 	}
@@ -71,6 +72,21 @@ public class FirePHPLogger implements SynchronousLogListener {
 			}
 		}
 		return null;
+	}
+
+	public static String getSimpleBody(final LogEntry entry) {
+		final StringBuilder body = new StringBuilder();
+		final LogEvent logEvent = getLogEvent(entry);
+		if (null != logEvent) {
+			final LogEventSourceData sourceData = logEvent.getSourceData();
+			if (null != sourceData) {
+				body.append("(").append(sourceData.getClassName()).append(", line ").append(sourceData.getLineNumber()).append(") ");
+			}
+		}
+		if (null != entry.getException()) {
+			body.append(entry.getException());
+		}
+		return body.toString();
 	}
 
 	public static String getType(final LogEntry entry) {
@@ -131,65 +147,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 		json.writeEndObject();
 
 		// body
-		json.writeStartObject();
-		json.writeFieldName("Bundle");
-		if (null != entry.getBundle()) {
-			json.writeString(entry.getBundle().toString());
-		} else {
-			json.writeNull();
-		}
-		json.writeFieldName("ServiceReference");
-		if (null != entry.getServiceReference()) {
-			json.writeString(entry.getServiceReference().toString());
-		} else {
-			json.writeNull();
-		}
-		if (entry instanceof ExtendedLogEntry) {
-			final ExtendedLogEntry extEntry = (ExtendedLogEntry) entry;
-			json.writeFieldName("LoggerName");
-			if (null != extEntry.getLoggerName()) {
-				json.writeString(extEntry.getLoggerName().toString());
-			} else {
-				json.writeNull();
-			}
-			final LogEvent logEvent = getLogEvent(extEntry);
-			if (null != logEvent) {
-				json.writeFieldName("Source");
-				if (null != logEvent.getSourceData()) {
-					json.writeString(logEvent.getSourceData().toString());
-				} else {
-					json.writeNull();
-				}
-				json.writeFieldName("Attributes");
-				if (null != logEvent.getAttributes()) {
-					json.writeStartObject();
-					final Set<Entry<String, String>> entrySet = logEvent.getAttributes().entrySet();
-					for (final Entry<String, String> attributeEntry : entrySet) {
-						json.writeFieldName(attributeEntry.getKey());
-						if (null != attributeEntry.getValue()) {
-							json.writeString(attributeEntry.getValue().toString());
-						} else {
-							json.writeNull();
-						}
-					}
-					json.writeEndObject();
-				} else {
-					json.writeNull();
-				}
-				json.writeFieldName("Tags");
-				final Set<String> tags = logEvent.getTags();
-				if ((null != tags) && !tags.isEmpty()) {
-					json.writeStartArray();
-					for (final String tag : tags) {
-						json.writeString(tag);
-					}
-					json.writeEndArray();
-				} else {
-					json.writeNull();
-				}
-			}
-		}
-		json.writeEndObject();
+		json.writeString(getSimpleBody(entry));
 
 		// end
 		json.writeEndArray();
@@ -249,6 +207,68 @@ public class FirePHPLogger implements SynchronousLogListener {
 			// TODO consider logging this (but with what?)
 			e.printStackTrace();
 		}
+	}
+
+	void writeEnhancedBody(final LogEntry entry, final JsonGenerator json) throws IOException, JsonGenerationException {
+		json.writeStartObject();
+		json.writeFieldName("Bundle");
+		if (null != entry.getBundle()) {
+			json.writeString(entry.getBundle().toString());
+		} else {
+			json.writeNull();
+		}
+		json.writeFieldName("ServiceReference");
+		if (null != entry.getServiceReference()) {
+			json.writeString(entry.getServiceReference().toString());
+		} else {
+			json.writeNull();
+		}
+		if (entry instanceof ExtendedLogEntry) {
+			final ExtendedLogEntry extEntry = (ExtendedLogEntry) entry;
+			json.writeFieldName("LoggerName");
+			if (null != extEntry.getLoggerName()) {
+				json.writeString(extEntry.getLoggerName().toString());
+			} else {
+				json.writeNull();
+			}
+			final LogEvent logEvent = getLogEvent(extEntry);
+			if (null != logEvent) {
+				json.writeFieldName("Source");
+				if (null != logEvent.getSourceData()) {
+					json.writeString(logEvent.getSourceData().toString());
+				} else {
+					json.writeNull();
+				}
+				json.writeFieldName("Attributes");
+				if (null != logEvent.getAttributes()) {
+					json.writeStartObject();
+					final Set<Entry<String, String>> entrySet = logEvent.getAttributes().entrySet();
+					for (final Entry<String, String> attributeEntry : entrySet) {
+						json.writeFieldName(attributeEntry.getKey());
+						if (null != attributeEntry.getValue()) {
+							json.writeString(attributeEntry.getValue().toString());
+						} else {
+							json.writeNull();
+						}
+					}
+					json.writeEndObject();
+				} else {
+					json.writeNull();
+				}
+				json.writeFieldName("Tags");
+				final Set<String> tags = logEvent.getTags();
+				if ((null != tags) && !tags.isEmpty()) {
+					json.writeStartArray();
+					for (final String tag : tags) {
+						json.writeString(tag);
+					}
+					json.writeEndArray();
+				} else {
+					json.writeNull();
+				}
+			}
+		}
+		json.writeEndObject();
 	}
 
 }
