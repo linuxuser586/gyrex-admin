@@ -11,9 +11,12 @@
  */
 package org.eclipse.gyrex.log.internal;
 
+import java.io.PrintStream;
+
 import org.eclipse.equinox.log.SynchronousLogListener;
 import org.eclipse.gyrex.log.internal.firephp.FirePHPLogger;
 import org.osgi.service.log.LogEntry;
+import org.osgi.service.log.LogService;
 
 /**
  *
@@ -43,7 +46,25 @@ public class ConsoleLogger implements SynchronousLogListener {
 		//		if (null != trace) {
 		//			trace.trace(null, entry.getMessage());
 		//		}
-		System.out.println(FirePHPLogger.getLabel(entry));
+		switch (entry.getLevel()) {
+			case LogService.LOG_ERROR:
+				printEntry(entry, System.err);
+				return;
+			case LogService.LOG_WARNING:
+			case LogService.LOG_DEBUG:
+			case LogService.LOG_INFO:
+			default:
+				printEntry(entry, System.out);
+				return;
+		}
+	}
+
+	private void printEntry(final LogEntry entry, final PrintStream printStream) {
+		printStream.println(FirePHPLogger.getLabel(entry));
+		final Throwable exception = entry.getException();
+		if (null != exception) {
+			exception.printStackTrace(printStream);
+		}
 	}
 
 }
