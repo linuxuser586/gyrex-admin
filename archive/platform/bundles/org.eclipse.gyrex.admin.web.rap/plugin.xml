@@ -44,9 +44,6 @@
             id="org.eclipse.gyrex.admin.web.rap.branding.internal.AdminRapApplication"
             servletName="admin-rap"
             title="Gyrex Admin">
-         <httpServiceSelector
-               filter="(other.info=org.eclipse.gyrex.admin.http)">
-         </httpServiceSelector>
       </branding>
    </extension>
    <extension
