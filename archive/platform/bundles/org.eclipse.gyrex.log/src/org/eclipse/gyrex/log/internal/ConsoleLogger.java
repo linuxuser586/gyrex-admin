@@ -13,8 +13,8 @@ package org.eclipse.gyrex.log.internal;
 
 import java.io.PrintStream;
 
+import org.eclipse.equinox.log.ExtendedLogEntry;
 import org.eclipse.equinox.log.SynchronousLogListener;
-import org.eclipse.gyrex.log.internal.firephp.FirePHPLogger;
 import org.osgi.service.log.LogEntry;
 import org.osgi.service.log.LogService;
 
@@ -23,9 +23,63 @@ import org.osgi.service.log.LogService;
  */
 public class ConsoleLogger implements SynchronousLogListener {
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.log.LogListener#logged(org.osgi.service.log.LogEntry)
-	 */
+	public static String getLabel(final LogEntry entry) {
+		final LogEvent logEvent = getLogEvent(entry);
+		if (null != logEvent) {
+			return getLabel(logEvent);
+		}
+		return entry.getMessage();
+	}
+
+	public static String getLabel(final LogEvent logEvent) {
+		final LogEventSourceData sourceData = logEvent.getSourceData();
+		return String.format("[%S] [%s] %s", logEvent.getLevel(), null != sourceData ? sourceData.getSimpleClassName() : null, logEvent.getMessage());
+	}
+
+	public static LogEvent getLogEvent(final LogEntry entry) {
+		if (entry instanceof ExtendedLogEntry) {
+			final Object context = ((ExtendedLogEntry) entry).getContext();
+			if (context instanceof LogEvent) {
+				return (LogEvent) context;
+			}
+		}
+		return null;
+	}
+
+	static PrintStream getPrintStream(final LogEntry entry) {
+		switch (entry.getLevel()) {
+			case LogService.LOG_ERROR:
+				return System.err;
+		}
+		return System.out;
+	}
+
+	static PrintStream getPrintStream(final LogEvent event) {
+		switch (event.getLevel()) {
+			case ERROR:
+				return System.err;
+		}
+		return System.out;
+	}
+
+	static void print(final LogEntry entry) {
+		final PrintStream printStream = getPrintStream(entry);
+		printStream.println(ConsoleLogger.getLabel(entry));
+		final Throwable exception = entry.getException();
+		if (null != exception) {
+			exception.printStackTrace(printStream);
+		}
+	}
+
+	static void print(final LogEvent event) {
+		final PrintStream printStream = getPrintStream(event);
+		printStream.println(ConsoleLogger.getLabel(event));
+		final Throwable exception = event.getException();
+		if (null != exception) {
+			exception.printStackTrace(printStream);
+		}
+	}
+
 	@Override
 	public void logged(final LogEntry entry) {
 		//		final String symbolicName = entry.getBundle().getSymbolicName();
@@ -46,25 +100,7 @@ public class ConsoleLogger implements SynchronousLogListener {
 		//		if (null != trace) {
 		//			trace.trace(null, entry.getMessage());
 		//		}
-		switch (entry.getLevel()) {
-			case LogService.LOG_ERROR:
-				printEntry(entry, System.err);
-				return;
-			case LogService.LOG_WARNING:
-			case LogService.LOG_DEBUG:
-			case LogService.LOG_INFO:
-			default:
-				printEntry(entry, System.out);
-				return;
-		}
-	}
-
-	private void printEntry(final LogEntry entry, final PrintStream printStream) {
-		printStream.println(FirePHPLogger.getLabel(entry));
-		final Throwable exception = entry.getException();
-		if (null != exception) {
-			exception.printStackTrace(printStream);
-		}
+		print(entry);
 	}
 
 }

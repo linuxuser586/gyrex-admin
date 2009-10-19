@@ -28,7 +28,10 @@ public class LogActivator implements BundleActivator {
 	public ExtendedLogService getLogService() {
 		final ServiceTracker extendedLogServiceTracker = extendedLogServiceTrackerRef.get();
 		if (null != extendedLogServiceTracker) {
-			return (ExtendedLogService) extendedLogServiceTracker.getService();
+			final ExtendedLogService logService = (ExtendedLogService) extendedLogServiceTracker.getService();
+			if (null != logService) {
+				return logService;
+			}
 		}
 		throw new IllegalStateException("The log system is inactive.");
 	}

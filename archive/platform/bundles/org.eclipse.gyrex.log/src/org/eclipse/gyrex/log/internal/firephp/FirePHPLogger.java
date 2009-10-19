@@ -24,6 +24,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonGenerator;
 import org.eclipse.equinox.log.ExtendedLogEntry;
 import org.eclipse.equinox.log.SynchronousLogListener;
+import org.eclipse.gyrex.log.internal.ConsoleLogger;
 import org.eclipse.gyrex.log.internal.LogEvent;
 import org.eclipse.gyrex.log.internal.LogEventSourceData;
 import org.osgi.service.log.LogEntry;
@@ -38,7 +39,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 	private static final ThreadLocal<AtomicInteger> sequenceHolder = new ThreadLocal<AtomicInteger>();
 
 	public static String getFile(final LogEntry entry) {
-		final LogEvent event = getLogEvent(entry);
+		final LogEvent event = ConsoleLogger.getLogEvent(entry);
 		if (null != event) {
 			return event.getSourceData().getFileName();
 		}
@@ -46,17 +47,8 @@ public class FirePHPLogger implements SynchronousLogListener {
 		return null;
 	}
 
-	public static String getLabel(final LogEntry entry) {
-		final LogEvent logEvent = getLogEvent(entry);
-		if (null != logEvent) {
-			final LogEventSourceData sourceData = logEvent.getSourceData();
-			return String.format("[%S] [%s] %s", logEvent.getLevel(), null != sourceData ? sourceData.getSimpleClassName() : null, logEvent.getMessage());
-		}
-		return entry.getMessage();
-	}
-
 	public static int getLine(final LogEntry entry) {
-		final LogEvent event = getLogEvent(entry);
+		final LogEvent event = ConsoleLogger.getLogEvent(entry);
 		if (null != event) {
 			return event.getSourceData().getLineNumber();
 		}
@@ -64,19 +56,9 @@ public class FirePHPLogger implements SynchronousLogListener {
 		return 0;
 	}
 
-	public static LogEvent getLogEvent(final LogEntry entry) {
-		if (entry instanceof ExtendedLogEntry) {
-			final Object context = ((ExtendedLogEntry) entry).getContext();
-			if (context instanceof LogEvent) {
-				return (LogEvent) context;
-			}
-		}
-		return null;
-	}
-
 	public static String getSimpleBody(final LogEntry entry) {
 		final StringBuilder body = new StringBuilder();
-		final LogEvent logEvent = getLogEvent(entry);
+		final LogEvent logEvent = ConsoleLogger.getLogEvent(entry);
 		if (null != logEvent) {
 			final LogEventSourceData sourceData = logEvent.getSourceData();
 			if (null != sourceData) {
@@ -117,7 +99,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 		final String type = getType(entry);
 		final String file = getFile(entry);
 		final int line = getLine(entry);
-		final String label = getLabel(entry);
+		final String label = ConsoleLogger.getLabel(entry);
 
 		// start
 		json.writeStartArray();
@@ -231,7 +213,7 @@ public class FirePHPLogger implements SynchronousLogListener {
 			} else {
 				json.writeNull();
 			}
-			final LogEvent logEvent = getLogEvent(extEntry);
+			final LogEvent logEvent = ConsoleLogger.getLogEvent(extEntry);
 			if (null != logEvent) {
 				json.writeFieldName("Source");
 				if (null != logEvent.getSourceData()) {

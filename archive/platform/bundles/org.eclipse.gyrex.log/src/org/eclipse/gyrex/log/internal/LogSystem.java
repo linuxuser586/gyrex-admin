@@ -53,6 +53,8 @@ public class LogSystem {
 		} catch (final IllegalStateException e) {
 			// ignore
 			// TODO consider logging this ;)
+			// fallback to console
+			ConsoleLogger.print(logEvent);
 			return;
 		}
 	}
