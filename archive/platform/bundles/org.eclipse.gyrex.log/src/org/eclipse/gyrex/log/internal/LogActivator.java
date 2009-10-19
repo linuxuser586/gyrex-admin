@@ -3,11 +3,11 @@ package org.eclipse.gyrex.log.internal;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.equinox.log.ExtendedLogService;
-import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
-import org.eclipse.gyrex.common.services.IServiceProxy;
+import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
-public class LogActivator extends BaseBundleActivator {
+public class LogActivator implements BundleActivator {
 
 	/** SYMBOLIC_NAME */
 	public static final String SYMBOLIC_NAME = "org.eclipse.gyrex.log";
@@ -22,36 +22,49 @@ public class LogActivator extends BaseBundleActivator {
 		return logActivator;
 	}
 
-	private final AtomicReference<IServiceProxy<ExtendedLogService>> extendedLogServiceRef = new AtomicReference<IServiceProxy<ExtendedLogService>>();
-
-	/**
-	 * Creates a new instance.
-	 */
-	public LogActivator() {
-		super(SYMBOLIC_NAME);
-	}
-
-	@Override
-	protected void doStart(final BundleContext context) throws Exception {
-		instanceRef.set(this);
-		extendedLogServiceRef.set(getServiceHelper().trackService(ExtendedLogService.class));
-
-		final LogReaderServiceTracker logReaderServiceTracker = new LogReaderServiceTracker(context);
-		logReaderServiceTracker.open();
-		addShutdownParticipant(logReaderServiceTracker);
-	}
-
-	@Override
-	protected void doStop(final BundleContext context) throws Exception {
-		instanceRef.set(null);
-		extendedLogServiceRef.set(null);
-	}
+	private final AtomicReference<ServiceTracker> extendedLogServiceTrackerRef = new AtomicReference<ServiceTracker>();
+	private final AtomicReference<LogReaderServiceTracker> logReaderServiceTrackerRef = new AtomicReference<LogReaderServiceTracker>();
 
 	public ExtendedLogService getLogService() {
-		final IServiceProxy<ExtendedLogService> serviceProxy = extendedLogServiceRef.get();
-		if (null != serviceProxy) {
-			return serviceProxy.getService();
+		final ServiceTracker extendedLogServiceTracker = extendedLogServiceTrackerRef.get();
+		if (null != extendedLogServiceTracker) {
+			return (ExtendedLogService) extendedLogServiceTracker.getService();
 		}
 		throw new IllegalStateException("The log system is inactive.");
+	}
+
+	@Override
+	public void start(final BundleContext context) throws Exception {
+		instanceRef.set(this);
+
+		// track ExtendedLogService
+		extendedLogServiceTrackerRef.compareAndSet(null, new ServiceTracker(context, ExtendedLogService.class.getName(), null));
+		final ServiceTracker extendedLogServiceTracker = extendedLogServiceTrackerRef.get();
+		if (null != extendedLogServiceTracker) {
+			extendedLogServiceTracker.open();
+		}
+
+		// track ExtendedLogReaderService
+		logReaderServiceTrackerRef.compareAndSet(null, new LogReaderServiceTracker(context));
+		final LogReaderServiceTracker logReaderServiceTracker = logReaderServiceTrackerRef.get();
+		if (null != logReaderServiceTracker) {
+			logReaderServiceTracker.open();
+		}
+	}
+
+	@Override
+	public void stop(final BundleContext context) throws Exception {
+		instanceRef.set(null);
+
+		final ServiceTracker extendedLogServiceTracker = extendedLogServiceTrackerRef.getAndSet(null);
+		if (null != extendedLogServiceTracker) {
+			extendedLogServiceTracker.close();
+		}
+
+		final LogReaderServiceTracker logReaderServiceTracker = logReaderServiceTrackerRef.getAndSet(null);
+		if (null != logReaderServiceTracker) {
+			logReaderServiceTracker.close();
+		}
+
 	}
 }

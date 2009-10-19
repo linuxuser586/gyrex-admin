@@ -14,7 +14,6 @@ package org.eclipse.gyrex.log.internal;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.equinox.log.ExtendedLogReaderService;
-import org.eclipse.gyrex.common.lifecycle.IShutdownParticipant;
 import org.eclipse.gyrex.log.internal.firephp.FirePHPLogger;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
@@ -23,7 +22,7 @@ import org.osgi.util.tracker.ServiceTracker;
 /**
  *
  */
-public class LogReaderServiceTracker extends ServiceTracker implements IShutdownParticipant {
+public class LogReaderServiceTracker extends ServiceTracker {
 
 	private final AtomicInteger firePhpRefCount = new AtomicInteger();
 	private FirePHPLogger firePHPLogger;
@@ -38,9 +37,6 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 		super(context, ExtendedLogReaderService.class.getName(), null);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTracker#addingService(org.osgi.framework.ServiceReference)
-	 */
 	@Override
 	public Object addingService(final ServiceReference reference) {
 		// get service
@@ -59,9 +55,6 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 		return logReaderService;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTracker#removedService(org.osgi.framework.ServiceReference, java.lang.Object)
-	 */
 	@Override
 	public void removedService(final ServiceReference reference, final Object service) {
 		final ExtendedLogReaderService logReaderService = (ExtendedLogReaderService) service;
@@ -75,13 +68,5 @@ public class LogReaderServiceTracker extends ServiceTracker implements IShutdown
 
 		// unget service
 		super.removedService(reference, service);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.common.lifecycle.IShutdownParticipant#shutdown()
-	 */
-	@Override
-	public void shutdown() throws Exception {
-		close();
 	}
 }
