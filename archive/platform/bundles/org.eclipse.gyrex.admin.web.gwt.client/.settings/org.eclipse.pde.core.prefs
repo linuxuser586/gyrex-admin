@@ -1,4 +1,5 @@
-#Thu Mar 06 14:10:45 CET 2008
+#Tue Oct 20 15:03:25 CEST 2009
 eclipse.preferences.version=1
 pluginProject.extensions=false
 resolve.requirebundle=false
+selfhosting.binExcludes=/org.eclipse.gyrex.admin.web.gwt.client/bin-client-only
