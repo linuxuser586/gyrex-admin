@@ -21,4 +21,5 @@ Export-Package: org.eclipse.gyrex.configuration;uses:="org.eclipse.core.runtime,
  org.eclipse.gyrex.configuration.internal.holders;x-friends:="org.eclipse.gyrex.configuration.test,org.eclipse.gyrex.configuration.impl",
  org.eclipse.gyrex.configuration.preferences,
  org.eclipse.gyrex.configuration.service;uses:="org.eclipse.gyrex.context"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
