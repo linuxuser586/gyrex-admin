@@ -55,19 +55,33 @@ class GyrexSlf4jLogger implements LocationAwareLogger, Serializable {
 
 	private static StackTraceElement findCallerStackInCurrentThreadStackTrace(final String stopAfterFqcn) {
 		final StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		StackTraceElement potentialCaller = null;
+		boolean stopClassFound = false;
 		for (int i = 0; i < stackTrace.length; i++) {
 			final StackTraceElement stackTraceElement = stackTrace[i];
 			final String className = stackTraceElement.getClassName();
-			if (className.equals(stopAfterFqcn)) {
-				// look ahead
-				if ((i + 1 < stackTrace.length) && !stopAfterFqcn.equals(stackTrace[i + 1].getClassName())) {
-					return stackTrace[i + 1];
-				}
+			if (stopClassFound && (null == potentialCaller)) {
+				potentialCaller = stackTraceElement;
 			}
+			if (shouldSkip(className)) {
+				potentialCaller = null;
+			}
+			if (className.equals(stopAfterFqcn)) {
+				stopClassFound = true;
+			}
+			//			// look ahead
+			//			if ((i + 1 < stackTrace.length) && !stopAfterFqcn.equals(stackTrace[i + 1].getClassName())) {
+			//				potentialCaller = stackTrace[i + 1];
+			//			}
+
 		}
 
 		// unable to find
-		return null;
+		return potentialCaller;
+	}
+
+	private static boolean shouldSkip(final String className) {
+		return className.startsWith("sun.reflect.") || (className.toLowerCase().indexOf("slf4j") != -1) || className.startsWith("org.mortbay.log.");
 	}
 
 	private static LogEventLevel toLogLevel(final int level) {
