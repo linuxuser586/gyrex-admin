@@ -33,6 +33,10 @@ import org.slf4j.Logger;
  */
 class GyrexSlf4jLoggerFactory implements ILoggerFactory {
 
+	/**
+	 * A job that cleans up unused logger references (due to objects and class
+	 * objects
+	 */
 	private final class CleanupJob extends Job {
 
 		/**

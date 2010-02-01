@@ -27,7 +27,7 @@ public class StaticLoggerBinder implements LoggerFactoryBinder {
 	 * requirements by SLF4J API.
 	 * </p>
 	 */
-	public static String REQUESTED_API_VERSION = "1.5.6";
+	public static String REQUESTED_API_VERSION = "1.5.10";
 
 	/** the singleton instance */
 	private static StaticLoggerBinder instance;
