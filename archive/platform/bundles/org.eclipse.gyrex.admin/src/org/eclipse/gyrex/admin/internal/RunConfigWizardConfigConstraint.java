@@ -32,7 +32,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 	static final String PREF_KEY_CONFIG_WIZARD_STEPS_OK = "configWizard.steps.ok";
 
 	public static void addStepToExecutedList(final String stepId) {
-		final IEclipsePreferences adminPref = new PlatformScope().getNode(AdminActivator.PLUGIN_ID);
+		final IEclipsePreferences adminPref = new PlatformScope().getNode(AdminActivator.SYMBOLIC_NAME);
 		final String stepsExecutedOk = adminPref.get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
 		if ((null == stepsExecutedOk) || (stepsExecutedOk.trim().length() == 0)) {
 			adminPref.put(PREF_KEY_CONFIG_WIZARD_STEPS_OK, stepId);
@@ -47,7 +47,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 	}
 
 	public static void removeStepFromExecutedList(final String stepId) {
-		final IEclipsePreferences adminPref = new PlatformScope().getNode(AdminActivator.PLUGIN_ID);
+		final IEclipsePreferences adminPref = new PlatformScope().getNode(AdminActivator.SYMBOLIC_NAME);
 		String stepsExecutedOk = adminPref.get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
 		if ((null == stepsExecutedOk) || (stepsExecutedOk.trim().length() == 0)) {
 			return;
@@ -87,7 +87,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 	 */
 	public static boolean shouldBringUpSetupWizard() throws IllegalStateException {
 		try {
-			final String stepsExecutedOk = new PlatformScope().getNode(AdminActivator.PLUGIN_ID).get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
+			final String stepsExecutedOk = new PlatformScope().getNode(AdminActivator.SYMBOLIC_NAME).get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
 			if (null == stepsExecutedOk) {
 				return true; // nothing executed yet
 			}
@@ -119,7 +119,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 		// now let's check if we need to bring up the wizard
 		final boolean shouldBringUpWizard = RunConfigWizardConfigConstraint.shouldBringUpSetupWizard();
 		if (shouldBringUpWizard) {
-			return new Status(IStatus.INFO, AdminActivator.PLUGIN_ID, "Please run the configuration wizard.");
+			return new Status(IStatus.INFO, AdminActivator.SYMBOLIC_NAME, "Please run the configuration wizard.");
 		}
 		return Status.OK_STATUS;
 	}

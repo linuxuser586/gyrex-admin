@@ -67,7 +67,7 @@ public class FanShopActivator extends BaseBundleActivator {
 		instance.set(this);
 
 		// register fan shop provider
-		getServiceHelper().registerService(ApplicationProvider.class.getName(), new FanShopApplicationProvider(), "Gyrex.net", "Application provider for the extensible Fan Shop application.", null, null);
+		getServiceHelper().registerService(ApplicationProvider.class.getName(), new FanShopApplicationProvider(), "Eclipse Gyrex", "Application provider for the extensible Fan Shop application.", null, null);
 
 		// create default environment in dev mode
 		if (PlatformConfiguration.isOperatingInDevelopmentMode()) {
@@ -141,7 +141,7 @@ public class FanShopActivator extends BaseBundleActivator {
 			if (fanshopServiceRegistrations.containsKey(application)) {
 				return;
 			}
-			final ServiceRegistration serviceRegistration = getServiceHelper().registerService(IFanShopService.class.getName(), application, "Gyrex.net", "Fan Shop Service for extending Fan Shop applications", null, null);
+			final ServiceRegistration serviceRegistration = getServiceHelper().registerService(IFanShopService.class.getName(), application, "Eclipse Gyrex", "Fan Shop Service for extending Fan Shop applications", null, null);
 			fanshopServiceRegistrations.put(application, serviceRegistration);
 		}
 	}

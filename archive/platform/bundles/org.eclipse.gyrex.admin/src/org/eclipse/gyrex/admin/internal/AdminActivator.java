@@ -18,11 +18,9 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicReference;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.equinox.http.jetty.JettyConfigurator;
 import org.eclipse.equinox.http.jetty.JettyConstants;
+
 import org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardAdapterFactory;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
@@ -39,7 +37,12 @@ import org.eclipse.gyrex.common.services.IServiceProxy;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
 import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.service.datalocation.Location;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
@@ -47,7 +50,7 @@ import org.osgi.framework.ServiceRegistration;
 import org.osgi.util.tracker.ServiceTracker;
 
 /**
- * ConfigurationActivator for the Admin plug-in
+ * Bundle activator for the Admin plug-in
  */
 public class AdminActivator extends BaseBundleActivator {
 
@@ -55,23 +58,23 @@ public class AdminActivator extends BaseBundleActivator {
 		@Override
 		public IStatus evaluateConfiguration(final IProgressMonitor progressMonitor) {
 			if (AdminActivator.getInstance().mustRestartPlatform) {
-				return new Status(IStatus.ERROR, AdminActivator.PLUGIN_ID, "In order to complete the initial configuration the platform must be restarted.");
+				return new Status(IStatus.ERROR, AdminActivator.SYMBOLIC_NAME, "In order to complete the initial configuration the platform must be restarted.");
 			}
 			return Status.OK_STATUS;
 		}
 	}
 
 	/** the plug-in id */
-	public static final String PLUGIN_ID = "org.eclipse.gyrex.admin";
+	public static final String SYMBOLIC_NAME = "org.eclipse.gyrex.admin";
 
 	/** the default port for the admin server */
 	public static final int DEFAULT_ADMIN_PORT = 3110;
 
 	/** server type for the admin server */
-	public static final String TYPE_ADMIN = PLUGIN_ID + ".http";
+	public static final String TYPE_ADMIN = SYMBOLIC_NAME + ".http";
 
 	/** the service vendor */
-	private static final String DEFAULT_SERVICE_VENDOR = "Gyrex.net";
+	private static final String DEFAULT_SERVICE_VENDOR = "Eclipse Gyrex";
 
 	/** the service description */
 	private static final String DEFAULT_SERVICE_DESCRIPTION_WIDGET_SERVICE = "Gyrex Admin Widget Service";
@@ -129,7 +132,7 @@ public class AdminActivator extends BaseBundleActivator {
 	 * Creates a new instance.
 	 */
 	public AdminActivator() {
-		super(PLUGIN_ID);
+		super(SYMBOLIC_NAME);
 	}
 
 	/**

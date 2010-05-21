@@ -37,7 +37,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	 */
 	public static final String FILTER_ADMIN_GWT_SERVICE = "(&(objectClass=" + GwtService.class.getName() + ")(http.service.other.info=" + AdminActivator.TYPE_ADMIN + "))"; // use class references here to trigger lazy activation
 
-	/** PLUGIN_ID */
+	/** SYMBOLIC_NAME */
 	private static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.gwt.client";
 
 	/** the shared instance */

@@ -104,7 +104,7 @@ public class GwtServiceRegistry implements ServiceFactory {
 		// properties
 		final Dictionary<String, Object> properties = new Hashtable<String, Object>();
 		properties.put(Constants.SERVICE_PID, "org.eclipse.gyrex.gwt.service." + reference.getProperty(Constants.SERVICE_ID));
-		properties.put(Constants.SERVICE_VENDOR, "Gyrex.net");
+		properties.put(Constants.SERVICE_VENDOR, "Eclipse Gyrex");
 		properties.put(Constants.SERVICE_DESCRIPTION, "Gyrex GWT Service for registering GWT modules and remote services");
 		final String[] httpServicePropertyKeys = reference.getPropertyKeys();
 		for (final String key : httpServicePropertyKeys) {
