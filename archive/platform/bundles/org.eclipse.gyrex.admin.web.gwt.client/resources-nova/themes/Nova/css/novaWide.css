@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+#novaWrapper {
+	min-height: 100%; /* gives layout 100% height */
+	width: 98%; /* centered div must be given a width */
+	margin: 0 auto; /* centers #wrapper */
+}
+#footer {
+	height: 27px;
+	width: 100%; /* centered div must be given a width */
+	margin: 1px auto; /* -80px sucks it back in & auto centers it */
+}
+#novaContent {
+	min-height: 100%; /* gives layout 100% height */
+	border-right:1px solid #D9D9D9;
+	border-left:1px solid #D9D9D9;
+	padding:20px 10px;
+}
+#novaContent.faux
+{
+	background: none;
+	background-color: #FFF;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+#header {
+	background:transparent url('/eclipse.org-common/themes/Nova/images/headerWide.png') top left repeat-x;
+	height:47px;
+	width:100%;
+	margin:0px;
+	padding:0px;
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-bottomright:0;
+	-moz-border-radius-topleft:14px;
+	-moz-border-radius-topright:14px;	
+}
+#footer {
+ 	background-color: #B5B5AC;
+	-moz-border-radius-bottomleft:14px;
+	-moz-border-radius-bottomright:14px;
+	-moz-border-radius-topleft:0;
+	-moz-border-radius-topright:0;
+ 	padding-top:15px;
+}
+body {
+	text-align: left;
+}
+#clearFooter {
+	clear:both;
+	height:0;
+}
+#search {
+	visibility: hidden;
+}

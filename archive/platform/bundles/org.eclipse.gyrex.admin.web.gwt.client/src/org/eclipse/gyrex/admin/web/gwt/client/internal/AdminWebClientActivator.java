@@ -1,11 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2010 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -18,24 +18,23 @@ import org.eclipse.gyrex.common.logging.LogImportance;
 import org.eclipse.gyrex.common.logging.LogSource;
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
 import org.eclipse.gyrex.gwt.service.GwtService;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
 public class AdminWebClientActivator extends BaseBundleActivator implements ServiceTrackerCustomizer {
 
-	/** ADMIN */
-	private static final String ADMIN = "/admin/";
+	static final String ADMIN_APP_BASE = "/admin/";
+	static final String ALIAS_ADMIN = "/admin";
+	static final String ALIAS_ECLIPSE_ORG_COMMON = "/eclipse.org-common";
 
-	/**
-	 * filter string for the admin http service (value
-	 * 
-	 * <code>(&(objectClass=org.eclipse.gyrex.gwt.service.GwtService)(http.service.other.info=org.eclipse.gyrex.admin.http))</code>
-	 * )
-	 */
 	public static final String FILTER_ADMIN_GWT_SERVICE = "(&(objectClass=" + GwtService.class.getName() + ")(http.service.other.info=" + AdminActivator.TYPE_ADMIN + "))"; // use class references here to trigger lazy activation
+	public static final String FILTER_ADMIN_HTTP_SERVICE = "(&(objectClass=" + HttpService.class.getName() + ")(other.info=" + AdminActivator.TYPE_ADMIN + "))"; // use class references here to trigger lazy activation
+	public static final String FILTER_ADMIN_HTTP_OR_GWT_SERVICE = "(|" + FILTER_ADMIN_HTTP_SERVICE + FILTER_ADMIN_GWT_SERVICE + ")";
 
 	/** SYMBOLIC_NAME */
 	private static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.gwt.client";
@@ -55,13 +54,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		return sharedInstance;
 	}
 
-	private ServiceTracker gwtServiceTracker;
-
-	/** the default alias */
-	static final String ADMIN_ALIAS = "/admin";
-
-	/** the backoffice resource root */
-	static final String ADMIN_RESOURCE_ROOT = "/resources";
+	private ServiceTracker serviceTracker;
 
 	/**
 	 * Creates a new instance.
@@ -80,7 +73,14 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;
 			try {
-				gwtService.registerModule(ADMIN_ALIAS, IAdminClientConstants.MODULE_ID, ADMIN_RESOURCE_ROOT, "AdminClient.html", null);
+				gwtService.registerModule(ALIAS_ADMIN, IAdminClientConstants.MODULE_ID, "/resources", "AdminClient.html", null);
+			} catch (final NamespaceException e) {
+				getLog().log("An error occurred while registering the admin client resources.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
+			}
+		} else if (service instanceof HttpService) {
+			final HttpService httpService = (HttpService) service;
+			try {
+				httpService.registerResources(ALIAS_ECLIPSE_ORG_COMMON, "/resources-nova", null);
 			} catch (final NamespaceException e) {
 				getLog().log("An error occurred while registering the admin client resources.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
 			}
@@ -96,13 +96,13 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		sharedInstance = this;
 
 		// open the tracker
-		if (gwtServiceTracker == null) {
-			gwtServiceTracker = new ServiceTracker(context, context.createFilter(FILTER_ADMIN_GWT_SERVICE), this);
-			gwtServiceTracker.open();
+		if (serviceTracker == null) {
+			serviceTracker = new ServiceTracker(context, context.createFilter(FILTER_ADMIN_HTTP_OR_GWT_SERVICE), this);
+			serviceTracker.open();
 		}
 
 		// set the web base
-		AdminActivator.getInstance().addAdminApplicationBase(ADMIN);
+		AdminActivator.getInstance().addAdminApplicationBase(ADMIN_APP_BASE);
 	}
 
 	/* (non-Javadoc)
@@ -111,12 +111,12 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
 		// unset the web base
-		AdminActivator.getInstance().removeAdminApplicationBase(ADMIN);
+		AdminActivator.getInstance().removeAdminApplicationBase(ADMIN_APP_BASE);
 
 		// stop the service tracker
-		if (null != gwtServiceTracker) {
-			gwtServiceTracker.close();
-			gwtServiceTracker = null;
+		if (null != serviceTracker) {
+			serviceTracker.close();
+			serviceTracker = null;
 		}
 
 		sharedInstance = null;
@@ -135,7 +135,10 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 	public void removedService(final ServiceReference reference, final Object service) {
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;
-			gwtService.unregister(ADMIN_ALIAS);
+			gwtService.unregister(ALIAS_ADMIN);
+		} else if (service instanceof HttpService) {
+			final HttpService httpService = (HttpService) service;
+			httpService.unregister(ALIAS_ECLIPSE_ORG_COMMON);
 		}
 
 		getBundle().getBundleContext().ungetService(reference);

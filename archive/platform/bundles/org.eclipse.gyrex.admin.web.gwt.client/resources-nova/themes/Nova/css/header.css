@@ -1,5 +1,13 @@
 #header {
-	background:transparent url('../images/header.png') top left no-repeat;
+	background:transparent url('/eclipse.org-common/themes/Nova/images/header.png') top left no-repeat;
+	height:47px;
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+#headerAlt {
+	background:transparent url('/eclipse.org-common/themes/Nova/images/headerAlt.png') top left no-repeat;
 	height:47px;
 	width:100%;
 	margin:0px;
@@ -16,7 +24,6 @@
 }
 
 #menu ul {
-	height:47px;
 	margin-left:20px;
 	margin-top:10px;
 	margin-bottom:-5px;
@@ -24,7 +31,6 @@
 }
 
 #menu ul li {
-	height:100%;
 	font-size:13px;
 	display:block;
 	float:left;
@@ -62,7 +68,7 @@
 }
 
 #otherSites{
-	background:transparent url('../images/siteSelector.png') no-repeat;
+	background:transparent url('/eclipse.org-common/themes/Nova/images/siteSelector.png') no-repeat;
 	display:block;
 	clear:none;
 	height:78px;
@@ -93,6 +99,8 @@
 	width:52px;
 	float:left;
 	display:block;
+	margin:0;
+	padding:0;
 }
 
 #sites ul li a {
@@ -132,5 +140,5 @@
  	background:#333;
  	border:1px solid #666;
  	-moz-border-radius:5px;
- 		
+ 	-webkit-border-radius:5px; 		
 }
