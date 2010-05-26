@@ -1,26 +1,26 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * This file uses content originating from Google Web Toolkit.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *     Google Inc. - code from RemoteServiceServlet
  *******************************************************************************/
 /*
  * Copyright 2008 Google Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -31,10 +31,8 @@ package org.eclipse.gyrex.gwt.service.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.MessageFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
@@ -42,17 +40,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
+
 import org.osgi.framework.Bundle;
 
-import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
-import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.SerializationPolicy;
 import com.google.gwt.user.server.rpc.SerializationPolicyLoader;
-import com.google.gwt.user.server.rpc.SerializationPolicyProvider;
 
 public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 
@@ -188,25 +184,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		this.requestResponseAdapter = requestResponseAdapter;
 	}
 
-	private RPCRequest decodeRequest(final String payload) {
-		// we use reflection (the patch for GWT issue 1888 may eventually be available in 1.6)
-		try {
-			final Method method = RPC.class.getMethod("decodeRequest", String.class, Class.class, SerializationPolicyProvider.class, ClassLoader.class);
-			return (RPCRequest) method.invoke(null, payload, remoteService.getClass(), this, remoteServiceClassLoader);
-		} catch (final Exception e) {
-			// ignore, fallback bellow
-		}
-
-		// as a fallback we override the TCCL 
-		final ClassLoader contextFinder = Thread.currentThread().getContextClassLoader();
-		try {
-			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
-			return RPC.decodeRequest(payload, remoteService.getClass(), this);
-		} finally {
-			Thread.currentThread().setContextClassLoader(contextFinder);
-		}
-	}
-
 	@Override
 	protected SerializationPolicy doGetSerializationPolicy(final HttpServletRequest request, final String moduleBaseURL, final String strongName) {
 		// the serialization policy file
@@ -224,7 +201,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 
 					// read policy
 					final List<ClassNotFoundException> exceptions = new ArrayList<ClassNotFoundException>();
-					final SerializationPolicy policy = loadSerializationPolicy(is, exceptions);
+					final SerializationPolicy policy = SerializationPolicyLoader.loadFromStream(is, exceptions);
 
 					// return policy if there were no errors
 					if (exceptions.isEmpty() && (null != policy)) {
@@ -233,7 +210,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 
 					// this may indicate a deployment problem, i.e. some unsatisfied version dependencies.
 					for (final ClassNotFoundException classNotFoundException : exceptions) {
-						getServletContext().log(MessageFormat.format("Could not load class \"{0}\" using bundle \"{1}\"", classNotFoundException.getMessage(), gwtService.getBundle().getSymbolicName()));
+						getServletContext().log(MessageFormat.format("Could not load class \"{0}\" using bundle \"{1}\".", classNotFoundException.getMessage(), gwtService.getBundle().getSymbolicName()));
 					}
 				} catch (final Exception e) {
 					getServletContext().log(MessageFormat.format("Error while reading serialization policy for module \"{0}\".", moduleId), e);
@@ -256,44 +233,6 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		return RPC.getDefaultSerializationPolicy();
 	}
 
-	private String invokeAndEncodeResponse(final RPCRequest rpcRequest) throws SerializationException {
-		// we use reflection (the patch for GWT issue 1888 may eventually be available in 1.6)
-		try {
-			final Method method = RPC.class.getDeclaredMethod("invokeAndEncodeResponse", Method.class, Object[].class, SerializationPolicy.class, ClassLoader.class);
-			return (String) method.invoke(null, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy(), remoteServiceClassLoader);
-		} catch (final Exception e) {
-			// ignore, fallback bellow
-		}
-
-		// override the TCCL 
-		final ClassLoader contextFinder = Thread.currentThread().getContextClassLoader();
-		try {
-			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
-			return RPC.invokeAndEncodeResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy());
-		} finally {
-			Thread.currentThread().setContextClassLoader(contextFinder);
-		}
-	}
-
-	private SerializationPolicy loadSerializationPolicy(final InputStream is, final List<ClassNotFoundException> exceptions) throws IOException, ParseException {
-		// we use reflection (the patch for GWT issue 1888 may eventually be available in 1.6)
-		try {
-			final Method method = SerializationPolicyLoader.class.getDeclaredMethod("loadFromStream", InputStream.class, List.class, ClassLoader.class);
-			return (SerializationPolicy) method.invoke(null, is, exceptions, remoteServiceClassLoader);
-		} catch (final Exception e) {
-			// ignore, fallback bellow
-		}
-
-		// as a fallback we override the TCCL 
-		final ClassLoader contextFinder = Thread.currentThread().getContextClassLoader();
-		try {
-			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
-			return SerializationPolicyLoader.loadFromStream(is, exceptions);
-		} finally {
-			Thread.currentThread().setContextClassLoader(contextFinder);
-		}
-	}
-
 	@Override
 	protected void onAfterResponseSerialized(final String serializedResponse) {
 		if (null != requestResponseAdapter) {
@@ -310,17 +249,24 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 
 	@Override
 	public String processCall(final String payload) throws SerializationException {
+		// we override the TCCL to ensure proper GWT (de-)serialization
+		final ClassLoader oldTccl = Thread.currentThread().getContextClassLoader();
 		try {
+			// allow listeners to see request and response
 			if (null != requestResponseAdapter) {
 				requestResponseAdapter.onBeforeProcessCall(getThreadLocalRequest(), getThreadLocalResponse());
 			}
-			final RPCRequest rpcRequest = decodeRequest(payload);
-			return invokeAndEncodeResponse(rpcRequest);
-		} catch (final IncompatibleRemoteServiceException ex) {
-			// TODO consider logging this
-			//getServletContext().log("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);
-			return RPC.encodeResponseForFailure(null, ex);
+
+			// set custom TCCL
+			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
+
+			// process call using GWT implementation
+			return super.processCall(payload);
 		} finally {
+			// restore TCCL
+			Thread.currentThread().setContextClassLoader(oldTccl);
+
+			// allow listeners to see request and response
 			if (null != requestResponseAdapter) {
 				requestResponseAdapter.onAfterProcessCall(getThreadLocalRequest(), getThreadLocalResponse());
 			}
