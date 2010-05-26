@@ -1,17 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.admin.web.gwt.internal;
 
 import java.security.Principal;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,12 +31,11 @@ import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.gwt.server.WidgetResourceServlet;
 import org.eclipse.gyrex.toolkit.gwt.server.WidgetService;
 import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceAdvisor;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
-
-import com.ibm.icu.util.ULocale;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -48,13 +48,8 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 		}
 
 		@Override
-		protected ULocale getDefaultLocale() {
-			final String acceptLanguage = getThreadLocalRequest().getHeader("Accept-Language");
-			if ((null != acceptLanguage) && (acceptLanguage.length() > 0)) {
-				return ULocale.acceptLanguage(acceptLanguage, null);
-			}
-
-			return super.getDefaultLocale();
+		protected Locale getDefaultLocale() {
+			return getThreadLocalRequest().getLocale();
 		}
 
 		private HttpServletRequest getThreadLocalRequest() {
