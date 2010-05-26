@@ -1,20 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.runtime;
 
-
-import com.ibm.icu.util.ULocale;
-
 import java.security.Principal;
+import java.util.Locale;
 import java.util.Map;
 
 import org.eclipse.gyrex.toolkit.CWT;
@@ -28,7 +26,7 @@ import org.eclipse.gyrex.toolkit.CWT;
 public class BaseWidgetEnvironment implements IWidgetEnvironment {
 
 	private final Principal userPrincipal;
-	private final ULocale locale;
+	private final Locale locale;
 	private final Map<String, Object> attributesMap;
 
 	/**
@@ -41,15 +39,12 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 	 * @param attributesMap
 	 *            the map of named attributes
 	 */
-	public BaseWidgetEnvironment(final ULocale locale, final Principal userPrincipal, final Map<String, Object> attributesMap) {
+	public BaseWidgetEnvironment(final Locale locale, final Principal userPrincipal, final Map<String, Object> attributesMap) {
 		this.locale = locale;
 		this.userPrincipal = userPrincipal;
 		this.attributesMap = attributesMap;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment#getAttribute(java.lang.String)
-	 */
 	@Override
 	public Object getAttribute(final String name) {
 		if (null == name) {
@@ -64,17 +59,11 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 		return attributesMap.get(name);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment#getLocale()
-	 */
 	@Override
-	public ULocale getLocale() {
+	public Locale getLocale() {
 		return locale;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment#getAuthenticationToken()
-	 */
 	@Override
 	public Principal getUserPrincipal() {
 		return userPrincipal;

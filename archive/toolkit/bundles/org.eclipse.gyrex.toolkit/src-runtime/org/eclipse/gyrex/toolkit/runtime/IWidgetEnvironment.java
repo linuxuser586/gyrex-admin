@@ -1,19 +1,18 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.runtime;
 
-import com.ibm.icu.util.ULocale;
-
 import java.security.Principal;
+import java.util.Locale;
 
 /**
  * The widget environment specifies details about the environment where the
@@ -49,7 +48,7 @@ public interface IWidgetEnvironment {
 	 * @return the locale or <code>null</code> if non was provided by the target
 	 *         system
 	 */
-	ULocale getLocale();
+	Locale getLocale();
 
 	/**
 	 * Returns the {@link Principal principal} of the authenticated user in the
