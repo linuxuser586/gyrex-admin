@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -13,8 +13,8 @@ package org.eclipse.gyrex.toolkit.gwt.server;
 
 import java.security.Principal;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Map;
-
 
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.BaseWidgetEnvironment;
@@ -22,7 +22,7 @@ import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 
-import com.ibm.icu.util.ULocale;
+import org.apache.commons.lang.LocaleUtils;
 
 /**
  * Public base class for configuring a {@link WidgetService widget service}.
@@ -83,13 +83,13 @@ public class WidgetServiceAdvisor {
 	 * 
 	 * @return the default locale (may not be <code>null</code>)
 	 */
-	protected ULocale getDefaultLocale() {
+	protected Locale getDefaultLocale() {
 		//		final String acceptLanguage = getThreadLocalRequest().getHeader("Accept-Language");
 		//		if ((null != acceptLanguage) && (acceptLanguage.length() > 0)) {
 		//			return ULocale.acceptLanguage(acceptLanguage, null);
 		//		}
 
-		return ULocale.getDefault();
+		return Locale.getDefault();
 	}
 
 	/**
@@ -105,9 +105,9 @@ public class WidgetServiceAdvisor {
 	 * @return a locale (may not be <code>null</code>)
 	 * @see #getDefaultLocale()
 	 */
-	protected ULocale getLocale(final WidgetClientEnvironment environment) {
+	protected Locale getLocale(final WidgetClientEnvironment environment) {
 		if ((null != environment) && (null != environment.getLocaleId())) {
-			return ULocale.createCanonical(environment.getLocaleId());
+			return LocaleUtils.toLocale(environment.getLocaleId());
 		}
 
 		return getDefaultLocale();
@@ -161,7 +161,7 @@ public class WidgetServiceAdvisor {
 	 * @return a widget environment
 	 */
 	public IWidgetEnvironment getWidgetEnvironment(final WidgetClientEnvironment environment) {
-		final ULocale locale = getLocale(environment);
+		final Locale locale = getLocale(environment);
 		final Principal userPrincipal = getUserPrincipal(environment);
 		final Map<String, Object> attributesMap = getAttributesMap(environment);
 		return new BaseWidgetEnvironment(locale, userPrincipal, attributesMap);
