@@ -11,7 +11,12 @@ Export-Package: org.eclipse.gyrex.toolkit,
  org.eclipse.gyrex.toolkit.content,
  org.eclipse.gyrex.toolkit.layout,
  org.eclipse.gyrex.toolkit.resources,
+ org.eclipse.gyrex.toolkit.runtime,
+ org.eclipse.gyrex.toolkit.runtime.commands,
+ org.eclipse.gyrex.toolkit.runtime.internal.fixme;x-internal:=true,
+ org.eclipse.gyrex.toolkit.runtime.lookup,
  org.eclipse.gyrex.toolkit.widgets;uses:="org.eclipse.gyrex.toolkit.commands,org.eclipse.gyrex.toolkit.layout",
  org.eclipse.gyrex.toolkit.widgets.styledtext;uses:="org.eclipse.gyrex.toolkit.resources",
  org.eclipse.gyrex.toolkit.wizard;uses:="org.eclipse.gyrex.toolkit.commands,org.eclipse.gyrex.toolkit.widgets,org.eclipse.gyrex.toolkit.layout"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.equinox.common;bundle-version="3.6.0"

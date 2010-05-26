@@ -31,7 +31,6 @@ Export-Package: org.eclipse.gyrex.toolkit.gwt.server;
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;x-internal:=true,
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.wizard;x-internal:=true
 Require-Bundle: org.eclipse.gyrex.toolkit;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.gyrex.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.toolkit.gwt.client;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.gwt.common;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.common;bundle-version="1.0.0"

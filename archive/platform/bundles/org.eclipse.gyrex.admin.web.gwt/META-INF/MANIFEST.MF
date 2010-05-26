@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.gyrex.admin.web.gwt.client;bundle-version="[1.0.0,2.
  org.eclipse.gyrex.configuration;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.common;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.toolkit;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.gyrex.toolkit.runtime;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.toolkit.gwt.client;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.toolkit.gwt.server;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.gwt.service;bundle-version="[1.0.0,2.0.0)"
