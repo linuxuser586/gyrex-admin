@@ -43,9 +43,11 @@ import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
 
 import org.osgi.framework.Bundle;
 
+import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.SerializationException;
 import com.google.gwt.user.server.rpc.RPC;
+import com.google.gwt.user.server.rpc.RPCRequest;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.gwt.user.server.rpc.SerializationPolicy;
 import com.google.gwt.user.server.rpc.SerializationPolicyLoader;
@@ -260,8 +262,15 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 			// set custom TCCL
 			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
 
-			// process call using GWT implementation
-			return super.processCall(payload);
+			// process call using GWT logic but with our remote service class
+			final RPCRequest rpcRequest = RPC.decodeRequest(payload, remoteService.getClass(), this);
+			onAfterRequestDeserialized(rpcRequest);
+			return RPC.invokeAndEncodeResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy(), rpcRequest.getFlags());
+		} catch (final IncompatibleRemoteServiceException ex) {
+			// this indicated an outdated client or an invalid client (hack attempt?)
+			// TODO we should log this into some metric
+			//log("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);
+			return RPC.encodeResponseForFailure(null, ex);
 		} finally {
 			// restore TCCL
 			Thread.currentThread().setContextClassLoader(oldTccl);
