@@ -1,25 +1,16 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionDelta;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.IExtensionRegistry;
-import org.eclipse.core.runtime.IRegistryChangeEvent;
-import org.eclipse.core.runtime.IRegistryChangeListener;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.common.logging.LogAudience;
@@ -27,10 +18,22 @@ import org.eclipse.gyrex.common.logging.LogImportance;
 import org.eclipse.gyrex.common.logging.LogSource;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionDelta;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IRegistryChangeEvent;
+import org.eclipse.core.runtime.IRegistryChangeListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
+ *
  */
 public class ConfigurationWizardServiceRegistryHelper implements IRegistryChangeListener {
 
@@ -59,6 +62,7 @@ public class ConfigurationWizardServiceRegistryHelper implements IRegistryChange
 				try {
 					step = (ConfigurationWizardStep) stepElement.createExecutableExtension(ATTRIBUTE_CLASS);
 				} catch (final CoreException e) {
+					// just log, but don't contribute any step
 					AdminActivator.getInstance().getLog().log(NLS.bind("Error while instatiating Admin Configuration Wizard step {0} registered by {1}.", stepElement.getAttribute(ATTRIBUTE_CLASS), stepElement.getContributor().getName()), e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
 					return;
 				}
@@ -70,11 +74,11 @@ public class ConfigurationWizardServiceRegistryHelper implements IRegistryChange
 		 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 		 */
 		@Override
-		public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
+		public IStatus wizardFinished(final CommandExecutionEvent finishEvent, final IProgressMonitor monitor) {
 			if (null == step) {
-				return false;
+				return Status.OK_STATUS; // ignore
 			}
-			return step.wizardFinished(finishEvent);
+			return step.wizardFinished(finishEvent, null);
 		}
 	}
 

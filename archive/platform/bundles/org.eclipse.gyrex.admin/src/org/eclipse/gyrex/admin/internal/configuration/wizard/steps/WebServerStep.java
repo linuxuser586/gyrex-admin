@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -14,11 +14,8 @@ package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 import java.io.File;
 import java.net.URL;
 
-import org.apache.commons.io.FileUtils;
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.equinox.http.jetty.JettyConstants;
+
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.preferences.PlatformScope;
@@ -32,6 +29,15 @@ import org.eclipse.gyrex.toolkit.widgets.NumberType;
 import org.eclipse.gyrex.toolkit.widgets.StyledText;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.gyrex.toolkit.wizard.WizardPage;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+
+import org.apache.commons.io.FileUtils;
 
 /**
  * TODO should also configure SSL
@@ -84,7 +90,7 @@ public class WebServerStep extends ConfigurationWizardStep {
 	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 	 */
 	@Override
-	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
+	public IStatus wizardFinished(final CommandExecutionEvent finishEvent, final IProgressMonitor monitor) {
 		try {
 			final IEclipsePreferences preferences = new PlatformScope().getNode("org.eclipse.gyrex.http.jetty");
 
@@ -115,11 +121,10 @@ public class WebServerStep extends ConfigurationWizardStep {
 			}
 		} catch (final Exception e) {
 			// could not save preferences
-			AdminActivator.getInstance().getLog().log("Error while configuring Jetty. " + e.getMessage(), e);
-			return false;
+			return new Status(IStatus.ERROR, AdminActivator.SYMBOLIC_NAME, "Error while configuring Jetty. " + e.getMessage(), e);
 		}
 
-		return true;
+		return Status.OK_STATUS;
 	}
 
 }

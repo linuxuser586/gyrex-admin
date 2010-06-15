@@ -1,26 +1,27 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.Widget;
 
 import org.eclipse.gyrex.gwt.common.status.IStatus;
-import org.eclipse.gyrex.toolkit.gwt.client.ExecuteCommandCallback;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutedEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutionCallback;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content.ContentHelper;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SButton;
 
@@ -31,9 +32,9 @@ public class CWTButton extends CWTDialogField {
 
 	private Button button;
 
-	private final ClickListener clickListener = new ClickListener() {
-		public void onClick(final Widget sender) {
-			if (sender == button) {
+	private final ClickHandler clickHandler = new ClickHandler() {
+		public void onClick(final ClickEvent event) {
+			if (event.getSource() == button) {
 				buttonClicked();
 			}
 		}
@@ -49,23 +50,24 @@ public class CWTButton extends CWTDialogField {
 
 			setEnabled(false);
 			setButtonText("Please wait...");
-			getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new ExecuteCommandCallback() {
+			getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new CommandExecutionCallback() {
 
-				public void onFailure(final WidgetFactoryException caught) {
-					resetButtonText();
-					setEnabled(true);
-				}
-
-				public void onSuccess(final Object result) {
-					final SCommandExecutionResult cmdResult = (SCommandExecutionResult) result;
+				@Override
+				public void onExecuted(final CommandExecutedEvent event) {
 					// if the status is not ok, we don't re-enable the button
-					final IStatus status = null != cmdResult ? cmdResult.status : null;
-					if ((null == status) || status.isOK()) {
+					final IStatus status = event.getStatus();
+					if (status.isOK()) {
 						resetButtonText();
 						setEnabled(true);
 					} else {
-						setButtonText(cmdResult.status.getMessage());
+						setButtonText(status.getMessage());
 					}
+				}
+
+				@Override
+				public void onFailure(final WidgetFactoryException caught) {
+					resetButtonText();
+					setEnabled(true);
 				}
 
 			});
@@ -79,7 +81,7 @@ public class CWTButton extends CWTDialogField {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rep.web.gwt.client.internal.ui.widgets.DialogFieldComposite#renderFieldWidget(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
 	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
 	 */
@@ -95,7 +97,7 @@ public class CWTButton extends CWTDialogField {
 		}
 
 		if (null != sButton.command) {
-			button.addClickListener(clickListener);
+			button.addClickHandler(clickHandler);
 		}
 
 		return button;
@@ -111,7 +113,7 @@ public class CWTButton extends CWTDialogField {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override

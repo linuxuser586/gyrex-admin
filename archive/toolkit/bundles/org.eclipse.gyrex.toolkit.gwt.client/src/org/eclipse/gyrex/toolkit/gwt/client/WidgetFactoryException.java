@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,7 +14,7 @@ package org.eclipse.gyrex.toolkit.gwt.client;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
- * This exception indicates that a widget could not be looked up properly.
+ * Exception used by the GWT {@link WidgetFactory}.
  * <p>
  * An {@link #getErrorCode() error code} is available which should provide more
  * detailed information about the problem.
@@ -37,8 +37,8 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 
 	/**
 	 * error code indicating that the widget factory throw an exception while
-	 * creating the widget (value <code>3</code>); the server log might
-	 * provide more details
+	 * creating the widget (value <code>3</code>); the server log might provide
+	 * more details
 	 */
 	public static final int WIDGET_FACTORY_EXCEPTION = 3;
 
@@ -56,8 +56,7 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 
 	/**
 	 * error code indicating that the widget could not be serialized on the
-	 * server (value <code>6</code>); the server log might provide more
-	 * details
+	 * server (value <code>6</code>); the server log might provide more details
 	 */
 	public static final int WIDGET_SERIALIZATION_FAILED = 6;
 
@@ -89,6 +88,7 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 	 * @deprecated This API is required by GWT serialization. It is not intended
 	 *             for regular usage.
 	 */
+	@Deprecated
 	public WidgetFactoryException() {
 		super();
 	}
@@ -98,7 +98,7 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 	 * 
 	 * @param code
 	 */
-	public WidgetFactoryException(int code) {
+	public WidgetFactoryException(final int code) {
 		this(code, null, null);
 	}
 
@@ -108,7 +108,7 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 	 * @param code
 	 * @param message
 	 */
-	public WidgetFactoryException(int code, String message) {
+	public WidgetFactoryException(final int code, final String message) {
 		this(code, message, null);
 	}
 
@@ -119,9 +119,9 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 	 * @param message
 	 * @param detail
 	 */
-	public WidgetFactoryException(int code, String message, String detail, Throwable cause) {
+	public WidgetFactoryException(final int code, final String message, final String detail, final Throwable cause) {
 		super(message, cause);
-		this.errorCode = code;
+		errorCode = code;
 		this.message = null != message ? message : "";
 		this.detail = null != detail ? detail : "";
 	}
@@ -132,7 +132,7 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 	 * @param code
 	 * @param cause
 	 */
-	public WidgetFactoryException(int code, String message, Throwable cause) {
+	public WidgetFactoryException(final int code, final String message, final Throwable cause) {
 		this(code, message, message, cause);
 	}
 
@@ -156,18 +156,20 @@ public class WidgetFactoryException extends Exception implements IsSerializable 
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Throwable#getMessage()
 	 */
+	@Override
 	public String getMessage() {
 		return message;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Throwable#toString()
 	 */
+	@Override
 	public String toString() {
 		return super.toString() + "; error code: " + errorCode;
 	}

@@ -1,16 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client;
-
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -22,8 +21,11 @@ import java.util.Map;
 
 import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService;
 import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetServiceAsync;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutedEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutionCallback;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedData;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
@@ -230,8 +232,8 @@ public final class WidgetFactory {
 	 * @param contentSet
 	 * @param executeCommandCallback
 	 */
-	public void executeCommand(final String commandId, final String widgetId, final SContentSet contentSet, final ExecuteCommandCallback executeCommandCallback) {
-		getInternalWidgetService().executeCommand(commandId, widgetId, contentSet, getEnvironment(), new AsyncCallback<SCommandExecutionResult>() {
+	public void executeCommand(final String commandId, final String widgetId, final ISerializedData contentSet, final CommandExecutionCallback executeCommandCallback) {
+		getInternalWidgetService().executeCommand(commandId, widgetId, (SContentSet) contentSet, getEnvironment(), new AsyncCallback<SCommandExecutionResult>() {
 
 			public void onFailure(final Throwable caught) {
 				if (caught instanceof WidgetFactoryException) {
@@ -242,11 +244,37 @@ public final class WidgetFactory {
 			}
 
 			public void onSuccess(final SCommandExecutionResult result) {
-				executeCommandCallback.onSuccess(result);
-				if ((result != null) && (result.actions != null)) {
-					final SAction[] actions = result.actions;
-					for (final SAction action : actions) {
-						getToolkit().getActionHandler().handleAction(action);
+				// we expect a result
+				if (null == result) {
+					executeCommandCallback.onFailure(new WidgetFactoryException(WidgetFactoryException.INTERNAL_ERROR, "missing result from server "));
+					return;
+				}
+
+				// verify it's the command we triggered
+				if (!commandId.equals(result.id)) {
+					executeCommandCallback.onFailure(new WidgetFactoryException(WidgetFactoryException.INTERNAL_ERROR, "received wrong result from server"));
+					return;
+				}
+
+				// verify there is a status
+				if (null == result.status) {
+					executeCommandCallback.onFailure(new WidgetFactoryException(WidgetFactoryException.INTERNAL_ERROR, "missing status in server response"));
+					return;
+				}
+
+				// construct event object
+				final CommandExecutedEvent event = new CommandExecutedEvent(commandId, result.status);
+
+				// handle status
+				executeCommandCallback.onExecuted(event);
+
+				// process actions
+				if (event.isContinueEventProcessing()) {
+					if ((result != null) && (result.actions != null)) {
+						final SAction[] actions = result.actions;
+						for (final SAction action : actions) {
+							getToolkit().getActionHandler().handleAction(action);
+						}
 					}
 				}
 			}

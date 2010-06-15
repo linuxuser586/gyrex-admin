@@ -1,30 +1,36 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.wizard;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
 
-import org.eclipse.gyrex.toolkit.gwt.client.ExecuteCommandCallback;
+import org.eclipse.gyrex.gwt.common.status.IStatus;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutedEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.commands.CommandExecutionCallback;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content.ContentHelper;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.resources.SharedImages;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
@@ -34,8 +40,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWiz
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
 /**
- * Composite for
- * <code>org.eclipse.gyrex.toolkit.wizard.WizardContainer</code>.
+ * Composite for <code>org.eclipse.gyrex.toolkit.wizard.WizardContainer</code>.
  */
 public class CWTWizardContainer extends CWTContainer {
 
@@ -46,16 +51,55 @@ public class CWTWizardContainer extends CWTContainer {
 	}
 
 	private static final class PageDescription extends Widget {
-
-		/**
-		 * Creates a new instance.
-		 */
 		public PageDescription() {
 			setElement(DOM.createElement("h2"));
 		}
 
 		public void setText(final String text) {
 			DOM.setInnerText(getElement(), text);
+		}
+	}
+
+	private static final class PageStatus extends Widget {
+		Image image = new Image();
+		private final Element messageElem;
+
+		public PageStatus() {
+			setElement(DOM.createDiv());
+
+			final Element imgSpan = DOM.createSpan();
+			imgSpan.addClassName("status-image");
+			imgSpan.appendChild(image.getElement());
+
+			messageElem = DOM.createSpan();
+			messageElem.addClassName("status-message");
+
+			getElement().appendChild(imgSpan);
+			getElement().appendChild(messageElem);
+		}
+
+		public void setStatus(final IStatus status) {
+			if ((null == status) || status.isOK()) {
+				setVisible(false);
+			} else {
+				switch (status.getSeverity()) {
+					case IStatus.CANCEL:
+					case IStatus.ERROR:
+						image.setResource(SharedImages.INSTANCE.iconError());
+						break;
+
+					case IStatus.WARNING:
+						image.setResource(SharedImages.INSTANCE.iconWarning());
+						break;
+
+					case IStatus.INFO:
+					default:
+						image.setResource(SharedImages.INSTANCE.iconInformation());
+						break;
+				}
+				DOM.setInnerText(messageElem, status.getMessage());
+				setVisible(true);
+			}
 		}
 	}
 
@@ -92,6 +136,7 @@ public class CWTWizardContainer extends CWTContainer {
 	private boolean renderPageTitleAndDescription = true;
 	private PageTitle pageTitle;
 	private PageDescription pageDescription;
+	private PageStatus pageStatus;
 
 	private ArrayList<PageChangeListener> pageChangeListeners;
 
@@ -191,8 +236,8 @@ public class CWTWizardContainer extends CWTContainer {
 	private Button createButton(final int id, final String label, final Panel buttonBar) {
 		final Button button = new Button();
 		button.setText(label);
-		button.addClickListener(new ClickListener() {
-			public void onClick(final Widget sender) {
+		button.addClickHandler(new ClickHandler() {
+			public void onClick(final ClickEvent event) {
 				buttonPressed(id);
 			}
 		});
@@ -202,12 +247,6 @@ public class CWTWizardContainer extends CWTContainer {
 		return button;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rep.web.gwt.client.internal.ui.widgets.ContainerComposite#createPanel(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
-	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
-	 */
 	@Override
 	protected Panel createPanel(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 		throw new IllegalStateException("not allowed");
@@ -272,7 +311,7 @@ public class CWTWizardContainer extends CWTContainer {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rep.web.gwt.client.internal.ui.widgets.ContainerComposite#populateChildren(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
 	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
 	 */
@@ -294,7 +333,7 @@ public class CWTWizardContainer extends CWTContainer {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rep.web.gwt.client.internal.ui.widgets.ContainerComposite#render(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
 	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
 	 */
@@ -321,6 +360,9 @@ public class CWTWizardContainer extends CWTContainer {
 			headerPanel.add(pageDescription);
 		}
 
+		pageStatus = new PageStatus();
+		headerPanel.add(pageStatus);
+
 		if ((null != sWizardContainer.widgets) && (sWizardContainer.widgets.length > 1)) {
 			backButton = createButton(BUTTON_ID_BACK, "< Back", buttonsPanel);
 			nextButton = createButton(BUTTON_ID_NEXT, "Next >", buttonsPanel);
@@ -341,13 +383,19 @@ public class CWTWizardContainer extends CWTContainer {
 		return outer;
 	}
 
-	private void setPageDescription(final String description) {
+	void setPageDescription(final String description) {
 		if (null != pageDescription) {
 			pageDescription.setText(description);
 		}
 	}
 
-	private void setPageTitle(final String title) {
+	void setPageStatus(final IStatus status) {
+		if (null != pageStatus) {
+			pageStatus.setStatus(status);
+		}
+	}
+
+	void setPageTitle(final String title) {
 		if (null != pageTitle) {
 			pageTitle.setText(title);
 		}
@@ -389,7 +437,7 @@ public class CWTWizardContainer extends CWTContainer {
 		firePageChangedEvent();
 	}
 
-	private void triggerCommand(final SCommand command) {
+	void triggerCommand(final SCommand command) {
 		if (null == command) {
 			return;
 		}
@@ -401,18 +449,31 @@ public class CWTWizardContainer extends CWTContainer {
 		allButtonsDisabled = true;
 		updateButtons();
 		//button.setText("Please wait...");
-		getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new ExecuteCommandCallback() {
+		getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new CommandExecutionCallback() {
 
+			@Override
+			public void onExecuted(final CommandExecutedEvent event) {
+				allButtonsDisabled = false;
+				updateButtons();
+				final IStatus status = event.getStatus();
+				if (status.isMultiStatus()) {
+					final IStatus[] children = status.getChildren();
+					for (final IStatus child : children) {
+						if (!child.isOK()) {
+							setPageStatus(child);
+						}
+					}
+				} else {
+					setPageStatus(status);
+				}
+			}
+
+			@Override
 			public void onFailure(final WidgetFactoryException caught) {
 				allButtonsDisabled = false;
 				updateButtons();
+				setPageStatus(null);
 			}
-
-			public void onSuccess(final Object result) {
-				allButtonsDisabled = false;
-				updateButtons();
-			}
-
 		});
 	}
 

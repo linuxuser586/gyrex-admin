@@ -29,4 +29,4 @@ Export-Package: org.eclipse.gyrex.admin.web.gwt.app.internal.client.widgets;x-fr
  org.eclipse.gyrex.admin.web.gwt.client.internal;x-friends:="org.eclipse.gyrex.admin.web.gwt",
  org.eclipse.gyrex.admin.web.gwt.client.internal.shared;x-friends:="org.eclipse.gyrex.admin.web.gwt"
 Environment: J2SE-1.5
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

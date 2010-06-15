@@ -1,11 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -22,6 +22,10 @@ import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
 import org.eclipse.gyrex.toolkit.widgets.RadioButton;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.gyrex.toolkit.wizard.WizardPage;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 
 public class ConfigModeStep extends ConfigurationWizardStep {
 
@@ -66,7 +70,7 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent)
 	 */
 	@Override
-	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
+	public IStatus wizardFinished(final CommandExecutionEvent finishEvent, final IProgressMonitor monitor) {
 		try {
 			// check if production mode is selected
 			BooleanContent content = (BooleanContent) finishEvent.getContentSet().getEntry("modeProduction");
@@ -81,10 +85,10 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 			}
 		} catch (final IllegalStateException e) {
 			// inactive
-			return false;
+			return Status.CANCEL_STATUS;
 		}
 
-		return true;
+		return Status.OK_STATUS;
 	}
 
 }

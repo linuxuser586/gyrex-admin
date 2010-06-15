@@ -1,21 +1,16 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
@@ -25,6 +20,12 @@ import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionResult;
 import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 
 public class ConfigurationWizardCommandHandler implements ICommandHandler {
 	private final class RelaunchJob extends Job {
@@ -56,20 +57,20 @@ public class ConfigurationWizardCommandHandler implements ICommandHandler {
 	 * @return
 	 */
 	private CommandExecutionResult finish(final CommandExecutionEvent executionEvent) {
-		boolean allOK = true;
+		final MultiStatus wizardStatus = new MultiStatus(AdminActivator.SYMBOLIC_NAME, 0, null, null);
 		final ConfigurationWizardStep[] steps = AdminActivator.getInstance().getConfigurationWizardService().getSteps();
 		for (final ConfigurationWizardStep step : steps) {
-			final boolean ok = step.wizardFinished(executionEvent);
-			if (ok) {
+			final IStatus status = step.wizardFinished(executionEvent, null);
+			if (status.isOK()) {
 				RunConfigWizardConfigConstraint.addStepToExecutedList(step.getId());
 			} else {
 				RunConfigWizardConfigConstraint.removeStepFromExecutedList(step.getId());
-				allOK = false;
 			}
+			wizardStatus.add(status);
 		}
 
-		if (!allOK) {
-			return new CommandExecutionResult(executionEvent.getCommandId(), Status.CANCEL_STATUS);
+		if (!wizardStatus.isOK()) {
+			return new CommandExecutionResult(executionEvent.getCommandId(), wizardStatus);
 		}
 
 		// register constraint to restart platform

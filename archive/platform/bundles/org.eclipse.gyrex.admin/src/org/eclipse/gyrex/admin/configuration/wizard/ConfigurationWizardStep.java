@@ -1,11 +1,11 @@
 /*******************************************************************************
- * Copyright (c) 2008 Gunnar Wagenknecht and others.
+ * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -13,6 +13,9 @@ package org.eclipse.gyrex.admin.configuration.wizard;
 
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * A setup wizard step which will be integrated into the setup wizard.
@@ -61,21 +64,25 @@ public abstract class ConfigurationWizardStep {
 	}
 
 	/**
-	 * Calles when the wizard has been finished.
+	 * Called when the wizard has been finished.
 	 * <p>
 	 * Implementors need to overwrite this method and perform the desired
-	 * configuration based on the content submitted in the finish event. Note,
-	 * implementors must prepare for the dynamic effect in case the step was
-	 * registered *after* the wizard has already created its pages.
+	 * configuration based on the content submitted in the finish event.
+	 * </p>
+	 * <p>
+	 * Note, implementors should not run long running operations in this method.
+	 * Instead, the implementation should perform all necessary checks and
+	 * schedule the operation in the background.
 	 * </p>
 	 * 
 	 * @param finishEvent
 	 *            the event triggered as a result of pressing the wizard finish
 	 *            button
+	 * @param monitor
+	 *            the monitor for reporting progress and checking for
+	 *            cancelation
 	 * @return <code>true</code> if the configuration was processed successfully
 	 *         and the wizard can finish, <code>false</code> otherwise
 	 */
-	// TODO: add IProgressMonitor support
-	// TODO: changed to IStatus based return value
-	public abstract boolean wizardFinished(final CommandExecutionEvent finishEvent);
+	public abstract IStatus wizardFinished(final CommandExecutionEvent finishEvent, IProgressMonitor monitor);
 }

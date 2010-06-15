@@ -9,14 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
+package org.eclipse.gyrex.toolkit.gwt.serialization;
 
-package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content;
-
-import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedData;
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
- * Serializable ContentEntry
+ * Marker interface for serialized set of data.
+ * <p>
+ * This interface may be implemented by custom widget providers.
+ * </p>
  */
-public abstract class SContentEntry implements ISerializedData {
+public interface ISerializedData extends IsSerializable {
 
 }

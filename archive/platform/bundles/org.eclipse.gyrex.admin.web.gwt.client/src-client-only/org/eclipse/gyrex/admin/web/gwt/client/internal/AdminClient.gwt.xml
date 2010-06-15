@@ -14,6 +14,7 @@
   <inherits name="com.google.gwt.core.Core" />
   <inherits name='com.google.gwt.user.User' />
   <inherits name="com.google.gwt.i18n.I18N" />
+  <inherits name="com.google.gwt.resources.Resources" />
 
   <!-- Inherit the backoffice app. -->
   <inherits name='org.eclipse.gyrex.admin.web.gwt.app.internal.GyrexApp' />

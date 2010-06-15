@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -41,11 +41,6 @@ public class CWTWizardPage extends CWTContainer {
 			this.wizardPage = wizardPage;
 		}
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
-		 */
 		@Override
 		protected void handleRuleEvaluationResult(final boolean evaluationResult) {
 			wizardPage.setPageComplete(evaluationResult);
@@ -55,9 +50,6 @@ public class CWTWizardPage extends CWTContainer {
 	private boolean pageComplete;
 	private ContinueHandler continueHandler;
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer#createPanel(org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget, org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit)
-	 */
 	@Override
 	protected Panel createPanel(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 		final Panel panel = super.createPanel(serializedWidget, toolkit);
@@ -109,7 +101,7 @@ public class CWTWizardPage extends CWTContainer {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onLoad()
 	 */
 	@Override
@@ -130,7 +122,7 @@ public class CWTWizardPage extends CWTContainer {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#onUnload()
 	 */
 	@Override
