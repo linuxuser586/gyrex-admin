@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 TODO <enter-primary-copyright-holder> and others.
+ * Copyright (c) 2010 Gunnar Wagenknecht and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -7,7 +7,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
  *
  * Contributors:
- *     TODO <enter-contributor-name-here> - initial API and implementation
+ *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.gyrex.toolkit.gwt.client.ui.internal.resources;
