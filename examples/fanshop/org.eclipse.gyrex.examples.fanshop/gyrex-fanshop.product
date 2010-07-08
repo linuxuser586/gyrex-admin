@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Gyrex Fanshop (Incubation)" id="org.eclipse.gyrex.examples.fanshop.product" application="org.eclipse.gyrex.boot.server" version="1.0 (Incubation)" useFeatures="false" includeLaunchers="true">
+<product name="Gyrex Fanshop (Incubation)" id="org.eclipse.gyrex.examples.fanshop.product" application="org.eclipse.gyrex.boot.server" version="1.0 (Incubation)" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
-      <linux>/org.eclipse.gyrex.examples.fanshop/config.ini</linux>
-      <macosx>/org.eclipse.gyrex.examples.fanshop/config.ini</macosx>
-      <solaris>/org.eclipse.gyrex.examples.fanshop/config.ini</solaris>
-      <win32>/org.eclipse.gyrex.examples.fanshop/config.ini</win32>
    </configIni>
 
    <launcherArgs>
@@ -25,7 +21,7 @@
    </launcher>
 
    <vm>
-      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
+      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
    </vm>
 
    <plugins>
@@ -47,16 +43,16 @@
       <plugin id="org.apache.solr.core"/>
       <plugin id="org.apache.solr.servlet"/>
       <plugin id="org.codehaus.jackson"/>
-      <plugin id="org.eclipse.core.commands"/>
-      <plugin id="org.eclipse.core.commands.source"/>
-      <plugin id="org.eclipse.core.contenttype"/>
-      <plugin id="org.eclipse.core.contenttype.source"/>
-      <plugin id="org.eclipse.core.expressions"/>
-      <plugin id="org.eclipse.core.expressions.source"/>
+      <plugin id="org.eclipse.core.commands" fragment=""/>
+      <plugin id="org.eclipse.core.commands.source" fragment=""/>
+      <plugin id="org.eclipse.core.contenttype" fragment=""/>
+      <plugin id="org.eclipse.core.contenttype.source" fragment=""/>
+      <plugin id="org.eclipse.core.expressions" fragment=""/>
+      <plugin id="org.eclipse.core.expressions.source" fragment=""/>
       <plugin id="org.eclipse.core.jobs"/>
-      <plugin id="org.eclipse.core.jobs.source"/>
-      <plugin id="org.eclipse.core.runtime"/>
-      <plugin id="org.eclipse.core.runtime.source"/>
+      <plugin id="org.eclipse.core.jobs.source" fragment=""/>
+      <plugin id="org.eclipse.core.runtime" fragment=""/>
+      <plugin id="org.eclipse.core.runtime.source" fragment=""/>
       <plugin id="org.eclipse.equinox.app"/>
       <plugin id="org.eclipse.equinox.app.source"/>
       <plugin id="org.eclipse.equinox.common"/>
@@ -114,10 +110,26 @@
       <plugin id="org.eclipse.osgi.source"/>
       <plugin id="org.eclipse.osgi.util"/>
       <plugin id="org.eclipse.osgi.util.source"/>
-      <plugin id="org.eclipse.update.configurator"/>
+      <plugin id="org.eclipse.update.configurator" fragment=""/>
       <plugin id="org.mortbay.jetty.server"/>
       <plugin id="org.mortbay.jetty.util"/>
    </plugins>
 
+   <features>
+      <feature id="org.eclipse.gyrex.examples.fanshop" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.admin" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.dependencies.commons" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.dependencies.provisioning" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.dependencies.web" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.http" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.kernel" version="1.0.0.qualifier"/>
+      <feature id="org.eclipse.gyrex.features.server" version="1.0.0.qualifier"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.eclipse.equinox.app" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="0" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
 
 </product>
