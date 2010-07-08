@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="CloudFree Fanshop (Incubation)" id="org.eclipse.gyrex.examples.fanshop.product" application="org.eclipse.gyrex.boot.server" version="1.0 EclipseCon2009 (Incubation)" useFeatures="false">
+<product name="Gyrex Fanshop (Incubation)" id="org.eclipse.gyrex.examples.fanshop.product" application="org.eclipse.gyrex.boot.server" version="1.0 (Incubation)" useFeatures="false" includeLaunchers="true">
 
    <configIni use="default">
       <linux>/org.eclipse.gyrex.examples.fanshop/config.ini</linux>
@@ -25,7 +25,7 @@
    </launcher>
 
    <vm>
-      <windows>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
    </vm>
 
    <plugins>
@@ -83,7 +83,7 @@
       <plugin id="org.eclipse.gyrex.admin.web.gwt"/>
       <plugin id="org.eclipse.gyrex.admin.web.gwt.client"/>
       <plugin id="org.eclipse.gyrex.boot"/>
-      <plugin id="org.eclipse.gyrex.boot.defaultroles"/>
+      <plugin id="org.eclipse.gyrex.boot.defaultroles" fragment=""/>
       <plugin id="org.eclipse.gyrex.cds.model"/>
       <plugin id="org.eclipse.gyrex.cds.model.solr"/>
       <plugin id="org.eclipse.gyrex.cds.service"/>
@@ -107,7 +107,7 @@
       <plugin id="org.eclipse.gyrex.toolkit"/>
       <plugin id="org.eclipse.gyrex.toolkit.gwt.client"/>
       <plugin id="org.eclipse.gyrex.toolkit.gwt.server"/>
-      <plugin id="org.eclipse.gyrex.toolkit.runtime"/>
+      <plugin id="org.eclipse.gyrex.toolkit.runtime" fragment=""/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.osgi.services.source"/>

@@ -1,17 +1,22 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.examples.fanshop.internal.setup;
 
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.context.IRuntimeContext;
+import org.eclipse.gyrex.context.preferences.IRuntimeContextPreferences;
+import org.eclipse.gyrex.context.preferences.PreferencesUtil;
+import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
+import org.eclipse.gyrex.examples.fanshop.internal.IFanShopConstants;
 import org.eclipse.gyrex.toolkit.CWT;
 import org.eclipse.gyrex.toolkit.content.BooleanContent;
 import org.eclipse.gyrex.toolkit.content.TextContent;
@@ -22,6 +27,11 @@ import org.eclipse.gyrex.toolkit.widgets.DialogFieldRules;
 import org.eclipse.gyrex.toolkit.widgets.TextInput;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.gyrex.toolkit.wizard.WizardPage;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+
 import org.osgi.service.prefs.BackingStoreException;
 
 public class FanShopSetupStep extends ConfigurationWizardStep {
@@ -60,29 +70,34 @@ public class FanShopSetupStep extends ConfigurationWizardStep {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep#wizardFinished(org.eclipse.gyrex.admin.configuration.wizard.CommandExecutionEvent)
-	 */
 	@Override
-	public boolean wizardFinished(final CommandExecutionEvent finishEvent) {
+	public IStatus wizardFinished(final CommandExecutionEvent finishEvent, final IProgressMonitor monitor) {
 		final BooleanContent deploy = (BooleanContent) finishEvent.getContentSet().getEntry("fanshop-deploy");
 		if ((null != deploy) && deploy.getValue()) {
 			try {
+				// get the context
+				final IRuntimeContext eclipseBugSearchContext = FanShopActivator.getInstance().getContextRegistry().getService().get(IFanShopConstants.CONTEXT_PATH);
+				final IRuntimeContextPreferences preferences = PreferencesUtil.getPreferences(eclipseBugSearchContext);
+
+				// enable roles
 				FanShopDevSetup.enableFanShopRole();
+
+				// set the url
 				final TextContent url = (TextContent) finishEvent.getContentSet().getEntry("fanshop-url");
 				if (null != url) {
 					final String text = url.getText();
 					if ((null != text) && (text.trim().length() > 0)) {
-						FanShopDevSetup.setFanShopUrl(text.trim());
+						preferences.put(FanShopActivator.PLUGIN_ID, IFanShopConstants.KEY_URL, text, false);
+						preferences.flush(FanShopActivator.PLUGIN_ID);
 					}
 				}
 			} catch (final BackingStoreException e) {
 				e.printStackTrace();
-				return false;
+				return new Status(IStatus.ERROR, FanShopActivator.PLUGIN_ID, "Error while saving preferences. " + e.getMessage(), e);
 			}
 		}
 
-		return true;
+		return Status.OK_STATUS;
 	}
 
 }
