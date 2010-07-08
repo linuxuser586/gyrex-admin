@@ -38,13 +38,5 @@
             id="org.eclipse.gyrex.examples.fanshop.setup">
       </step>
    </extension>
-   <extension
-         id="product"
-         point="org.eclipse.core.runtime.products">
-      <product
-            application="org.eclipse.gyrex.boot.server"
-            name="Gyrex Fanshop">
-      </product>
-   </extension>
 
 </plugin>

@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Gyrex Fanshop (Incubation)" id="org.eclipse.gyrex.examples.fanshop.product" application="org.eclipse.gyrex.boot.server" version="1.0 (Incubation)" useFeatures="true" includeLaunchers="true">
+<product name="Gyrex Fanshop (Incubation)" application="org.eclipse.gyrex.boot.server" version="1.0 (Incubation)" useFeatures="true" includeLaunchers="true">
+
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
       <programArgs>-console -nosplash</programArgs>
-      <vmArgs>-Dorg.eclipse.equinox.http.jetty.autostart=false -server -XX:+UseParallelGC -XX:MaxPermSize=128m</vmArgs>
+      <vmArgs>-Dorg.eclipse.equinox.http.jetty.autostart=false -server -XX:+UseParallelGC -XX:MaxPermSize=128m -Dosgi.noShutdown=false</vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
+
+   <windowImages/>
+
 
    <launcher name="gyrex">
       <solaris/>
@@ -20,9 +24,11 @@
       </win>
    </launcher>
 
+
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6</windows>
    </vm>
+
 
    <plugins>
       <plugin id="com.google.gwt.servlet"/>
