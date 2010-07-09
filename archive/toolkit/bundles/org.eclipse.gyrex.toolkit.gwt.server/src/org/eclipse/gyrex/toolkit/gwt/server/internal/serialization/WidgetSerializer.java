@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -15,24 +15,25 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.eclipse.gyrex.toolkit.CWT;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SMultiDialogFieldRule;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
 import org.eclipse.gyrex.toolkit.layout.LayoutHint;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
 import org.eclipse.gyrex.toolkit.widgets.Container;
 import org.eclipse.gyrex.toolkit.widgets.DialogField;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
-import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
-import org.eclipse.gyrex.toolkit.widgets.Widget;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldSelectionType;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
 import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule.Condition;
+import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
  * Abstract base class for widget serializers.
@@ -120,6 +121,21 @@ public abstract class WidgetSerializer {
 		} else {
 			return serializeNonMultiDialogFieldRule(dialogFieldRule, owner);
 		}
+	}
+
+	/**
+	 * Serializes the specified {@link ImageResource}.
+	 * 
+	 * @param imageResource
+	 *            the image resource to serialize
+	 * @return the serialized resource (maybe <code>null</code> if the input was
+	 *         <code>null</code>)
+	 */
+	protected SImageResource serializeImageResource(final ImageResource imageResource) {
+		if (null == imageResource) {
+			return null;
+		}
+		return (SImageResource) ToolkitSerialization.serializeResource(imageResource);
 	}
 
 	private ISerializedLayoutHint[] serializeLayoutHints(final LayoutHint[] layoutHints) {

@@ -33,7 +33,7 @@ public class DialogFieldGroupSerializer extends ContainerSerializer {
 	protected ISerializedWidget populateAttributes(final Widget widget, final ISerializedWidget serializedWidget, final SContainer parent) {
 		final DialogFieldGroup dialogFieldGroup = (DialogFieldGroup) widget;
 		final SDialogFieldGroup sDialogFieldGroup = (SDialogFieldGroup) serializedWidget;
-		sDialogFieldGroup.title = dialogFieldGroup.getTitle();
+		sDialogFieldGroup.title = dialogFieldGroup.getLabel();
 		sDialogFieldGroup.description = dialogFieldGroup.getDescription();
 		return super.populateAttributes(widget, serializedWidget, parent);
 	}

@@ -13,7 +13,6 @@ package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
 
 
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SAggregateHyperlinkSegment;
@@ -28,9 +27,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SSt
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextHyperlinkSegment;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextSegment;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.SObjectSegment.VerticalAlign;
-import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.ToolkitSerialization;
 import org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer;
-import org.eclipse.gyrex.toolkit.resources.ImageResource;
 import org.eclipse.gyrex.toolkit.widgets.StyledText;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
 import org.eclipse.gyrex.toolkit.widgets.styledtext.AggregateHyperlinkSegment;
@@ -129,13 +126,6 @@ public class StyledTextSerializer extends WidgetSerializer {
 	private SParagraphSegment serializeImageHyperlinkSegment(final ImageHyperlinkSegment imageHyperlinkSegment, final SImageHyperlinkSegment sImageHyperlinkSegment) {
 		sImageHyperlinkSegment.href = imageHyperlinkSegment.getHref();
 		return serializeImageSegment(imageHyperlinkSegment, sImageHyperlinkSegment);
-	}
-
-	private SImageResource serializeImageResource(final ImageResource imageResource) {
-		if (null == imageResource) {
-			return null;
-		}
-		return (SImageResource) ToolkitSerialization.serializeResource(imageResource);
 	}
 
 	private SParagraphSegment serializeImageSegment(final ImageSegment imageSegment, final SImageSegment sImageSegment) {

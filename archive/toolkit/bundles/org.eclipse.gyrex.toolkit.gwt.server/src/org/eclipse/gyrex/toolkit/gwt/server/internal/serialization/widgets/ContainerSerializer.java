@@ -1,16 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;
-
 
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
@@ -38,30 +37,22 @@ public class ContainerSerializer extends WidgetSerializer {
 	 *            the serialized parent
 	 * @return a new {@link SContainer} instance
 	 */
-	protected SContainer createSContainer(Container container, SContainer parent) {
+	protected SContainer createSContainer(final Container container, final SContainer parent) {
 		return new SContainer();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.WidgetSerializer#populateAttributes(org.eclipse.gyrex.toolkit.widgets.Widget,
-	 *      org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget,
-	 *      org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer)
-	 */
 	@Override
-	protected ISerializedWidget populateAttributes(Widget widget, ISerializedWidget serializedWidget, SContainer parent) {
-		Container container = (Container) widget;
-		SContainer sContainer = (SContainer) serializedWidget;
-		sContainer.title = container.getTitle();
+	protected ISerializedWidget populateAttributes(final Widget widget, final ISerializedWidget serializedWidget, final SContainer parent) {
+		final Container container = (Container) widget;
+		final SContainer sContainer = (SContainer) serializedWidget;
+		sContainer.title = container.getLabel();
 		sContainer.description = container.getDescription();
 		return super.populateAttributes(container, sContainer, parent);
 	}
 
 	/**
-	 * Serializes a {@link Container container widget} into a
-	 * {@link SContainer serializable container} including all container
-	 * children and attributes.
+	 * Serializes a {@link Container container widget} into a {@link SContainer
+	 * serializable container} including all container children and attributes.
 	 * <p>
 	 * Typically, subclasses just overwrite {@link #createSContainer(Container)}
 	 * instead of this method.
@@ -75,9 +66,9 @@ public class ContainerSerializer extends WidgetSerializer {
 	 * @see WidgetSerializer#serialize(Widget, SContainer)
 	 */
 	@Override
-	public ISerializedWidget serialize(Widget widget, SContainer parent) {
-		Container container = (Container) widget;
-		SContainer sContainer = createSContainer(container, parent);
+	public ISerializedWidget serialize(final Widget widget, final SContainer parent) {
+		final Container container = (Container) widget;
+		final SContainer sContainer = createSContainer(container, parent);
 
 		// children widgets
 		serializeContainerChildren(container, sContainer);
@@ -97,8 +88,8 @@ public class ContainerSerializer extends WidgetSerializer {
 	 * @param sContainer
 	 *            the SContainer to write the children to
 	 */
-	protected void serializeContainerChildren(Container container, SContainer sContainer) {
-		Widget[] widgets = container.getWidgets();
+	protected void serializeContainerChildren(final Container container, final SContainer sContainer) {
+		final Widget[] widgets = container.getWidgets();
 		if (widgets.length > 0) {
 			sContainer.widgets = new ISerializedWidget[widgets.length];
 			for (int i = 0; i < sContainer.widgets.length; i++) {
@@ -115,10 +106,11 @@ public class ContainerSerializer extends WidgetSerializer {
 	 * @param sContainer
 	 *            the SContainer to write the children to
 	 */
-	protected void serializeLayout(Container container, SContainer sContainer) {
-		Layout layout = container.getLayout();
-		if (null == layout)
+	protected void serializeLayout(final Container container, final SContainer sContainer) {
+		final Layout layout = container.getLayout();
+		if (null == layout) {
 			return;
+		}
 
 		sContainer.layout = ToolkitSerialization.serializeLayout(layout);
 	}

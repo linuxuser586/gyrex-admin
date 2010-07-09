@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,12 +14,12 @@ package org.eclipse.gyrex.toolkit.gwt.server.internal;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
+import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.resources.Resource;
 
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
-import org.eclipse.gyrex.toolkit.CWT;
-import org.eclipse.gyrex.toolkit.resources.Resource;
 
 /**
  * A registry to <em>hide</em> resource internals.
@@ -30,8 +30,10 @@ import org.eclipse.gyrex.toolkit.resources.Resource;
  * to create a mapping between a public exposable value and the actual resource
  * URL.
  * </p>
+ * <p>
  * The default implementation provides no sophisticated security, it simply
  * encodes and decodes a resource URL using Base64.
+ * </p>
  */
 public class ResourceUrlEncoder {
 
