@@ -12,7 +12,7 @@
 package org.eclipse.gyrex.admin.web.gwt.client.internal;
 
 import org.eclipse.gyrex.admin.internal.AdminActivator;
-import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminClientConstants;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminConsoleConstants;
 import org.eclipse.gyrex.common.logging.LogAudience;
 import org.eclipse.gyrex.common.logging.LogImportance;
 import org.eclipse.gyrex.common.logging.LogSource;
@@ -65,15 +65,13 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		super(PLUGIN_ID);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#addingService(org.osgi.framework.ServiceReference)
-	 */
+	@Override
 	public Object addingService(final ServiceReference reference) {
 		final Object service = getBundle().getBundleContext().getService(reference);
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;
 			try {
-				gwtService.registerModule(ALIAS_ADMIN, IAdminClientConstants.MODULE_ID, "/resources", "AdminClient.html", null);
+				gwtService.registerModule(ALIAS_ADMIN, IAdminConsoleConstants.MODULE_ID, "/web", "AdminConsole.html", null);
 			} catch (final NamespaceException e) {
 				getLog().log("An error occurred while registering the admin client resources.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
 			}
@@ -88,9 +86,6 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		return service;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		sharedInstance = this;
@@ -105,9 +100,6 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		AdminActivator.getInstance().addAdminApplicationBase(ADMIN_APP_BASE);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
 		// unset the web base
@@ -129,9 +121,7 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 		// empty
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTrackerCustomizer#removedService(org.osgi.framework.ServiceReference, java.lang.Object)
-	 */
+	@Override
 	public void removedService(final ServiceReference reference, final Object service) {
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;

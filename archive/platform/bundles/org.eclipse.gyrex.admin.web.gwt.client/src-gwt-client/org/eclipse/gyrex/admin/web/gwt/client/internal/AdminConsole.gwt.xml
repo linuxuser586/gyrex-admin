@@ -1,0 +1,37 @@
+<!--
+    Copyright (c) 2008, 2010 Gunnar Wagenknecht and others.
+    All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v1.0 which accompanies this distribution,
+    and is available at http://www.eclipse.org/legal/epl-v10.html.
+
+    Contributors:
+        Gunnar Wagenknecht - initial API and implementation
+ -->
+<module rename-to="adminconsole">
+
+  <!-- Inherit the core Web Toolkit stuff. -->
+  <inherits name="com.google.gwt.core.Core"/>
+  <inherits name="com.google.gwt.user.User"/>
+  <inherits name="com.google.gwt.i18n.I18N"/>
+  <inherits name="com.google.gwt.resources.Resources"/>
+  <inherits name="com.google.gwt.rpc.RPC"/>
+
+  <!-- Inherit Gyrex stuff. -->
+  <inherits name="org.eclipse.gyrex.gwt.common.Common" />
+  <inherits name="org.eclipse.gyrex.toolkit.gwt.Ui" />
+
+  <!-- Specify the app entry point class. -->
+  <entry-point class="org.eclipse.gyrex.admin.web.gwt.client.internal.console.AdminConsole" />
+
+  <!-- Set our source folders. -->
+  <source path="console" />
+  <source path="shared" />
+
+  <!--  RPC excludes -->
+  <extend-configuration-property name="rpc.blacklist" value="com.google.gwt.user.client.rpc.SerializableException"/>
+  <extend-configuration-property name="rpc.blacklist" value="org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.SError"/>
+
+
+</module>

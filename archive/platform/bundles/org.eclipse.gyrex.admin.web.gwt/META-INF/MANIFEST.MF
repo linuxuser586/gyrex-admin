@@ -16,8 +16,9 @@ Require-Bundle: org.eclipse.gyrex.admin.web.gwt.client;bundle-version="[1.0.0,2.
  org.eclipse.gyrex.gwt.service;bundle-version="[1.0.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.google.gwt.http.client;version="[2.0.0,2.1.0)",
- com.google.gwt.user.client.rpc;version="[2.0.0,2.1.0)",
+Import-Package: com.google.gwt.http.client;version="2.0.0",
+ com.google.gwt.rpc.client;version="2.0.0",
+ com.google.gwt.user.client.rpc;version="2.0.0",
  javax.servlet;version="[2.5.0,3.0.0)",
  javax.servlet.http;version="[2.5.0,3.0.0)",
  org.osgi.framework;version="[1.4.0,2.0.0)",

@@ -18,9 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetAdapterFactory;
 import org.eclipse.gyrex.admin.internal.widgets.DynamicAwareWidgetFactory;
-import org.eclipse.gyrex.admin.web.gwt.app.internal.services.client.services.IServiceConstants;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.AdminWebClientActivator;
-import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminClientConstants;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminConsoleConstants;
 import org.eclipse.gyrex.common.logging.LogAudience;
 import org.eclipse.gyrex.common.logging.LogImportance;
 import org.eclipse.gyrex.common.logging.LogSource;
@@ -69,9 +68,9 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 	private static final String PLUGIN_ID = "org.eclipse.gyrex.admin.web.gwt";
 
 	/** the default alias */
-	static final String ADMIN_WIDGET_SERVICE_ALIAS = IAdminClientConstants.ENTRYPOINT_WIDGET_SERVICE;
-	static final String ADMIN_WIDGET_RESOURCES_BASE_URL = IAdminClientConstants.WIDGET_RESOURCE_BASE_URL;
-	static final String ADMIN_CONFIG_SERVICE_ALIAS = IServiceConstants.ENTRYPOINT_CONFIGURATION_SERVICE;
+	static final String ADMIN_WIDGET_SERVICE_ALIAS = IAdminConsoleConstants.ENTRYPOINT_WIDGET_SERVICE;
+	static final String ADMIN_WIDGET_RESOURCES_BASE_URL = IAdminConsoleConstants.WIDGET_RESOURCE_BASE_URL;
+	static final String ADMIN_CONSOLE_SERVICE_ALIAS = IAdminConsoleConstants.ENTRYPOINT_CONSOLE_SERVICE;
 
 	private ServiceTracker gwtServiceTracker;
 	private WidgetService widgetService;
@@ -93,9 +92,9 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;
 			try {
-				gwtService.registerRemoteService(ADMIN_WIDGET_SERVICE_ALIAS, IAdminClientConstants.MODULE_ID, getWidgetService(), requestResponseListener, null);
-				gwtService.registerServlet(ADMIN_WIDGET_RESOURCES_BASE_URL, IAdminClientConstants.MODULE_ID, new WidgetResourceServlet(), null, null);
-				gwtService.registerRemoteService(ADMIN_CONFIG_SERVICE_ALIAS, IAdminClientConstants.MODULE_ID, new ConfigurationServiceImpl(), requestResponseListener, null);
+				gwtService.registerRemoteService(ADMIN_WIDGET_SERVICE_ALIAS, IAdminConsoleConstants.MODULE_ID, getWidgetService(), requestResponseListener, null);
+				gwtService.registerServlet(ADMIN_WIDGET_RESOURCES_BASE_URL, IAdminConsoleConstants.MODULE_ID, new WidgetResourceServlet(), null, null);
+				gwtService.registerRemoteService(ADMIN_CONSOLE_SERVICE_ALIAS, IAdminConsoleConstants.MODULE_ID, new AdminConsoleServiceImpl(), requestResponseListener, null);
 			} catch (final Exception e) {
 				getLog().log("An error occurred while registering the admin widget service.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
 			}
@@ -116,9 +115,6 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
 		// stop the service tracker
@@ -166,7 +162,7 @@ public class AdminWebActivator extends BaseBundleActivator implements ServiceTra
 				// ignore
 			}
 			try {
-				gwtService.unregister(ADMIN_CONFIG_SERVICE_ALIAS);
+				gwtService.unregister(ADMIN_CONSOLE_SERVICE_ALIAS);
 			} catch (final IllegalArgumentException e) {
 				// ignore
 			}
