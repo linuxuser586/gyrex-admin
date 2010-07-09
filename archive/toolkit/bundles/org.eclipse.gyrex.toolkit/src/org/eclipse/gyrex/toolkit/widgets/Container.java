@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -29,6 +29,8 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
  * CWT implementation.
  * </p>
+ * 
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class Container extends Widget {
 
@@ -44,8 +46,8 @@ public class Container extends Widget {
 	/** layout */
 	private Layout layout;
 
-	/** title */
-	private String title;
+	/** label */
+	private String label;
 
 	/** description * */
 	private String description;
@@ -65,7 +67,7 @@ public class Container extends Widget {
 	}
 
 	/**
-	 * Creates a new instance.
+	 * Creates a new root container instance.
 	 * 
 	 * @param id
 	 *            the widget id
@@ -95,11 +97,6 @@ public class Container extends Widget {
 		widgets.add(widget);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rwt.widgets.Widget#addWidgetToParent()
-	 */
 	@Override
 	void addWidgetToParent() {
 		// overwritten to allow null parent
@@ -120,15 +117,9 @@ public class Container extends Widget {
 	 *            the widget that will be added to the container
 	 */
 	protected void checkChildWidget(final Widget widget) {
-		// TODO Auto-generated method stub
-
+		// empty
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rwt.widgets.Widget#checkParent(org.eclipse.rwt.widgets.Container)
-	 */
 	@Override
 	protected void checkParent(final Container parent) {
 		// overwritten to allow null parent
@@ -144,21 +135,21 @@ public class Container extends Widget {
 	}
 
 	/**
+	 * Returns the label.
+	 * 
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
 	 * Returns the layout for aligning children in the container.
 	 * 
 	 * @return the layout (may be <code>null</code>)
 	 */
 	public Layout getLayout() {
 		return layout;
-	}
-
-	/**
-	 * Returns the title.
-	 * 
-	 * @return the title
-	 */
-	public String getTitle() {
-		return title;
 	}
 
 	/**
@@ -184,6 +175,16 @@ public class Container extends Widget {
 	}
 
 	/**
+	 * Sets the container's label.
+	 * 
+	 * @param label
+	 *            the label to set
+	 */
+	public void setLabel(final String label) {
+		this.label = label;
+	}
+
+	/**
 	 * Sets a layout for aligning children in the container.
 	 * <p>
 	 * If no layout is set a default layout is used which may vary depending on
@@ -196,16 +197,6 @@ public class Container extends Widget {
 	 */
 	public void setLayout(final Layout layout) {
 		this.layout = layout;
-	}
-
-	/**
-	 * Sets the title.
-	 * 
-	 * @param title
-	 *            the title to set
-	 */
-	public void setTitle(final String title) {
-		this.title = title;
 	}
 
 }
