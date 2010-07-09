@@ -1,19 +1,19 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.runtime.commands;
 
+import org.eclipse.gyrex.toolkit.actions.Action;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.gyrex.toolkit.actions.Action;
 
 /**
  * Data object returned by a {@link ICommandHandler command execution handler}
@@ -46,6 +46,8 @@ public final class CommandExecutionResult {
 	 *            the id of the command that was triggered
 	 * @param status
 	 *            the result status
+	 * @param actions
+	 *            a set of actions to be executed in the given order
 	 */
 	public CommandExecutionResult(final String commandId, final IStatus status, final Action... actions) {
 		this.commandId = commandId;
