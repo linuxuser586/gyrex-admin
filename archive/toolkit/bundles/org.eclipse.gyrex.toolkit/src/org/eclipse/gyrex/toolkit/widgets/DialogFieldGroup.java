@@ -52,11 +52,6 @@ public final class DialogFieldGroup extends Container {
 		super(id, parent, style);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.rwt.widgets.Container#checkChildWidget(org.eclipse.rwt.widgets.Widget)
-	 */
 	@Override
 	protected void checkChildWidget(final Widget widget) {
 		if (!DialogField.class.isAssignableFrom(widget.getClass())) {
@@ -64,11 +59,6 @@ public final class DialogFieldGroup extends Container {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.rwt.widgets.Container#setLayout(org.eclipse.rwt.layout.Layout)
-	 */
 	@Override
 	public void setLayout(final Layout layout) {
 		// no-op
