@@ -7,14 +7,16 @@ Bundle-Name: %bundle.name
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.google.gwt.rpc.client;version="2.0.4",
- com.google.gwt.rpc.client.impl;version="2.0.4",
- com.google.gwt.rpc.server;version="2.0.4",
+Import-Package: com.google.gwt.rpc.client;version="2.0.0",
+ com.google.gwt.rpc.client.ast;version="2.0.0",
+ com.google.gwt.rpc.client.impl;version="2.0.0",
+ com.google.gwt.rpc.server;version="2.0.0",
  com.google.gwt.user.client.rpc;version="2.0.0",
  com.google.gwt.user.client.rpc.core.java.lang;version="2.0.0",
  com.google.gwt.user.client.rpc.core.java.sql;version="2.0.0",
  com.google.gwt.user.client.rpc.core.java.util;version="2.0.0",
  com.google.gwt.user.server.rpc;version="2.0.0",
+ com.google.gwt.user.server.rpc.impl;version="2.0.0",
  javax.servlet;version="[2.5.0,3.0.0)",
  javax.servlet.http;version="[2.5.0,3.0.0)",
  org.osgi.framework;version="[1.3.0,2.0.0)",
