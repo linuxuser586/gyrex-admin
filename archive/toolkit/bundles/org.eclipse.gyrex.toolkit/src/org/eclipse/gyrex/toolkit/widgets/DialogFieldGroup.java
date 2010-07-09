@@ -33,6 +33,10 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * sense to add children other than {@link DialogField dialog fields} to it.
  * Also setting a layout is a no-op.
  * </p>
+ * <p>
+ * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
+ * CWT implementation.
+ * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
  */
@@ -45,13 +49,23 @@ public final class DialogFieldGroup extends Container {
 	 * Creates and returns a new dialog field group.
 	 * 
 	 * @param id
+	 *            the group id
 	 * @param parent
+	 *            the group parent
 	 * @param style
+	 *            the group style (may be applied to all dialog fields in this
+	 *            group)
+	 * @see CWT#REQUIRED
 	 */
 	public DialogFieldGroup(final String id, final Container parent, final int style) {
 		super(id, parent, style);
 	}
 
+	/**
+	 * Verifies that the specified widget is a {@link DialogField dialog field}.
+	 * 
+	 * @see org.eclipse.gyrex.toolkit.widgets.Container#checkChildWidget(org.eclipse.gyrex.toolkit.widgets.Widget)
+	 */
 	@Override
 	protected void checkChildWidget(final Widget widget) {
 		if (!DialogField.class.isAssignableFrom(widget.getClass())) {
@@ -59,6 +73,9 @@ public final class DialogFieldGroup extends Container {
 		}
 	}
 
+	/**
+	 * Not supported by {@link DialogFieldGroup}.
+	 */
 	@Override
 	public void setLayout(final Layout layout) {
 		// no-op

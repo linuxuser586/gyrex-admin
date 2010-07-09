@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -88,9 +88,6 @@ public class ImageResource extends Resource {
 		this.url = url;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.resources.Resource#getUrl()
-	 */
 	@Override
 	public URL getUrl() {
 		return url;
