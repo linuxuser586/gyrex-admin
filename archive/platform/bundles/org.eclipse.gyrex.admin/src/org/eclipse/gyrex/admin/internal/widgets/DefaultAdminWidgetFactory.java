@@ -36,7 +36,7 @@ public class DefaultAdminWidgetFactory implements IWidgetFactory {
 		container.setDescription("Welcome to Gyrex.");
 
 		final StyledText styledText = new StyledText("intro", container, CWT.NONE);
-		styledText.setText("<text>\r\n" + "<p>There is currently not much content here. The platform is running and that's what we wanted to show you. After all, it's a showcase which demonstrates some concepts. If you like our vision, please follow our <a href=\"http://gyrex.net/\" alt=\"Open the Gyrex blog.\">blog</a>.</p></text>", true, true);
+		styledText.setText("<text>\r\n" + "<p>There is currently not much content here. The platform is running and that's what we wanted to show you. After all, it's a showcase which demonstrates some concepts. If you like our vision, please follow our <a href=\"http://www.eclipse.org/gyrex/\" alt=\"Open the Gyrex blog.\">blog</a>.</p></text>", true, true);
 
 		ConfigurationWizardFactory.createPlatformStatusInfo(container);
 
