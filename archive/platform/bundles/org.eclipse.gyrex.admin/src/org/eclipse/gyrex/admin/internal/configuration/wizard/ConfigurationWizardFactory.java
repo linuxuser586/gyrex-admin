@@ -85,7 +85,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 	public static void createPlatformStatusInfo(final Container parent) {
 		final Container statusContainer = new Container("status", parent, CWT.NONE);
-		statusContainer.setTitle("System Status");
+		statusContainer.setLabel("System Status");
 		statusContainer.setDescription("The following system status reports are available.");
 
 		// refresh the status and wait
@@ -115,7 +115,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 	private WizardPage createIntroPage(final WizardContainer wizard) {
 		final WizardPage introPage = new WizardPage("overview", wizard);
-		introPage.setTitle("Overview");
+		introPage.setLabel("Overview");
 		introPage.setDescription("Welcome to the Platform Configuration wizard.");
 
 		final StyledText introText = new StyledText("overview-text", introPage, CWT.NONE);
@@ -136,7 +136,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 	private Widget setupWizard(final String id, final IWidgetEnvironment environment) {
 		final WizardContainer wizard = new WizardContainer(ID_CONFIGURATION_WIZARD, CWT.NONE);
-		wizard.setTitle("Setup Wizard");
+		wizard.setLabel("Setup Wizard");
 		wizard.setDescription("The Setup Wizard helps with the initial configuration of a system.");
 
 		createIntroPage(wizard);
@@ -149,7 +149,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 	private Widget setupWizardFinished(final String id, final IWidgetEnvironment environment) {
 		final Container container = new Container(ID_CONFIGURATION_WIZARD_FINISHED, CWT.NONE);
-		container.setTitle("Setup Wizard Finished");
+		container.setLabel("Setup Wizard Finished");
 		container.setDescription("The Setup Wizard finished configuring the system.");
 
 		createPlatformStatusInfo(container);

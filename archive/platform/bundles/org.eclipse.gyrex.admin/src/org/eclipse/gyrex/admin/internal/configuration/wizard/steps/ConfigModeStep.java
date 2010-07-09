@@ -44,11 +44,11 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	@Override
 	public void createPages(final WizardContainer wizard) {
 		final WizardPage configModePage = new WizardPage("config-mode", wizard);
-		configModePage.setTitle("Configuration Mode");
+		configModePage.setLabel("Configuration Mode");
 		configModePage.setDescription("Select the platform configuration mode.");
 
 		final DialogFieldGroup configModeFieldGroup = new DialogFieldGroup("configurationMode", configModePage, CWT.NONE);
-		configModeFieldGroup.setTitle("Configuration Mode");
+		configModeFieldGroup.setLabel("Configuration Mode");
 		configModeFieldGroup
 				.setDescription("The platform supports operating in different configuration modes. This allows to apply different default configurations depending on the environment where the platform is operating. For example, in a development environment the platform should show more details about the occurred errors whereas in production customer friendly error messages are preferred as well as more strict security settings.");
 

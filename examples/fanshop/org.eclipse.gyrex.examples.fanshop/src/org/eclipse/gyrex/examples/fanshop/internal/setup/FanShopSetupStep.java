@@ -46,18 +46,18 @@ public class FanShopSetupStep extends ConfigurationWizardStep {
 	@Override
 	public void createPages(final WizardContainer wizard) {
 		final WizardPage wizardPage = new WizardPage("fanshop-setup", wizard);
-		wizardPage.setTitle("The Eclipse Fan Shop");
+		wizardPage.setLabel("The Eclipse Fan Shop");
 		wizardPage.setDescription("Deploy the Eclipse Fan Shop example application.");
 
 		final DialogFieldGroup enableFanShopGroup = new DialogFieldGroup("fanshop-deployment", wizardPage, CWT.NONE);
-		enableFanShopGroup.setTitle("Deployment");
+		enableFanShopGroup.setLabel("Deployment");
 		enableFanShopGroup.setDescription("Select whether the Fan Shop application should be deployed.");
 
 		final Checkbox deploy = new Checkbox("fanshop-deploy", enableFanShopGroup, CWT.NONE);
 		deploy.setLabel("Deploy the Eclipse FanShop demo application.");
 
 		final DialogFieldGroup container = new DialogFieldGroup("fanshop-urls", wizardPage, CWT.NONE);
-		container.setTitle("Configuration");
+		container.setLabel("Configuration");
 		container.setDescription("Configure the URL the Fan Shop application should be deployed to. Please make sure the domain name actually resolves to the machine Gyrex is running on.");
 		//container.setVisibilityRule(DialogFieldRules.field(deploy).isSet());
 

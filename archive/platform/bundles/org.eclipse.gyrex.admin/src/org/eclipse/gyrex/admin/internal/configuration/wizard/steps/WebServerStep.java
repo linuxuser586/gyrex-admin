@@ -59,14 +59,14 @@ public class WebServerStep extends ConfigurationWizardStep {
 	@Override
 	public void createPages(final WizardContainer wizard) {
 		final WizardPage webServerPage = new WizardPage("webserver", wizard);
-		webServerPage.setTitle("HTTP Server");
+		webServerPage.setLabel("HTTP Server");
 		webServerPage.setDescription("Configure the Jetty HTTP server.");
 
 		final StyledText text = new StyledText("webserver-intro", webServerPage, CWT.NONE);
 		text.setText("Gyrex uses an embedded Jetty HTTP server. You may configure the server here.", false, false);
 
 		final DialogFieldGroup container = new DialogFieldGroup("webserver-intro", webServerPage, CWT.NONE);
-		container.setTitle("HTTP Server Port");
+		container.setLabel("HTTP Server Port");
 		container.setDescription("Change the port the server should listen on. Default is port 80.");
 
 		final NumberInput port = new NumberInput("webserver-port", container, CWT.NONE);
