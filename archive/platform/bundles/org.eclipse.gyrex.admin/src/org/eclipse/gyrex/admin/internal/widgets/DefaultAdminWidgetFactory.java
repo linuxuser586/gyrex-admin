@@ -31,7 +31,7 @@ public class DefaultAdminWidgetFactory implements IWidgetFactory {
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 
 		// create a default page
-		final Container container = new Container(null != id ? id : "default", CWT.NONE);
+		final Container container = new Container("default", CWT.NONE);
 		container.setTitle("Gyrex System Admin");
 		container.setDescription("Welcome to Gyrex.");
 
