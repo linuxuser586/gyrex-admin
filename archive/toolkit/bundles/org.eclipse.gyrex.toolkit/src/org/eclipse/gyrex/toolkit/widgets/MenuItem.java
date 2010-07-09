@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006, 2010 <enter-company-name-here> and others.
+ * Copyright (c) 2010 AGETO and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -7,8 +7,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
  *
  * Contributors:
- *     <enter-company-name-here> - initial API and implementation
- *     Eclipse.org - ideas, concepts and code from existing Eclipse projects
+ *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
