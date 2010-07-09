@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -22,11 +22,14 @@ import org.eclipse.gyrex.toolkit.CWT;
  * Typically a widget content set is used to submit the actual widget content
  * between the rendered widgets and the application code defining the widget
  * (eg. your business code) back and forth.
- * </p>.
+ * </p>
+ * .
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
  * CWT implementation.
  * </p>
+ * 
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public class ContentSet {
 
@@ -48,8 +51,8 @@ public class ContentSet {
 	/**
 	 * Returns the content entries available in the set.
 	 * 
-	 * @return the content entries as a map of
-	 *         {@link ContentObject content objects} by widget id
+	 * @return the content entries as a map of {@link ContentObject content
+	 *         objects} by widget id
 	 */
 	public Map<String, ContentObject> getEntries() {
 		return entries;
@@ -61,8 +64,8 @@ public class ContentSet {
 	 * 
 	 * @param widgetId
 	 *            the widget id (may not be <code>null</code>)
-	 * @return the {@link ContentObject content object} or <code>null</code>
-	 *         if none is available
+	 * @return the {@link ContentObject content object} or <code>null</code> if
+	 *         none is available
 	 */
 	public ContentObject getEntry(final String widgetId) {
 		return entries.get(widgetId);

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -23,11 +23,10 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * parent for dialog fields which require grouping.
  * </p>
  * <p>
- * The standard layout is roughly as follows: it has an area at the top
- * containing both the group's title, description, and image; the dialog fields
- * appear in the middle with their label on the beginning, their main control in
- * the middle, filling the remaining space, and their optional controls at the
- * end.
+ * The standard layout is roughly as follows: it has a header area containing
+ * the group's title, description, and image; the dialog fields appear in the
+ * main area with their label at the beginning, their main control in the
+ * middle, filling the remaining space, and their optional controls at the end.
  * </p>
  * <p>
  * Note, although this class is a {@link Container container} it doesn't make
@@ -55,7 +54,7 @@ public final class DialogFieldGroup extends Container {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rwt.widgets.Container#checkChildWidget(org.eclipse.rwt.widgets.Widget)
 	 */
 	@Override
@@ -67,7 +66,7 @@ public final class DialogFieldGroup extends Container {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rwt.widgets.Container#setLayout(org.eclipse.rwt.layout.Layout)
 	 */
 	@Override
