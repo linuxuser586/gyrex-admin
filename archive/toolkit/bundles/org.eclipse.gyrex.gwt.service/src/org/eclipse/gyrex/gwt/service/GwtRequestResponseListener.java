@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -68,26 +68,9 @@ public class GwtRequestResponseListener {
 	 * returned to the client. The default implementation does nothing and need
 	 * not be called by subclasses.
 	 */
-	public void onAfterResponseSerialized(final String serializedResponse) {
-	}
-
-	/**
-	 * Override this method to examine the serialized response that will be
-	 * returned to the client. The default implementation does nothing and need
-	 * not be called by subclasses.
-	 */
 	public final void onBeforeProcessCall(final HttpServletRequest request, final HttpServletResponse response) {
 		// store the request & response objects in thread-local storage.
 		perThreadRequest.set(request);
 		perThreadResponse.set(response);
 	}
-
-	/**
-	 * Override this method to examine the serialized version of the request
-	 * payload before it is deserialized into objects. The default
-	 * implementation does nothing and need not be called by subclasses.
-	 */
-	public void onBeforeRequestDeserialized(final String serializedRequest) {
-	}
-
 }

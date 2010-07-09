@@ -31,29 +31,25 @@ package org.eclipse.gyrex.gwt.service.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
+import java.io.OutputStream;
 import java.net.URL;
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
 
 import org.osgi.framework.Bundle;
 
+import com.google.gwt.rpc.client.impl.RemoteException;
+import com.google.gwt.rpc.server.ClientOracle;
+import com.google.gwt.rpc.server.RPC;
+import com.google.gwt.rpc.server.RpcServlet;
 import com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.SerializationException;
-import com.google.gwt.user.server.rpc.RPC;
 import com.google.gwt.user.server.rpc.RPCRequest;
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.google.gwt.user.server.rpc.SerializationPolicy;
-import com.google.gwt.user.server.rpc.SerializationPolicyLoader;
 
-public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
+public class OSGiRpcServlet extends RpcServlet {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 4829836240562916507L;
@@ -180,7 +176,7 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 		}
 	};
 
-	OSGiRemoteServiceServlet(final GwtServiceImpl gwtService, final String moduleId, final RemoteService remoteService, final GwtRequestResponseListener requestResponseAdapter) {
+	OSGiRpcServlet(final GwtServiceImpl gwtService, final String moduleId, final RemoteService remoteService, final GwtRequestResponseListener requestResponseAdapter) {
 		this.gwtService = gwtService;
 		this.moduleId = moduleId;
 		this.remoteService = remoteService;
@@ -188,83 +184,40 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 	}
 
 	@Override
-	protected SerializationPolicy doGetSerializationPolicy(final HttpServletRequest request, final String moduleBaseURL, final String strongName) {
-		// extract module base path
-		String moduleBasePath = extractPath(moduleBaseURL, request);
-		if (null == moduleBasePath) {
-			getServletContext().log(MessageFormat.format("Unable to extract module base path from URL \"{0}\". May be a hack attempt?", moduleBaseURL));
-			return null;
-		}
-		// the serialization policy can be found in the GWT client module
+	protected InputStream findClientOracleData(String requestModuleBasePath, final String permutationStrongName) throws SerializationException {
+		// the oracle can usually be found in the GWT client module
 		final GwtHttpContext moduleContext = gwtService.getModuleContext(moduleId);
-		if (moduleContext == null) {
-			getServletContext().log(MessageFormat.format("Unable to get module context for module \"{0}\".", moduleId));
-			return null;
+		if (null == moduleContext) {
+			throw new SerializationException(MessageFormat.format("GWT module \"{0}\" not found!", moduleId));
 		}
 
 		// the module base path may contain a module alias which must be removes
 		final String alias = moduleContext.getAlias();
-		if ((null != alias) && moduleBasePath.startsWith(alias)) {
-			moduleBasePath = moduleBasePath.substring(alias.length());
+		if ((null != alias) && requestModuleBasePath.startsWith(alias)) {
+			requestModuleBasePath = requestModuleBasePath.substring(alias.length());
 		}
 
-		// the serialization policy file
-		final String serializationPolicyFile = moduleBasePath + SerializationPolicyLoader.getSerializationPolicyFileName(strongName);
-		final URL resource = moduleContext.getModuleResource(serializationPolicyFile);
+		final String clientOracleDataFile = requestModuleBasePath + permutationStrongName + CLIENT_ORACLE_EXTENSION;
+
+		final URL resource = moduleContext.getModuleResource(clientOracleDataFile);
 		if (null != resource) {
-			InputStream is = null;
+			// open stream for reading policy
 			try {
-				// open stream for reading policy
-				is = resource.openStream();
-
-				// read policy
-				final List<ClassNotFoundException> exceptions = new ArrayList<ClassNotFoundException>();
-				final SerializationPolicy policy = SerializationPolicyLoader.loadFromStream(is, exceptions);
-
-				// return policy if there were no errors
-				if (exceptions.isEmpty() && (null != policy)) {
-					return policy;
-				}
-
-				// this may indicate a deployment problem, i.e. some unsatisfied version dependencies.
-				for (final ClassNotFoundException classNotFoundException : exceptions) {
-					getServletContext().log(MessageFormat.format("Could not load class \"{0}\" using bundle \"{1}\".", classNotFoundException.getMessage(), gwtService.getBundle().getSymbolicName()));
-				}
-			} catch (final Exception e) {
-				getServletContext().log(MessageFormat.format("Error while reading serialization policy for module \"{0}\".", moduleId), e);
-			} finally {
-				if (is != null) {
-					try {
-						is.close();
-					} catch (final IOException e) {
-						// Ignore this error
-					}
-				}
+				return resource.openStream();
+			} catch (final IOException e) {
+				// log
+				getServletContext().log(MessageFormat.format("Error while reading clientOracle data \"{0}\" in module \"{1}\". {2}", clientOracleDataFile, moduleId, e.getMessage()), e);
 			}
 		}
 
 		// log a message
-		getServletContext().log(MessageFormat.format("Serialization policy file \"{0}\" not available in module \"{1}\".", serializationPolicyFile, moduleId));
+		getServletContext().log(MessageFormat.format("ClientOracle data \"{0}\" not available in module \"{1}\".", clientOracleDataFile, moduleId));
 
-		// give up
-		return null;
-	}
-
-	private String extractPath(final String moduleBaseURL, final HttpServletRequest request) {
-		try {
-			final String path = new URL(moduleBaseURL).getPath();
-			final String contextPath = request.getContextPath();
-			if (!path.startsWith(contextPath)) {
-				return null;
-			}
-			return path.substring(contextPath.length());
-		} catch (final MalformedURLException e) {
-			return null;
-		}
+		return super.findClientOracleData(requestModuleBasePath, permutationStrongName);
 	}
 
 	@Override
-	public String processCall(final String payload) throws SerializationException {
+	public void processCall(final ClientOracle clientOracle, final String payload, final OutputStream stream) throws SerializationException {
 		// we override the TCCL to ensure proper GWT (de-)serialization
 		final ClassLoader oldTccl = Thread.currentThread().getContextClassLoader();
 		try {
@@ -277,14 +230,16 @@ public class OSGiRemoteServiceServlet extends RemoteServiceServlet {
 			Thread.currentThread().setContextClassLoader(remoteServiceClassLoader);
 
 			// process call using GWT logic but with our remote service class
-			final RPCRequest rpcRequest = RPC.decodeRequest(payload, remoteService.getClass(), this);
+			final RPCRequest rpcRequest = RPC.decodeRequest(payload, remoteService.getClass(), clientOracle);
 			onAfterRequestDeserialized(rpcRequest);
-			return RPC.invokeAndEncodeResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), rpcRequest.getSerializationPolicy(), rpcRequest.getFlags());
+			RPC.invokeAndStreamResponse(remoteService, rpcRequest.getMethod(), rpcRequest.getParameters(), clientOracle, stream);
+		} catch (final RemoteException ex) {
+			throw new SerializationException("An exception was sent from the client", ex.getCause());
 		} catch (final IncompatibleRemoteServiceException ex) {
 			// this indicated an outdated client or an invalid client (hack attempt?)
 			// TODO we should log this into some metric
 			//log("An IncompatibleRemoteServiceException was thrown while processing this call.", ex);
-			return RPC.encodeResponseForFailure(null, ex);
+			RPC.streamResponseForFailure(clientOracle, stream, ex);
 		} finally {
 			// restore TCCL
 			Thread.currentThread().setContextClassLoader(oldTccl);

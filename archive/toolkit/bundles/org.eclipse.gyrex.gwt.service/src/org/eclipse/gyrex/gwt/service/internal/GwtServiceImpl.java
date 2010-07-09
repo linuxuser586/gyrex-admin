@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -18,14 +18,15 @@ import java.util.Set;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-
 import org.eclipse.gyrex.gwt.service.GwtRequestResponseListener;
 import org.eclipse.gyrex.gwt.service.GwtService;
+
 import org.osgi.framework.Bundle;
 import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 
+import com.google.gwt.rpc.client.RpcService;
 import com.google.gwt.user.client.rpc.RemoteService;
 
 public class GwtServiceImpl implements GwtService {
@@ -50,7 +51,7 @@ public class GwtServiceImpl implements GwtService {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	private void checkStopped() {
 		if (stopped) {
@@ -86,7 +87,7 @@ public class GwtServiceImpl implements GwtService {
 		}
 
 		// create the context
-		final GwtHttpContext gwtContext = new GwtHttpContext(this, moduleId, context, baseName, defaultName);
+		final GwtHttpContext gwtContext = new GwtHttpContext(this, alias, moduleId, context, baseName, defaultName);
 
 		// register resource
 		httpService.registerResources(alias, baseName, gwtContext);
@@ -114,7 +115,12 @@ public class GwtServiceImpl implements GwtService {
 		final GwtHttpContext gwtContext = new GwtHttpContext(this, moduleId, context);
 
 		// create the servlet
-		final OSGiRemoteServiceServlet servlet = new OSGiRemoteServiceServlet(this, moduleId, service, requestResponseListener);
+		final Servlet servlet;
+		if (service instanceof RpcService) {
+			servlet = new OSGiRpcServlet(this, moduleId, service, requestResponseListener);
+		} else {
+			servlet = new OSGiRemoteServiceServlet(this, moduleId, service, requestResponseListener);
+		}
 
 		// register servlet
 		httpService.registerServlet(alias, servlet, null, gwtContext);

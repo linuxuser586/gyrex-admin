@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -31,6 +31,7 @@ public class GwtHttpContext implements HttpContext {
 
 	private String defaultResourceName;
 	private String baseFolderName;
+	private String alias;
 
 	private final GwtServiceImpl gwtService;
 	private final boolean isRemoteServiceContext;
@@ -60,12 +61,14 @@ public class GwtHttpContext implements HttpContext {
 	 * Creates a new GWT module context.
 	 * 
 	 * @param gwtService
+	 * @param moduleId2
 	 * @param defaultContext
 	 * @param baseName
 	 * @param defaultName
 	 */
-	GwtHttpContext(final GwtServiceImpl gwtService, final String moduleId, final HttpContext defaultContext, final String baseName, final String defaultName) {
+	GwtHttpContext(final GwtServiceImpl gwtService, final String alias, final String moduleId, final HttpContext defaultContext, final String baseName, final String defaultName) {
 		this(gwtService, moduleId, defaultContext, false);
+		this.alias = alias;
 
 		if ((null != baseName) && (null != defaultName)) {
 			baseFolderName = baseName.concat("/");
@@ -73,9 +76,16 @@ public class GwtHttpContext implements HttpContext {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.http.HttpContext#getMimeType(java.lang.String)
+	/**
+	 * Returns the alias.
+	 * 
+	 * @return the alias (may be <code>null</code>)
 	 */
+	public String getAlias() {
+		return alias;
+	}
+
+	@Override
 	public String getMimeType(final String name) {
 		final String mimeType = null != defaultContext ? defaultContext.getMimeType(mapName(name)) : null;
 
@@ -90,17 +100,19 @@ public class GwtHttpContext implements HttpContext {
 		return mimeType;
 	}
 
-	public URL getModuleResource(final String moduleResourceName) {
+	public URL getModuleResource(String moduleResourceName) {
 		if (isRemoteServiceContext || (baseFolderName == null)) {
 			return null;
+		}
+
+		if (moduleResourceName.startsWith("/")) {
+			moduleResourceName = moduleResourceName.substring(1);
 		}
 
 		return getResource(baseFolderName.concat(moduleResourceName));
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.http.HttpContext#getResource(java.lang.String)
-	 */
+	@Override
 	public URL getResource(final String name) {
 		final String internalName = mapName(name);
 
@@ -125,9 +137,7 @@ public class GwtHttpContext implements HttpContext {
 		return resource;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.service.http.HttpContext#handleSecurity(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
+	@Override
 	public boolean handleSecurity(final HttpServletRequest request, final HttpServletResponse response) throws IOException {
 		if (null != defaultContext) {
 			return defaultContext.handleSecurity(request, response);
@@ -148,8 +158,8 @@ public class GwtHttpContext implements HttpContext {
 
 		// note, we compare the exact name here
 		// baseFolderName ends with "/" and name must end with "/" too
-		// GWT requires that the name ends with a "/", 
-		// otherwise it calculates the module base URL wrong 
+		// GWT requires that the name ends with a "/",
+		// otherwise it calculates the module base URL wrong
 		if ((null != name) && name.equals(baseFolderName)) {
 			return defaultResourceName;
 		}
