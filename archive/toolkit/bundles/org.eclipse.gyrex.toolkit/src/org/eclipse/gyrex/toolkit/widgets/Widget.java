@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -113,8 +113,14 @@ public abstract class Widget implements Serializable {
 	private DialogFieldRule visibilityRule;
 	private final int style;
 
-	//	private boolean enabled;
-	// TODO: private DialogFieldRule enablementRule;
+	/*
+	 * enablement vs. visibility:
+	 *
+	 * We intentionally only support visibility at the widget level. It doesn't make
+	 * sense (in terms of usability) to show arbitrary widgets in a enabled/disabled
+	 * state. A more pragmatic approach would be that only things which receive
+	 * focus can be enabled or disabled.
+	 */
 
 	/**
 	 * Creates a new instance.
@@ -288,25 +294,6 @@ public abstract class Widget implements Serializable {
 		return toolTipText;
 	}
 
-	//	/**
-	//	 * Returns <code>true</code> if the receiver is enabled and all ancestors
-	//	 * are enabled. Otherwise, <code>false</code> is returned.
-	//	 * <p>
-	//	 * A disabled widget is typically not selectable from the user interface and
-	//	 * draws with an inactive or "grayed" look.
-	//	 * </p>
-	//	 * 
-	//	 * @return the receiver's enabled state
-	//	 */
-	//	public boolean isEnabled() {
-	//		final Container parent = this.parent;
-	//		if (null != parent) {
-	//			return enabled && parent.isEnabled();
-	//		} else {
-	//			return enabled;
-	//		}
-	//	}
-
 	/**
 	 * Returns the visibility rule.
 	 * 
@@ -316,21 +303,6 @@ public abstract class Widget implements Serializable {
 	public DialogFieldRule getVisibilityRule() {
 		return visibilityRule;
 	}
-
-	//	/**
-	//	 * Enables the receiver if the argument is <code>true</code>, and disables
-	//	 * it otherwise.
-	//	 * <p>
-	//	 * A disabled widget is typically not selectable from the user interface and
-	//	 * draws with an inactive or "grayed" look.
-	//	 * </p>
-	//	 * 
-	//	 * @param enabled
-	//	 *            the new enabled state
-	//	 */
-	//	public void setEnabled(final boolean enabled) {
-	//		this.enabled = enabled;
-	//	}
 
 	/**
 	 * Indicates if a specific bit mask is set in the reciever's style bits.
