@@ -14,6 +14,7 @@ package org.eclipse.gyrex.toolkit.widgets;
 import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.layout.Layout;
+import org.eclipse.gyrex.toolkit.resources.ImageResource;
 
 /**
  * A container to host menu items and sub menus.
@@ -46,6 +47,7 @@ public final class Menu extends Container {
 	private static final MenuItem[] NO_ITEMS = new MenuItem[0];
 
 	private MenuItem[] featuredItems;
+	private ImageResource image;
 
 	/**
 	 * Creates a new menu instance.
@@ -118,6 +120,15 @@ public final class Menu extends Container {
 	}
 
 	/**
+	 * Returns the menu image.
+	 * 
+	 * @return the menu image
+	 */
+	public ImageResource getImage() {
+		return image;
+	}
+
+	/**
 	 * Sets the featured items.
 	 * <p>
 	 * Note, featured items do not need to have a parent. It's recommended to
@@ -142,11 +153,20 @@ public final class Menu extends Container {
 	}
 
 	/**
+	 * Sets the menu image.
+	 * 
+	 * @param image
+	 *            the image to set
+	 */
+	public void setImage(final ImageResource image) {
+		this.image = image;
+	}
+
+	/**
 	 * Not supported by {@link Menu}.
 	 */
 	@Override
 	public void setLayout(final Layout layout) {
 		// no-op
 	}
-
 }
