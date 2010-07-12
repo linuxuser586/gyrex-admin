@@ -12,14 +12,25 @@
 package org.eclipse.gyrex.toolkit.widgets;
 
 import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.layout.Layout;
 
 /**
- * A container to host menu items.
+ * A container to host menu items and sub menus.
+ * <p>
+ * A menu is a set of {@link Command commands} which can be triggered from the
+ * UI. The Toolkit supports flat as well as structured menus of arbitrary levels
+ * deep. However, recursion is not allowed within a menu tree branch.
+ * </p>
+ * <p>
+ * Additional, menus can provide {@link #getFeaturedItems() <em>featured</em>}
+ * items. This is useful in combination with very deep menus. A higher menu
+ * level could provided shortcuts to common items for an improved usability.
+ * </p>
  * <p>
  * Note, although this class is a {@link Container container} it doesn't make
- * sense to add children other than {@link Menu sub menus} or MenuItems to it.
- * Also setting a layout is a no-op.
+ * sense to add children other than {@link Menu sub menus} or {@link MenuItem
+ * items} to it. Also setting a layout is a no-op.
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
@@ -32,6 +43,9 @@ public final class Menu extends Container {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 8172073572025839760L;
+	private static final MenuItem[] NO_ITEMS = new MenuItem[0];
+
+	private MenuItem[] featuredItems;
 
 	/**
 	 * Creates a new menu instance.
@@ -61,15 +75,65 @@ public final class Menu extends Container {
 
 	/**
 	 * Verifies that the specified widget is either a {@link Menu} or a
-	 * MenuItem.
+	 * {@link MenuItem} and that no recursion will occur when adding this item.
 	 * 
 	 * @see org.eclipse.gyrex.toolkit.widgets.Container#checkChildWidget(org.eclipse.gyrex.toolkit.widgets.Widget)
 	 */
 	@Override
 	protected void checkChildWidget(final Widget widget) {
-		if (!Menu.class.isAssignableFrom(widget.getClass())) {
-			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "only Menu or MenuItem allowed");
+		// menu items are ok
+		if (MenuItem.class.isAssignableFrom(widget.getClass())) {
+			return;
 		}
+		// sub menus are ok as well if no recursion is involved
+		if (Menu.class.isAssignableFrom(widget.getClass())) {
+			// verify that no parent with same id exists
+			/*
+			 * note, the implementation can rely on just verifying the parents
+			 * because the Toolkit API does not allow constructing trees
+			 * bottom-up but only top-down
+			 */
+			final String id = widget.getId();
+			Container parent = this;
+			while (null != parent) {
+				if (parent.getId().equals(id)) {
+					Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "recursion detected within menu structure; id:" + id);
+				}
+				parent = parent.getParent();
+			}
+			return;
+		}
+
+		// invalid class
+		Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "only Menu or MenuItem allowed");
+	}
+
+	/**
+	 * Returns the featured items.
+	 * 
+	 * @return the featured items
+	 */
+	public MenuItem[] getFeaturedItems() {
+		return featuredItems;
+	}
+
+	/**
+	 * Sets the featured items.
+	 * 
+	 * @param featuredItems
+	 *            the featured items to set (maybe <code>null</code> to unset)
+	 */
+	public void setFeaturedItems(final MenuItem... featuredItems) {
+		if (null == featuredItems) {
+			this.featuredItems = NO_ITEMS;
+			return;
+		}
+		for (int i = 0; i < featuredItems.length; i++) {
+			if (null == featuredItems[i]) {
+				Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "null element at index " + i);
+			}
+		}
+		this.featuredItems = featuredItems;
 	}
 
 	/**

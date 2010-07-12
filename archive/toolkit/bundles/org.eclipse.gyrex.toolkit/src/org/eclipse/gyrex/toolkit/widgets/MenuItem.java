@@ -18,6 +18,11 @@ import org.eclipse.gyrex.toolkit.resources.ImageResource;
 /**
  * A menu item.
  * <p>
+ * A menu item has a label, a description and two images (one representing
+ * enabled and one for disabled state). A menu item triggers a {@link Command}
+ * when invoked.
+ * </p>
+ * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
  * Toolkit implementation.
  * </p>
