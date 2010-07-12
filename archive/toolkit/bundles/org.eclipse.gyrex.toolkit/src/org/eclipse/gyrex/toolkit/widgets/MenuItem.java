@@ -39,7 +39,19 @@ public final class MenuItem extends DialogField<NoContent> {
 	private ImageResource disabledImage;
 
 	/**
-	 * A menu item.
+	 * Create a new, parent-less menu item.
+	 * 
+	 * @param id
+	 *            the item id
+	 * @param style
+	 *            the item style
+	 */
+	public MenuItem(final String id, final int style) {
+		this(id, null, style);
+	}
+
+	/**
+	 * Create a new menu item.
 	 * 
 	 * @param id
 	 *            the item id
@@ -50,6 +62,19 @@ public final class MenuItem extends DialogField<NoContent> {
 	 */
 	public MenuItem(final String id, final Menu parent, final int style) {
 		super(id, parent, style, NoContent.class);
+	}
+
+	@Override
+	void addWidgetToParent() {
+		// overwritten to allow null parent
+		if (null != getParent()) {
+			super.addWidgetToParent();
+		}
+	}
+
+	@Override
+	protected void checkParent(final Container parent) {
+		// overwritten to allow null parent
 	}
 
 	/**

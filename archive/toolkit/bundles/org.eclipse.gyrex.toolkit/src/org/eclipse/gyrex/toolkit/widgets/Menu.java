@@ -119,6 +119,11 @@ public final class Menu extends Container {
 
 	/**
 	 * Sets the featured items.
+	 * <p>
+	 * Note, featured items do not need to have a parent. It's recommended to
+	 * use parentless items here. But it's also allowed to re-use existing menu
+	 * items from deeper levels in the menu tree.
+	 * </p>
 	 * 
 	 * @param featuredItems
 	 *            the featured items to set (maybe <code>null</code> to unset)
