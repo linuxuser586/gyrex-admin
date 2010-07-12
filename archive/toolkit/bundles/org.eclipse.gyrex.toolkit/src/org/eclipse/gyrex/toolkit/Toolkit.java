@@ -184,8 +184,8 @@ public final class Toolkit {
 	public static final int ERROR_ALREADY_INITIALIZED = 11;
 
 	/**
-	 * CWTToolkit error constant indicating that the receiver's parent has
-	 * already been set (value is 12).
+	 * Toolkit error constant indicating that the receiver's parent has already
+	 * been set (value is 12).
 	 */
 	public static final int ERROR_PARENT_ALREADY_SET = 12;
 
