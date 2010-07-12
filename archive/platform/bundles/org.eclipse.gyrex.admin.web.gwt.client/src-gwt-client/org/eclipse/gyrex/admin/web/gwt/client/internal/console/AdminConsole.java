@@ -177,12 +177,12 @@ public class AdminConsole implements EntryPoint {
 		final RootPanel menuPanel = RootPanel.get("menu");
 		if (null != menuPanel) {
 			final NovaMenuBar menuBar = new NovaMenuBar();
-			menuBar.addItem(new NovaMenuItem("Dashboard", new Command() {
+			menuBar.addItem(new NovaMenuItem("Dashboard", "Open system dashboard.", new Command() {
 				public void execute() {
 					loadWidget("dashboard");
 				}
 			}));
-			menuBar.addItem(new NovaMenuItem("Control Panel", new Command() {
+			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
 				public void execute() {
 					loadWidget("control-panel");
 				}

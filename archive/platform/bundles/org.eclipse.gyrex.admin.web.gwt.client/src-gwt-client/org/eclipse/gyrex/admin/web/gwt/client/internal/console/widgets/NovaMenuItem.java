@@ -28,12 +28,13 @@ public class NovaMenuItem extends Widget {
 	 * @param cmd
 	 * @param text
 	 */
-	public NovaMenuItem(final String text, final Command cmd) {
+	public NovaMenuItem(final String text, final String tooltip, final Command cmd) {
 		final LIElement li = Document.get().createLIElement();
 		final AnchorElement a = Document.get().createAnchorElement();
 		li.appendChild(a);
 		a.setInnerText(text);
 		a.setHref("#" + text);
+		a.setTitle(tooltip);
 		setElement(li);
 	}
 }
