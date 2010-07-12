@@ -15,5 +15,5 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  * Serializable Menu implementation.
  */
 public class SMenu extends SContainer {
-
+	public SMenuItem[] featuresItems;
 }
