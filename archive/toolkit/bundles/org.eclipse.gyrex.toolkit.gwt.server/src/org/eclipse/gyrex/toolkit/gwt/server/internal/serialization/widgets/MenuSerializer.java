@@ -35,6 +35,8 @@ public class MenuSerializer extends ContainerSerializer {
 	protected ISerializedWidget populateAttributes(final Widget widget, final ISerializedWidget serializedWidget, final SContainer parent) {
 		final Menu menu = (Menu) widget;
 		final SMenu sMenu = (SMenu) serializedWidget;
+
+		sMenu.image = serializeImageResource(menu.getImage());
 		final MenuItem[] featuredItems = menu.getFeaturedItems();
 		if (featuredItems.length > 0) {
 			sMenu.featuresItems = new SMenuItem[featuredItems.length];

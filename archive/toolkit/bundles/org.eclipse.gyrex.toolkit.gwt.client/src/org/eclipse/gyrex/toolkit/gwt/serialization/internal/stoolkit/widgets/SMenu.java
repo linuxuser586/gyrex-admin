@@ -11,9 +11,12 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
 
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
+
 /**
  * Serializable Menu implementation.
  */
 public class SMenu extends SContainer {
+	public SImageResource image;
 	public SMenuItem[] featuresItems;
 }
