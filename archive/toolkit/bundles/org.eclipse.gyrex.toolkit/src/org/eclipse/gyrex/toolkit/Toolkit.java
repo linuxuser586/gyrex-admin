@@ -278,8 +278,8 @@ public final class Toolkit {
 	public static void error(final int code, final Throwable throwable, final String detail) throws IllegalArgumentException, ToolkitError, ToolkitException {
 
 		/*
-		 * This code prevents the creation of "chains" of RWTErrors and
-		 * RWTExceptions which in turn contain other RWTErrors and RWTExceptions
+		 * This code prevents the creation of "chains" of ToolkitError and
+		 * ToolkitException which in turn contain other ToolkitError and ToolkitException
 		 * as their throwable. This can occur when low level code throws an
 		 * exception past a point where a higher layer is being "safe" and
 		 * catching all exceptions. (Note that, this is _a_bad_thing_ which we
