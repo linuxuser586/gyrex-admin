@@ -19,7 +19,7 @@ import org.eclipse.equinox.http.jetty.JettyConstants;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.preferences.PlatformScope;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.NumberContent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
@@ -62,21 +62,21 @@ public class WebServerStep extends ConfigurationWizardStep {
 		webServerPage.setLabel("HTTP Server");
 		webServerPage.setDescription("Configure the Jetty HTTP server.");
 
-		final StyledText text = new StyledText("webserver-intro", webServerPage, CWT.NONE);
+		final StyledText text = new StyledText("webserver-intro", webServerPage, Toolkit.NONE);
 		text.setText("Gyrex uses an embedded Jetty HTTP server. You may configure the server here.", false, false);
 
-		final DialogFieldGroup container = new DialogFieldGroup("webserver-intro", webServerPage, CWT.NONE);
+		final DialogFieldGroup container = new DialogFieldGroup("webserver-intro", webServerPage, Toolkit.NONE);
 		container.setLabel("HTTP Server Port");
 		container.setDescription("Change the port the server should listen on. Default is port 80.");
 
-		final NumberInput port = new NumberInput("webserver-port", container, CWT.NONE);
+		final NumberInput port = new NumberInput("webserver-port", container, Toolkit.NONE);
 		port.setLabel("Port:");
 		port.setToolTipText("Change the port the server should listen on. Default is port 80.");
 		port.setType(NumberType.INTEGER);
 		port.setUpperLimit(new Integer(65535), false);
 		port.setLowerLimit(new Integer(0), false);
 
-		final NumberInput sslPort = new NumberInput("webserver-ssl-port", container, CWT.NONE);
+		final NumberInput sslPort = new NumberInput("webserver-ssl-port", container, Toolkit.NONE);
 		sslPort.setLabel("SSL Port:");
 		sslPort.setToolTipText("Set the port the server should listen for SSL requests. Default is none.");
 		sslPort.setType(NumberType.INTEGER);

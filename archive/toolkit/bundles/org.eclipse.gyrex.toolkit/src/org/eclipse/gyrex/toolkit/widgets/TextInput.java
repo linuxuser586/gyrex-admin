@@ -22,7 +22,7 @@ import org.eclipse.gyrex.toolkit.content.TextContent;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class TextInput extends DialogField<TextContent> {

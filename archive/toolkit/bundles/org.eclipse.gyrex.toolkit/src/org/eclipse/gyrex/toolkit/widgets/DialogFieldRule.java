@@ -14,7 +14,7 @@ package org.eclipse.gyrex.toolkit.widgets;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A multi purpose rule for runtime aspects.
@@ -39,7 +39,7 @@ import org.eclipse.gyrex.toolkit.CWT;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation. Instances can only be created by using the factory
+ * Toolkit implementation. Instances can only be created by using the factory
  * methods provided in {@link DialogFieldRules}.
  * </p>
  * 
@@ -84,7 +84,7 @@ public class DialogFieldRule implements Serializable {
 
 		/**
 		 * Instructs the runtime to automatically select all fields marked
-		 * {@link CWT#REQUIRED required} in a given scope.
+		 * {@link Toolkit#REQUIRED required} in a given scope.
 		 */
 		REQUIRED_FIELDS,
 
@@ -220,16 +220,16 @@ public class DialogFieldRule implements Serializable {
 
 			case SPECIFIED_FIELDS:
 				if (selectedFields.length == 0) {
-					CWT.error(CWT.ERROR_INVALID_ARGUMENT, "selectedFields must not be empty (fieldSelectionType " + fieldSelectionType + ")");
+					Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "selectedFields must not be empty (fieldSelectionType " + fieldSelectionType + ")");
 				}
 				break;
 			case NO_FIELDS:
 				if (fieldCondition != FieldCondition.NEVER) {
-					CWT.error(CWT.ERROR_INVALID_ARGUMENT, "fieldCondition " + fieldCondition + " not supported for fieldSelectionType " + fieldSelectionType);
+					Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "fieldCondition " + fieldCondition + " not supported for fieldSelectionType " + fieldSelectionType);
 				}
 				break;
 			default:
-				CWT.error(CWT.ERROR_INVALID_ARGUMENT, "fieldSelectionType " + fieldSelectionType + " not supported");
+				Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "fieldSelectionType " + fieldSelectionType + " not supported");
 				break;
 		}
 

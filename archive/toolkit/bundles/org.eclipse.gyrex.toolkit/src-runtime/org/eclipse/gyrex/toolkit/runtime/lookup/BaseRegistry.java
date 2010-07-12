@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A base registry implementation for registering a factory <code>T</code> for
@@ -55,10 +55,10 @@ public abstract class BaseRegistry<T> {
 	 */
 	protected BaseRegistry(final int initialFactoryCapacity, final int estimatedWidgetRatio) {
 		if (initialFactoryCapacity < 0) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "initialFactoryCapacity must be greater than or equal to zero");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "initialFactoryCapacity must be greater than or equal to zero");
 		}
 		if (estimatedWidgetRatio < 0) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "estimatedWidgetRatio must be greater than or equal to zero");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "estimatedWidgetRatio must be greater than or equal to zero");
 		}
 
 		factoryMappings = new HashMap<T, Set<String>>(initialFactoryCapacity);
@@ -75,10 +75,10 @@ public abstract class BaseRegistry<T> {
 	 */
 	protected void addFactory(final T factory, final String... widgetIds) throws RegistrationException {
 		if (null == factory) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "factory");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "factory");
 		}
 		if (null == widgetIds) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widgetIds");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widgetIds");
 		}
 
 		registrationLock.lock();
@@ -148,7 +148,7 @@ public abstract class BaseRegistry<T> {
 	 */
 	protected void removeFactory(final T factory) {
 		if (null == factory) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "factory");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "factory");
 		}
 
 		if (!factoryByWidgetId.containsValue(factory)) {

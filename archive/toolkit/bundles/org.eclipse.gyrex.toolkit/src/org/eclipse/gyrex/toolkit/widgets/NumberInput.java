@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.NumberContent;
 
 /**
@@ -23,7 +23,7 @@ import org.eclipse.gyrex.toolkit.content.NumberContent;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class NumberInput extends DialogField<NumberContent> {
@@ -128,7 +128,7 @@ public class NumberInput extends DialogField<NumberContent> {
 	 */
 	public void setType(final NumberType type) {
 		if (null == type) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "type");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "type");
 		}
 		this.type = type;
 	}

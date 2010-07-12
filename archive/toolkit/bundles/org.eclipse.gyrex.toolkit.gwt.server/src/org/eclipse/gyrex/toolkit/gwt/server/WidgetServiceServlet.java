@@ -212,7 +212,7 @@ public class WidgetServiceServlet extends HttpServlet {
 	}
 
 	/**
-	 * Sets the {@link IWidgetFactory} for resolving CWT widgets.
+	 * Sets the {@link IWidgetFactory} for resolving Toolkit widgets.
 	 * <p>
 	 * This method has no effect after the servlet has been initialized. It must
 	 * be calles before {@link #init()} is called.

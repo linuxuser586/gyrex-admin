@@ -12,7 +12,7 @@
 package org.eclipse.gyrex.toolkit.examples.simple;
 
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
@@ -26,30 +26,30 @@ import org.eclipse.gyrex.toolkit.widgets.Widget;
 public class Simple1WidgetFactory implements IWidgetFactory {
 
 	private static Widget createSimple1Container(final String id) {
-		final Container container = new Container(id, CWT.NONE);
+		final Container container = new Container(id, Toolkit.NONE);
 
-		final StyledText styledText = new StyledText("greeting", container, CWT.NONE);
+		final StyledText styledText = new StyledText("greeting", container, Toolkit.NONE);
 		styledText.setText("Hello World 1 - Key Generation!", false, false);
 
-		final TextInput name = new TextInput(Simple1Constants.ID_NAME, container, CWT.NONE);
+		final TextInput name = new TextInput(Simple1Constants.ID_NAME, container, Toolkit.NONE);
 		name.setLabel("Name:");
 		name.setToolTipText("Please enter your name.");
 
-		final TextInput emailAddress = new TextInput(Simple1Constants.ID_EMAIL, container, CWT.REQUIRED);
+		final TextInput emailAddress = new TextInput(Simple1Constants.ID_EMAIL, container, Toolkit.REQUIRED);
 		emailAddress.setLabel("Email Address:");
 		emailAddress.setToolTipText("Please enter your email address. This is a required field.");
 
-		final TextInput textInput4 = new TextInput(Simple1Constants.ID_KEY, container, CWT.READ_ONLY);
+		final TextInput textInput4 = new TextInput(Simple1Constants.ID_KEY, container, Toolkit.READ_ONLY);
 		textInput4.setLabel("Generated Key:");
 		textInput4.setToolTipText("You can't modify this one.");
 
-		final Button findButton = new Button("find", container, CWT.NONE);
+		final Button findButton = new Button("find", container, Toolkit.NONE);
 		findButton.setLabel("Find");
 		findButton.setToolTipText("Click to find a previously generated key.");
 		findButton.setCommand(new Command("hello.world.find", DialogFieldRules.fields(name, emailAddress).submit()));
 		findButton.setEnablementRule(DialogFieldRules.anyOf(name, emailAddress).isSet());
 
-		final Button generateButton = new Button("generate", container, CWT.NONE);
+		final Button generateButton = new Button("generate", container, Toolkit.NONE);
 		generateButton.setLabel("Generate");
 		generateButton.setToolTipText("Click to generate a new key.");
 		generateButton.setCommand(new Command(Simple1Constants.CMD_GENERATE, DialogFieldRules.fields(name, emailAddress).submit()));

@@ -15,7 +15,7 @@ package org.eclipse.gyrex.toolkit.widgets;
  * A text dialog field specialized for email addresses.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class EmailInput extends TextInput {

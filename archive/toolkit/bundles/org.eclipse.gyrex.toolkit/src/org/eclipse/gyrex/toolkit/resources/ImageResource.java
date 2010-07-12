@@ -16,6 +16,10 @@ import java.net.URL;
 
 /**
  * An image resource.
+ * <p>
+ * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
+ * Toolkit implementation.
+ * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
  */

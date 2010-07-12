@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.ContentObject;
 
 /**
@@ -22,11 +22,11 @@ import org.eclipse.gyrex.toolkit.content.ContentObject;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
- * @see CWT#READ_ONLY
- * @see CWT#REQUIRED
+ * @see Toolkit#READ_ONLY
+ * @see Toolkit#REQUIRED
  */
 public abstract class DialogField<T extends ContentObject> extends Widget {
 
@@ -48,13 +48,13 @@ public abstract class DialogField<T extends ContentObject> extends Widget {
 	 *            the widget style
 	 * @param contentType
 	 *            the content type
-	 * @see CWT#READ_ONLY
-	 * @see CWT#REQUIRED
+	 * @see Toolkit#READ_ONLY
+	 * @see Toolkit#REQUIRED
 	 */
 	public DialogField(final String id, final Container parent, final int style, final Class<T> contentType) {
 		super(id, parent, style);
 		if (null == contentType) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "content type must not be null");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "content type must not be null");
 		}
 		this.contentType = contentType;
 	}
@@ -112,7 +112,7 @@ public abstract class DialogField<T extends ContentObject> extends Widget {
 	 *         <code>false</code> otherwise
 	 */
 	public boolean isReadOnly() {
-		return isStyleBitSet(CWT.READ_ONLY);
+		return isStyleBitSet(Toolkit.READ_ONLY);
 	}
 
 	/**
@@ -126,7 +126,7 @@ public abstract class DialogField<T extends ContentObject> extends Widget {
 	 *         <code>false</code> otherwise
 	 */
 	public boolean isRequired() {
-		return isStyleBitSet(CWT.REQUIRED);
+		return isStyleBitSet(Toolkit.REQUIRED);
 	}
 
 	/**

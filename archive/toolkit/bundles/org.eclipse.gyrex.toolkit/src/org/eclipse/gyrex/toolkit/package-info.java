@@ -10,17 +10,17 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 /**
- * Gyrex Widget Toolkit (CWT).
+ * Gyrex Widget Toolkit (Toolkit).
  * <p>
- * The Gyrex Widget Toolkit (CWT) is ans attempt to define a 
+ * The Gyrex Widget Toolkit (Toolkit) is ans attempt to define a 
  * cross-technology toolkit. Its base concept is a widget model for defining 
  * the user interface. This model is rendered by technology specific renders.
  * For example, one could generate an Eclipse Forms UI based user
- * interface out of a CWT model whereas another would generate HTML and
+ * interface out of a Toolkit model whereas another would generate HTML and
  * JavaScript.
  * </p>
  * <p>
- * The CWT is designed with a distributed runtime model in mind. Therefore,
+ * The Toolkit is designed with a distributed runtime model in mind. Therefore,
  * certain parts are not strictly coupled through object references but by
  * an identifier. For example, once a widget was created and rendered in the
  * UI the rendering layer generally used the widget identifier when calling
@@ -29,10 +29,10 @@
  * </p>
  * <p>
  * Due to limitations on various technologies only a very common subset of widgets
- * are supported. CWT is a higher level toolkit originally designed to allow the
+ * are supported. Toolkit is a higher level toolkit originally designed to allow the
  * single definition of UIs that can be used in different worlds (for example,
  * Eclipse RCP and web based front-ends). The idea is similar to 
- * <a href="http://en.wikipedia.org/wiki/XUL">XUL</a>. However, CWT follows a
+ * <a href="http://en.wikipedia.org/wiki/XUL">XUL</a>. However, Toolkit follows a
  * different approach in defining the UI in pure Java and goes beyond XUL by also 
  * providing a cross-technology concept for data binding. 
  * </p>

@@ -17,7 +17,7 @@ import org.eclipse.gyrex.toolkit.content.NoContent;
  * A dialog field that presents data in a table.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class Table extends StructuredDialogField<NoContent> {

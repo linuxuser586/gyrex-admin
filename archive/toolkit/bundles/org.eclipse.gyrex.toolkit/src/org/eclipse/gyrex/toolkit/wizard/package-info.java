@@ -10,7 +10,7 @@
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 /**
- * Wizard elements of the CWT.
+ * Wizard elements of the Toolkit.
  * <p>
  * Note, this is experimental API. It will not be stable until version 1.0 is
  * officially released.

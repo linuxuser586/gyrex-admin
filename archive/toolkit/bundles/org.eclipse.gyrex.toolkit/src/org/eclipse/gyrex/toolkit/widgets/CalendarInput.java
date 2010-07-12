@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A text dialog field specialized for date and time input.
@@ -28,10 +28,10 @@ import org.eclipse.gyrex.toolkit.CWT;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
- * @see CWT#SPLITTED
+ * @see Toolkit#SPLITTED
  */
 public class CalendarInput extends TextInput {
 
@@ -79,9 +79,9 @@ public class CalendarInput extends TextInput {
 	 */
 	public void setPattern(CalendarFields[] pattern) {
 		if (null == pattern)
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "pattern");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "pattern");
 		if (pattern.length == 0)
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "empty pattern");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "empty pattern");
 		this.pattern = pattern;
 	}
 }

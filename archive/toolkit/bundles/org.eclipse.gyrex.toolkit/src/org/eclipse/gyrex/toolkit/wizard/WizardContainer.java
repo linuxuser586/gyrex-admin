@@ -14,7 +14,7 @@ package org.eclipse.gyrex.toolkit.wizard;
 
 import java.util.Arrays;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.layout.Layout;
 import org.eclipse.gyrex.toolkit.widgets.Container;
@@ -42,7 +42,7 @@ import org.eclipse.gyrex.toolkit.widgets.Widget;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public final class WizardContainer extends Container {
@@ -85,7 +85,7 @@ public final class WizardContainer extends Container {
 	@Override
 	protected void checkChildWidget(final Widget widget) {
 		if (WizardPage.class != widget.getClass()) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "not a wizard page");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "not a wizard page");
 		}
 	}
 

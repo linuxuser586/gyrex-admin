@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.layout.Layout;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
@@ -55,7 +55,7 @@ public final class DialogFieldGroup extends Container {
 	 * @param style
 	 *            the group style (may be applied to all dialog fields in this
 	 *            group)
-	 * @see CWT#REQUIRED
+	 * @see Toolkit#REQUIRED
 	 */
 	public DialogFieldGroup(final String id, final Container parent, final int style) {
 		super(id, parent, style);
@@ -69,7 +69,7 @@ public final class DialogFieldGroup extends Container {
 	@Override
 	protected void checkChildWidget(final Widget widget) {
 		if (!DialogField.class.isAssignableFrom(widget.getClass())) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "not a dialog field");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "not a dialog field");
 		}
 	}
 

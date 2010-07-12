@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.StructuredContent;
 
 /**
@@ -19,7 +19,7 @@ import org.eclipse.gyrex.toolkit.content.StructuredContent;
  * elements) in one ore more columns and rows.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public abstract class StructuredDialogField<T extends StructuredContent> extends DialogField<T> {
@@ -28,8 +28,8 @@ public abstract class StructuredDialogField<T extends StructuredContent> extends
 	private static final long serialVersionUID = 8360413893896191140L;
 
 	static int checkStyle(int style) {
-		style = checkBits(style, CWT.SELECT_SINGLE, CWT.SELECT_MULTI, 0, 0, 0, 0);
-		style = checkBits(style, CWT.SELECT_ROW, CWT.SELECT_CELL, 0, 0, 0, 0);
+		style = checkBits(style, Toolkit.SELECT_SINGLE, Toolkit.SELECT_MULTI, 0, 0, 0, 0);
+		style = checkBits(style, Toolkit.SELECT_ROW, Toolkit.SELECT_CELL, 0, 0, 0, 0);
 		return style;
 	}
 

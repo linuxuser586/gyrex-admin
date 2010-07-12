@@ -17,7 +17,7 @@ import org.eclipse.gyrex.context.preferences.IRuntimeContextPreferences;
 import org.eclipse.gyrex.context.preferences.PreferencesUtil;
 import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
 import org.eclipse.gyrex.examples.fanshop.internal.IFanShopConstants;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.BooleanContent;
 import org.eclipse.gyrex.toolkit.content.TextContent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
@@ -49,19 +49,19 @@ public class FanShopSetupStep extends ConfigurationWizardStep {
 		wizardPage.setLabel("The Eclipse Fan Shop");
 		wizardPage.setDescription("Deploy the Eclipse Fan Shop example application.");
 
-		final DialogFieldGroup enableFanShopGroup = new DialogFieldGroup("fanshop-deployment", wizardPage, CWT.NONE);
+		final DialogFieldGroup enableFanShopGroup = new DialogFieldGroup("fanshop-deployment", wizardPage, Toolkit.NONE);
 		enableFanShopGroup.setLabel("Deployment");
 		enableFanShopGroup.setDescription("Select whether the Fan Shop application should be deployed.");
 
-		final Checkbox deploy = new Checkbox("fanshop-deploy", enableFanShopGroup, CWT.NONE);
+		final Checkbox deploy = new Checkbox("fanshop-deploy", enableFanShopGroup, Toolkit.NONE);
 		deploy.setLabel("Deploy the Eclipse FanShop demo application.");
 
-		final DialogFieldGroup container = new DialogFieldGroup("fanshop-urls", wizardPage, CWT.NONE);
+		final DialogFieldGroup container = new DialogFieldGroup("fanshop-urls", wizardPage, Toolkit.NONE);
 		container.setLabel("Configuration");
 		container.setDescription("Configure the URL the Fan Shop application should be deployed to. Please make sure the domain name actually resolves to the machine Gyrex is running on.");
 		//container.setVisibilityRule(DialogFieldRules.field(deploy).isSet());
 
-		final TextInput urlInput = new TextInput("fanshop-url", container, CWT.NONE);
+		final TextInput urlInput = new TextInput("fanshop-url", container, Toolkit.NONE);
 		urlInput.setLabel("URL:");
 		urlInput.setDescription("Enter the URL the Fan Shop application should be mounted on (eg. http://localhost/). ");
 		urlInput.setEnablementRule(DialogFieldRules.field(deploy).isSet());

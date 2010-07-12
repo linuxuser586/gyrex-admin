@@ -19,7 +19,7 @@ import org.eclipse.gyrex.toolkit.content.NoContent;
  * A dialog field with a button to press.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.

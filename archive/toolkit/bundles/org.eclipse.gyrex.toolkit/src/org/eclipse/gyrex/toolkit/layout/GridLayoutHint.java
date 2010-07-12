@@ -15,7 +15,7 @@ package org.eclipse.gyrex.toolkit.layout;
  * Layout hint for the {@link GridLayout}.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class GridLayoutHint extends LayoutHint {

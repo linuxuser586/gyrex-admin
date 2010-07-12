@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayout;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
@@ -28,7 +28,7 @@ import org.eclipse.gyrex.toolkit.resources.Resource;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
 
 /**
- * This is a util for translating CWT elements to the serializable GWT
+ * This is a util for translating Toolkit elements to the serializable GWT
  * equivalent that gets sent by GWT's RPC implementation across to wire.
  * <p>
  * Right now the translation is static because it's simple and doesn't introduce
@@ -64,17 +64,17 @@ public class ToolkitSerialization {
 			final Class<?> serializerClass = Class.forName(nameOfSerializerClass);
 			serializer = serializerType.cast(serializerClass.newInstance());
 		} catch (final ClassNotFoundException e) {
-			CWT.error(CWT.ERROR_NOT_IMPLEMENTED, e, MessageFormat.format("unable to serialize layout type {0}, serializer {1} not found", nameOfClassToSerialize, nameOfSerializerClass));
+			Toolkit.error(Toolkit.ERROR_NOT_IMPLEMENTED, e, MessageFormat.format("unable to serialize layout type {0}, serializer {1} not found", nameOfClassToSerialize, nameOfSerializerClass));
 		} catch (final InstantiationException e) {
-			CWT.error(CWT.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} could not be instantiated", nameOfClassToSerialize, nameOfSerializerClass));
+			Toolkit.error(Toolkit.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} could not be instantiated", nameOfClassToSerialize, nameOfSerializerClass));
 		} catch (final IllegalAccessException e) {
-			CWT.error(CWT.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} could not be instantiated", nameOfClassToSerialize, nameOfSerializerClass));
+			Toolkit.error(Toolkit.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} could not be instantiated", nameOfClassToSerialize, nameOfSerializerClass));
 		} catch (final ClassCastException e) {
-			CWT.error(CWT.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} is of wrong type", nameOfClassToSerialize, nameOfSerializerClass));
+			Toolkit.error(Toolkit.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} is of wrong type", nameOfClassToSerialize, nameOfSerializerClass));
 		}
 
 		if (null == serializer) {
-			CWT.error(CWT.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, implementation error, serializer {1} is null", nameOfClassToSerialize, nameOfSerializerClass));
+			Toolkit.error(Toolkit.ERROR_NOT_IMPLEMENTED, null, MessageFormat.format("unable to serialize layout type {0}, implementation error, serializer {1} is null", nameOfClassToSerialize, nameOfSerializerClass));
 		}
 
 		// cache the serializer
@@ -112,7 +112,7 @@ public class ToolkitSerialization {
 		final ISerializedLayout serializedLayout = serializer.serialize(layout);
 
 		if (null == serializedLayout) {
-			CWT.error(CWT.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} returned null result", layoutClassName, serializerClassName));
+			Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} returned null result", layoutClassName, serializerClassName));
 		}
 
 		return serializedLayout;
@@ -131,7 +131,7 @@ public class ToolkitSerialization {
 		if (null == serializedLayoutHint) {
 			// we allow null for layout hints not applicable to the rendering technology
 			// so we don't throw an error here
-			//CWT.error(CWT.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} returned null result", layoutHintClassName, serializerClassName));
+			//Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize layout type {0}, serializer {1} returned null result", layoutHintClassName, serializerClassName));
 			return null;
 		}
 
@@ -149,7 +149,7 @@ public class ToolkitSerialization {
 		final ISerializedResource serializedResource = serializer.serialize(resource);
 
 		if (null == serializedResource) {
-			CWT.error(CWT.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize resource type {0}, serializer {1} returned null result", resourceClassName, serializerClassName));
+			Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize resource type {0}, serializer {1} returned null result", resourceClassName, serializerClassName));
 		}
 
 		return serializedResource;
@@ -166,7 +166,7 @@ public class ToolkitSerialization {
 		final ISerializedWidget serializedWidget = serializer.serialize(widget, parent);
 
 		if (null == serializedWidget) {
-			CWT.error(CWT.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize widget type {0}, serializer {1} returned null result", widgetClassName, serializerClassName));
+			Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize widget type {0}, serializer {1} returned null result", widgetClassName, serializerClassName));
 		}
 
 		return serializedWidget;
@@ -196,7 +196,7 @@ public class ToolkitSerialization {
 		final ISerializedLayout serializedLayout = null;
 
 		if (null == serializedLayout) {
-			CWT.error(CWT.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize layout type {0}", cwtClass.getName()));
+			Toolkit.error(Toolkit.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize layout type {0}", cwtClass.getName()));
 		}
 
 		return serializedLayout;
@@ -256,7 +256,7 @@ public class ToolkitSerialization {
 		final ISerializedResource serializedResource = null;
 
 		if (null == serializedResource) {
-			CWT.error(CWT.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize resource type {0}", cwtClass.getName()));
+			Toolkit.error(Toolkit.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize resource type {0}", cwtClass.getName()));
 		}
 
 		return serializedResource;
@@ -301,7 +301,7 @@ public class ToolkitSerialization {
 		final ISerializedWidget serializedWidget = processToolkitSerializer(widget);
 
 		if (null == serializedWidget) {
-			CWT.error(CWT.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize widget type {0}", cwtClass.getName()));
+			Toolkit.error(Toolkit.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize widget type {0}", cwtClass.getName()));
 		}
 
 		return serializedWidget;

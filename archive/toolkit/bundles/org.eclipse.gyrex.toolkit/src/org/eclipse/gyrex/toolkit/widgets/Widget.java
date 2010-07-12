@@ -16,15 +16,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.gyrex.toolkit.CWT;
-import org.eclipse.gyrex.toolkit.CWTException;
+import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.ToolkitException;
 import org.eclipse.gyrex.toolkit.layout.LayoutHint;
 
 /**
  * A widget is the base class for all UI elements.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public abstract class Widget implements Serializable {
@@ -150,7 +150,7 @@ public abstract class Widget implements Serializable {
 	 */
 	public void addLayoutHint(final LayoutHint layoutHint) {
 		if (null == layoutHint) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "layout hint must not be null");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "layout hint must not be null");
 		}
 
 		final LayoutHint[] oldHints = layoutHints;
@@ -179,7 +179,7 @@ public abstract class Widget implements Serializable {
 	 */
 	protected void checkParent(final Container parent) {
 		if (parent == null) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "parent");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "parent");
 		}
 	}
 
@@ -195,20 +195,20 @@ public abstract class Widget implements Serializable {
 	 * <em>IMPORTANT:</em> By providing an implementation of this method that
 	 * allows a subclass of a class which does not normally allow subclassing to
 	 * be created, the implementer agrees to be fully responsible for the fact
-	 * that any such subclass will likely fail between CWT releases and will be
+	 * that any such subclass will likely fail between Toolkit releases and will be
 	 * strongly platform specific. No support is provided for user-written
 	 * classes which are implemented in this fashion.
 	 * </p>
 	 * <p>
-	 * The ability to subclass outside of the allowed CWT classes is intended
-	 * purely to enable those not on the CWT development team to implement
+	 * The ability to subclass outside of the allowed Toolkit classes is intended
+	 * purely to enable those not on the Toolkit development team to implement
 	 * patches in order to get around specific limitations in advance of when
 	 * those limitations can be addressed by the team. Subclassing should not be
 	 * attempted without an intimate and detailed understanding of the
 	 * hierarchy.
 	 * </p>
 	 * 
-	 * @exception CWTException
+	 * @exception ToolkitException
 	 *                <ul>
 	 *                <li>ERROR_INVALID_SUBCLASS - if this class is not an
 	 *                allowed subclass</li>
@@ -216,7 +216,7 @@ public abstract class Widget implements Serializable {
 	 */
 	protected void checkSubclass() {
 		if (!isValidSubclass(getClass())) {
-			CWT.error(CWT.ERROR_INVALID_SUBCLASS, getClass().getName());
+			Toolkit.error(Toolkit.ERROR_INVALID_SUBCLASS, getClass().getName());
 		}
 	}
 

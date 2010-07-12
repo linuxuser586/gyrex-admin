@@ -12,31 +12,28 @@
 package org.eclipse.gyrex.toolkit;
 
 /**
- * This exception is thrown whenever a recoverable exception occurred in CWT.
+ * This error is thrown whenever an unrecoverable error occurred in Toolkit.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
- * 
- * @noextend This class is not intended to be subclassed by clients.
- * @noinstantiate This class is not intended to be instantiated by clients.
  */
-public class CWTException extends RuntimeException {
+public class ToolkitError extends RuntimeException {
 
 	/** serialVersionUID */
-	private static final long serialVersionUID = 1068650795350240832L;
+	private static final long serialVersionUID = 1L;
 
 	/**
-	 * The CWT error code, one of CWT.ERROR_*.
+	 * The Toolkit error code, one of Toolkit.ERROR_*.
 	 */
-	public final int code;
+	public int code;
 
 	/**
 	 * Constructs a new instance of this class with its stack trace filled in.
 	 * The error code is set to an unspecified value.
 	 */
-	public CWTException() {
-		this(CWT.ERROR_UNSPECIFIED);
+	public ToolkitError() {
+		this(Toolkit.ERROR_UNSPECIFIED);
 	}
 
 	/**
@@ -44,10 +41,10 @@ public class CWTException extends RuntimeException {
 	 * code filled in.
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 */
-	public CWTException(final int code) {
-		this(code, CWT.findErrorText(code), null);
+	public ToolkitError(final int code) {
+		this(code, Toolkit.findErrorText(code), null);
 	}
 
 	/**
@@ -56,11 +53,11 @@ public class CWTException extends RuntimeException {
 	 * equivalent to specifying an empty string.
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 * @param message
 	 *            the detail message for the exception
 	 */
-	public CWTException(final int code, final String message) {
+	public ToolkitError(final int code, final String message) {
 		this(code, message, null);
 	}
 
@@ -70,13 +67,13 @@ public class CWTException extends RuntimeException {
 	 * equivalent to specifying an empty string.
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 * @param message
 	 *            the detail message for the exception
 	 * @param cause
 	 *            the underlying {@link Throwable} that caused the error
 	 */
-	public CWTException(final int code, final String message, final Throwable cause) {
+	public ToolkitError(final int code, final String message, final Throwable cause) {
 		super(null == cause ? message : message + " (" + cause.toString() + ")", cause); //$NON-NLS-1$ //$NON-NLS-2$
 		this.code = code;
 	}
@@ -86,12 +83,12 @@ public class CWTException extends RuntimeException {
 	 * code filled in.
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 * @param cause
 	 *            the underlying {@link Throwable} that caused the error
 	 */
-	public CWTException(final int code, final Throwable cause) {
-		this(code, CWT.findErrorText(code), cause);
+	public ToolkitError(final int code, final Throwable cause) {
+		this(code, Toolkit.findErrorText(code), cause);
 	}
 
 	/**
@@ -103,8 +100,8 @@ public class CWTException extends RuntimeException {
 	 * @param message
 	 *            the detail message for the exception
 	 */
-	public CWTException(final String message) {
-		this(CWT.ERROR_UNSPECIFIED, message, null);
+	public ToolkitError(final String message) {
+		this(Toolkit.ERROR_UNSPECIFIED, message, null);
 	}
 
 	/**
@@ -118,8 +115,8 @@ public class CWTException extends RuntimeException {
 	 * @param cause
 	 *            the underlying {@link Throwable} that caused the error
 	 */
-	public CWTException(final String message, final Throwable cause) {
-		this(CWT.ERROR_UNSPECIFIED, message, cause);
+	public ToolkitError(final String message, final Throwable cause) {
+		this(Toolkit.ERROR_UNSPECIFIED, message, cause);
 	}
 
 	/**
@@ -129,8 +126,8 @@ public class CWTException extends RuntimeException {
 	 * @param cause
 	 *            the underlying {@link Throwable} that caused the error
 	 */
-	public CWTException(final Throwable cause) {
-		this(CWT.ERROR_UNSPECIFIED, cause);
+	public ToolkitError(final Throwable cause) {
+		this(Toolkit.ERROR_UNSPECIFIED, cause);
 	}
 
 }

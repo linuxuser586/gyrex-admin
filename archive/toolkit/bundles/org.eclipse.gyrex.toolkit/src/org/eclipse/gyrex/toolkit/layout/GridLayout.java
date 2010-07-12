@@ -15,7 +15,7 @@ package org.eclipse.gyrex.toolkit.layout;
  * Aligns children in a grid.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class GridLayout extends Layout {

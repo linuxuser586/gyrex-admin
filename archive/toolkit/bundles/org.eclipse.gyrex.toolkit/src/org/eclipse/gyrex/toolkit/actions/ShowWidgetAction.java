@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.actions;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * Instructs the UI to show a widget.
@@ -25,7 +25,7 @@ import org.eclipse.gyrex.toolkit.CWT;
  * </p>
  * 
  * @noextend This class is intended to be subclassed <em>only</em> within the
- *           CWT implementation.
+ *           Toolkit implementation.
  */
 public class ShowWidgetAction extends WidgetAction {
 
@@ -35,7 +35,7 @@ public class ShowWidgetAction extends WidgetAction {
 	 * @param string
 	 */
 	public ShowWidgetAction(final String widgetId) {
-		super(widgetId, CWT.NONE);
+		super(widgetId, Toolkit.NONE);
 	}
 
 	/**

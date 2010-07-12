@@ -19,7 +19,7 @@ import org.eclipse.gyrex.toolkit.resources.ImageResource;
  * A menu item.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.

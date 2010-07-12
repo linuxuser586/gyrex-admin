@@ -14,7 +14,7 @@ package org.eclipse.gyrex.toolkit.content;
 import java.util.Collections;
 import java.util.Map;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A collection of widget content.
@@ -26,7 +26,7 @@ import org.eclipse.gyrex.toolkit.CWT;
  * .
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
@@ -43,7 +43,7 @@ public class ContentSet {
 	 */
 	public ContentSet(final Map<String, ContentObject> entryMap) {
 		if (null == entryMap) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "entry map must not be null");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "entry map must not be null");
 		}
 		entries = Collections.unmodifiableMap(entryMap);
 	}

@@ -24,7 +24,7 @@ import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule.Condition;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @see DialogFieldRule

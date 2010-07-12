@@ -25,7 +25,7 @@ import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
  * </p>
  * <p>
  * Clients may not instantiate this class. It is typically instantiated by the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public final class CommandExecutionEvent {

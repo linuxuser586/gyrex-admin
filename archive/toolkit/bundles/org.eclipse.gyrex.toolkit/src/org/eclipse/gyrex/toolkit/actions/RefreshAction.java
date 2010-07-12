@@ -11,13 +11,13 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.actions;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * Instructs the UI to refresh the current widget.
  * 
  * @noextend This class is intended to be subclassed <em>only</em> within the
- *           CWT implementation.
+ *           Toolkit implementation.
  */
 public class RefreshAction extends Action {
 
@@ -40,9 +40,9 @@ public class RefreshAction extends Action {
 	 * @see #getDelay()
 	 */
 	public RefreshAction(final int delay) {
-		super(CWT.NONE);
+		super(Toolkit.NONE);
 		if (delay < 0) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "delay must be greater or equal to 0");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "delay must be greater or equal to 0");
 		}
 		this.delay = delay;
 	}

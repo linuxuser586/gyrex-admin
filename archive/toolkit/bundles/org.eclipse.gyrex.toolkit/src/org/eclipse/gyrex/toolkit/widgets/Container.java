@@ -13,7 +13,7 @@ package org.eclipse.gyrex.toolkit.widgets;
 
 import java.util.ArrayList;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.layout.Layout;
 
 /**
@@ -27,7 +27,7 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
@@ -86,7 +86,7 @@ public class Container extends Widget {
 	 */
 	void addWidget(final Widget widget) {
 		if (null == widget) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widget");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widget");
 		}
 
 		checkChildWidget(widget);

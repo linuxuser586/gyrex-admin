@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.wizard;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.widgets.Container;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
 
@@ -33,7 +33,7 @@ public final class WizardPage extends Container {
 	 * @param style
 	 */
 	public WizardPage(final String id, final WizardContainer parent) {
-		super(id, parent, CWT.NONE);
+		super(id, parent, Toolkit.NONE);
 	}
 
 	/**

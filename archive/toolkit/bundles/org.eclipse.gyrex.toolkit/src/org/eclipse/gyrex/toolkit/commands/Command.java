@@ -26,7 +26,7 @@ import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.

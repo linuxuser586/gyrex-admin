@@ -21,11 +21,11 @@ import org.eclipse.gyrex.toolkit.commands.Command;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is intended to be subclassed <em>only</em> within the
- *           CWT implementation.
+ *           Toolkit implementation.
  */
 public class Action {
 

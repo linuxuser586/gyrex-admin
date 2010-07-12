@@ -15,7 +15,7 @@ package org.eclipse.gyrex.toolkit.widgets;
  * A dialog field with a multi line text input field.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public class TextArea extends TextInput {

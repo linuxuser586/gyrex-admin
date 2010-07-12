@@ -18,7 +18,7 @@ package org.eclipse.gyrex.toolkit.layout;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public abstract class LayoutHint {

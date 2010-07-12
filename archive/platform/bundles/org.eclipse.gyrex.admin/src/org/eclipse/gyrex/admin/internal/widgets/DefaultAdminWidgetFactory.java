@@ -12,7 +12,7 @@
 package org.eclipse.gyrex.admin.internal.widgets;
 
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 import org.eclipse.gyrex.toolkit.widgets.Container;
@@ -31,11 +31,11 @@ public class DefaultAdminWidgetFactory implements IWidgetFactory {
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 
 		// create a default page
-		final Container container = new Container("default", CWT.NONE);
+		final Container container = new Container("default", Toolkit.NONE);
 		container.setLabel("Gyrex System Admin");
 		container.setDescription("Welcome to Gyrex.");
 
-		final StyledText styledText = new StyledText("intro", container, CWT.NONE);
+		final StyledText styledText = new StyledText("intro", container, Toolkit.NONE);
 		styledText.setText("<text>\r\n" + "<p>There is currently not much content here. The platform is running and that's what we wanted to show you. After all, it's a showcase which demonstrates some concepts. If you like our vision, please follow our <a href=\"http://www.eclipse.org/gyrex/\" alt=\"Open the Gyrex blog.\">blog</a>.</p></text>", true, true);
 
 		ConfigurationWizardFactory.createPlatformStatusInfo(container);

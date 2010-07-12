@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A dialog field with a radio button.
@@ -19,15 +19,15 @@ import org.eclipse.gyrex.toolkit.CWT;
  * Note: All radio dialog fields belonging to the same container (just that
  * container level) are considered to be within the same radio group. That means
  * that only one can be active at the same time. Additionally, although the
- * style attribute {@link CWT#REQUIRED} is supported, it does not apply to an
+ * style attribute {@link Toolkit#REQUIRED} is supported, it does not apply to an
  * individual radio button directly but to the whole group.
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
- * @see CWT#REQUIRED
+ * @see Toolkit#REQUIRED
  */
 public class RadioButton extends Checkbox {
 

@@ -15,7 +15,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
@@ -113,7 +113,7 @@ public abstract class WidgetSerializer {
 		}
 
 		if (null == owner) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "owner is null");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "owner is null");
 		}
 
 		if (dialogFieldRule.isMulti()) {
@@ -253,7 +253,7 @@ public abstract class WidgetSerializer {
 				if (owner instanceof Container) {
 					sDialogFieldRule.scopeContainerId = owner.getId();
 				} else {
-					CWT.error(CWT.ERROR_NULL_ARGUMENT, MessageFormat.format("invalid dialog field rule (owner {0}); requires a scope if owner is not a container", owner.getId()));
+					Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, MessageFormat.format("invalid dialog field rule (owner {0}); requires a scope if owner is not a container", owner.getId()));
 				}
 			}
 		}
@@ -262,7 +262,7 @@ public abstract class WidgetSerializer {
 		if (needsSelectedFields) {
 			final DialogField[] selectedFields = dialogFieldRule.getSelectedFields();
 			if ((null == selectedFields) || (selectedFields.length == 0)) {
-				CWT.error(CWT.ERROR_NULL_ARGUMENT, MessageFormat.format("invalid dialog field rule (owner {0}); requires selected fields", owner.getId()));
+				Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, MessageFormat.format("invalid dialog field rule (owner {0}); requires selected fields", owner.getId()));
 			}
 			sDialogFieldRule.selectedFieldIds = new String[selectedFields.length];
 			for (int i = 0; i < selectedFields.length; i++) {

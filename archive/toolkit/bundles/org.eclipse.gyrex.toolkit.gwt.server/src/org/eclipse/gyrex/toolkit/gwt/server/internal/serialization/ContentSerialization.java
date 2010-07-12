@@ -28,7 +28,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SSe
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.STextEntry;
 
 /**
- * This is a util for translating CWT content elements to the serializable GWT
+ * This is a util for translating Toolkit content elements to the serializable GWT
  * equivalent that gets sent by GWT's RPC implementation across to wire.
  * <p>
  * Right now the translation is static because it's simple and doesn't introduce

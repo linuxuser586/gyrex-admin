@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * A {@link DialogFieldRule} extension which allows to combine multiple rules
@@ -25,7 +25,7 @@ import org.eclipse.gyrex.toolkit.CWT;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation. Instances can only be created by using the factory
+ * Toolkit implementation. Instances can only be created by using the factory
  * methods provided in {@link DialogFieldRules}.
  * </p>
  * 
@@ -115,13 +115,13 @@ public class MultiDialogFieldRule extends DialogFieldRule {
 	@Override
 	void validateRule() {
 		if (null == condition) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "condition");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "condition");
 		}
 		if (null == rules) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "rules");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "rules");
 		}
 		if (rules.length == 0) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "rules is empty");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "rules is empty");
 		}
 
 	}

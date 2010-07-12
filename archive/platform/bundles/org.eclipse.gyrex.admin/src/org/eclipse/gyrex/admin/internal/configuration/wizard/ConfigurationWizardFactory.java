@@ -19,7 +19,7 @@ import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
@@ -84,7 +84,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	}
 
 	public static void createPlatformStatusInfo(final Container parent) {
-		final Container statusContainer = new Container("status", parent, CWT.NONE);
+		final Container statusContainer = new Container("status", parent, Toolkit.NONE);
 		statusContainer.setLabel("System Status");
 		statusContainer.setDescription("The following system status reports are available.");
 
@@ -102,7 +102,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 		addStatus(statusText, PlatformConfiguration.getPlatformStatus());
 		statusText.append("</text>");
 
-		final StyledText status = new StyledText("text", statusContainer, CWT.NONE);
+		final StyledText status = new StyledText("text", statusContainer, Toolkit.NONE);
 		status.setText(statusText.toString(), true, true);
 	}
 
@@ -118,7 +118,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 		introPage.setLabel("Overview");
 		introPage.setDescription("Welcome to the Platform Configuration wizard.");
 
-		final StyledText introText = new StyledText("overview-text", introPage, CWT.NONE);
+		final StyledText introText = new StyledText("overview-text", introPage, Toolkit.NONE);
 		introText.setText("This wizard will walk you through the initial configuration of Gyrex. It is shown automatically when the platform is started for the first time and whenever a new central platform component has been installed which requires initial configuration.", false, false);
 
 		return introPage;
@@ -135,7 +135,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	}
 
 	private Widget setupWizard(final String id, final IWidgetEnvironment environment) {
-		final WizardContainer wizard = new WizardContainer(ID_CONFIGURATION_WIZARD, CWT.NONE);
+		final WizardContainer wizard = new WizardContainer(ID_CONFIGURATION_WIZARD, Toolkit.NONE);
 		wizard.setLabel("Setup Wizard");
 		wizard.setDescription("The Setup Wizard helps with the initial configuration of a system.");
 
@@ -148,7 +148,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	}
 
 	private Widget setupWizardFinished(final String id, final IWidgetEnvironment environment) {
-		final Container container = new Container(ID_CONFIGURATION_WIZARD_FINISHED, CWT.NONE);
+		final Container container = new Container(ID_CONFIGURATION_WIZARD_FINISHED, Toolkit.NONE);
 		container.setLabel("Setup Wizard Finished");
 		container.setDescription("The Setup Wizard finished configuring the system.");
 
@@ -156,7 +156,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 		// add a restart button
 		if (!ConfigurationModeHolder.isConfigurationModeInitialized() || AdminActivator.getInstance().shouldRestartServer()) {
-			final Button button = new Button("restart-button", container, CWT.NONE);
+			final Button button = new Button("restart-button", container, Toolkit.NONE);
 			button.setLabel("Restart");
 			button.setDescription("Press the button to restart the platform.");
 			button.setCommand(new Command(CMD_RESTART));

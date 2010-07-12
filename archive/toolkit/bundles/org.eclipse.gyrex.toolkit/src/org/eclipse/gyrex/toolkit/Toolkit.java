@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -18,13 +18,9 @@ import org.eclipse.gyrex.toolkit.widgets.DialogFieldGroup;
 import org.eclipse.gyrex.toolkit.widgets.StructuredDialogField;
 
 /**
- * The Gyrex Widget Toolkit (CWT).
- * <p>
- * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
- * </p>
+ * The Gyrex Widget Toolkit (Toolkit).
  */
-public class CWT {
+public final class Toolkit {
 
 	/**
 	 * A constant known to be zero (0), used in operations which take bit flags
@@ -128,62 +124,62 @@ public class CWT {
 	public static final int NEW_WINDOW = 1 << 1;
 
 	/**
-	 * CWT error constant indicating that no error number was specified (value
-	 * is 1).
+	 * Toolkit error constant indicating that no error number was specified
+	 * (value is 1).
 	 */
 	public static final int ERROR_UNSPECIFIED = 1;
 	/**
-	 * CWT error constant indicating that a null argument was passed in (value
-	 * is 2).
+	 * Toolkit error constant indicating that a null argument was passed in
+	 * (value is 2).
 	 */
 	public static final int ERROR_NULL_ARGUMENT = 2;
 	/**
-	 * CWT error constant indicating that an invalid argument was passed in
+	 * Toolkit error constant indicating that an invalid argument was passed in
 	 * (value is 3).
 	 */
 	public static final int ERROR_INVALID_ARGUMENT = 3;
 	/**
-	 * CWT error constant indicating that a particular feature has not been
+	 * Toolkit error constant indicating that a particular feature has not been
 	 * implemented on this platform (value is 4).
 	 */
 	public static final int ERROR_NOT_IMPLEMENTED = 4;
 	/**
-	 * CWT error constant indicating that a widget could not be found (value is
-	 * 5).
+	 * Toolkit error constant indicating that a widget could not be found (value
+	 * is 5).
 	 */
 	public static final int ERROR_WIDGET_NOT_FOUND = 5;
 	/**
-	 * CWT error constant indicating that a widget could not be initialized
+	 * Toolkit error constant indicating that a widget could not be initialized
 	 * properly (value is 6).
 	 */
 	public static final int ERROR_WIDGET_INITIALIZATION_FAILED = 6;
 	/**
-	 * CWT error constant indicating that a class cannot be subclassed (value is
-	 * 7).
+	 * Toolkit error constant indicating that a class cannot be subclassed
+	 * (value is 7).
 	 */
 	public static final int ERROR_INVALID_SUBCLASS = 7;
 
 	/**
-	 * CWT error constant indicating that an input/output operation failed
-	 * during the execution of an CWT operation (value is 8).
+	 * Toolkit error constant indicating that an input/output operation failed
+	 * during the execution of an Toolkit operation (value is 8).
 	 */
 	public static final int ERROR_IO = 8;
 
 	/**
-	 * CWT error constant indicating that an operation was attempted with a
+	 * Toolkit error constant indicating that an operation was attempted with a
 	 * value having a valid but unsupported format (value is 9).
 	 */
 	public static final int ERROR_UNSUPPORTED_FORMAT = 9;
 
 	/**
-	 * CWT error constant indicating that a widget needs to be initialized
+	 * Toolkit error constant indicating that a widget needs to be initialized
 	 * before any operation is executed (value is 10).
 	 */
 	public static final int ERROR_NOT_INITIALIZED = 10;
 
 	/**
-	 * CWT error constant indicating that a widget can only be initialized once
-	 * (value is 11).
+	 * Toolkit error constant indicating that a widget can only be initialized
+	 * once (value is 11).
 	 */
 	public static final int ERROR_ALREADY_INITIALIZED = 11;
 
@@ -197,12 +193,12 @@ public class CWT {
 	 * Throws an appropriate exception based on the passed in error code.
 	 * 
 	 * @param code
-	 *            the CWT error code
-	 * @see CWTError
-	 * @see CWTException
+	 *            the Toolkit error code
+	 * @see ToolkitError
+	 * @see ToolkitException
 	 * @see IllegalArgumentException
 	 */
-	public static void error(final int code) throws IllegalArgumentException, CWTError, CWTException {
+	public static void error(final int code) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, null, null);
 	}
 
@@ -211,18 +207,18 @@ public class CWT {
 	 * detail.
 	 * <p>
 	 * The <code>throwable</code> argument should be either null, or the
-	 * throwable which caused CWT to throw an exception.
+	 * throwable which caused Toolkit to throw an exception.
 	 * </p>
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 * @param detail
 	 *            more information about error (maybe <code>null</code>)
-	 * @see CWTError
-	 * @see CWTException
+	 * @see ToolkitError
+	 * @see ToolkitException
 	 * @see IllegalArgumentException
 	 */
-	public static void error(final int code, final String detail) throws IllegalArgumentException, CWTError, CWTException {
+	public static void error(final int code, final String detail) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, null, detail);
 	}
 
@@ -231,54 +227,55 @@ public class CWT {
 	 * throwable.
 	 * <p>
 	 * The <code>throwable</code> argument should be either null, or the
-	 * throwable which caused CWT to throw an exception.
+	 * throwable which caused Toolkit to throw an exception.
 	 * </p>
 	 * 
 	 * @param code
-	 *            the CWT error code
+	 *            the Toolkit error code
 	 * @param throwable
 	 *            the exception which caused the error to occur (maybe
 	 *            <code>null</code>)
-	 * @see CWTError
-	 * @see CWTException
+	 * @see ToolkitError
+	 * @see ToolkitException
 	 * @see IllegalArgumentException
 	 */
-	public static void error(final int code, final Throwable throwable) throws IllegalArgumentException, CWTError, CWTException {
+	public static void error(final int code, final Throwable throwable) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, throwable, null);
 	}
 
 	/**
 	 * Throws an appropriate exception based on the passed in error code. The
 	 * <code>throwable</code> argument should be either null, or the throwable
-	 * which caused CWT to throw an exception.
+	 * which caused Toolkit to throw an exception.
 	 * <p>
-	 * In CWT, errors are reported by throwing one of three exceptions:
+	 * In Toolkit, errors are reported by throwing one of three exceptions:
 	 * <dl>
 	 * <dd>IllegalArgumentException</dd>
 	 * <dt>thrown whenever one of the API methods is invoked with an illegal
 	 * argument</dt>
-	 * <dd>{@link CWTException} (extends {@link java.lang.RuntimeException})</dd>
-	 * <dt>thrown whenever a recoverable error happens internally in CWT</dt>
-	 * <dd>{@link CWTError} (extends {@link java.lang.Error})</dd>
+	 * <dd>{@link ToolkitException} (extends {@link java.lang.RuntimeException})
+	 * </dd>
+	 * <dt>thrown whenever a recoverable error happens internally in Toolkit</dt>
+	 * <dd>{@link ToolkitError} (extends {@link java.lang.Error})</dd>
 	 * <dt>thrown whenever a <b>non-recoverable</b> error happens internally in
-	 * CWT</dt>
+	 * Toolkit</dt>
 	 * </dl>
 	 * This method provides the logic which maps between error codes and one of
 	 * the above exceptions.
 	 * </p>
 	 * 
 	 * @param code
-	 *            the CWT error code.
+	 *            the Toolkit error code.
 	 * @param throwable
 	 *            the exception which caused the error to occur (maybe
 	 *            <code>null</code>)
 	 * @param detail
 	 *            more information about error (maybe <code>null</code>)
-	 * @see CWTError
-	 * @see CWTException
+	 * @see ToolkitError
+	 * @see ToolkitException
 	 * @see IllegalArgumentException
 	 */
-	public static void error(final int code, final Throwable throwable, final String detail) throws IllegalArgumentException, CWTError, CWTException {
+	public static void error(final int code, final Throwable throwable, final String detail) throws IllegalArgumentException, ToolkitError, ToolkitException {
 
 		/*
 		 * This code prevents the creation of "chains" of RWTErrors and
@@ -287,15 +284,15 @@ public class CWT {
 		 * exception past a point where a higher layer is being "safe" and
 		 * catching all exceptions. (Note that, this is _a_bad_thing_ which we
 		 * always try to avoid.)
-		 * 
+		 *
 		 * On the theory that the low level code is closest to the original
 		 * problem, we simply re-throw the original exception here.
 		 */
-		if (throwable instanceof CWTError) {
-			throw (CWTError) throwable;
+		if (throwable instanceof ToolkitError) {
+			throw (ToolkitError) throwable;
 		}
-		if (throwable instanceof CWTException) {
-			throw (CWTException) throwable;
+		if (throwable instanceof ToolkitException) {
+			throw (ToolkitException) throwable;
 		}
 
 		String message = findErrorText(code);
@@ -309,32 +306,32 @@ public class CWT {
 			case ERROR_INVALID_ARGUMENT:
 				throw new IllegalArgumentException(message);
 
-				/* CWT Exceptions (non-fatal) */
+				/* Toolkit Exceptions (non-fatal) */
 			case ERROR_WIDGET_NOT_FOUND:
 			case ERROR_WIDGET_INITIALIZATION_FAILED:
 			case ERROR_IO:
 			case ERROR_UNSUPPORTED_FORMAT:
 			case ERROR_NOT_INITIALIZED:
 			case ERROR_ALREADY_INITIALIZED:
-				throw new CWTException(code, message, throwable);
+				throw new ToolkitException(code, message, throwable);
 
-				/* CWT Errors (fatal, may occur only on some platforms) */
+				/* Toolkit Errors (fatal, may occur only on some platforms) */
 			case ERROR_NOT_IMPLEMENTED:
 			case ERROR_UNSPECIFIED:
-				throw new CWTError(code, message, throwable);
+				throw new ToolkitError(code, message, throwable);
 		}
 
 		/* Unknown/Undefined Error */
-		throw new CWTError(code, message, throwable);
+		throw new ToolkitError(code, message, throwable);
 	}
 
 	/**
 	 * Answers a concise, human readable description of the error code.
 	 * 
 	 * @param code
-	 *            the CWT error code.
+	 *            the Toolkit error code.
 	 * @return a description of the error code.
-	 * @see CWT
+	 * @see Toolkit
 	 */
 	static String findErrorText(final int code) {
 		switch (code) {
@@ -359,7 +356,7 @@ public class CWT {
 	/**
 	 * No need to instanciate.
 	 */
-	private CWT() {
+	private Toolkit() {
 		// no need to instanciate
 	}
 }

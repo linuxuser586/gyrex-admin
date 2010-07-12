@@ -23,7 +23,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.resources.ImageResource;
 import org.eclipse.gyrex.toolkit.widgets.styledtext.ObjectSegment.VerticalAlign;
 import org.w3c.dom.Document;
@@ -171,11 +171,11 @@ public final class StyledTextModel {
 			final Document doc = parser.parse(source);
 			processDocument(doc, expandURLs);
 		} catch (final ParserConfigurationException e) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, e, e.getMessage());
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, e, e.getMessage());
 		} catch (final SAXException e) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, e, e.getMessage());
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, e, e.getMessage());
 		} catch (final IOException e) {
-			CWT.error(CWT.ERROR_IO, e, e.getMessage());
+			Toolkit.error(Toolkit.ERROR_IO, e, e.getMessage());
 		}
 	}
 
@@ -237,7 +237,7 @@ public final class StyledTextModel {
 			final InputStream stream = new ByteArrayInputStream(taggedText.getBytes("UTF8")); //$NON-NLS-1$
 			parseInputStream(stream, expandURLs);
 		} catch (final UnsupportedEncodingException e) {
-			CWT.error(CWT.ERROR_UNSUPPORTED_FORMAT, e);
+			Toolkit.error(Toolkit.ERROR_UNSUPPORTED_FORMAT, e);
 		}
 	}
 

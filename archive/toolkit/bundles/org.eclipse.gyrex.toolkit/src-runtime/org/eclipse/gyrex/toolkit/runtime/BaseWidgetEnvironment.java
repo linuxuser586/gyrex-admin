@@ -15,7 +15,7 @@ import java.security.Principal;
 import java.util.Locale;
 import java.util.Map;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 
 /**
  * Public base implementation of {@link IWidgetEnvironment}.
@@ -48,7 +48,7 @@ public class BaseWidgetEnvironment implements IWidgetEnvironment {
 	@Override
 	public Object getAttribute(final String name) {
 		if (null == name) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "attribute name must not be null");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "attribute name must not be null");
 		}
 
 		// don't fail if no map is available

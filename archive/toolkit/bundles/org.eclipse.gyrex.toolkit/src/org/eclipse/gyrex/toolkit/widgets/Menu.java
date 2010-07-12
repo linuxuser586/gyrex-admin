@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.widgets;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.layout.Layout;
 
 /**
@@ -23,7 +23,7 @@ import org.eclipse.gyrex.toolkit.layout.Layout;
  * </p>
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
@@ -68,7 +68,7 @@ public final class Menu extends Container {
 	@Override
 	protected void checkChildWidget(final Widget widget) {
 		if (!Menu.class.isAssignableFrom(widget.getClass())) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "only Menu or MenuItem allowed");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "only Menu or MenuItem allowed");
 		}
 	}
 

@@ -14,7 +14,7 @@ package org.eclipse.gyrex.toolkit.gwt.server.internal;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.resources.Resource;
 
 import org.apache.commons.codec.DecoderException;
@@ -44,7 +44,7 @@ public class ResourceUrlEncoder {
 			out = Base64.decodeBase64(Hex.decodeHex(reference.toCharArray()));
 		} catch (final DecoderException e) {
 			// fail
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, e.getMessage());
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, e.getMessage());
 		}
 
 		// convert to String
@@ -60,7 +60,7 @@ public class ResourceUrlEncoder {
 		try {
 			return new URL(decode(reference));
 		} catch (final Exception e) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, e.getMessage());
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, e.getMessage());
 			// should not reach this point
 			throw new IllegalStateException();
 		}

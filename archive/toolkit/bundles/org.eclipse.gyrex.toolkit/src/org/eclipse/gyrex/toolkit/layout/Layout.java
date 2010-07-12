@@ -15,7 +15,7 @@ package org.eclipse.gyrex.toolkit.layout;
  * A container layout specified how the widgets inside a container are aligned.
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * CWT implementation.
+ * Toolkit implementation.
  * </p>
  */
 public abstract class Layout {
