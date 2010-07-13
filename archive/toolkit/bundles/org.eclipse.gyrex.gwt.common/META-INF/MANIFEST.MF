@@ -9,4 +9,3 @@ Export-Package: org.eclipse.gyrex.gwt.common,
  org.eclipse.gyrex.gwt.common.adaptable,
  org.eclipse.gyrex.gwt.common.status;uses:="com.google.gwt.user.client.rpc"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: com.google.gwt.user.client.rpc;version="1.5.0"
