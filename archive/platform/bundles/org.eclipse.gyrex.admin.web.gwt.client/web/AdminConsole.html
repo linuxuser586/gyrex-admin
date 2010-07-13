@@ -7,96 +7,167 @@
 	<meta name="robots" content="noindex,nofollow"/>
 	<meta name="mssmarttagspreventparsing" content="true"/>
 	<link rel="shortcut icon" href="favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/reset.css"/>
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/layout.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/header.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/footer.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/visual.css" media="screen" />
-	<!--[if IE]> 	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/ie_style.css" media="screen"/> <![endif]-->
-	<!--[if IE 6]> 	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/ie6_style.css" media="screen"/> <![endif]-->
-	<link rel="stylesheet" type="text/css" href="/eclipse.org-common/themes/Nova/css/novaWide.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="css/gwt-nova-styles.css" media="screen" />
+	<style>
+body {
+	background: url("/eclipse.org-common/themes/Nova/images/bg.png") repeat-x scroll 0 0 #EFEFEF;
+}
+body .wrapper {
+	width: 98%; /* centered div must be given a width */
+	margin: 0 auto; /* centers #wrapper */
+}
+body .wrapper .header {
+	background: transparent;
+	clear: both;
+	height: 92px;
+}
+body .wrapper .header .logo {
+	float:left;
+	z-index:9999;
+	overflow:hidden;
+	margin:0;
+	padding:0;
+	border:0;
+}
+body .wrapper .header .other {
+	display:block;
+	clear:none;
+	float:right;
+	margin-top:10px;
+	margin-bottom:0px;
+	margin-right:4px;
+	text-align:right;
+}
+body .wrapper .menu {
+	background:transparent url('/eclipse.org-common/themes/Nova/images/headerWide.png') top left repeat-x;
+	height:47px;
+	width:100%;
+	margin:0;
+	padding:0;
+	-webkit-border-top-left-radius: 14px;
+	-webkit-border-top-right-radius: 14px;
+	-moz-border-radius-topleft: 14px;
+	-moz-border-radius-topright: 14px;
+	border-top-left-radius: 14px;
+	border-top-right-radius: 14px;
+	cursor:default;
+}
+body .wrapper .menu ul {
+	float:left;
+	margin:0;
+	padding-left:0.8em;
+	border:0;
+}
+body .wrapper .menu ul li {
+	display:block;
+	float:left;
+	padding-top:0.9em;
+	padding-left:0.4em;
+	padding-right:0.4em;
+	text-transform:capitalize;
+	color:#0D3656;
+}
+body .wrapper .menu ul li a {
+	color:inherit;
+	text-align:center;
+}
+body .wrapper .content {
+	border-right:1px solid #D9D9D9;
+	border-left:1px solid #D9D9D9;
+	padding:0;
+	margin:0;
+	background: #FFF;
+}
+body .wrapper .sidebar-visible {
+	background: #FFF url('/eclipse.org-common/themes/Nova/images/faux.jpg') repeat-y;
+}
+body .wrapper .content .sidebar {
+	background:  transparent;
+	float: left;
+	margin:0;
+	padding:0.4em;
+	width: 185px;
+}
+body .wrapper .content .maincontent {
+	background: transparent;
+	float: left;
+	padding:0.4em;
+	margin:0;
+}
+body .wrapper .footer {
+	clear: both;
+ 	background-color: #B5B5AC;
+	-webkit-border-bottom-left-radius: 14px;
+	-webkit-border-bottom-right-radius: 14px;
+	-moz-border-radius-bottomleft: 14px;
+	-moz-border-radius-bottomright: 14px;
+	border-bottom-left-radius: 14px;
+	border-bottom-right-radius: 14px;
+ 	padding-top:15px;
+	height: 27px;
+	width: 100%;
+	margin: 1px auto;
+}
+body .wrapper .footer * {
+	color:#FFF;
+	text-decoration:none;
+	margin:0;
+	padding:0;
+	border:0;
+}
+body .wrapper .footer ul {
+	font-size:.8em;
+	font-weight:bold;
+	padding-left:1em;
+	float:left;
+}
+body .wrapper .footer ul li {
+	display:inline;
+	padding-right:0.2em;
+	padding-left:0.2em;
+	cursor:default;
+}
+body .wrapper .footer .copyright {
+	padding-right:1.2em;
+	clear:none;
+	float:right;
+	color:#222;
+	font-size:12px;
+	font-weight:bold;
+}
+	</style>
 </head>
 <body>
-<div id="novaWrapper">
-	<div id="clearHeader">
-		<div id="logo">
-			 <img src="images/eclipse_gyrex.png" alt="Eclipse Gyrex"/>
-		</div>
-				<!--
-		<div id="otherSites">
-			<div id="sites">
-				<ul id="sitesUL">
-					<li><a href='http://www.eclipseplugincentral.com'><img alt="Eclipse Plugin Central" src="http://dev.eclipse.org/custom_icons/network-wired-bw.png"/>&nbsp;<div>Eclipse Plugin Central</div></a></li>
-					<li><a href='http://live.eclipse.org'><img alt="Eclipse Live" src="http://dev.eclipse.org/custom_icons/audio-input-microphone-bw.png"/>&nbsp;<div>Eclipse Live</div></a></li>
-		    		<li><a href='https://bugs.eclipse.org/bugs/'><img alt="Bugzilla" src="http://dev.eclipse.org/custom_icons/system-search-bw.png"/>&nbsp;<div>Bugzilla</div></a></li>
-		    		<li><a href='http://www.planeteclipse.org/'><img alt="Planet Eclipse" src="http://dev.eclipse.org/large_icons/devices/audio-card.png"/>&nbsp;<div>Planet Eclipse</div></a></li>
-		    		<li><a href='http://wiki.eclipse.org/'><img alt="Eclipse Wiki" src="http://dev.eclipse.org/custom_icons/accessories-text-editor-bw.png"/>&nbsp;<div>Eclipse Wiki</div></a></li>
-		    		<li><a href='http://portal.eclipse.org'><img alt="MyFoundation Portal" src="http://dev.eclipse.org/custom_icons/preferences-system-network-proxy-bw.png"/><div>My Foundation Portal</div></a></li>
-		    	</ul>
-	    	</div>
-		</div>
-				-->
+<div class="wrapper">
+	<div class="header">
+		<div class="logo"><img src="images/eclipse_gyrex.png" alt="Eclipse Gyrex"/></div>
+		<div class="other"></div>
 	</div>
-
-	<div id="header">
-		<div id="menu">
-		</div>
+	<div class="menu">
+		<!--<ul><li><a href="#blah">Menu 1</a></li><li>|</li><li><a href="#blah">Menu 2</a></li></ul>-->
 	</div>
-
-	<div id="novaContent" class="faux" style="background: #FFF url('/eclipse.org-common/themes/Nova/images/faux.jpg') repeat-y;">
-		<br style="clear:both;height:1em;"/>
-
-		<div id="leftcol">
-			<ul id="leftnav">
-				<li class="about">System Setup</li>
-			</ul>
-		</div>
-
-		<div id="maincontent">
-			<div id="midcolumn">
-				<!--[if lte IE 6]>
-				<div class="warning_ie6"><span>You are using and outdated version of Internet Explorer. This page will not displayed correctly. Please upgrade to a <a href="http://www.microsoft.com/germany/windows/products/winfamily/ie/default.mspx">newer version</a> of Internet Explorer.</span></div>
-				<![endif]-->
-				<div id="initialLoading" style="width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;color:black;background:white;z-index:499;">
-					<script type="text/javascript">
-						document.write("<div style='position:absolute;top:1em;left:1em;'><small>Loading...</small></div>");
-					</script>
-					<noscript>
-						<div style='position:absolute;top:1em;left:1em;'>
-							<h1>Please enable JavaScript!</h1>
-							<p>This is a rich browser application which requires JavaScript. Please activate JavaScript to view this content.</p>
-						</div>
-					</noscript>
-				</div>
-				<div id="content_container"></div>
+	<div class="content sidebar-visible">
+		<div class="sidebar"></div>
+		<div class="maincontent">
+			<!--[if lte IE 6]>
+			<div class="warning_ie6"><span>You are using and outdated version of Internet Explorer. This page will not displayed correctly. Please upgrade to a <a href="http://www.microsoft.com/germany/windows/products/winfamily/ie/default.mspx">newer version</a> of Internet Explorer.</span></div>
+			<![endif]-->
+			<div id="initialLoading" style="width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;color:black;background:white;z-index:499;">
+				<script type="text/javascript">
+					document.write("<div style='position:absolute;top:1em;left:1em;'><small>Loading. Thank you for waiting...</small></div>");
+				</script>
+				<noscript>
+					<div style='position:absolute;top:1em;left:1em;'>
+						<h1>Please enable JavaScript!</h1>
+						<p>This is a rich browser application which requires JavaScript. Please activate JavaScript to view this content.</p>
+					</div>
+				</noscript>
 			</div>
-			<!--
-			<div id="rightcolumn">
-				<div class="sideitem">
-					<h6>Related links</h6>
-					<ul>
-						<li><a href="http://dev.eclipse.org/blogs/gyrex/" title="Open the Gyrex blog.">Blog</a></li>
-						<li><a href="http://wiki.eclipse.org/Gyrex" title="Open the Gyrex wiki.">Wiki</a></li>
-						<li><a href="news://news.eclipse.org/eclipse.gyrex" title="Open the Gyrex newsgroup in your favourite news reader">Newsgroup</a></li>
-						<li><a href="http://www.eclipse.org/newsportal/thread.php?group=eclipse.gyrex" title="Open web access to the Gyrex newsgroup.">Newsgroup Web Access</a></li>
-						<li><a href="http://www.eclipse.org/proposals/gyrex/" title="Open the original project proposal.">Original Proposal</a></li>
-					</ul>
-				</div>
-			</div>
-			-->
 		</div>
-
-		<br style="clear:both;height:1em;"/>&nbsp;
+		<div style="clear:both"></div>
 	</div>
-
-	<div id="clearFooter"></div>
-
-	<div id="footer">
-		<ul id="footernav">
-			<li><a href="http://www.eclipse.org/gyrex/">Home</a></li>
-		</ul>
-		<span id="copyright"><img src="images/gyrex_20.png" alt="Eclipse Gyrex"/></span>
+	<div class="footer">
+		<!--<ul><li><a href="#blah">Menu 1</a></li><li>|</li><li><a href="#blah">Menu 2</a></li></ul>-->
+		<span class="copyright"><a href="http://www.eclipse.org/gyrex/" target="_blank" title="Visit the Gyrex website."><img src="images/gyrex_20.png" alt="Eclipse Gyrex"/></a></span>
 	</div>
 </div>
 <script type="text/javascript" src="adminconsole/adminconsole.nocache.js"></script>
