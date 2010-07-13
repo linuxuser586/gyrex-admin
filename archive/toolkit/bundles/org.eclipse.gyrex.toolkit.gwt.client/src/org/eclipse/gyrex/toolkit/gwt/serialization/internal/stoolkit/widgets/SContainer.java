@@ -19,6 +19,9 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
  */
 public class SContainer extends SWidget {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2910098863454436089L;
+
 	public ISerializedWidget[] widgets;
 
 	public ISerializedLayout layout;

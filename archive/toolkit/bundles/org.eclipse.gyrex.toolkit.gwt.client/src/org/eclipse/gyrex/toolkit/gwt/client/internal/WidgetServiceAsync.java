@@ -11,12 +11,12 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.internal;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
+
+import com.google.gwt.user.client.rpc.AsyncCallback;
 
 /**
  * This service is used to locate and load widgets from the server.

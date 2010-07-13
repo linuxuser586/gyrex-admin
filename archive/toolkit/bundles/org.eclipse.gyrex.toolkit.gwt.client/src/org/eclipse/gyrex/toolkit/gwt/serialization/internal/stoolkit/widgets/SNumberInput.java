@@ -17,6 +17,9 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Serializable Label implementation.
  */
 public class SNumberInput extends SDialogField implements IsSerializable {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -1368960573611958239L;
+
 	public static enum Type {
 		INTEGER, DECIMAL, CURRENY, PERCENTAGE
 	}

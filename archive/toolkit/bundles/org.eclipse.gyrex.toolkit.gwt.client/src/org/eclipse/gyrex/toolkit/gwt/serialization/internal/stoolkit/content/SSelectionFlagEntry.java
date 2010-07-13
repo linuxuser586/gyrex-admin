@@ -15,5 +15,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content;
  * Serializable RadioButtonEntry
  */
 public class SSelectionFlagEntry extends SContentEntry {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 6307235250911092966L;
 	public boolean selected;
 }

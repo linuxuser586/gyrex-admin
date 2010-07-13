@@ -16,4 +16,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  */
 public class SCheckbox extends SDialogField {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -9109221859653290726L;
+
 }

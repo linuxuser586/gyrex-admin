@@ -18,6 +18,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.S
  * Serializable MenuItem implementation.
  */
 public class SMenuItem extends SDialogField {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -4982069740202165567L;
 	public SCommand command;
 	public SImageResource image;
 	public SImageResource disabledImage;

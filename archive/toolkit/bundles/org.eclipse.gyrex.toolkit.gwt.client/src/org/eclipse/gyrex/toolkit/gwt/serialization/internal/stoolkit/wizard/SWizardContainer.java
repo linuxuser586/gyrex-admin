@@ -11,15 +11,16 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard;
 
-
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Serializable WizardContainer
  */
 public class SWizardContainer extends SContainer implements IsSerializable {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -4619449141522321919L;
 	public SCommand cancelCommand, finishCommand;
 }

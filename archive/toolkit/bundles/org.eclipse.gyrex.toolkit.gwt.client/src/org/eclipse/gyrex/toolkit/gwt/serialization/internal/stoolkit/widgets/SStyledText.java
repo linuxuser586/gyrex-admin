@@ -11,15 +11,17 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
 
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 
 /**
  * Serializable StyledText
  */
 public class SStyledText extends SWidget {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = -1551678489938042015L;
 
 	public static class SAggregateHyperlinkSegment extends SParagraphSegment {
 		public SHyperlinkSegment[] segments;

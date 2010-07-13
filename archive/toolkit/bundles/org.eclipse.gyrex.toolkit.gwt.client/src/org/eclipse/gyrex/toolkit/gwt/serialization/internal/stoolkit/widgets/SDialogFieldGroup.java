@@ -16,6 +16,8 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  */
 public class SDialogFieldGroup extends SContainer {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -1646725801668452627L;
 	public String title, description;
 
 }

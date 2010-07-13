@@ -16,4 +16,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  */
 public class SDropDown extends SStructuredDialogField {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = 5170850813261199130L;
+
 }

@@ -17,4 +17,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Serializable Label implementation.
  */
 public class SEmailInput extends STextInput implements IsSerializable {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = -6494238715485312760L;
 }

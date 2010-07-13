@@ -11,11 +11,10 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands;
 
-
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import org.eclipse.gyrex.gwt.common.status.IStatus;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Serializable CommandExecutionResult

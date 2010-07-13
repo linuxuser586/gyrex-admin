@@ -18,4 +18,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  */
 public class SFlowLayout extends SLayout implements IsSerializable {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -7993971876605414375L;
+
 }

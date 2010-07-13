@@ -16,6 +16,8 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout;
  */
 public class SGridLayoutHint extends SLayoutHint {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = 7362965616417250614L;
 	public int spanColumns = 1;
 	public int spanRows = 1;
 

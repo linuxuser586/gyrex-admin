@@ -18,5 +18,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDi
  * Serializable WizardPage
  */
 public class SWizardPage extends SContainer {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2697170736716859108L;
 	public SDialogFieldRule continueRule;
 }

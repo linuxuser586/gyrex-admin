@@ -11,9 +11,9 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
-
 import java.util.Arrays;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * Serializable DialogFieldRule

@@ -18,6 +18,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
  * Serializable Widget implementation.
  */
 public class SWidget implements ISerializedWidget {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 7744263489911409109L;
 	public String id;
 	public int style;
 	public String toolTipText;
@@ -30,6 +32,7 @@ public class SWidget implements ISerializedWidget {
 	 * 
 	 * @see org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget#getId()
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -39,6 +42,7 @@ public class SWidget implements ISerializedWidget {
 	 * 
 	 * @see org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget#getParent()
 	 */
+	@Override
 	public ISerializedWidget getParent() {
 		return parent;
 	}

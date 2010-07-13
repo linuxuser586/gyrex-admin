@@ -23,4 +23,7 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
  * </p>
  */
 public class SImageResource extends SResource {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = 4877148059656157511L;
 }

@@ -26,6 +26,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
  * </p>
  */
 public class SResource implements ISerializedResource {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -8773861456989752957L;
 	/**
 	 * the resource's references to be passed to the
 	 * {@link CWTToolkit#getResourceUrl(String)}

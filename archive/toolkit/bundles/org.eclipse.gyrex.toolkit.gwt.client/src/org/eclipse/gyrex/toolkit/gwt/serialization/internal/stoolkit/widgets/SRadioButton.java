@@ -16,4 +16,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  */
 public class SRadioButton extends SCheckbox {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -4158582475614805503L;
+
 }

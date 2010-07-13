@@ -17,5 +17,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SC
  * Serializable Button.
  */
 public class SButton extends SDialogField {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -5592204641303771957L;
 	public SCommand command;
 }

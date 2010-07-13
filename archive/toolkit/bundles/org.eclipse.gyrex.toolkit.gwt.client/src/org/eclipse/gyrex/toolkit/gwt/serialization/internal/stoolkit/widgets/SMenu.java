@@ -17,6 +17,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.S
  * Serializable Menu implementation.
  */
 public class SMenu extends SContainer {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 287774337633359336L;
 	public SImageResource image;
 	public SMenuItem[] featuresItems;
 }

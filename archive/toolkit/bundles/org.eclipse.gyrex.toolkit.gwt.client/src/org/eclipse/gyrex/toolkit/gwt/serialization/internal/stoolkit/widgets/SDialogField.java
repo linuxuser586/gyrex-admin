@@ -15,6 +15,8 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  * Serializable dialog field implementation
  */
 public class SDialogField extends SWidget {
+	/** serialVersionUID */
+	private static final long serialVersionUID = -6355850982504897394L;
 	public String actionId;
 	public String label, description;
 	public boolean required, readOnly;

@@ -17,5 +17,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Serializable Label implementation.
  */
 public class STextInput extends SDialogField implements IsSerializable {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 3796157783161675209L;
 	public int maxLength;
 }

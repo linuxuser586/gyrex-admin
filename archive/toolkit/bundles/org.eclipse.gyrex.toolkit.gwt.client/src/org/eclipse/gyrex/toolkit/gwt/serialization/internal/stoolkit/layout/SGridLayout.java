@@ -18,6 +18,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  */
 public class SGridLayout extends SLayout implements IsSerializable {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -3085235693922386889L;
 	public int numberOfColumns;
 	public boolean makeColumnsEqualWidth;
 

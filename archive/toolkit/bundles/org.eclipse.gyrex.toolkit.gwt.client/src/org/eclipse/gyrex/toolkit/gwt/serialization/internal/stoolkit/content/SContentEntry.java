@@ -19,4 +19,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedData;
  */
 public abstract class SContentEntry implements ISerializedData {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = -8147116681125431513L;
+
 }

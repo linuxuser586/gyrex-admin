@@ -15,5 +15,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content;
  * Serializable TextEntry
  */
 public class STextEntry extends SContentEntry {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2633076188793228888L;
 	public String text;
 }

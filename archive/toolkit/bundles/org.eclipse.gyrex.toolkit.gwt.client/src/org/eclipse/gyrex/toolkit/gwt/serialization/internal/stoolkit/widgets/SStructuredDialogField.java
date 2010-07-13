@@ -16,4 +16,7 @@ package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;
  */
 public class SStructuredDialogField extends SDialogField {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2090835832084338204L;
+
 }

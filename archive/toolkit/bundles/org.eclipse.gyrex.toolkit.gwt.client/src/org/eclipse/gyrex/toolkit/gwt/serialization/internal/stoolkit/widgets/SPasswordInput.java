@@ -17,4 +17,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * Serializable Label implementation.
  */
 public class SPasswordInput extends STextInput implements IsSerializable {
+
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2694298232849915279L;
 }

@@ -18,4 +18,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
  */
 public class SLayoutHint implements ISerializedLayoutHint {
 
+	/** serialVersionUID */
+	private static final long serialVersionUID = 2858472227037545303L;
+
 }

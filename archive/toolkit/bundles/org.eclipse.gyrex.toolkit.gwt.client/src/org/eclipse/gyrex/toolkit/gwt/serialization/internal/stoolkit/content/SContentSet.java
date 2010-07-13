@@ -19,5 +19,7 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedData;
  * Serializable ContentSet
  */
 public class SContentSet implements ISerializedData {
+	/** serialVersionUID */
+	private static final long serialVersionUID = 3432557322960054882L;
 	public Map<java.lang.String, org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentEntry> entries;
 }

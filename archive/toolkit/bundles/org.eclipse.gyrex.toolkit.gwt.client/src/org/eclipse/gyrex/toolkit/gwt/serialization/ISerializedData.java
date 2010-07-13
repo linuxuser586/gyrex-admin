@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.serialization;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
 /**
  * Marker interface for serialized set of data.
@@ -19,6 +19,6 @@ import com.google.gwt.user.client.rpc.IsSerializable;
  * This interface may be implemented by custom widget providers.
  * </p>
  */
-public interface ISerializedData extends IsSerializable {
+public interface ISerializedData extends Serializable {
 
 }
