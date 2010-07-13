@@ -11,18 +11,6 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.wizard;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.DeckPanel;
-import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.Widget;
-
 import java.util.ArrayList;
 
 import org.eclipse.gyrex.gwt.common.status.IStatus;
@@ -33,16 +21,33 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.content.ContentHelper;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.resources.SharedImages;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTContainer;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.HasCloseHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DeckPanel;
+import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.Widget;
+
 /**
  * Composite for <code>org.eclipse.gyrex.toolkit.wizard.WizardContainer</code>.
  */
-public class CWTWizardContainer extends CWTContainer {
+public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers<CWTWidget> {
 
 	public static interface PageChangeListener {
 
@@ -139,6 +144,11 @@ public class CWTWizardContainer extends CWTContainer {
 	private PageStatus pageStatus;
 
 	private ArrayList<PageChangeListener> pageChangeListeners;
+
+	@Override
+	public HandlerRegistration addCloseHandler(final CloseHandler<CWTWidget> handler) {
+		return addHandler(handler, CloseEvent.getType());
+	}
 
 	public void addPageChangeListener(final PageChangeListener listener) {
 		if (null == pageChangeListeners) {
@@ -465,6 +475,9 @@ public class CWTWizardContainer extends CWTContainer {
 					}
 				} else {
 					setPageStatus(status);
+				}
+				if (status.isOK()) {
+					CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
 				}
 			}
 

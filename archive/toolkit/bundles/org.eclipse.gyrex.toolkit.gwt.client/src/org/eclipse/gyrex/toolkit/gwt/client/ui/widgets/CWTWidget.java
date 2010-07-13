@@ -1,18 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.gyrex.gwt.common.adaptable.AdapterManager;
 import org.eclipse.gyrex.gwt.common.adaptable.IsAdaptable;
@@ -20,6 +20,9 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldRu
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldRule;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
+
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Base class that renders a {@link ISerializedWidget serialized widget} for
@@ -65,7 +68,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
@@ -86,8 +89,14 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 	/** the rendering parent */
 	private CWTContainer parentContainer;
 
+	/** visibility handler */
 	private VisibilityHandler visibilityHandler;
 
+	private Map<String, Object> data;
+
+	/**
+	 * Checks if the widget has been properly initialized
+	 */
 	private void checkInitialized() {
 		if ((null == serializedWidget) || (null == toolkit)) {
 			CWTToolkit.error(CWTToolkit.ERROR_NOT_INITIALIZED);
@@ -114,6 +123,23 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 		}
 
 		return AdapterManager.getAdapterManager().getAdapter(adapter, getAdaptableHierarchy());
+	}
+
+	/**
+	 * Returns a widget data attribute.
+	 * 
+	 * @param <T>
+	 *            the attribute type
+	 * @param name
+	 *            the attribute name
+	 * @return the attribute value
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T getData(final String name) {
+		if (null == data) {
+			return null;
+		}
+		return (T) data.get(name);
 	}
 
 	/**
@@ -196,7 +222,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.google.gwt.user.client.ui.Widget#onLoad()
 	 */
 	@Override
@@ -224,7 +250,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see com.google.gwt.user.client.ui.Widget#onUnload()
 	 */
 	@Override
@@ -256,6 +282,27 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 	 * @return the rendered GWT widget
 	 */
 	protected abstract Widget render(ISerializedWidget serializedWidget, CWTToolkit toolkit);
+
+	/**
+	 * Sets or unsets a widget data attribute.
+	 * 
+	 * @param <T>
+	 *            the attribute type
+	 * @param name
+	 *            the attribute name
+	 * @param value
+	 *            the attribute value to set (maybe <code>null</code> to unset)
+	 */
+	public <T> void setData(final String name, final T value) {
+		if (null == data) {
+			data = new HashMap<String, Object>(3);
+		}
+		if (null != value) {
+			data.put(name, value);
+		} else {
+			data.remove(name);
+		}
+	}
 
 	/**
 	 * Sets the parent.

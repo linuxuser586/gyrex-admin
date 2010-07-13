@@ -1,23 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Timer;
-import com.google.gwt.user.client.ui.ChangeListener;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SourcesChangeEvents;
-import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +33,16 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SSt
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.STextInput;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * The toolkit is responsible for creating GWT widgets from serialized Gyrex
@@ -66,19 +68,13 @@ public class CWTToolkit {
 
 	static class EmptyComposite extends CWTWidget {
 
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see org.eclipse.rep.web.gwt.client.ui.RenderedWidget#render(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
-		 *      org.eclipse.rep.web.gwt.client.ui.RenderedToolkit)
-		 */
 		@Override
 		protected Widget render(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 			return new Label(getWidgetId());
 		}
 	}
 
-	private final class ToolkitChangeListener implements ChangeListener {
+	private final class ToolkitChangeListener implements ChangeHandler {
 		private final CWTWidget widget;
 
 		private ToolkitChangeListener(final CWTWidget widget) {
@@ -86,47 +82,13 @@ public class CWTToolkit {
 		}
 
 		@Override
-		public boolean equals(final Object obj) {
-			if (this == obj) {
-				return true;
-			}
-			if (obj == null) {
-				return false;
-			}
-			if (getClass() != obj.getClass()) {
-				return false;
-			}
-			final ToolkitChangeListener other = (ToolkitChangeListener) obj;
-			if (!getOuterType().equals(other.getOuterType())) {
-				return false;
-			}
-			if (widget == null) {
-				if (other.widget != null) {
-					return false;
-				}
-			} else if (!widget.equals(other.widget)) {
-				return false;
-			}
-			return true;
-		}
-
-		private CWTToolkit getOuterType() {
-			return CWTToolkit.this;
-		}
-
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + getOuterType().hashCode();
-			result = prime * result + ((widget == null) ? 0 : widget.hashCode());
-			return result;
-		}
-
-		public void onChange(final Widget sender) {
+		public void onChange(final ChangeEvent event) {
 			fireWidgetChanged(widget);
 		}
 	}
+
+	/** CHANGE_HANDLER */
+	private static final String CHANGE_HANDLER = "__CHANGE_HANDLER";
 
 	private static final IActionHandler DEFAULT_ACTION_HANDLER = new IActionHandler() {
 		public void handleAction(final Object action) {
@@ -555,7 +517,7 @@ public class CWTToolkit {
 
 	//	/**
 	//	 * Allows to set a custom action handler.
-	//	 * 
+	//	 *
 	//	 * @param actionHandler
 	//	 *            the action handler to set (maybe <code>null</code> to unset)
 	//	 */
@@ -600,9 +562,10 @@ public class CWTToolkit {
 			error(ERROR_NULL_ARGUMENT, "widget");
 		}
 
-		final SourcesChangeEvents changeEventSource = widget.getAdapter(SourcesChangeEvents.class);
+		final HasChangeHandlers changeEventSource = widget.getAdapter(HasChangeHandlers.class);
 		if (null != changeEventSource) {
-			changeEventSource.addChangeListener(new ToolkitChangeListener(widget));
+			final HandlerRegistration changeHandlerRegistration = changeEventSource.addChangeHandler(new ToolkitChangeListener(widget));
+			widget.setData(CHANGE_HANDLER, changeHandlerRegistration);
 		}
 	}
 
@@ -622,9 +585,9 @@ public class CWTToolkit {
 			error(ERROR_NULL_ARGUMENT, "widget");
 		}
 
-		final SourcesChangeEvents changeEventSource = widget.getAdapter(SourcesChangeEvents.class);
-		if (null != changeEventSource) {
-			changeEventSource.removeChangeListener(new ToolkitChangeListener(widget));
+		final HandlerRegistration changeHandlerRegistration = widget.getData(CHANGE_HANDLER);
+		if (null != changeHandlerRegistration) {
+			changeHandlerRegistration.removeHandler();
 		}
 	}
 }
