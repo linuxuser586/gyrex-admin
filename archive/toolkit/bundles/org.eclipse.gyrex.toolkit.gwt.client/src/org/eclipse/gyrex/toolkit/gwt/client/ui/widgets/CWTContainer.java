@@ -152,19 +152,6 @@ public class CWTContainer extends CWTWidget {
 	}
 
 	/**
-	 * Indicates if the container class should wrap the panel into a custom
-	 * widget which also displays title and description if available.
-	 * 
-	 * @param serializedWidget
-	 * @param toolkit
-	 * @return <code>true</code> if it should be wrapped, <code>false</code>
-	 *         otherwise
-	 */
-	private boolean canRenderTitleAndDescription(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
-		return (null != serializedWidget.getParent()) && serializedWidget.getClass().equals(SContainer.class);
-	}
-
-	/**
 	 * Returns an iterator for the container children.
 	 * <p>
 	 * Note, the returned iterator does not support removal.
@@ -326,12 +313,25 @@ public class CWTContainer extends CWTWidget {
 		populateChildren(serializedWidget, toolkit);
 
 		// wrap the panel into a container widget if desired
-		if (canRenderTitleAndDescription(serializedWidget, toolkit)) {
+		if (shouldRenderTitleAndDescription(serializedWidget, toolkit)) {
 			final ContainerWidget containerWidget = new ContainerWidget(container.title, container.description);
 			containerWidget.setWidget(panel);
 			return containerWidget;
 		} else {
 			return panel;
 		}
+	}
+
+	/**
+	 * Indicates if the container class should wrap the panel into a custom
+	 * widget which also displays title and description if available.
+	 * 
+	 * @param serializedWidget
+	 * @param toolkit
+	 * @return <code>true</code> if it should be wrapped, <code>false</code>
+	 *         otherwise
+	 */
+	private boolean shouldRenderTitleAndDescription(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
+		return serializedWidget.getClass().equals(SContainer.class);
 	}
 }
