@@ -325,6 +325,7 @@ public class CWTStyledText extends CWTWidget {
 				final Anchor hyperlink = new Anchor();
 				hyperlink.setText(textHyperlinkSegment.text);
 				setTooltip(textHyperlinkSegment, hyperlink);
+				hyperlink.setHref("#" + commandId);
 				hyperlink.addClickHandler(new CommandExecutor(commandId, toolkit));
 				panel.addAndReplaceElement(hyperlink, id);
 			} else {
