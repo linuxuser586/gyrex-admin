@@ -11,10 +11,12 @@
  *******************************************************************************/
 package org.eclipse.gyrex.admin.web.gwt.client.internal.console;
 
+import org.eclipse.gyrex.admin.web.gwt.client.internal.console.resources.AdminStyles;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.ContentTitleProvider;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.Error;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.NovaMenuBar;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.NovaMenuItem;
+import org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets.WizardPopupPanel;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminConsoleConstants;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.service.AdminConsoleEnvironment;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.service.IAdminConsoleService;
@@ -25,6 +27,7 @@ import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -36,6 +39,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 
@@ -43,6 +47,9 @@ import com.google.gwt.user.client.ui.SimplePanel;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class AdminConsole implements EntryPoint {
+
+	/** singleton instance */
+	static AdminConsole instance;
 
 	/**
 	 * Returns the isPlatformOperatingInDevelopmentMode.
@@ -56,6 +63,7 @@ public class AdminConsole implements EntryPoint {
 	private IAdminConsoleServiceAsync adminConsoleService;
 
 	private final SimplePanel contentHolder = new SimplePanel();
+	private final Label loadingMessage = new Label("Loading...");
 
 	/** the current widget id */
 	private String currentWidgetId;
@@ -71,7 +79,7 @@ public class AdminConsole implements EntryPoint {
 	 * @return the widget factory instance (may not be <code>null</code>)
 	 */
 	protected WidgetFactory createWidgetFactory() {
-		final WidgetFactory widgetFactory = new WidgetFactory(IAdminConsoleConstants.ENTRYPOINT_WIDGET_SERVICE);
+		final WidgetFactory widgetFactory = new WidgetFactory(IAdminConsoleConstants.ENTRYPOINT_WIDGET_SERVICE, new AdminToolkit());
 		widgetFactory.setResourceBaseUrl(IAdminConsoleConstants.WIDGET_RESOURCE_BASE_URL);
 		widgetFactory.setEnvironment(new WidgetClientEnvironment());
 		return widgetFactory;
@@ -135,6 +143,8 @@ public class AdminConsole implements EntryPoint {
 			return;
 		}
 
+		contentHolder.setWidget(loadingMessage);
+
 		// load widget from server
 		widgetFactory.getWidget(widgetId, new GetWidgetCallback() {
 
@@ -174,17 +184,17 @@ public class AdminConsole implements EntryPoint {
 		widgetFactory = createWidgetFactory();
 
 		// initialize menu
-		final RootPanel menuPanel = RootPanel.get("menu");
+		final RootPanel menuPanel = RootPanel.get("menuPanel");
 		if (null != menuPanel) {
 			final NovaMenuBar menuBar = new NovaMenuBar();
 			menuBar.addItem(new NovaMenuItem("Dashboard", "Open system dashboard.", new Command() {
 				public void execute() {
-					loadWidget("dashboard");
+					requestWidget("dashboard");
 				}
 			}));
 			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
 				public void execute() {
-					loadWidget("control-panel");
+					requestWidget("control-panel");
 				}
 			}));
 			menuPanel.add(menuBar);
@@ -207,6 +217,9 @@ public class AdminConsole implements EntryPoint {
 		};
 		History.addValueChangeHandler(historyListener);
 
+		// inject our styles
+		AdminStyles.ADMIN_STYLES.getAdminCss().ensureInjected();
+
 		// hide the loading message
 		final RootPanel loadingMessage = RootPanel.get("initialLoading");
 		if (null != loadingMessage) {
@@ -223,10 +236,13 @@ public class AdminConsole implements EntryPoint {
 	}
 
 	public void onModuleLoad() {
+		instance = this;
+
 		// initialize content area
-		final RootPanel contentPanel = RootPanel.get("content_container");
+		final RootPanel contentPanel = RootPanel.get("contentPanel");
 		if (null != contentPanel) {
 			contentPanel.add(contentHolder);
+			contentHolder.setStyleName("admin-ContentHolderPanel");
 		}
 
 		// load server environment
@@ -247,9 +263,6 @@ public class AdminConsole implements EntryPoint {
 		AdapterManager.getAdapterManager().registerAdapter(CWTWidget.class, ContentTitleProvider.class, new ContentTitleProvider());
 	}
 
-	/* (non-Javadoc)
-	 * @see com.google.gwt.user.client.HistoryListener#onHistoryChanged(java.lang.String)
-	 */
 	protected void requestWidget(final String widgetId) {
 		loadWidget(((null != widgetId) && (widgetId.trim().length() > 0)) ? widgetId : "");
 	}
@@ -279,7 +292,13 @@ public class AdminConsole implements EntryPoint {
 			contentHolder.setWidget(new HTML("&nbsp;"));
 			Window.alert("no widget wo show");
 		} else {
-			contentHolder.setWidget(widget);
+			if (widget instanceof CWTWizardContainer) {
+				final WizardPopupPanel panel = new WizardPopupPanel();
+				panel.setWizard((CWTWizardContainer) widget);
+				panel.center();
+			} else {
+				contentHolder.setWidget(widget);
+			}
 		}
 	}
 

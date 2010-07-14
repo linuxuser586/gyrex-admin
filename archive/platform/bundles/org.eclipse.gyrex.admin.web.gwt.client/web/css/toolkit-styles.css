@@ -18,12 +18,28 @@ fieldset,img {
 }
 
 .cwt-WizardContainer-Pages {
-	height: 280px;
+	min-height: 280px;
+	width: 640px;
 	overflow: auto;
 }
 
 .cwt-WizardContainer-Buttons {
 	margin-top: 0.2em;
+}
+
+.cwt-WizardContainer-PageStatus {
+}
+.cwt-WizardContainer-PageDescription {
+}
+.cwt-WizardContainer-PageTitle {
+	display: none;
+}
+.cwt-WizardContainer-WizardDescription {
+	display: none;
+}
+.cwt-WizardContainer-WizardTitle {
+	margin: 0;
+	padding: 0;
 }
 
 .cwt-TextInput,

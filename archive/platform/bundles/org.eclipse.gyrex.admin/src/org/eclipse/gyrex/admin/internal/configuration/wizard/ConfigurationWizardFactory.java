@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -13,7 +13,6 @@ package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
@@ -30,6 +29,8 @@ import org.eclipse.gyrex.toolkit.widgets.StyledText;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
 import org.eclipse.gyrex.toolkit.wizard.WizardPage;
+
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * The Setup Wizard factory.
@@ -51,14 +52,14 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	public static final String[] ALL_IDS = new String[] { ID_CONFIGURATION_WIZARD_FINISHED, ID_CONFIGURATION_WIZARD };
 
 	private static void addStatus(final StringBuilder text, final IStatus status) {
+		if (status.isOK()) {
+			return;
+		}
+
 		if (status.isMultiStatus()) {
 			for (final IStatus childStatus : status.getChildren()) {
 				addStatus(text, childStatus);
 			}
-			return;
-		}
-
-		if (status.isOK()) {
 			return;
 		}
 
@@ -86,7 +87,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	public static void createPlatformStatusInfo(final Container parent) {
 		final Container statusContainer = new Container("status", parent, Toolkit.NONE);
 		statusContainer.setLabel("System Status");
-		statusContainer.setDescription("The following system status reports are available.");
+//		statusContainer.setDescription("The following system status reports are available.");
 
 		// refresh the status and wait
 		PlatformStatusRefreshJob.scheduleRefreshIfPermitted();
@@ -99,7 +100,12 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 		final StringBuilder statusText = new StringBuilder();
 		statusText.append("<text>");
-		addStatus(statusText, PlatformConfiguration.getPlatformStatus());
+		final IStatus platformStatus = PlatformConfiguration.getPlatformStatus();
+		if (platformStatus.isOK()) {
+			statusText.append("Your sytem is running fine.");
+		} else {
+			addStatus(statusText, platformStatus);
+		}
 		statusText.append("</text>");
 
 		final StyledText status = new StyledText("text", statusContainer, Toolkit.NONE);
@@ -150,7 +156,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	private Widget setupWizardFinished(final String id, final IWidgetEnvironment environment) {
 		final Container container = new Container(ID_CONFIGURATION_WIZARD_FINISHED, Toolkit.NONE);
 		container.setLabel("Setup Wizard Finished");
-		container.setDescription("The Setup Wizard finished configuring the system.");
+		container.setDescription("The Setup Wizard finished configuring your system. A restart may be necessary. Please check the following system status.");
 
 		createPlatformStatusInfo(container);
 

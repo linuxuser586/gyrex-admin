@@ -1,20 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.widgets;
 
-
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
+import org.eclipse.gyrex.admin.internal.controlpanel.ControlPanelFactory;
 import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetRegistry;
@@ -38,6 +38,7 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 		// register our factories
 		try {
 			registerFactory(configurationWizardFactory, ConfigurationWizardFactory.ALL_IDS);
+			registerFactory(new ControlPanelFactory(), ControlPanelFactory.IDS);
 		} catch (final RegistrationException e) {
 			throw new IllegalStateException("implementation error; registration failed: " + e.getMessage());
 		}
@@ -45,17 +46,11 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 		setDefaultFactory(new DefaultAdminWidgetFactory());
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseRegistry#clear()
-	 */
 	@Override
 	public void clear() {
 		super.clear();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetRegistry#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
-	 */
 	@Override
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 		// run setup wizard if required

@@ -14,13 +14,19 @@ package org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets;
 import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.LIElement;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DeferredCommand;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
  *
  */
 public class NovaMenuItem extends Widget {
+
+	private final Anchor anchor;
 
 	/**
 	 * Creates a new instance.
@@ -32,9 +38,17 @@ public class NovaMenuItem extends Widget {
 		final LIElement li = Document.get().createLIElement();
 		final AnchorElement a = Document.get().createAnchorElement();
 		li.appendChild(a);
-		a.setInnerText(text);
-		a.setHref("#" + text);
-		a.setTitle(tooltip);
 		setElement(li);
+		anchor = Anchor.wrap(a);
+		anchor.setText(text);
+		anchor.setTitle(text);
+		anchor.setHref("#" + text);
+		anchor.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(final ClickEvent event) {
+				event.preventDefault();
+				DeferredCommand.addCommand(cmd);
+			}
+		});
 	}
 }

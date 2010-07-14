@@ -8,8 +8,11 @@
 	<meta name="mssmarttagspreventparsing" content="true"/>
 	<link rel="shortcut icon" href="favicon.ico"/>
 	<style>
+@import url(css/gwt-chrome-modified.css);
+@import url(css/toolkit-styles.css);
+@import url(css/admin-styles.css);
 body {
-	background: url("/eclipse.org-common/themes/Nova/images/bg.png") repeat-x scroll 0 0 #EFEFEF;
+	background: #EFEFEF url("/eclipse.org-common/themes/Nova/images/bg.png") repeat-x scroll 0 0;
 }
 body .wrapper {
 	width: 98%; /* centered div must be given a width */
@@ -60,10 +63,11 @@ body .wrapper .menu ul {
 body .wrapper .menu ul li {
 	display:block;
 	float:left;
-	padding-top:0.9em;
+	padding-top:16px;
 	padding-left:0.4em;
 	padding-right:0.4em;
 	text-transform:capitalize;
+	font-size:9pt;
 	color:#0D3656;
 }
 body .wrapper .menu ul li a {
@@ -73,25 +77,16 @@ body .wrapper .menu ul li a {
 body .wrapper .content {
 	border-right:1px solid #D9D9D9;
 	border-left:1px solid #D9D9D9;
-	padding:0;
+	padding:10px;
 	margin:0;
 	background: #FFF;
 }
-body .wrapper .sidebar-visible {
-	background: #FFF url('/eclipse.org-common/themes/Nova/images/faux.jpg') repeat-y;
-}
 body .wrapper .content .sidebar {
-	background:  transparent;
+	background: transparent url('/eclipse.org-common/themes/Nova/images/faux.jpg') repeat-y;
 	float: left;
 	margin:0;
 	padding:0.4em;
 	width: 185px;
-}
-body .wrapper .content .maincontent {
-	background: transparent;
-	float: left;
-	padding:0.4em;
-	margin:0;
 }
 body .wrapper .footer {
 	clear: both;
@@ -142,28 +137,25 @@ body .wrapper .footer .copyright {
 		<div class="logo"><img src="images/eclipse_gyrex.png" alt="Eclipse Gyrex"/></div>
 		<div class="other"></div>
 	</div>
-	<div class="menu">
+	<div class="menu" id="menuPanel">
 		<!--<ul><li><a href="#blah">Menu 1</a></li><li>|</li><li><a href="#blah">Menu 2</a></li></ul>-->
 	</div>
-	<div class="content sidebar-visible">
-		<div class="sidebar"></div>
-		<div class="maincontent">
-			<!--[if lte IE 6]>
-			<div class="warning_ie6"><span>You are using and outdated version of Internet Explorer. This page will not displayed correctly. Please upgrade to a <a href="http://www.microsoft.com/germany/windows/products/winfamily/ie/default.mspx">newer version</a> of Internet Explorer.</span></div>
-			<![endif]-->
-			<div id="initialLoading" style="width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;color:black;background:white;z-index:499;">
-				<script type="text/javascript">
-					document.write("<div style='position:absolute;top:1em;left:1em;'><small>Loading. Thank you for waiting...</small></div>");
-				</script>
-				<noscript>
-					<div style='position:absolute;top:1em;left:1em;'>
-						<h1>Please enable JavaScript!</h1>
-						<p>This is a rich browser application which requires JavaScript. Please activate JavaScript to view this content.</p>
-					</div>
-				</noscript>
-			</div>
+	<div class="content">
+		<!--[if lte IE 6]>
+		<div class="warning_ie6"><span>You are using and outdated version of Internet Explorer. This page will not displayed correctly. Please upgrade to a <a href="http://www.microsoft.com/germany/windows/products/winfamily/ie/default.mspx">newer version</a> of Internet Explorer.</span></div>
+		<![endif]-->
+		<div id="initialLoading" style="width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;color:black;background:white;z-index:499;">
+			<script type="text/javascript">
+				document.write("<div style='position:absolute;top:1em;left:1em;'><small>Loading. Thank you for waiting...</small></div>");
+			</script>
+			<noscript>
+				<div style='position:absolute;top:1em;left:1em;'>
+					<h1>Please enable JavaScript!</h1>
+					<p>This is a rich browser application which requires JavaScript. Please activate JavaScript to view this content.</p>
+				</div>
+			</noscript>
 		</div>
-		<div style="clear:both"></div>
+		<div id="contentPanel"></div>
 	</div>
 	<div class="footer">
 		<!--<ul><li><a href="#blah">Menu 1</a></li><li>|</li><li><a href="#blah">Menu 2</a></li></ul>-->

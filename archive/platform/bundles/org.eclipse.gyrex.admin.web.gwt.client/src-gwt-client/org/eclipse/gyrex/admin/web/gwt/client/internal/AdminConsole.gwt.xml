@@ -18,6 +18,9 @@
   <inherits name="com.google.gwt.resources.Resources"/>
   <inherits name="com.google.gwt.rpc.RPC"/>
 
+  <!-- default look -->
+  <inherits name="com.google.gwt.user.theme.chrome.ChromeResources"/>
+
   <!-- Inherit Gyrex stuff. -->
   <inherits name="org.eclipse.gyrex.gwt.common.Common" />
   <inherits name="org.eclipse.gyrex.toolkit.gwt.Ui" />
