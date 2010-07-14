@@ -57,7 +57,8 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 
 	private static final class PageDescription extends Widget {
 		public PageDescription() {
-			setElement(DOM.createElement("h2"));
+			setElement(DOM.createElement("p"));
+			setStyleName("cwt-WizardContainer-PageDescription");
 		}
 
 		public void setText(final String text) {
@@ -68,16 +69,19 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 	private static final class PageStatus extends Widget {
 		Image image = new Image();
 		private final Element messageElem;
+		private final PageDescription pageDesc;
 
-		public PageStatus() {
+		public PageStatus(final PageDescription description) {
+			pageDesc = description;
 			setElement(DOM.createDiv());
+			setStyleName("cwt-WizardContainer-PageStatus");
 
 			final Element imgSpan = DOM.createSpan();
-			imgSpan.addClassName("status-image");
+			imgSpan.addClassName("cwt-WizardContainer-PageStatus-Image");
 			imgSpan.appendChild(image.getElement());
 
 			messageElem = DOM.createSpan();
-			messageElem.addClassName("status-message");
+			messageElem.addClassName("cwt-WizardContainer-PageStatus-Message");
 
 			getElement().appendChild(imgSpan);
 			getElement().appendChild(messageElem);
@@ -86,6 +90,9 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 		public void setStatus(final IStatus status) {
 			if ((null == status) || status.isOK()) {
 				setVisible(false);
+				if (null != pageDesc) {
+					pageDesc.setVisible(true);
+				}
 			} else {
 				switch (status.getSeverity()) {
 					case IStatus.CANCEL:
@@ -103,18 +110,43 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 						break;
 				}
 				DOM.setInnerText(messageElem, status.getMessage());
+				if (null != pageDesc) {
+					pageDesc.setVisible(false);
+				}
 				setVisible(true);
 			}
 		}
 	}
 
 	private static final class PageTitle extends Widget {
-
 		/**
 		 * Creates a new instance.
 		 */
 		public PageTitle() {
-			setElement(DOM.createElement("h1"));
+			setElement(DOM.createElement("h3"));
+			setStyleName("cwt-WizardContainer-PageTitle");
+		}
+
+		public void setText(final String text) {
+			DOM.setInnerText(getElement(), text);
+		}
+	}
+
+	private static final class WizardDescription extends Widget {
+		public WizardDescription() {
+			setElement(DOM.createElement("p"));
+			setStyleName("cwt-WizardContainer-WizardDescription");
+		}
+
+		public void setText(final String text) {
+			DOM.setInnerText(getElement(), text);
+		}
+	}
+
+	private static final class WizardTitle extends Widget {
+		public WizardTitle() {
+			setElement(DOM.createElement("h2"));
+			setStyleName("cwt-WizardContainer-WizardTitle");
 		}
 
 		public void setText(final String text) {
@@ -139,6 +171,8 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 	private boolean allButtonsDisabled = false;
 
 	private boolean renderPageTitleAndDescription = true;
+	private WizardTitle wizardTitle;
+	private WizardDescription wizardDescription;
 	private PageTitle pageTitle;
 	private PageDescription pageDescription;
 	private PageStatus pageStatus;
@@ -358,6 +392,14 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 		buttonsPanel = new FlowPanel();
 		buttonsPanel.setStyleName("cwt-WizardContainer-Buttons");
 
+		wizardTitle = new WizardTitle();
+		wizardDescription = new WizardDescription();
+		headerPanel.add(wizardTitle);
+		headerPanel.add(wizardDescription);
+
+		setWizardTitle(sWizardContainer.title);
+		setWizardDescription(sWizardContainer.description);
+
 		if (renderPageTitleAndDescription) {
 			pageTitle = new PageTitle();
 			pageDescription = new PageDescription();
@@ -370,7 +412,7 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 			headerPanel.add(pageDescription);
 		}
 
-		pageStatus = new PageStatus();
+		pageStatus = new PageStatus(pageDescription);
 		headerPanel.add(pageStatus);
 
 		if ((null != sWizardContainer.widgets) && (sWizardContainer.widgets.length > 1)) {
@@ -428,6 +470,18 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 				headerPanel.remove(pageDescription);
 				pageDescription = null;
 			}
+		}
+	}
+
+	void setWizardDescription(final String description) {
+		if (null != wizardDescription) {
+			wizardDescription.setText(description);
+		}
+	}
+
+	void setWizardTitle(final String title) {
+		if (null != wizardTitle) {
+			wizardTitle.setText(title);
 		}
 	}
 
@@ -550,6 +604,9 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 			final SWizardPage sWizardPage = page.getSWizardPage();
 			setPageTitle(null != sWizardPage.title ? sWizardPage.title : sWizardPage.id);
 			setPageDescription(null != sWizardPage.description ? sWizardPage.description : "");
+			setWizardTitle(getSWizardContainer().title + " - " + sWizardPage.title);
+		} else {
+			setWizardTitle(getSWizardContainer().title);
 		}
 	}
 

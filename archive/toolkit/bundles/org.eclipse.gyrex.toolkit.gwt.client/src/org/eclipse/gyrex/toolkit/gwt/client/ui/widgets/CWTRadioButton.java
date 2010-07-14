@@ -1,24 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
-import com.google.gwt.user.client.ui.ChangeListener;
-import com.google.gwt.user.client.ui.ChangeListenerCollection;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.RadioButton;
-import com.google.gwt.user.client.ui.SourcesChangeEvents;
-import com.google.gwt.user.client.ui.Widget;
-
 import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.HasWidgetChangeHandlers;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeHandler;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationContext;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationResult;
@@ -27,45 +23,38 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SCo
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SSelectionFlagEntry;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SRadioButton;
 
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.ui.RadioButton;
+import com.google.gwt.user.client.ui.Widget;
+
 /**
  * Composite for <code>org.eclipse.gyrex.toolkit.widgets.RadioButton</code>.
  */
 public class CWTRadioButton extends CWTDialogField {
 
-	private final class ButtonSelectionTracker implements SourcesChangeEvents, ClickListener {
+	private final class ButtonSelectionTracker implements HasWidgetChangeHandlers, ValueChangeHandler<Boolean> {
 
-		private ChangeListenerCollection changeListeners;
 		private boolean oldSelected = isSelected();
 
-		public void addChangeListener(final ChangeListener listener) {
-			if (changeListeners == null) {
-				changeListeners = new ChangeListenerCollection();
-			}
-			changeListeners.add(listener);
+		@Override
+		public HandlerRegistration addWidgetChangeHandler(final WidgetChangeHandler handler) {
+			return addHandler(handler, WidgetChangeEvent.TYPE);
 		}
 
-		void buttonClicked() {
-			final boolean selected = isSelected();
+		@Override
+		public void fireEvent(final GwtEvent<?> event) {
+			CWTRadioButton.this.fireEvent(event);
+		}
+
+		@Override
+		public void onValueChange(final ValueChangeEvent<Boolean> event) {
+			final Boolean selected = event.getValue().booleanValue();
 			if (selected != oldSelected) {
 				oldSelected = selected;
-				if (changeListeners != null) {
-					changeListeners.fireChange(CWTRadioButton.this);
-				}
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * 
-		 * @see com.google.gwt.user.client.ui.ClickListener#onClick(com.google.gwt.user.client.ui.Widget)
-		 */
-		public void onClick(final Widget sender) {
-			buttonClicked();
-		}
-
-		public void removeChangeListener(final ChangeListener listener) {
-			if (changeListeners != null) {
-				changeListeners.remove(listener);
+				WidgetChangeEvent.fire(this, CWTRadioButton.this);
 			}
 		}
 	};
@@ -116,7 +105,7 @@ public class CWTRadioButton extends CWTDialogField {
 			final CWTRadioButton radioButton = (CWTRadioButton) widget;
 			final SSelectionFlagEntry radioButtonEntry = (SSelectionFlagEntry) content;
 			if (null != radioButton.radioButton) {
-				radioButton.radioButton.setChecked(radioButtonEntry.selected);
+				radioButton.radioButton.setValue(radioButtonEntry.selected, true);
 			}
 		}
 
@@ -125,21 +114,17 @@ public class CWTRadioButton extends CWTDialogField {
 	private RadioButton radioButton;
 	private ButtonSelectionTracker selectionTracker;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
-	 */
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object getAdapter(final Class adapter) {
-		if (SourcesChangeEvents.class == adapter) {
-			return selectionTracker;
+	public <T> T getAdapter(final Class<T> adapter) {
+		if (HasWidgetChangeHandlers.class == adapter) {
+			return (T) selectionTracker;
 		}
 		if (DialogFieldValidator.class == adapter) {
-			return dialogFieldValidator;
+			return (T) dialogFieldValidator;
 		}
 		if (IContentAdapter.class == adapter) {
-			return radioButtonAdapter;
+			return (T) radioButtonAdapter;
 		}
 
 		// call super
@@ -172,14 +157,14 @@ public class CWTRadioButton extends CWTDialogField {
 	 */
 	public boolean isSelected() {
 		if (null != radioButton) {
-			return radioButton.isChecked();
+			return radioButton.getValue().booleanValue();
 		}
 		return false;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rep.web.gwt.client.internal.ui.widgets.DialogFieldComposite#renderFieldWidget(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
 	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
 	 */
@@ -202,16 +187,11 @@ public class CWTRadioButton extends CWTDialogField {
 		}
 
 		selectionTracker = new ButtonSelectionTracker();
-		radioButton.addClickListener(selectionTracker);
+		radioButton.addValueChangeHandler(selectionTracker);
 
 		return radioButton;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
-	 */
 	@Override
 	public void setEnabled(final boolean enabled) {
 		if (null == radioButton) {

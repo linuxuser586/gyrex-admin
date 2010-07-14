@@ -11,11 +11,6 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
-import com.google.gwt.user.client.ui.Composite;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +26,11 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAc
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.ui.Composite;
 
 /**
  * This is the factory for creating GWT widgets exposed by a server.
@@ -269,7 +269,7 @@ public final class WidgetFactory {
 				executeCommandCallback.onExecuted(event);
 
 				// process actions
-				if (event.isContinueEventProcessing()) {
+				if (event.isActionProcessingAllowed()) {
 					if ((result != null) && (result.actions != null)) {
 						final SAction[] actions = result.actions;
 						for (final SAction action : actions) {

@@ -1,23 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
-
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Panel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,6 +22,14 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SGri
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.layout.SGridLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SWidget;
+
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Panel;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * Composite for <code>org.eclipse.gyrex.toolkit.widgets.Container</code>.
@@ -66,18 +66,9 @@ public class CWTContainer extends CWTWidget {
 			setStyleName("cwt-Container");
 		}
 
-		/* (non-Javadoc)
-		 * @see com.google.gwt.user.client.ui.SimplePanel#getContainerElement()
-		 */
 		@Override
 		protected Element getContainerElement() {
 			return content;
-		}
-
-		public void setDescription(final String text) {
-			if (text == null) {
-				DOM.setInnerText(getElement(), text);
-			}
 		}
 	}
 
@@ -214,7 +205,7 @@ public class CWTContainer extends CWTWidget {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdaptableHierarchy()
 	 */
 	@Override
@@ -318,12 +309,6 @@ public class CWTContainer extends CWTWidget {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.rep.web.gwt.client.ui.RenderedWidget#render(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
-	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
-	 */
 	@Override
 	protected Widget render(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 		final SContainer container = (SContainer) serializedWidget;

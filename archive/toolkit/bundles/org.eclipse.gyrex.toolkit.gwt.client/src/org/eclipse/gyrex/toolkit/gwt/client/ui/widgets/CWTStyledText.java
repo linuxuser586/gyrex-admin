@@ -1,27 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
-
-import com.google.gwt.dom.client.AnchorElement;
-import com.google.gwt.dom.client.ImageElement;
-import com.google.gwt.dom.client.SpanElement;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.ClickListener;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Hyperlink;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Widget;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -43,6 +31,19 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SSt
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextHyperlinkSegment;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SStyledText.STextSegment;
 
+import com.google.gwt.dom.client.AnchorElement;
+import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.dom.client.SpanElement;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.Anchor;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Widget;
+
 /**
  * Composite for <code>org.eclipse.gyrex.toolkit.widgets.StyledText</code>.
  */
@@ -50,7 +51,7 @@ public class CWTStyledText extends CWTWidget {
 
 	class StyledText extends Composite {
 
-		private final class CommandExecutor implements ClickListener {
+		private final class CommandExecutor implements ClickHandler {
 			/** toolkit */
 			private final CWTToolkit toolkit;
 			private final String commandId;
@@ -60,7 +61,8 @@ public class CWTStyledText extends CWTWidget {
 				this.toolkit = toolkit;
 			}
 
-			public void onClick(final Widget sender) {
+			@Override
+			public void onClick(final ClickEvent event) {
 				toolkit.getWidgetFactory().executeCommand(commandId, getWidgetId(), null, null);
 			}
 		}
@@ -222,10 +224,10 @@ public class CWTStyledText extends CWTWidget {
 				if (commandIdEnd != -1) {
 					commandId = commandId.substring(0, commandIdEnd);
 				}
-				final Hyperlink hyperlink = new Hyperlink();
+				final Anchor hyperlink = new Anchor();
 				final Element linkElement = hyperlink.getElement();
 				setTooltip(aggregateHyperlinkSegment, hyperlink);
-				hyperlink.addClickListener(new CommandExecutor(commandId, toolkit));
+				hyperlink.addClickHandler(new CommandExecutor(commandId, toolkit));
 				panel.addAndReplaceElement(hyperlink, id);
 
 				for (int i = 0; i < aggregateHyperlinkSegment.segments.length; i++) {
@@ -292,7 +294,7 @@ public class CWTStyledText extends CWTWidget {
 				final Image image = new Image(toolkit.getResourceUrl(imageHyperlinkSegment.image.reference));
 				setTooltip(imageHyperlinkSegment, image);
 				setVerticalAlign(imageHyperlinkSegment, image);
-				image.addClickListener(new CommandExecutor(commandId, toolkit));
+				image.addClickHandler(new CommandExecutor(commandId, toolkit));
 				panel.addAndReplaceElement(image, id);
 			} else {
 				// external hyperlink
@@ -320,10 +322,10 @@ public class CWTStyledText extends CWTWidget {
 				if (commandIdEnd != -1) {
 					commandId = commandId.substring(0, commandIdEnd);
 				}
-				final Hyperlink hyperlink = new Hyperlink();
+				final Anchor hyperlink = new Anchor();
 				hyperlink.setText(textHyperlinkSegment.text);
 				setTooltip(textHyperlinkSegment, hyperlink);
-				hyperlink.addClickListener(new CommandExecutor(commandId, toolkit));
+				hyperlink.addClickHandler(new CommandExecutor(commandId, toolkit));
 				panel.addAndReplaceElement(hyperlink, id);
 			} else {
 				// external hyperlink
@@ -363,7 +365,7 @@ public class CWTStyledText extends CWTWidget {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.rep.web.gwt.client.ui.RenderedWidget#render(org.eclipse.rep.web.gwt.client.rwt.ISerializedWidget,
 	 *      org.eclipse.rep.web.gwt.client.ui.RenderingToolkit)
 	 */

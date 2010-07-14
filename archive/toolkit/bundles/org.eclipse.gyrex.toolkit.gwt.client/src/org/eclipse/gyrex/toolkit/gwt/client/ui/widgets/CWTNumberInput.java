@@ -1,27 +1,20 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.gwt.client.ui.widgets;
 
-import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.ChangeListener;
-import com.google.gwt.user.client.ui.ComplexPanel;
-import com.google.gwt.user.client.ui.KeyboardListener;
-import com.google.gwt.user.client.ui.SourcesChangeEvents;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.Widget;
-
 import org.eclipse.gyrex.toolkit.gwt.client.ui.content.IContentAdapter;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.HasWidgetChangeHandlers;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeHandler;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.DialogFieldValidator;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationContext;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.internal.validation.ValidationResult;
@@ -31,10 +24,41 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SNu
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput.Type;
 
+import com.google.gwt.event.dom.client.KeyUpEvent;
+import com.google.gwt.event.dom.client.KeyUpHandler;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.i18n.client.NumberFormat;
+import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.Element;
+import com.google.gwt.user.client.ui.ComplexPanel;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
+
 /**
  * Composite for <code>org.eclipse.gyrex.toolkit.widgets.TextInput</code>.
  */
 public class CWTNumberInput extends CWTDialogField {
+
+	private final class ContentTracker implements HasWidgetChangeHandlers, ValueChangeHandler<String> {
+
+		@Override
+		public HandlerRegistration addWidgetChangeHandler(final WidgetChangeHandler handler) {
+			return addHandler(handler, WidgetChangeEvent.TYPE);
+		}
+
+		@Override
+		public void fireEvent(final GwtEvent<?> event) {
+			CWTNumberInput.this.fireEvent(event);
+		}
+
+		@Override
+		public void onValueChange(final ValueChangeEvent<String> event) {
+			WidgetChangeEvent.fire(this, CWTNumberInput.this);
+		}
+	}
 
 	static class NumberInputPanel extends ComplexPanel {
 
@@ -196,42 +220,35 @@ public class CWTNumberInput extends CWTDialogField {
 		final float result = number.intValue() - number2.intValue();
 		return result == 0 ? 0 : result > 0 ? 1 : -1;
 
-	}
+	};
 
-	private final ChangeListener validationListener = new ChangeListener() {
-
-		public void onChange(final Widget sender) {
+	private final ValueChangeHandler<String> validationListener = new ValueChangeHandler<String>() {
+		public void onValueChange(final com.google.gwt.event.logical.shared.ValueChangeEvent<String> event) {
 			validate();
 		}
 	};
 
-	private final KeyboardListener validationKeyboardListener = new KeyboardListener() {
+	private final KeyUpHandler validationKeyboardListener = new KeyUpHandler() {
 
-		public void onKeyDown(final Widget sender, final char keyCode, final int modifiers) {
-		}
-
-		public void onKeyPress(final Widget sender, final char keyCode, final int modifiers) {
-			validate();
-		}
-
-		public void onKeyUp(final Widget sender, final char keyCode, final int modifiers) {
+		@Override
+		public void onKeyUp(final KeyUpEvent event) {
 			validate();
 		}
 	};
 
 	private NumberInputPanel numberInputPanel;
+	private ContentTracker contentTracker;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget#getAdapter(java.lang.Class)
-	 */
+	private HandlerRegistration validationListenerRegistration;
+
+	private HandlerRegistration validationKeyboardListenerRegistration;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getAdapter(final Class<T> adapter) {
-		if (SourcesChangeEvents.class == adapter) {
+		if (HasWidgetChangeHandlers.class == adapter) {
 			// see http://code.google.com/p/google-web-toolkit/issues/detail?id=2710
-			return (T) getTextBoxWidget();
+			return (T) contentTracker;
 		}
 
 		if (DialogFieldValidator.class == adapter) {
@@ -328,29 +345,17 @@ public class CWTNumberInput extends CWTDialogField {
 	@Override
 	protected void onLoad() {
 		super.onLoad();
-		numberInputPanel.textBox.addChangeListener(validationListener);
-		numberInputPanel.textBox.addKeyboardListener(validationKeyboardListener);
+		validationListenerRegistration = numberInputPanel.textBox.addValueChangeHandler(validationListener);
+		validationKeyboardListenerRegistration = numberInputPanel.textBox.addKeyUpHandler(validationKeyboardListener);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField#onLoad()
-	 */
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTDialogField#onUnload()
-	 */
 	@Override
 	protected void onUnload() {
-		numberInputPanel.textBox.removeKeyboardListener(validationKeyboardListener);
-		numberInputPanel.textBox.removeChangeListener(validationListener);
+		validationKeyboardListenerRegistration.removeHandler();
+		validationListenerRegistration.removeHandler();
 		super.onUnload();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#renderFieldWidget(org.eclipse.gyrex.toolkit.gwt.client.rwt.ISerializedWidget,
-	 *      org.eclipse.gyrex.toolkit.gwt.client.ui.RenderingToolkit)
-	 */
 	@Override
 	protected Widget renderFieldWidget(final ISerializedWidget serializedWidget, final CWTToolkit toolkit) {
 		final SNumberInput numberInput = (SNumberInput) serializedWidget;
@@ -374,12 +379,15 @@ public class CWTNumberInput extends CWTDialogField {
 			numberInputPanel.addStyleName("required");
 		}
 
+		contentTracker = new ContentTracker();
+		numberInputPanel.getTextBox().addValueChangeHandler(contentTracker);
+
 		return numberInputPanel;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override
@@ -392,7 +400,7 @@ public class CWTNumberInput extends CWTDialogField {
 	}
 
 	/**
-	 * 
+	 *
 	 */
 	void validate() {
 		if (isValid()) {

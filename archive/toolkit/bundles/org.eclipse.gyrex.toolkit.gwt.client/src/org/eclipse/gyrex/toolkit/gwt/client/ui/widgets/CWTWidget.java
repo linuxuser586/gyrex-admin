@@ -112,9 +112,7 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 		return ADAPTABLE_TYPE_HIERARCHY;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.gwt.common.adaptable.IsAdaptable#getAdapter(java.lang.Class)
-	 */
+	@Override
 	@SuppressWarnings("unchecked")
 	public <T> T getAdapter(final Class<T> adapter) {
 		if (Widget.class == adapter) {

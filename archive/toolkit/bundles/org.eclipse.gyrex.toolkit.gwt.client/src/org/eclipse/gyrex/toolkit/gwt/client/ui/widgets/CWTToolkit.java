@@ -16,6 +16,9 @@ import java.util.List;
 
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.actions.IActionHandler;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.HasWidgetChangeHandlers;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeEvent;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeHandler;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardPage;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
@@ -35,9 +38,6 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWiz
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWizardPage;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.event.dom.client.HasChangeHandlers;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Timer;
@@ -74,18 +74,12 @@ public class CWTToolkit {
 		}
 	}
 
-	private final class ToolkitChangeListener implements ChangeHandler {
-		private final CWTWidget widget;
-
-		private ToolkitChangeListener(final CWTWidget widget) {
-			this.widget = widget;
-		}
-
+	private final WidgetChangeHandler widgetChangeHandler = new WidgetChangeHandler() {
 		@Override
-		public void onChange(final ChangeEvent event) {
-			fireWidgetChanged(widget);
+		public void onWidgetChange(final WidgetChangeEvent event) {
+			fireWidgetChanged(event.getWidget());
 		}
-	}
+	};
 
 	/** CHANGE_HANDLER */
 	private static final String CHANGE_HANDLER = "__CHANGE_HANDLER";
@@ -562,9 +556,9 @@ public class CWTToolkit {
 			error(ERROR_NULL_ARGUMENT, "widget");
 		}
 
-		final HasChangeHandlers changeEventSource = widget.getAdapter(HasChangeHandlers.class);
+		final HasWidgetChangeHandlers changeEventSource = widget.getAdapter(HasWidgetChangeHandlers.class);
 		if (null != changeEventSource) {
-			final HandlerRegistration changeHandlerRegistration = changeEventSource.addChangeHandler(new ToolkitChangeListener(widget));
+			final HandlerRegistration changeHandlerRegistration = changeEventSource.addWidgetChangeHandler(widgetChangeHandler);
 			widget.setData(CHANGE_HANDLER, changeHandlerRegistration);
 		}
 	}

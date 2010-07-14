@@ -20,7 +20,7 @@ public class CommandExecutedEvent {
 
 	private final String commandId;
 	private final IStatus status;
-	private boolean processEvent;
+	private boolean preventActions;
 
 	/**
 	 * Creates a new instance.
@@ -57,15 +57,15 @@ public class CommandExecutedEvent {
 	 * @return <code>true</code> if the framework is allowed to perform further
 	 *         event processing, <code>false</code> otherwise
 	 */
-	public boolean isContinueEventProcessing() {
-		return processEvent;
+	public boolean isActionProcessingAllowed() {
+		return !preventActions;
 	}
 
 	/**
 	 * Instructs the framework to not perform any additional processing on the
 	 * event.
 	 */
-	public void stopEventProcessing() {
-		processEvent = false;
+	public void preventActionProcessing() {
+		preventActions = true;
 	}
 }
