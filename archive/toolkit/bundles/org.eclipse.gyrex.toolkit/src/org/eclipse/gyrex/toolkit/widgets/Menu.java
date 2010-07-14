@@ -46,7 +46,7 @@ public final class Menu extends Container {
 	private static final long serialVersionUID = 8172073572025839760L;
 	private static final MenuItem[] NO_ITEMS = new MenuItem[0];
 
-	private MenuItem[] featuredItems;
+	private MenuItem[] featuredItems = NO_ITEMS;
 	private ImageResource image;
 
 	/**
