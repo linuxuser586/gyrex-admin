@@ -45,7 +45,7 @@ public class ContainerSerializer extends WidgetSerializer {
 	protected ISerializedWidget populateAttributes(final Widget widget, final ISerializedWidget serializedWidget, final SContainer parent) {
 		final Container container = (Container) widget;
 		final SContainer sContainer = (SContainer) serializedWidget;
-		sContainer.title = container.getLabel();
+		sContainer.label = container.getLabel();
 		sContainer.description = container.getDescription();
 		return super.populateAttributes(container, sContainer, parent);
 	}

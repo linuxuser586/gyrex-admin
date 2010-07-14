@@ -29,6 +29,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SCh
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SDialogFieldGroup;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SEmailInput;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SMenu;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SMenuItem;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SNumberInput;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SPasswordInput;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SRadioButton;
@@ -395,6 +397,12 @@ public class CWTToolkit {
 		}
 		if (serializedWidgetType.equals(SWizardPage.class)) {
 			return GWT.create(CWTWizardPage.class);
+		}
+		if (serializedWidgetType.equals(SMenu.class)) {
+			return GWT.create(CWTMenu.class);
+		}
+		if (serializedWidgetType.equals(SMenuItem.class)) {
+			return GWT.create(CWTMenuItem.class);
 		}
 
 		throw new IllegalArgumentException(serializedWidgetType.getName() + " not mapped to a widget composite");

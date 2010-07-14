@@ -397,7 +397,7 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 		headerPanel.add(wizardTitle);
 		headerPanel.add(wizardDescription);
 
-		setWizardTitle(sWizardContainer.title);
+		setWizardTitle(sWizardContainer.label);
 		setWizardDescription(sWizardContainer.description);
 
 		if (renderPageTitleAndDescription) {
@@ -602,11 +602,11 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 		final CWTWizardPage page = getCurrentPage();
 		if (null != page) {
 			final SWizardPage sWizardPage = page.getSWizardPage();
-			setPageTitle(null != sWizardPage.title ? sWizardPage.title : sWizardPage.id);
+			setPageTitle(null != sWizardPage.label ? sWizardPage.label : sWizardPage.id);
 			setPageDescription(null != sWizardPage.description ? sWizardPage.description : "");
-			setWizardTitle(getSWizardContainer().title + " - " + sWizardPage.title);
+			setWizardTitle(getSWizardContainer().label + " - " + sWizardPage.label);
 		} else {
-			setWizardTitle(getSWizardContainer().title);
+			setWizardTitle(getSWizardContainer().label);
 		}
 	}
 

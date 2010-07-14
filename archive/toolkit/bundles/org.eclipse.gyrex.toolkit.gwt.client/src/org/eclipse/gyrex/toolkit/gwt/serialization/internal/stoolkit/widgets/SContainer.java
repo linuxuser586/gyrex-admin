@@ -26,6 +26,6 @@ public class SContainer extends SWidget {
 
 	public ISerializedLayout layout;
 
-	public String title, description;
+	public String label, description;
 
 }

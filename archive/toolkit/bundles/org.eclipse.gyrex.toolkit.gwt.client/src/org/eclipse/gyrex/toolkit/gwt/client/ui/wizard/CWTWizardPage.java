@@ -63,7 +63,7 @@ public class CWTWizardPage extends CWTContainer {
 	}
 
 	public String getPageTitle() {
-		final String title = getSWizardPage().title;
+		final String title = getSWizardPage().label;
 		return null != title ? title : "";
 	}
 

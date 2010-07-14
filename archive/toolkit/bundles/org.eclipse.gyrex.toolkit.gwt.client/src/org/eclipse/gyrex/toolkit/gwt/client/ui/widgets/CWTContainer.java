@@ -226,7 +226,7 @@ public class CWTContainer extends CWTWidget {
 	 * @return the container title text
 	 */
 	public String getContainerTitleText() {
-		final String title = getSContainer().title;
+		final String title = getSContainer().label;
 		return null != title ? title : "";
 	}
 
@@ -314,7 +314,7 @@ public class CWTContainer extends CWTWidget {
 
 		// wrap the panel into a container widget if desired
 		if (shouldRenderTitleAndDescription(serializedWidget, toolkit)) {
-			final ContainerWidget containerWidget = new ContainerWidget(container.title, container.description);
+			final ContainerWidget containerWidget = new ContainerWidget(container.label, container.description);
 			containerWidget.setWidget(panel);
 			return containerWidget;
 		} else {
