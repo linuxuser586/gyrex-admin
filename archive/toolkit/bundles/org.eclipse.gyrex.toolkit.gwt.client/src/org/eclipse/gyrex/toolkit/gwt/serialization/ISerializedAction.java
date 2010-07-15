@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
+ * Copyright (c) 2010 AGETO and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -9,15 +9,16 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions;
+package org.eclipse.gyrex.toolkit.gwt.serialization;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+import java.io.Serializable;
 
 /**
- * Serializable WidgetAction
+ * A serialized CWT action.
+ * <p>
+ * This interface may be implemented by custom widget providers.
+ * </p>
  */
-public class SWidgetAction extends SAction implements IsSerializable {
-	/** serialVersionUID */
-	private static final long serialVersionUID = 1L;
-	public String widgetId;
+public interface ISerializedAction extends Serializable {
+
 }

@@ -24,17 +24,26 @@ import org.eclipse.gyrex.toolkit.widgets.Widget;
  */
 public class ControlPanelFactory implements IWidgetFactory {
 
+	private static final String IMG_MENU_SYSTEM_SECURITY = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_MENU_NETWORK_CLOUD = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_ITEM_SYSTEM_STATUS = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_MENU_MAINTENANCE_CENTER = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_MENU_PLATFORM_UPDATE = "platform:/plugin/org.eclipse.gyrex.admin/images/48/eclipse.gif";
+	private static final String IMG_ITEM_TERMINAL = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/terminal.png";
+	private static final String IMG_MENU_ADMINISTRATION = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_MENU_SOFTWARE = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+
 	private static final String CONTROL_PANEL = "control-panel";
 	public static final String[] IDS = new String[] { CONTROL_PANEL };
 
 	private void administration(final Menu systemAndSecurity) {
 		final Menu administration = new Menu("administration", systemAndSecurity, Toolkit.NONE);
 		administration.setLabel("Administration");
-		administration.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/administration.svg"));
+		administration.setImage(ImageResource.createFromUrl(IMG_MENU_ADMINISTRATION));
 
 		final MenuItem webTerminal = new MenuItem("web-terminal", administration, Toolkit.NONE);
 		webTerminal.setLabel("Open Terminal");
-		webTerminal.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/terminal.svg"));
+		webTerminal.setImage(ImageResource.createFromUrl(IMG_ITEM_TERMINAL));
 	}
 
 	private Widget createControlPanel(final IWidgetEnvironment environment) {
@@ -56,7 +65,7 @@ public class ControlPanelFactory implements IWidgetFactory {
 	private void gyrexUpdate(final Menu systemAndSecurity) {
 		final Menu gyrexUpdate = new Menu("gyrex-update", systemAndSecurity, Toolkit.NONE);
 		gyrexUpdate.setLabel("Gyrex Update");
-		gyrexUpdate.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/gyrex-update.png"));
+		gyrexUpdate.setImage(ImageResource.createFromUrl(IMG_MENU_PLATFORM_UPDATE));
 
 		new MenuItem("gyrex-update-settings", gyrexUpdate, Toolkit.NONE);
 		new MenuItem("gyrex-update-check", gyrexUpdate, Toolkit.NONE);
@@ -66,28 +75,29 @@ public class ControlPanelFactory implements IWidgetFactory {
 	private void maintenanceCenter(final Menu systemAndSecurity) {
 		final Menu maintenance = new Menu("maintenance-center", systemAndSecurity, Toolkit.NONE);
 		maintenance.setLabel("Maintenance Center");
-		maintenance.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/maintenance-center.svg"));
+		maintenance.setImage(ImageResource.createFromUrl(IMG_MENU_MAINTENANCE_CENTER));
 
 		final MenuItem systemStatus = new MenuItem("system-status", maintenance, Toolkit.NONE);
 		systemStatus.setLabel("System Status");
-		systemStatus.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/system-status.svg"));
+		systemStatus.setImage(ImageResource.createFromUrl(IMG_ITEM_SYSTEM_STATUS));
 	}
 
 	private void networkAndCloud(final Menu controlPanel) {
 		final Menu networkAndCloud = new Menu("network-cloud", controlPanel, Toolkit.NONE);
 		networkAndCloud.setLabel("Network And Cloud");
-		networkAndCloud.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/network-cloud.svg"));
+		networkAndCloud.setImage(ImageResource.createFromUrl(IMG_MENU_NETWORK_CLOUD));
 	}
 
 	private void software(final Menu controlPanel) {
 		final Menu software = new Menu("software", controlPanel, Toolkit.NONE);
 		software.setLabel("Software");
+		software.setImage(ImageResource.createFromUrl(IMG_MENU_SOFTWARE));
 	}
 
 	private void systemAndSecurity(final Menu controlPanel) {
 		final Menu systemAndSecurity = new Menu("system-security", controlPanel, Toolkit.NONE);
 		systemAndSecurity.setLabel("System and Security");
-		systemAndSecurity.setImage(ImageResource.createFromUrl("platform:/plugin/org.eclipse.gyrex.admin/images/icons/system-security.svg"));
+		systemAndSecurity.setImage(ImageResource.createFromUrl(IMG_MENU_SYSTEM_SECURITY));
 
 		maintenanceCenter(systemAndSecurity);
 		gyrexUpdate(systemAndSecurity);

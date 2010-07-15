@@ -26,11 +26,13 @@ import org.eclipse.gyrex.toolkit.gwt.client.GetWidgetCallback;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactory;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.history.HistoryStateBuilder;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Command;
@@ -65,7 +67,7 @@ public class AdminConsole implements EntryPoint {
 	private final SimplePanel contentHolder = new SimplePanel();
 	private final Label loadingMessage = new Label("Loading...");
 
-	/** the current widget id */
+	/** the current widget */
 	private String currentWidgetId;
 
 	/** the widget factory */
@@ -82,6 +84,12 @@ public class AdminConsole implements EntryPoint {
 		final WidgetFactory widgetFactory = new WidgetFactory(IAdminConsoleConstants.ENTRYPOINT_WIDGET_SERVICE, new AdminToolkit());
 		widgetFactory.setResourceBaseUrl(IAdminConsoleConstants.WIDGET_RESOURCE_BASE_URL);
 		widgetFactory.setEnvironment(new WidgetClientEnvironment());
+
+		// disable caching in development mode
+		if (!isPlatformOperatingInDevelopmentMode()) {
+			widgetFactory.setCacheFlags(WidgetFactory.CACHE_SERIALIZED_WIDGETS | WidgetFactory.CACHE_RENDERED_WIDGETS);
+		}
+
 		return widgetFactory;
 	}
 
@@ -137,37 +145,6 @@ public class AdminConsole implements EntryPoint {
 		});
 	}
 
-	private void loadWidget(final String widgetId) {
-		// do nothing if widget didn't change
-		if ((null != currentWidgetId) && currentWidgetId.equals(widgetId)) {
-			return;
-		}
-
-		contentHolder.setWidget(loadingMessage);
-
-		// load widget from server
-		widgetFactory.getWidget(widgetId, new GetWidgetCallback() {
-
-			public void onFailure(final WidgetFactoryException caught) {
-				final Error error = new Error(caught, widgetFactory.getToolkit());
-				currentWidgetId = null;
-				showWidget(error);
-				updateContentTitle(error);
-			}
-
-			public void onSuccess(final CWTWidget composite) {
-				currentWidgetId = composite.getWidgetId();
-				if (!currentWidgetId.equals(History.getToken())) {
-					History.newItem(currentWidgetId, false);
-				}
-				showWidget(composite);
-				updateContentTitle(composite);
-			}
-
-		});
-
-	}
-
 	/**
 	 * Called when the environment has been initialized successfully.
 	 * 
@@ -189,12 +166,12 @@ public class AdminConsole implements EntryPoint {
 			final NovaMenuBar menuBar = new NovaMenuBar();
 			menuBar.addItem(new NovaMenuItem("Dashboard", "Open system dashboard.", new Command() {
 				public void execute() {
-					requestWidget("dashboard");
+					requestWidget("dashboard", null);
 				}
 			}));
 			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
 				public void execute() {
-					requestWidget("control-panel");
+					requestWidget("control-panel", null);
 				}
 			}));
 			menuPanel.add(menuBar);
@@ -210,8 +187,9 @@ public class AdminConsole implements EntryPoint {
 					// show dashboard
 					History.newItem("dashboard");
 				} else {
-					// show the associated  widget
-					requestWidget(token);
+					// show the associated widget
+					final HistoryStateBuilder historyState = widgetFactory.getToolkit().createHistoryStateBuilder().parseString(token);
+					requestWidget(historyState.getWidgetId(), historyState.getWidgetState());
 				}
 			}
 		};
@@ -224,11 +202,6 @@ public class AdminConsole implements EntryPoint {
 		final RootPanel loadingMessage = RootPanel.get("initialLoading");
 		if (null != loadingMessage) {
 			loadingMessage.setVisible(false);
-		}
-
-		// disable caching in development mode
-		if (isPlatformOperatingInDevelopmentMode() && (null != widgetFactory)) {
-			widgetFactory.setCacheFlags(WidgetFactory.CACHE_SERIALIZED_WIDGETS | WidgetFactory.CACHE_RENDERED_WIDGETS);
 		}
 
 		// Show the initial widget
@@ -263,8 +236,51 @@ public class AdminConsole implements EntryPoint {
 		AdapterManager.getAdapterManager().registerAdapter(CWTWidget.class, ContentTitleProvider.class, new ContentTitleProvider());
 	}
 
-	protected void requestWidget(final String widgetId) {
-		loadWidget(((null != widgetId) && (widgetId.trim().length() > 0)) ? widgetId : "");
+	protected void requestWidget(final String widgetId, final String widgetState) {
+		if (null == widgetId) {
+			throw new IllegalArgumentException("null widget id not allowed");
+		}
+
+		// just apply new state if widget didn't change
+		if ((null != currentWidgetId) && currentWidgetId.equals(widgetId)) {
+			((CWTWidget) contentHolder.getWidget()).applyWidgetState(widgetState);
+			return;
+		}
+
+		contentHolder.setWidget(loadingMessage);
+
+		GWT.runAsync(new RunAsyncCallback() {
+
+			@Override
+			public void onFailure(final Throwable reason) {
+				Window.alert(reason.getMessage());
+			}
+
+			@Override
+			public void onSuccess() {
+				// load widget from server
+				widgetFactory.getWidget(widgetId, new GetWidgetCallback() {
+
+					public void onFailure(final WidgetFactoryException caught) {
+						final Error error = new Error(caught, widgetFactory.getToolkit());
+						currentWidgetId = null;
+						showWidget(error);
+						updateContentTitle(error);
+					}
+
+					public void onSuccess(final CWTWidget composite) {
+						currentWidgetId = composite.getWidgetId();
+						if (!currentWidgetId.equals(History.getToken())) {
+							History.newItem(currentWidgetId, false);
+						}
+						composite.applyWidgetState(widgetState);
+						showWidget(composite);
+						updateContentTitle(composite);
+					}
+
+				});
+			}
+		});
 	}
 
 	/**

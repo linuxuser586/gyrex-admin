@@ -28,8 +28,11 @@ body {
   background: #fff;
   direction: ltr;
 }
-a, a:visited, a:hover {
+a, a:visited {
   color: #0000AA;
+}
+a:hover {
+  color: #3535D4;
 }
 
 /**

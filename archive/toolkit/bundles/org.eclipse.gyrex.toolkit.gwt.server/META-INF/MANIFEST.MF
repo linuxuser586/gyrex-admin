@@ -26,6 +26,7 @@ Export-Package: org.eclipse.gyrex.toolkit.gwt.server;
    javax.servlet.http",
  org.eclipse.gyrex.toolkit.gwt.server.internal;x-internal:=true,
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization;x-internal:=true,
+ org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.actions;x-internal:=true,
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.layout;x-internal:=true,
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.resources;x-internal:=true,
  org.eclipse.gyrex.toolkit.gwt.server.internal.serialization.widgets;x-internal:=true,

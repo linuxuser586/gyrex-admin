@@ -95,6 +95,20 @@ public abstract class CWTWidget extends Composite implements IsAdaptable {
 	private Map<String, Object> data;
 
 	/**
+	 * Sets the widget state.
+	 * <p>
+	 * Default implementation does nothing. Subclasses may override and perform
+	 * necessary actions to apply the state.
+	 * </p>
+	 * 
+	 * @param widgetState
+	 */
+	public void applyWidgetState(final String widgetState) {
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
 	 * Checks if the widget has been properly initialized
 	 */
 	private void checkInitialized() {

@@ -19,8 +19,10 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.actions.IActionHandler;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.events.HasWidgetChangeHandlers;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeEvent;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.events.WidgetChangeHandler;
+import org.eclipse.gyrex.toolkit.gwt.client.ui.history.HistoryStateBuilder;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardPage;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
@@ -87,25 +89,27 @@ public class CWTToolkit {
 	private static final String CHANGE_HANDLER = "__CHANGE_HANDLER";
 
 	private static final IActionHandler DEFAULT_ACTION_HANDLER = new IActionHandler() {
-		public void handleAction(final Object action) {
-			if (action instanceof SShowWidgetAction) {
-				final String widgetId = ((SShowWidgetAction) action).widgetId;
-				if (null != widgetId) {
-					History.newItem(widgetId);
-				}
-			} else if (action instanceof SRefreshAction) {
-				final int delay = ((SRefreshAction) action).delay;
-				final String token = History.getToken();
-				final Timer timer = new Timer() {
-					@Override
-					public void run() {
-						History.newItem(token);
+		public void handleAction(final ISerializedAction... actions) {
+			for (final ISerializedAction action : actions) {
+				if (action instanceof SShowWidgetAction) {
+					final String widgetId = ((SShowWidgetAction) action).widgetId;
+					if (null != widgetId) {
+						History.newItem(widgetId);
 					}
-				};
-				if (delay == 0) {
-					timer.run();
-				} else {
-					timer.schedule(delay);
+				} else if (action instanceof SRefreshAction) {
+					final int delay = ((SRefreshAction) action).delay;
+					final String token = History.getToken();
+					final Timer timer = new Timer() {
+						@Override
+						public void run() {
+							History.newItem(token);
+						}
+					};
+					if (delay == 0) {
+						timer.run();
+					} else {
+						timer.schedule(delay);
+					}
 				}
 			}
 		}
@@ -353,6 +357,19 @@ public class CWTToolkit {
 		return emptyComposite;
 	}
 
+	/**
+	 * Creates a new {@link HistoryStateBuilder} instance.
+	 * <p>
+	 * The default implementation uses GWT's deferred binding to create a new
+	 * instance.
+	 * </p>
+	 * 
+	 * @return a new instance for building history tokens
+	 */
+	public HistoryStateBuilder createHistoryStateBuilder() {
+		return GWT.create(HistoryStateBuilder.class);
+	}
+
 	CWTWidget createUninitializedWidgetInstance(final Class<? extends ISerializedWidget> serializedWidgetType) {
 		if (null == serializedWidgetType) {
 			throw new IllegalArgumentException("serializedWidgetType must not be null");
@@ -499,6 +516,17 @@ public class CWTToolkit {
 		return widgetFactory;
 	}
 
+	//	/**
+	//	 * Allows to set a custom action handler.
+	//	 *
+	//	 * @param actionHandler
+	//	 *            the action handler to set (maybe <code>null</code> to unset)
+	//	 */
+	//	public void setActionHandler(final IActionHandler actionHandler) {
+	//		// TODO: confirm API (come up with some better API)
+	//		this.actionHandler = actionHandler;
+	//	}
+
 	/**
 	 * Removes a change listener from the list of listeners.
 	 * <p>
@@ -516,17 +544,6 @@ public class CWTToolkit {
 			changeListeners.remove(changeListener);
 		}
 	}
-
-	//	/**
-	//	 * Allows to set a custom action handler.
-	//	 *
-	//	 * @param actionHandler
-	//	 *            the action handler to set (maybe <code>null</code> to unset)
-	//	 */
-	//	public void setActionHandler(final IActionHandler actionHandler) {
-	//		// TODO: confirm API (come up with some better API)
-	//		this.actionHandler = actionHandler;
-	//	}
 
 	/**
 	 * Sets the widget factory that owns this toolkit instance.

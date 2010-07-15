@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.actions.Action;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
+import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommand;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.resources.SImageResource;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
@@ -75,6 +77,25 @@ public abstract class WidgetSerializer {
 	public abstract ISerializedWidget serialize(Widget widget, SContainer parent);
 
 	/**
+	 * Serializes the specified {@link Action actions}.
+	 * 
+	 * @param actions
+	 *            the actions to serialize
+	 * @return the serialized actions (maybe <code>null</code> if the input was
+	 *         <code>null</code>)
+	 */
+	protected SAction[] serializeActions(final Action[] actions) {
+		if ((null == actions) || (actions.length == 0)) {
+			return null;
+		}
+		final SAction[] sActions = new SAction[actions.length];
+		for (int i = 0; i < actions.length; i++) {
+			sActions[i] = (SAction) ToolkitSerialization.serializeAction(actions[i]);
+		}
+		return sActions;
+	}
+
+	/**
 	 * Serialized the specified {@link Command}.
 	 * 
 	 * @param command
@@ -93,6 +114,7 @@ public abstract class WidgetSerializer {
 		final SCommand sCommand = new SCommand();
 		sCommand.id = command.getId();
 		sCommand.contentSubmitRule = serializeDialogFieldRule(command.getContentSubmitRule(), owner);
+		sCommand.actions = serializeActions(command.getActions());
 		return sCommand;
 	}
 

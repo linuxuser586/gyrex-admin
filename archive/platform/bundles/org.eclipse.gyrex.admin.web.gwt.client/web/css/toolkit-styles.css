@@ -98,3 +98,40 @@ fieldset,img {
 	width: 5px;
 	zoom: 1;
 }
+
+.cwt-Menu {
+	margin: 0 auto;
+}
+.cwt-Menu-MenuGroup {
+	width: 400px;
+	overflow: none;
+	margin: 14px;
+}
+.cwt-Menu-MenuGroup-Image, .cwt-Menu-MenuGroup-MissingImage {
+	margin: auto;
+	overflow: hidden;
+}
+.cwt-Menu-MenuGroup-ItemsPanel {
+	margin-left:20px;
+	width: 320px;
+}
+.cwt-Menu-MenuGroup-Label {
+	font-size: 14pt;
+}
+.cwt-Menu-MenuGroup-Label a, a:visited{
+	text-decoration: none;
+	color: #9E7600;
+}
+.cwt-Menu-MenuGroup-Label a:hover {
+	text-decoration: underline;
+	color: #B6942E;
+}
+.cwt-Menu-MenuItem-Label {
+	font-size: 10pt;
+}
+.cwt-Menu-MenuItem-Label, .cwt-Menu-MenuItem-Label:visited {
+	text-decoration: none;
+}
+.cwt-Menu-MenuItem-Label:hover {
+	text-decoration: underline;
+}

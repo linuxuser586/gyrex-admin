@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -15,8 +15,9 @@ import java.text.MessageFormat;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-
 import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.actions.Action;
+import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayout;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedLayoutHint;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedResource;
@@ -51,11 +52,11 @@ public class ToolkitSerialization {
 	private static final ConcurrentMap<String, LayoutSerializer> cwtSerializersByLayoutClass = new ConcurrentHashMap<String, LayoutSerializer>(5);
 	private static final ConcurrentMap<String, LayoutHintSerializer> cwtSerializersByLayoutHintClass = new ConcurrentHashMap<String, LayoutHintSerializer>(5);
 	private static final ConcurrentMap<String, ResourceSerializer> cwtSerializersByResourceClass = new ConcurrentHashMap<String, ResourceSerializer>(5);
+	private static final ConcurrentMap<String, ActionSerializer> cwtSerializersByActionClass = new ConcurrentHashMap<String, ActionSerializer>(5);
 
 	private static <T> T getSerializer(final String nameOfClassToSerialize, final String nameOfSerializerClass, final Class<T> serializerType, final ConcurrentMap<String, T> serializerCache) {
 		T serializer = serializerCache.get(nameOfSerializerClass);
 		if (serializer != null) {
-
 			return serializer;
 		}
 
@@ -99,6 +100,54 @@ public class ToolkitSerialization {
 	private static ISerializedWidget processToolkitSerializer(final Widget widget) {
 		// TODO implement custom serialization
 		return null;
+	}
+
+	/**
+	 * Translates an action by delegating to the corresponding translation
+	 * method.
+	 * <p>
+	 * Throws and exception if translation of the passed in action class is not
+	 * supported.
+	 * </p>
+	 * 
+	 * @param action
+	 *            the resource to serialize
+	 * @return the translated resource
+	 */
+	public static ISerializedAction serializeAction(final Action action) {
+		final Class cwtClass = action.getClass();
+
+		if (isCWTClass(cwtClass)) {
+			return serializeCWTAction(action);
+		}
+
+		// fallback to custom serialization
+		// TODO: implement custom serialization
+		final ISerializedAction serializedAction = null;
+
+		if (null == serializedAction) {
+			Toolkit.error(Toolkit.ERROR_UNSPECIFIED, null, MessageFormat.format("unable to serialize action type {0}", cwtClass.getName()));
+		}
+
+		return serializedAction;
+	}
+
+	private static ISerializedAction serializeCWTAction(final Action action) {
+		final String actionClassName = action.getClass().getName();
+		final String serializerClassName = SERIALIZERS_PACKAGE_PREFIX.concat(actionClassName.substring(CWT_PACKAGE_PREFIX.length())).concat(SERIALIZER);
+
+		// get the serializer
+		@SuppressWarnings("unchecked")
+		final ActionSerializer<? super Action> serializer = getSerializer(actionClassName, serializerClassName, ActionSerializer.class, cwtSerializersByActionClass);
+
+		// serialize widget
+		final ISerializedAction serializedAction = serializer.serialize(action);
+
+		if (null == serializedAction) {
+			Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, null, MessageFormat.format("unable to serialize action type {0}, serializer {1} returned null result", actionClassName, serializerClassName));
+		}
+
+		return serializedAction;
 	}
 
 	private static ISerializedLayout serializeCWTLayout(final Layout layout) {

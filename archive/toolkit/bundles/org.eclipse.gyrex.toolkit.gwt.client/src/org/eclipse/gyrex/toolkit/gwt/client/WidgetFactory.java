@@ -22,7 +22,6 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTToolkit;
 import org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.CWTWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedData;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets.SContainer;
@@ -271,10 +270,7 @@ public final class WidgetFactory {
 				// process actions
 				if (event.isActionProcessingAllowed()) {
 					if ((result != null) && (result.actions != null)) {
-						final SAction[] actions = result.actions;
-						for (final SAction action : actions) {
-							getToolkit().getActionHandler().handleAction(action);
-						}
+						getToolkit().getActionHandler().handleAction(result.actions);
 					}
 				}
 			}

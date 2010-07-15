@@ -22,15 +22,11 @@ import org.eclipse.gyrex.gwt.common.status.IStatus;
 import org.eclipse.gyrex.gwt.common.status.MultiStatus;
 import org.eclipse.gyrex.gwt.common.status.Status;
 import org.eclipse.gyrex.toolkit.actions.Action;
-import org.eclipse.gyrex.toolkit.actions.RefreshAction;
-import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetClientEnvironment;
 import org.eclipse.gyrex.toolkit.gwt.client.WidgetFactoryException;
 import org.eclipse.gyrex.toolkit.gwt.client.internal.WidgetService;
 import org.eclipse.gyrex.toolkit.gwt.serialization.ISerializedWidget;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SAction;
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SRefreshAction;
-import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.actions.SShowWidgetAction;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.commands.SCommandExecutionResult;
 import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.content.SContentSet;
 import org.eclipse.gyrex.toolkit.gwt.server.WidgetServiceAdvisor;
@@ -43,6 +39,7 @@ import org.eclipse.gyrex.toolkit.runtime.commands.ICommandHandler;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -210,17 +207,10 @@ public class WidgetServiceImpl implements WidgetService {
 	}
 
 	private SAction serializeAction(final Action action) {
-		// TODO should be externalized
-		if (action instanceof ShowWidgetAction) {
-			final SShowWidgetAction showWidgetAction = new SShowWidgetAction();
-			showWidgetAction.widgetId = ((ShowWidgetAction) action).getWidgetId();
-			return showWidgetAction;
-		} else if (action instanceof RefreshAction) {
-			final SRefreshAction refreshAction = new SRefreshAction();
-			refreshAction.delay = ((RefreshAction) action).getDelay();
-			return refreshAction;
+		if (null == action) {
+			return null;
 		}
-		return null;
+		return (SAction) ToolkitSerialization.serializeAction(action);
 	}
 
 	private org.eclipse.gyrex.gwt.common.status.IStatus serializeStatus(final org.eclipse.core.runtime.IStatus status) {
