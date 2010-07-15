@@ -355,13 +355,6 @@ public final class Toolkit {
 	}
 
 	/**
-	 * No need to instanciate.
-	 */
-	private Toolkit() {
-		// no need to instanciate
-	}
-
-	/**
 	 * Indicates if the specified id is a valid widget id.
 	 * <p>
 	 * By definition, a all identifiers used within the Toolkit API must not be
@@ -388,11 +381,11 @@ public final class Toolkit {
 		if (null == id) {
 			return false;
 		}
-	
+
 		if (id.equals("")) {
 			return false;
 		}
-	
+
 		// verify chars
 		for (int i = 0; i < id.length(); i++) {
 			final char c = id.charAt(i);
@@ -402,7 +395,14 @@ public final class Toolkit {
 				return false;
 			}
 		}
-	
+
 		return true;
+	}
+
+	/**
+	 * No need to instanciate.
+	 */
+	private Toolkit() {
+		// no need to instanciate
 	}
 }
