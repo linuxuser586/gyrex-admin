@@ -318,6 +318,7 @@ public final class Toolkit {
 				/* Toolkit Errors (fatal, may occur only on some platforms) */
 			case ERROR_NOT_IMPLEMENTED:
 			case ERROR_UNSPECIFIED:
+			case ERROR_INVALID_SUBCLASS:
 				throw new ToolkitError(code, message, throwable);
 		}
 
