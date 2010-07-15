@@ -360,4 +360,49 @@ public final class Toolkit {
 	private Toolkit() {
 		// no need to instanciate
 	}
+
+	/**
+	 * Indicates if the specified id is a valid widget id.
+	 * <p>
+	 * By definition, a all identifiers used within the Toolkit API must not be
+	 * <code>null</code> or the empty string and may only contain the following
+	 * printable ASCII characters.
+	 * <ul>
+	 * <li>lower- and uppercase letters <code>a..z</code> and <code>A..Z</code></li>
+	 * <li>numbers <code>0..9</code></li>
+	 * <li><code>'.'</code></li>
+	 * <li><code>'-'</code></li>
+	 * <li><code>'_'</code></li>
+	 * </ul>
+	 * </p>
+	 * <p>
+	 * This method is used to validate widget identifiers.
+	 * </p>
+	 * 
+	 * @param id
+	 *            the id
+	 * @return <code>true</code> if the id is valid, <code>false</code>
+	 *         otherwise
+	 */
+	public static boolean isValidId(final String id) {
+		if (null == id) {
+			return false;
+		}
+	
+		if (id.equals("")) {
+			return false;
+		}
+	
+		// verify chars
+		for (int i = 0; i < id.length(); i++) {
+			final char c = id.charAt(i);
+			if (((c >= 'a') && (c <= 'z')) || ((c >= 'A') && (c <= 'Z')) || ((c >= '0') && (c <= '9')) || (c == '.') || (c == '_') || (c == '-')) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+	
+		return true;
+	}
 }
