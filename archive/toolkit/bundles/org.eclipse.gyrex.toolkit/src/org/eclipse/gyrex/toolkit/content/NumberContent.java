@@ -32,6 +32,7 @@ public class NumberContent extends ContentObject {
 	 * Creates a new instance.
 	 * 
 	 * @param number
+	 *            the number
 	 */
 	public NumberContent(final Number number) {
 		this.number = number;

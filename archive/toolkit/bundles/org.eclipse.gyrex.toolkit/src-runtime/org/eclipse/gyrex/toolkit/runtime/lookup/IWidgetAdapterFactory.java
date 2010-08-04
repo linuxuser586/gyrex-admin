@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -26,6 +26,8 @@ public interface IWidgetAdapterFactory {
 	 * (adapter type) associated with the specified widget id. Returns
 	 * <code>null</code> if no such object can be found.
 	 * 
+	 * @param <T>
+	 *            the type of the requested adapter
 	 * @param widgetId
 	 *            the widget id
 	 * @param adapterType

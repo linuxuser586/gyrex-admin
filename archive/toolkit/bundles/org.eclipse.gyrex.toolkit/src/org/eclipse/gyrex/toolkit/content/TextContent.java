@@ -32,6 +32,7 @@ public class TextContent extends ContentObject {
 	 * Creates a new instance.
 	 * 
 	 * @param text
+	 *            the text
 	 */
 	public TextContent(final String text) {
 		super();

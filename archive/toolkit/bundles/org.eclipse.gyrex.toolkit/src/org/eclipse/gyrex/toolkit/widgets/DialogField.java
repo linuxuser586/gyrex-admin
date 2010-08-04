@@ -25,6 +25,8 @@ import org.eclipse.gyrex.toolkit.content.ContentObject;
  * Toolkit implementation.
  * </p>
  * 
+ * @param <T>
+ *            the content used by the dialog field
  * @see Toolkit#READ_ONLY
  * @see Toolkit#REQUIRED
  */

@@ -32,7 +32,8 @@ public class ShowWidgetAction extends WidgetAction {
 	/**
 	 * Creates a new instance.
 	 * 
-	 * @param string
+	 * @param widgetId
+	 *            the widget id
 	 */
 	public ShowWidgetAction(final String widgetId) {
 		super(widgetId, Toolkit.NONE);

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -51,9 +51,9 @@ import org.eclipse.gyrex.toolkit.widgets.styledtext.StyledTextModel;
  * can be specified using the 'alt' attribute.</li>
  * <li><b>a</b> - to render a hyperlink. Element accepts attribute 'href' which
  * specifies either an external or an internal hyperlink. Internal hyperlinks
- * are in the form 'gyrex:///<command_id>' and trigger a {@link Command
- * command}. External hyperlinks will be opened at runtime directly. The element
- * also accepts 'nowrap' attribute (default is <code>false</code>). When set to
+ * are in the form 'gyrex:///<command_id>' and trigger a {@link Command command}
+ * . External hyperlinks will be opened at runtime directly. The element also
+ * accepts 'nowrap' attribute (default is <code>false</code>). When set to
  * 'true', the hyperlink will not be wrapped. Hyperlinks automatically created
  * when 'http://' is encountered in text are not wrapped.</li>
  * <li><b>b</b> - the enclosed text will use bold font.</li>
@@ -71,7 +71,7 @@ import org.eclipse.gyrex.toolkit.widgets.styledtext.StyledTextModel;
  * Care should be taken when using this widget. Styled text is not an HTML
  * browser and should not be treated as such. If you need complex formatting
  * capabilities, create your own custom widget. If all you need is to wrap text,
- * use {@link #setText(String, boolean)} with parsing tags turned off (
+ * use {@link #setText(String, boolean, boolean)} with parsing tags turned off (
  * <code>false</code>).
  * </p>
  * 
@@ -89,8 +89,11 @@ public class StyledText extends Widget {
 	 * Creates a new instance.
 	 * 
 	 * @param id
+	 *            the widget id
 	 * @param parent
+	 *            the widget parent
 	 * @param style
+	 *            the widget style
 	 */
 	public StyledText(final String id, final Container parent, final int style) {
 		super(id, parent, style);
@@ -137,10 +140,6 @@ public class StyledText extends Widget {
 	 * @param expandURLs
 	 *            if <samp>true </samp>, URLs found in the untagged text will be
 	 *            converted into hyperlinks. Sets the text.
-	 * @param text
-	 *            the text
-	 * @param parseTags
-	 *            if tags should be parsed
 	 */
 	public void setText(final String text, final boolean parseTags, final boolean expandURLs) {
 		if (parseTags) {

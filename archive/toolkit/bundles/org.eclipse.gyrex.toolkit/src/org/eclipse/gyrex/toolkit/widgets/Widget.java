@@ -131,6 +131,8 @@ public abstract class Widget implements Serializable {
 	 *            the widget parent
 	 * @param style
 	 *            the widget style
+	 * @throws IllegalArgumentException
+	 *             if any of the arguments is invalid
 	 */
 	public Widget(final String id, final Container parent, final int style) throws IllegalArgumentException {
 		checkSubclass();

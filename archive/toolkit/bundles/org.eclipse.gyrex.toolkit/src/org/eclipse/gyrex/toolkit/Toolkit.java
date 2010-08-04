@@ -194,9 +194,14 @@ public final class Toolkit {
 	 * 
 	 * @param code
 	 *            the Toolkit error code
-	 * @see ToolkitError
-	 * @see ToolkitException
-	 * @see IllegalArgumentException
+	 * @throws ToolkitError
+	 *             in case of unrecoverable errors
+	 * @throws ToolkitException
+	 *             in case of recoverable errors
+	 * @throws IllegalArgumentException
+	 *             if the code indicates a missing on invalid argument (
+	 *             {@link #ERROR_NULL_ARGUMENT} or
+	 *             {@link #ERROR_INVALID_ARGUMENT})
 	 */
 	public static void error(final int code) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, null, null);
@@ -214,9 +219,14 @@ public final class Toolkit {
 	 *            the Toolkit error code
 	 * @param detail
 	 *            more information about error (maybe <code>null</code>)
-	 * @see ToolkitError
-	 * @see ToolkitException
-	 * @see IllegalArgumentException
+	 * @throws ToolkitError
+	 *             in case of unrecoverable errors
+	 * @throws ToolkitException
+	 *             in case of recoverable errors
+	 * @throws IllegalArgumentException
+	 *             if the code indicates a missing on invalid argument (
+	 *             {@link #ERROR_NULL_ARGUMENT} or
+	 *             {@link #ERROR_INVALID_ARGUMENT})
 	 */
 	public static void error(final int code, final String detail) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, null, detail);
@@ -235,9 +245,14 @@ public final class Toolkit {
 	 * @param throwable
 	 *            the exception which caused the error to occur (maybe
 	 *            <code>null</code>)
-	 * @see ToolkitError
-	 * @see ToolkitException
-	 * @see IllegalArgumentException
+	 * @throws ToolkitError
+	 *             in case of unrecoverable errors
+	 * @throws ToolkitException
+	 *             in case of recoverable errors
+	 * @throws IllegalArgumentException
+	 *             if the code indicates a missing on invalid argument (
+	 *             {@link #ERROR_NULL_ARGUMENT} or
+	 *             {@link #ERROR_INVALID_ARGUMENT})
 	 */
 	public static void error(final int code, final Throwable throwable) throws IllegalArgumentException, ToolkitError, ToolkitException {
 		error(code, throwable, null);
@@ -271,9 +286,14 @@ public final class Toolkit {
 	 *            <code>null</code>)
 	 * @param detail
 	 *            more information about error (maybe <code>null</code>)
-	 * @see ToolkitError
-	 * @see ToolkitException
-	 * @see IllegalArgumentException
+	 * @throws ToolkitError
+	 *             in case of unrecoverable errors
+	 * @throws ToolkitException
+	 *             in case of recoverable errors
+	 * @throws IllegalArgumentException
+	 *             if the code indicates a missing on invalid argument (
+	 *             {@link #ERROR_NULL_ARGUMENT} or
+	 *             {@link #ERROR_INVALID_ARGUMENT})
 	 */
 	public static void error(final int code, final Throwable throwable, final String detail) throws IllegalArgumentException, ToolkitError, ToolkitException {
 
