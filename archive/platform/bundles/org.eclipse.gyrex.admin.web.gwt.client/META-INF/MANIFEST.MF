@@ -9,6 +9,7 @@ Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Import-Package: com.google.gwt.core.client,
  com.google.gwt.dom.client,
+ com.google.gwt.event.dom.client,
  com.google.gwt.event.logical.shared,
  com.google.gwt.event.shared,
  com.google.gwt.i18n.client,
