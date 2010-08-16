@@ -43,6 +43,8 @@ import org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard.SWiz
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Label;
@@ -94,7 +96,12 @@ public class CWTToolkit {
 				if (action instanceof SShowWidgetAction) {
 					final String widgetId = ((SShowWidgetAction) action).widgetId;
 					if (null != widgetId) {
-						History.newItem(widgetId);
+						DeferredCommand.addCommand(new Command() {
+							@Override
+							public void execute() {
+								History.newItem(widgetId);
+							}
+						});
 					}
 				} else if (action instanceof SRefreshAction) {
 					final int delay = ((SRefreshAction) action).delay;
@@ -102,7 +109,12 @@ public class CWTToolkit {
 					final Timer timer = new Timer() {
 						@Override
 						public void run() {
-							History.newItem(token);
+							DeferredCommand.addCommand(new Command() {
+								@Override
+								public void execute() {
+									History.newItem(token);
+								}
+							});
 						}
 					};
 					if (delay == 0) {
