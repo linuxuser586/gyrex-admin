@@ -562,6 +562,7 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 			// no submit rule, test if actions are available
 			if (null != command.actions) {
 				getToolkit().getActionHandler().handleAction(command.actions);
+				CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
 			}
 		}
 	}
