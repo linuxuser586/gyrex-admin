@@ -253,7 +253,13 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 	 * The Cancel button has been pressed.
 	 */
 	protected void cancelPressed() {
-		triggerCommand(getSWizardContainer().cancelCommand);
+		final SCommand command = getSWizardContainer().cancelCommand;
+		if (null != command) {
+			triggerCommand(command);
+		} else {
+			// no command specified, just send close event
+			CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
+		}
 	}
 
 	/**
@@ -300,7 +306,13 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 	 * The Finish button has been pressed.
 	 */
 	protected void finishPressed() {
-		triggerCommand(getSWizardContainer().finishCommand);
+		final SCommand command = getSWizardContainer().finishCommand;
+		if (null != command) {
+			triggerCommand(command);
+		} else {
+			// no command specified, just send close event
+			CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
+		}
 	}
 
 	private void firePageChangedEvent() {
