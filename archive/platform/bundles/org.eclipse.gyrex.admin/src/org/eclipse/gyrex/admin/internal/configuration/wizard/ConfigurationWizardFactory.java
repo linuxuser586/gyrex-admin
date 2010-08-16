@@ -19,6 +19,7 @@ import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
 import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
@@ -42,6 +43,9 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 	/** setup wizard "finish" command */
 	public static final String CMD_FINISH = "finish";
+
+	/** setup wizard "cancel" command */
+	public static final String CMD_CANCEL = "cancel";
 
 	/** setup wizard widget id */
 	public static final String ID_CONFIGURATION_WIZARD = "config-wizard";
@@ -149,6 +153,7 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 		createAdditionalPages(wizard);
 
 		wizard.setFinishCommand(new Command(CMD_FINISH, DialogFieldRules.allFields().submit()));
+		wizard.setCancelCommand(new Command(CMD_CANCEL, new ShowWidgetAction("dashboard")));
 
 		return wizard;
 	}
