@@ -1,6 +1,7 @@
 
 .admin-WizardPanel {
 	max-height: 80%;
+	max-width: 80%;
 }
 .admin-WizardPanel .popupMiddleCenter {
 }
@@ -15,5 +16,6 @@
 
 .admin-ContentHolderPanel {
 	min-height: 400px;
+	width: 680px;
 }
 
