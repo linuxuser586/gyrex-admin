@@ -21,17 +21,16 @@
 	</target>
 
 	<target name="sync.module" depends="compile.module">
-		<echo level="info" message="Removing existing cache files" />
-		<delete>
-			<fileset dir="${sync.target}">
-				<include name="*.cache.*" />
-                <include name="*.gwt.rpc" />
-			</fileset>
-		</delete>
 		<echo level="info" message="Synchronizing module files..." />
-		<copy todir="${sync.target}">
-			<fileset dir="${module.output}" excludes="**/.svn/**,**/CVS/**" />
-		</copy>
+		<gwt.sync todir="${sync.target}">
+			<!-- when synching it's important NOT to sync CVS info but preserve certain wanted info in the target -->
+			<!-- this is especially necessary for handling the 'deferredjs' folder changes correctly in CVS -->
+			<!-- the gwt.synch task is optimized for this behavior -->
+			<fileset dir="${module.output}" excludes="**/CVS/**" />
+			<preserveintarget casesensitive="false">
+				<include name="**/CVS//**" />
+			</preserveintarget>
+		</gwt.sync>
 	</target>
 
 	<target name="compile.module">
