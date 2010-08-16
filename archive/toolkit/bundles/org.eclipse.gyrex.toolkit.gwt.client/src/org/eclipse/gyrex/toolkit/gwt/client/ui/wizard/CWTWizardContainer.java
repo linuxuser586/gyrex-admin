@@ -518,42 +518,52 @@ public class CWTWizardContainer extends CWTContainer implements HasCloseHandlers
 			return;
 		}
 
-		// build the content set
-		final String commandId = command.id;
-		final SContentSet contentSet = ContentHelper.buildContentSet(command.contentSubmitRule, this);
-
+		// disable buttons
 		allButtonsDisabled = true;
 		updateButtons();
-		//button.setText("Please wait...");
-		getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new CommandExecutionCallback() {
 
-			@Override
-			public void onExecuted(final CommandExecutedEvent event) {
-				allButtonsDisabled = false;
-				updateButtons();
-				final IStatus status = event.getStatus();
-				if (status.isMultiStatus()) {
-					final IStatus[] children = status.getChildren();
-					for (final IStatus child : children) {
-						if (!child.isOK()) {
-							setPageStatus(child);
+		// submit content if submit rule is set
+		if (null != command.contentSubmitRule) {
+			// build the content set
+			final String commandId = command.id;
+			final SContentSet contentSet = ContentHelper.buildContentSet(command.contentSubmitRule, this);
+
+			//button.setText("Please wait...");
+			getToolkit().getWidgetFactory().executeCommand(commandId, getWidgetId(), contentSet, new CommandExecutionCallback() {
+
+				@Override
+				public void onExecuted(final CommandExecutedEvent event) {
+					allButtonsDisabled = false;
+					updateButtons();
+					final IStatus status = event.getStatus();
+					if (status.isMultiStatus()) {
+						final IStatus[] children = status.getChildren();
+						for (final IStatus child : children) {
+							if (!child.isOK()) {
+								setPageStatus(child);
+							}
 						}
+					} else {
+						setPageStatus(status);
 					}
-				} else {
-					setPageStatus(status);
+					if (status.isOK()) {
+						CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
+					}
 				}
-				if (status.isOK()) {
-					CloseEvent.fire(CWTWizardContainer.this, CWTWizardContainer.this);
-				}
-			}
 
-			@Override
-			public void onFailure(final WidgetFactoryException caught) {
-				allButtonsDisabled = false;
-				updateButtons();
-				setPageStatus(null);
+				@Override
+				public void onFailure(final WidgetFactoryException caught) {
+					allButtonsDisabled = false;
+					updateButtons();
+					setPageStatus(null);
+				}
+			});
+		} else {
+			// no submit rule, test if actions are available
+			if (null != command.actions) {
+				getToolkit().getActionHandler().handleAction(command.actions);
 			}
-		});
+		}
 	}
 
 	/**
