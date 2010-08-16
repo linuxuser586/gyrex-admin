@@ -265,7 +265,6 @@ public class AdminConsole implements EntryPoint {
 						final Error error = new Error(caught, widgetFactory.getToolkit());
 						currentWidgetId = null;
 						showWidget(error);
-						updateContentTitle(error);
 					}
 
 					public void onSuccess(final CWTWidget composite) {
@@ -275,7 +274,6 @@ public class AdminConsole implements EntryPoint {
 						}
 						composite.applyWidgetState(widgetState);
 						showWidget(composite);
-						updateContentTitle(composite);
 					}
 
 				});
@@ -315,10 +313,12 @@ public class AdminConsole implements EntryPoint {
 			} else {
 				contentHolder.setWidget(widget);
 			}
+			updateContentTitle(widget);
 		}
+
 	}
 
-	/*package*/void updateContentTitle(final CWTWidget widget) {
+	private void updateContentTitle(final CWTWidget widget) {
 		final ContentTitleProvider contentTitleProvider = widget.getAdapter(ContentTitleProvider.class);
 		final String title = null != contentTitleProvider ? contentTitleProvider.getTitle(widget) : "";
 		final String description = null != contentTitleProvider ? contentTitleProvider.getDescription(widget) : "";
