@@ -169,11 +169,11 @@ public class AdminConsole implements EntryPoint {
 					requestWidget("dashboard", null);
 				}
 			}));
-			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
-				public void execute() {
-					requestWidget("control-panel", null);
-				}
-			}));
+//			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
+//				public void execute() {
+//					requestWidget("control-panel", null);
+//				}
+//			}));
 			menuPanel.add(menuBar);
 		}
 
