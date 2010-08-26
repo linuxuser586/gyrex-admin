@@ -1,7 +1,0 @@
-#Wed Oct 15 08:46:10 CEST 2008
-autoBuildModules=false
-compilerVmArgs=-XX\:+UseParallelGC -XX\:MaxPermSize\=128m
-deploymentPath=/gwt
-eclipse.preferences.version=1
-hostedDeployMode=true
-outputLocation=generated
