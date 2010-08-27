@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -23,19 +23,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.response.FacetField;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.client.solrj.response.FacetField.Count;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
 import org.eclipse.gyrex.cds.model.IListingManager;
 import org.eclipse.gyrex.cds.model.documents.Document;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.FacetField;
+import org.apache.solr.client.solrj.response.FacetField.Count;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
 
 import com.ibm.icu.text.MeasureFormat;
 import com.ibm.icu.util.CurrencyAmount;
@@ -115,9 +115,6 @@ public class ListingServlet extends HttpServlet {
 		facetFilters.put("price", new FacetExpressionFilter("price", "[* TO 10]", "[10 TO 20]", "[20 TO 30]", "[30 TO 50]", "[50 TO *]"));
 	}
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
 	@Override
 	protected void doGet(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 		final IListingManager manager = ModelUtil.getManager(IListingManager.class, getContext());

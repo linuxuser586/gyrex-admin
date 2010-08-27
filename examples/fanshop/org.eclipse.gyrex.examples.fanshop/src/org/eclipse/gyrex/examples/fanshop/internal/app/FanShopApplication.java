@@ -22,9 +22,8 @@ import javax.servlet.ServletException;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
-import org.eclipse.gyrex.examples.fanshop.internal.IFanShopConstants;
 import org.eclipse.gyrex.http.application.Application;
-import org.eclipse.gyrex.http.application.servicesupport.IResourceProvider;
+import org.eclipse.gyrex.http.application.context.IResourceProvider;
 import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
 
 import org.eclipse.core.runtime.CoreException;
@@ -44,12 +43,6 @@ public class FanShopApplication extends Application {
 				throw new IllegalArgumentException("bundle must not be null");
 			}
 			this.bundle = bundle;
-		}
-
-		@Override
-		public String getMimeType(final String path) {
-			// let the container handle mime types
-			return null;
 		}
 
 		@Override
@@ -85,7 +78,7 @@ public class FanShopApplication extends Application {
 
 			// let's expose the Solr admin interface in dev mode
 			if (PlatformConfiguration.isOperatingInDevelopmentMode()) {
-				getApplicationServiceSupport().registerServlet("/solr/admin/*.jsp", new SolrAdminJspServlet("/solr", SolrActivator.getInstance().getEmbeddedCoreContainer(), IFanShopConstants.REPOSITORY_ID), null);
+				//getApplicationServiceSupport().registerServlet("/solr/admin/*.jsp", new SolrAdminJspServlet("/solr", SolrActivator.getInstance().getEmbeddedCoreContainer(), IFanShopConstants.REPOSITORY_ID), null);
 				getApplicationServiceSupport().registerResources("/solr", "web", new BundleResourceProvider(FanShopActivator.getInstance().getBundle("org.apache.solr.servlet")));
 
 				// let's expose the Solr request handler
