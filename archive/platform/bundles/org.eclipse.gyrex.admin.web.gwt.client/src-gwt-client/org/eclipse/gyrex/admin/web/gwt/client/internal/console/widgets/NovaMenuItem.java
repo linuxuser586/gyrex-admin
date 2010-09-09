@@ -41,7 +41,7 @@ public class NovaMenuItem extends Widget {
 		setElement(li);
 		anchor = Anchor.wrap(a);
 		anchor.setText(text);
-		anchor.setTitle(text);
+		anchor.setTitle(tooltip);
 		anchor.setHref("#" + text);
 		anchor.addClickHandler(new ClickHandler() {
 			@Override
