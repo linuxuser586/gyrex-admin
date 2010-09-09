@@ -24,4 +24,13 @@ public class AdminConsoleEnvironment implements Serializable {
 	/** is the server operating in development mode? */
 	public boolean devMode;
 
+	/** the default widget */
+	public String defaultWidget = "dashboard";
+
+	/**
+	 * top menu entries (array of String[3] array, eg.
+	 * <code>{{"Label", "Tooltip", "widgetId"},..}</code>)
+	 */
+	public String[][] topMenu;
+
 }

@@ -140,6 +140,7 @@ public class AdminConsole implements EntryPoint {
 			}
 
 			public void onSuccess(final AdminConsoleEnvironment result) {
+				// note, do not hide initial loading message here, will be done during init
 				onEnvironmentInitialized(result);
 			};
 		});
@@ -162,18 +163,23 @@ public class AdminConsole implements EntryPoint {
 
 		// initialize menu
 		final RootPanel menuPanel = RootPanel.get("menuPanel");
-		if (null != menuPanel) {
+		if ((null != menuPanel) && (null != environment.topMenu)) {
 			final NovaMenuBar menuBar = new NovaMenuBar();
-			menuBar.addItem(new NovaMenuItem("Dashboard", "Open system dashboard.", new Command() {
-				public void execute() {
-					requestWidget("dashboard", null);
+			for (int i = 0; i < environment.topMenu.length; i++) {
+				final String[] entry = environment.topMenu[i];
+				if ((null != entry) && (entry.length == 3)) {
+					final String label = entry[0];
+					final String tooltip = entry[1];
+					final String widgetId = entry[2];
+					if ((null != label) && (null != tooltip) && (null != widgetId)) {
+						menuBar.addItem(new NovaMenuItem(label, tooltip, new Command() {
+							public void execute() {
+								requestWidget(widgetId, null);
+							}
+						}));
+					}
 				}
-			}));
-//			menuBar.addItem(new NovaMenuItem("Control Panel", "Open system control panel.", new Command() {
-//				public void execute() {
-//					requestWidget("control-panel", null);
-//				}
-//			}));
+			}
 			menuPanel.add(menuBar);
 		}
 
@@ -185,7 +191,7 @@ public class AdminConsole implements EntryPoint {
 
 				if ("".equals(token)) {
 					// show dashboard
-					History.newItem("dashboard");
+					History.newItem(environment.defaultWidget);
 				} else {
 					// show the associated widget
 					final HistoryStateBuilder historyState = widgetFactory.getToolkit().createHistoryStateBuilder().parseString(token);
@@ -199,12 +205,9 @@ public class AdminConsole implements EntryPoint {
 		AdminStyles.ADMIN_STYLES.getAdminCss().ensureInjected();
 
 		// hide the loading message
-		final RootPanel loadingMessage = RootPanel.get("initialLoading");
-		if (null != loadingMessage) {
-			loadingMessage.setVisible(false);
-		}
+		hideInitialLoadingMessage();
 
-		// Show the initial widget
+		// show the initial widget
 		History.fireCurrentHistoryState();
 	}
 
