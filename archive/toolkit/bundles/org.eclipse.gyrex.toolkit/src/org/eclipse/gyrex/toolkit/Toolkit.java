@@ -377,7 +377,7 @@ public final class Toolkit {
 	/**
 	 * Indicates if the specified id is a valid widget id.
 	 * <p>
-	 * By definition, a all identifiers used within the Toolkit API must not be
+	 * By definition, all identifiers used within the Toolkit API must not be
 	 * <code>null</code> or the empty string and may only contain the following
 	 * printable ASCII characters.
 	 * <ul>
