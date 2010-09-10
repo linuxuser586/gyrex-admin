@@ -100,6 +100,10 @@ fieldset,img {
 }
 
 .cwt-Menu {
+	width: 100%;
+}
+.cwt-Menu-MenuPanel {
+	width: 828px;
 	margin: 0 auto;
 }
 .cwt-Menu-MenuGroup {
@@ -135,3 +139,25 @@ fieldset,img {
 .cwt-Menu-MenuItem-Label:hover {
 	text-decoration: underline;
 }
+.cwt-Menu-BreadCrumps {
+	vertical-align: middle;
+}
+.cwt-Menu-BreadCrumps td {
+	vertical-align: middle;
+}
+.cwt-Menu-BreadCrumps-Image {
+	height: 20px;
+}
+.cwt-Menu-BreadCrump-Label {
+	margin-left: .4em;
+}
+.cwt-Menu-BreadCrump-Separator {
+	margin-left: .4em;
+}
+.cwt-Menu-Description {
+	width: 828px;
+	margin: 1em auto;
+	font-size: 12pt;
+}
+
+

@@ -16,6 +16,10 @@
 
 .admin-ContentHolderPanel {
 	min-height: 400px;
-	width: 680px;
+	min-width: 680px;
+}
+
+p {
+	max-width: 700px;
 }
 
