@@ -17,12 +17,12 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.Anchor;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 /**
  *
  */
-public class NovaMenuItem extends Widget {
+public class NovaMenuItem extends SimplePanel {
 
 	private final Anchor anchor;
 
@@ -33,7 +33,7 @@ public class NovaMenuItem extends Widget {
 	 * @param text
 	 */
 	public NovaMenuItem(final String text, final String tooltip, final Command cmd) {
-		setElement(Document.get().createLIElement());
+		super(Document.get().createLIElement());
 
 		anchor = new Anchor();
 		anchor.setText(text);
@@ -47,6 +47,8 @@ public class NovaMenuItem extends Widget {
 			}
 		});
 
-		getElement().appendChild(anchor.getElement());
+		anchor.getParent();
+
+		setWidget(anchor);
 	}
 }

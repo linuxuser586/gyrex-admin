@@ -13,13 +13,12 @@ package org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets;
 
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.UListElement;
-import com.google.gwt.user.client.Element;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.ComplexPanel;
 
 /**
  *
  */
-public class NovaMenuBar extends Widget {
+public class NovaMenuBar extends ComplexPanel {
 
 	private final UListElement ul;
 
@@ -31,12 +30,7 @@ public class NovaMenuBar extends Widget {
 		setElement(ul);
 	}
 
-	/**
-	 * @param item
-	 */
-	public void addItem(final NovaMenuItem item) {
-		final Element element = item.getElement();
-		ul.appendChild(element);
+	public void add(final NovaMenuItem child) {
+		super.add(child, getElement());
 	}
-
 }
