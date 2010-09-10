@@ -47,7 +47,7 @@ public final class MenuItem extends DialogField<NoContent> {
 	 *            the item style
 	 */
 	public MenuItem(final String id, final int style) {
-		this(id, null, style);
+		super(id, null, style, NoContent.class);
 	}
 
 	/**
@@ -62,6 +62,9 @@ public final class MenuItem extends DialogField<NoContent> {
 	 */
 	public MenuItem(final String id, final Menu parent, final int style) {
 		super(id, parent, style, NoContent.class);
+
+		// this constructor mandates a parent
+		super.checkParent(parent);
 	}
 
 	@Override

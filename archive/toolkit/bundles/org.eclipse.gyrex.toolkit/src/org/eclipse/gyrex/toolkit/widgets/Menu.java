@@ -50,20 +50,6 @@ public final class Menu extends Container {
 	private ImageResource image;
 
 	/**
-	 * Creates a new menu instance.
-	 * 
-	 * @param id
-	 *            the menu id
-	 * @param parent
-	 *            the menu parent
-	 * @param style
-	 *            the menu style
-	 */
-	public Menu(final String id, final Container parent, final int style) {
-		super(id, parent, style);
-	}
-
-	/**
 	 * Creates a new parent-less menu instance.
 	 * 
 	 * @param id
@@ -73,6 +59,20 @@ public final class Menu extends Container {
 	 */
 	public Menu(final String id, final int style) {
 		super(id, style);
+	}
+
+	/**
+	 * Creates a new sub-menu instance.
+	 * 
+	 * @param id
+	 *            the menu id
+	 * @param parent
+	 *            the parent menu
+	 * @param style
+	 *            the menu style
+	 */
+	public Menu(final String id, final Menu parent, final int style) {
+		super(id, parent, style);
 	}
 
 	/**
@@ -131,9 +131,14 @@ public final class Menu extends Container {
 	/**
 	 * Sets the featured items.
 	 * <p>
-	 * Note, featured items do not need to have a parent. It's recommended to
-	 * use parentless items here. But it's also allowed to re-use existing menu
-	 * items from deeper levels in the menu tree.
+	 * Depending on how the menu is rendered, featured items will be shown in a
+	 * more prominent space. But it's also possible that they will not be shown
+	 * at all. Therefore, featured items should be considered as hints.
+	 * </p>
+	 * <p>
+	 * Featured items do not need to have a parent. It's recommended to use
+	 * parentless items here. But it's also possible to reference existing menu
+	 * items from deeper levels in the menu tree (to have short cuts).
 	 * </p>
 	 * 
 	 * @param featuredItems

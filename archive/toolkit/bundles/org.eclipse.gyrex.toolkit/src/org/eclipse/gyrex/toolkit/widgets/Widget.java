@@ -177,6 +177,10 @@ public abstract class Widget implements Serializable {
 	/**
 	 * Throws an exception if the specified widget can not be used as a parent
 	 * for the receiver.
+	 * <p>
+	 * The default implementation checks that the parent is not
+	 * <code>null</code>. Subclasses may override.
+	 * </p>
 	 * 
 	 * @exception IllegalArgumentException
 	 *                <ul>

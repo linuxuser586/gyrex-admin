@@ -64,6 +64,9 @@ public class Container extends Widget {
 	 */
 	public Container(final String id, final Container parent, final int style) {
 		super(id, parent, style);
+
+		// this constructor mandates a parent
+		super.checkParent(parent);
 	}
 
 	/**
@@ -75,7 +78,7 @@ public class Container extends Widget {
 	 *            the widget style
 	 */
 	public Container(final String id, final int style) {
-		this(id, null, style);
+		super(id, null, style);
 	}
 
 	/**
