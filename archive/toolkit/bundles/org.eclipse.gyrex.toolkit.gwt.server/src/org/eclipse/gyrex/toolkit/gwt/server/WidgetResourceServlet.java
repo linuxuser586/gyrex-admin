@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.eclipse.gyrex.toolkit.gwt.server.internal.ResourceUrlEncoder;
 
 /**
- * This servlet is responsible for delivering Gyrex widget resources to any
- * GWT client.
+ * This servlet is responsible for delivering Gyrex widget resources to any GWT
+ * client.
  * <p>
  * This class is intended to be instantiated and/or extended by clients. It
  * serves as a base implementation for accessing widget resource.
@@ -42,9 +42,6 @@ public class WidgetResourceServlet extends HttpServlet {
 	private static final String IF_NONE_MATCH = "If-None-Match"; //$NON-NLS-1$
 	private static final String ETAG = "ETag"; //$NON-NLS-1$
 
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
 	@Override
 	protected void service(final HttpServletRequest req, final HttpServletResponse resp) throws ServletException, IOException {
 		final String method = req.getMethod();

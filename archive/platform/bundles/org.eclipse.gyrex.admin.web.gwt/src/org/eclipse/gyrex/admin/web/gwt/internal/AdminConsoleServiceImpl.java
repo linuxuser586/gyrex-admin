@@ -21,6 +21,11 @@ public class AdminConsoleServiceImpl implements IAdminConsoleService {
 	public AdminConsoleEnvironment loadEnvironment() {
 		final AdminConsoleEnvironment environment = new AdminConsoleEnvironment();
 		environment.devMode = PlatformConfiguration.isOperatingInDevelopmentMode();
+		environment.defaultWidget = "dashboard";
+		environment.topMenu = new String[][] {//@formatter:off
+			{"Dashboard", "Open the system dashboard.", "dashboard"},
+			{"Control Panel", "Configure the system using the control panel.", "control-panel"},
+		}; //@formatter:on
 		return environment;
 	}
 }

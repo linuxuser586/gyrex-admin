@@ -32,6 +32,7 @@ public class ControlPanelFactory implements IWidgetFactory {
 	private static final String IMG_ITEM_TERMINAL = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/terminal.png";
 	private static final String IMG_MENU_ADMINISTRATION = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
 	private static final String IMG_MENU_SOFTWARE = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
+	private static final String IMG_MENU_CONTROL_PANEL = "platform:/plugin/org.eclipse.gyrex.admin/images/icons/48/eclipse.gif";
 
 	private static final String CONTROL_PANEL = "control-panel";
 	public static final String[] IDS = new String[] { CONTROL_PANEL };
@@ -48,6 +49,9 @@ public class ControlPanelFactory implements IWidgetFactory {
 
 	private Widget createControlPanel(final IWidgetEnvironment environment) {
 		final Menu controlPanel = new Menu(CONTROL_PANEL, Toolkit.NONE);
+		controlPanel.setLabel("Control Panel");
+		controlPanel.setDescription("Configure settings of the system.");
+		controlPanel.setImage(ImageResource.createFromUrl(IMG_MENU_CONTROL_PANEL));
 		systemAndSecurity(controlPanel);
 		networkAndCloud(controlPanel);
 		software(controlPanel);
