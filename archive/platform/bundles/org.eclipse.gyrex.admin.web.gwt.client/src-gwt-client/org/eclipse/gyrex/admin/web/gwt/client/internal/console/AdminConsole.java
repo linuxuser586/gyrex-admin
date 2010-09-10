@@ -173,7 +173,7 @@ public class AdminConsole implements EntryPoint {
 					final String tooltip = entry[1];
 					final String widgetId = entry[2];
 					if ((null != label) && (null != tooltip) && (null != widgetId)) {
-						menuBar.addItem(new NovaMenuItem(label, tooltip, new Command() {
+						menuBar.add(new NovaMenuItem(label, tooltip, new Command() {
 							public void execute() {
 								requestWidget(widgetId, null);
 							}
