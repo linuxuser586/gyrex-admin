@@ -11,9 +11,7 @@
  */
 package org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets;
 
-import com.google.gwt.dom.client.AnchorElement;
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.LIElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
@@ -35,11 +33,9 @@ public class NovaMenuItem extends Widget {
 	 * @param text
 	 */
 	public NovaMenuItem(final String text, final String tooltip, final Command cmd) {
-		final LIElement li = Document.get().createLIElement();
-		final AnchorElement a = Document.get().createAnchorElement();
-		li.appendChild(a);
-		setElement(li);
-		anchor = Anchor.wrap(a);
+		setElement(Document.get().createLIElement());
+
+		anchor = new Anchor();
 		anchor.setText(text);
 		anchor.setTitle(tooltip);
 		anchor.setHref("#" + text);
@@ -50,5 +46,7 @@ public class NovaMenuItem extends Widget {
 				DeferredCommand.addCommand(cmd);
 			}
 		});
+
+		getElement().appendChild(anchor.getElement());
 	}
 }
