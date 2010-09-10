@@ -32,11 +32,11 @@ public class HistoryStateBuilder {
 		// widgetId
 		token.append(null != widgetId ? widgetId : "");
 
-		// state separator
-		token.append(':');
-
 		// widget state
 		if (null != widgetState) {
+			// state separator
+			token.append(':');
+			// state
 			token.append(widgetState);
 		}
 
