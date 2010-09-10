@@ -32,6 +32,7 @@ import org.eclipse.gyrex.toolkit.gwt.client.ui.wizard.CWTWizardContainer;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
@@ -213,6 +214,15 @@ public class AdminConsole implements EntryPoint {
 
 	public void onModuleLoad() {
 		instance = this;
+
+		// install exception handler
+		GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+			@Override
+			public void onUncaughtException(final Throwable e) {
+				GWT.log("Uncaught exception: " + e, e);
+				Window.alert(e.toString());
+			}
+		});
 
 		// initialize content area
 		final RootPanel contentPanel = RootPanel.get("contentPanel");
