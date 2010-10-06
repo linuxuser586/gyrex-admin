@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -22,18 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.math.NumberUtils;
-import org.apache.solr.client.solrj.SolrQuery;
-import org.apache.solr.client.solrj.response.QueryResponse;
-import org.apache.solr.client.solrj.util.ClientUtils;
-import org.apache.solr.common.SolrDocument;
-import org.apache.solr.common.SolrDocumentList;
-import org.codehaus.jackson.JsonFactory;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.JavaTypeMapper;
 import org.eclipse.gyrex.cds.model.IListing;
 import org.eclipse.gyrex.cds.model.IListingAttribute;
 import org.eclipse.gyrex.cds.model.IListingManager;
@@ -50,6 +38,19 @@ import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.http.application.ApplicationException;
 import org.eclipse.gyrex.model.common.ModelUtil;
 import org.eclipse.gyrex.services.common.ServiceUtil;
+
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonGenerator;
+import org.codehaus.jackson.map.ObjectMapper;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.math.NumberUtils;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.response.QueryResponse;
+import org.apache.solr.client.solrj.util.ClientUtils;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
 
 import com.ibm.icu.text.MeasureFormat;
 import com.ibm.icu.util.CurrencyAmount;
@@ -417,12 +418,12 @@ public class JsonListingServlet extends HttpServlet {
 		if (attributes.length > 0) {
 			json.writeFieldName("attributes");
 			json.writeStartObject();
-			final JavaTypeMapper javaTypeMapper = new JavaTypeMapper();
+			final ObjectMapper javaTypeMapper = new ObjectMapper();
 			for (final IListingAttribute attribute : attributes) {
 				json.writeFieldName(attribute.getName());
 				json.writeStartArray();
 				for (final Object object : attribute.getValues()) {
-					javaTypeMapper.writeAny(json, object);
+					javaTypeMapper.writeValue(json, object);
 				}
 				json.writeEndArray();
 			}
