@@ -1,8 +1,0 @@
-#Fri Jan 30 20:33:36 CET 2009
-autoBuildModules=false
-compilerJavascriptStyle=OBFUSCATED
-compilerVmArgs=-XX\:+UseParallelGC -XX\:MaxPermSize\=128m
-deploymentPath=/gwt
-eclipse.preferences.version=1
-hostedDeployMode=true
-outputLocation=bin.gwt
