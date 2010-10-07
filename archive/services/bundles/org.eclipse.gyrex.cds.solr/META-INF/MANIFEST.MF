@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.gyrex.cds.model.solr
+Bundle-SymbolicName: org.eclipse.gyrex.cds.solr
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.gyrex.cds.model.solr.internal.ListingsSolrModelActivator
 Bundle-Name: %bundle.name
@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.gyrex.common;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.persistence;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.persistence.solr;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.gyrex.model.common;bundle-version="[1.0.0,2.0.0)",
- org.eclipse.gyrex.cds.model;bundle-version="[1.0.0,2.0.0)",
+ org.eclipse.gyrex.cds;bundle-version="[1.0.0,2.0.0)",
  org.eclipse.core.jobs;bundle-version="[3.4.100,4.0.0)"
 Export-Package: org.eclipse.gyrex.cds.model.solr;uses:="org.apache.solr.client.solrj.response,org.apache.solr.client.solrj",
  org.eclipse.gyrex.cds.model.solr.internal;x-friends:="org.eclipse.gyrex.cds.service.solr"
