@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.cds.model.solr;
 
-import org.eclipse.gyrex.cds.model.IListingManager;
+import org.eclipse.gyrex.cds.IListingManager;
 
 import org.eclipse.core.runtime.IAdaptable;
 

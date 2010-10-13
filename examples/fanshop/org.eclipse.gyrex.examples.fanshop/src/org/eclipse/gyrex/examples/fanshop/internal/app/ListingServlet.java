@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.gyrex.cds.model.IListingManager;
-import org.eclipse.gyrex.cds.model.documents.Document;
+import org.eclipse.gyrex.cds.IListingManager;
+import org.eclipse.gyrex.cds.documents.Document;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;

@@ -29,11 +29,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.gyrex.cds.model.IListingManager;
-import org.eclipse.gyrex.cds.model.documents.Document;
-import org.eclipse.gyrex.cds.model.documents.DoubleField;
-import org.eclipse.gyrex.cds.model.documents.Field;
-import org.eclipse.gyrex.cds.model.documents.StringField;
+
+import org.eclipse.gyrex.cds.IListingManager;
+import org.eclipse.gyrex.cds.documents.Document;
+import org.eclipse.gyrex.cds.documents.DoubleField;
+import org.eclipse.gyrex.cds.documents.Field;
+import org.eclipse.gyrex.cds.documents.StringField;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
 import org.osgi.framework.Bundle;
