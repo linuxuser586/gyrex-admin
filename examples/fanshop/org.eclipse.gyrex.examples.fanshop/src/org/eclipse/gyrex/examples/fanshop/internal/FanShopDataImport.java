@@ -30,10 +30,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
-import org.eclipse.gyrex.cds.IListingManager;
 import org.eclipse.gyrex.cds.documents.Document;
 import org.eclipse.gyrex.cds.documents.DoubleField;
 import org.eclipse.gyrex.cds.documents.Field;
+import org.eclipse.gyrex.cds.documents.IDocumentManager;
 import org.eclipse.gyrex.cds.documents.StringField;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
@@ -289,8 +289,8 @@ public class FanShopDataImport extends Job {
 			}
 
 			// publish the docs
-			final IListingManager listingManager = ModelUtil.getManager(IListingManager.class, getContext());
-			listingManager.publish(docs.values());
+			final IDocumentManager documentManager = ModelUtil.getManager(IDocumentManager.class, getContext());
+			documentManager.publish(docs.values());
 		} catch (final IllegalStateException e) {
 			// abort, bundle is inactive
 			return Status.CANCEL_STATUS;

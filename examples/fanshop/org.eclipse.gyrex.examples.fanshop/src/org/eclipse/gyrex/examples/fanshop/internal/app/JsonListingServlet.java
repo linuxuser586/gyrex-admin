@@ -22,11 +22,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.gyrex.cds.IListing;
-import org.eclipse.gyrex.cds.IListingAttribute;
-import org.eclipse.gyrex.cds.IListingManager;
 import org.eclipse.gyrex.cds.IListingService;
 import org.eclipse.gyrex.cds.documents.Document;
+import org.eclipse.gyrex.cds.documents.IDocument;
+import org.eclipse.gyrex.cds.documents.IDocumentAttribute;
+import org.eclipse.gyrex.cds.documents.IDocumentManager;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.gyrex.cds.query.ListingQuery;
 import org.eclipse.gyrex.cds.query.ListingQuery.ResultDimension;
@@ -104,8 +104,8 @@ public class JsonListingServlet extends HttpServlet {
 	 */
 	private void doAutoComplete(final HttpServletRequest req, final HttpServletResponse resp, final String autocompleteTerm) throws IOException {
 		// auto completion is an advanced feature and not supported by all listing service implementations
-		final IListingManager listingManager = ModelUtil.getManager(IListingManager.class, getContext());
-		final ISolrQueryExecutor executor = (ISolrQueryExecutor) listingManager.getAdapter(ISolrQueryExecutor.class);
+		final IDocumentManager documentManager = ModelUtil.getManager(IDocumentManager.class, getContext());
+		final ISolrQueryExecutor executor = (ISolrQueryExecutor) documentManager.getAdapter(ISolrQueryExecutor.class);
 		if (null == executor) {
 			throw new ApplicationException(503, "auto completion not supported");
 		}
@@ -380,7 +380,7 @@ public class JsonListingServlet extends HttpServlet {
 		json.writeEndObject();
 	}
 
-	private void writeProduct(final IListing listing, final JsonGenerator json, final HttpServletRequest req, final Enhancer enhancer) throws IOException {
+	private void writeProduct(final IDocument listing, final JsonGenerator json, final HttpServletRequest req, final Enhancer enhancer) throws IOException {
 		if (null == listing) {
 			return;
 		}
@@ -393,33 +393,33 @@ public class JsonListingServlet extends HttpServlet {
 		writeValue("uri", getBaseUrl(req).append(listing.getUriPath()).toString(), json);
 		writeValue("uripath", listing.getUriPath(), json);
 
-		final IListingAttribute categoryAttribute = listing.getAttribute("category");
+		final IDocumentAttribute categoryAttribute = listing.getAttribute("category");
 		if ((null != categoryAttribute) && (categoryAttribute.getValues().length > 0)) {
 			writeValue("category", categoryAttribute.getValues()[0].toString(), json);
 		}
 
-		final IListingAttribute priceAttribute = listing.getAttribute("price");
+		final IDocumentAttribute priceAttribute = listing.getAttribute("price");
 		if ((null != priceAttribute) && (priceAttribute.getValues().length > 0)) {
 			// the first price the formated store price
 			writeValue("shopPrice", MeasureFormat.getCurrencyFormat(ULocale.US).format(new CurrencyAmount((Double) priceAttribute.getValues()[0], com.ibm.icu.util.Currency.getInstance("USD"))), json);
 		}
 
-		final IListingAttribute typeAttribute = listing.getAttribute("type");
+		final IDocumentAttribute typeAttribute = listing.getAttribute("type");
 		if ((null != typeAttribute) && (typeAttribute.getValues().length > 0)) {
 			writeValue("type", typeAttribute.getValues()[0].toString(), json);
 		}
 
-		final IListingAttribute parentIdAttribute = listing.getAttribute("parentid");
+		final IDocumentAttribute parentIdAttribute = listing.getAttribute("parentid");
 		if ((null != parentIdAttribute) && (parentIdAttribute.getValues().length > 0)) {
 			writeValue("parentid", parentIdAttribute.getValues()[0].toString(), json);
 		}
 
-		final IListingAttribute[] attributes = listing.getAttributes();
+		final IDocumentAttribute[] attributes = listing.getAttributes();
 		if (attributes.length > 0) {
 			json.writeFieldName("attributes");
 			json.writeStartObject();
 			final ObjectMapper javaTypeMapper = new ObjectMapper();
-			for (final IListingAttribute attribute : attributes) {
+			for (final IDocumentAttribute attribute : attributes) {
 				json.writeFieldName(attribute.getName());
 				json.writeStartArray();
 				for (final Object object : attribute.getValues()) {
@@ -459,7 +459,7 @@ public class JsonListingServlet extends HttpServlet {
 
 		json.writeFieldName("products");
 		json.writeStartArray();
-		for (final IListing listing : result.getListings()) {
+		for (final IDocument listing : result.getListings()) {
 			writeProduct(listing, json, req, null);
 		}
 		json.writeEndArray();
@@ -536,10 +536,10 @@ public class JsonListingServlet extends HttpServlet {
 		//writeValue("numFound", result.getNumFound(), json);
 		//writeValue("startOffset", result.getStartOffset(), json);
 
-		final IListing[] listings = result.getListings();
+		final IDocument[] listings = result.getListings();
 		if (listings.length == 1) {
 			json.writeFieldName("product");
-			final IListing product = listings[0];
+			final IDocument product = listings[0];
 			writeProduct(product, json, req, new Enhancer() {
 
 				@Override
@@ -549,9 +549,9 @@ public class JsonListingServlet extends HttpServlet {
 						final Object[] variationids = product.getAttribute("variationids").getValues();
 						json.writeFieldName("variations");
 						json.writeStartObject();
-						final IListingManager manager = ModelUtil.getManager(IListingManager.class, getContext());
+						final IDocumentManager manager = ModelUtil.getManager(IDocumentManager.class, getContext());
 						for (final Object variationId : variationids) {
-							final IListing variation = manager.findById((String) variationId);
+							final IDocument variation = manager.findById((String) variationId);
 							if (null != variation) {
 								json.writeFieldName((String) variationId);
 								writeProduct(variation, json, req, null);
@@ -560,8 +560,8 @@ public class JsonListingServlet extends HttpServlet {
 						json.writeEndObject();
 					} else if ("variation".equals(productType)) {
 						final String masterid = (String) product.getAttribute("parentid").getValues()[0];
-						final IListingManager manager = ModelUtil.getManager(IListingManager.class, getContext());
-						final IListing master = manager.findById(masterid);
+						final IDocumentManager manager = ModelUtil.getManager(IDocumentManager.class, getContext());
+						final IDocument master = manager.findById(masterid);
 						if (null != master) {
 							json.writeFieldName("master");
 							writeProduct(master, json, req, null);

@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.cds.model.solr;
 
-import org.eclipse.gyrex.cds.IListingManager;
+import org.eclipse.gyrex.cds.documents.IDocumentManager;
 
 import org.eclipse.core.runtime.IAdaptable;
 
@@ -63,7 +63,7 @@ public interface ISolrListingManager {
 	 * Allows to temporarily disabled commits from the manager.
 	 * <p>
 	 * When disabled, the manager will never commit any changes
-	 * {@link IListingManager#publish(Iterable) submitted} to the underlying
+	 * {@link IDocumentManager#publish(Iterable) submitted} to the underlying
 	 * Solr repository. Instead, {@link #commit(boolean, boolean)} must be
 	 * called manually in order to apply changes to the Solr repository.
 	 * </p>
