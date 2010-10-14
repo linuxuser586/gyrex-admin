@@ -13,6 +13,7 @@ package org.eclipse.gyrex.examples.fanshop.internal.app;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.gyrex.cds.IListingService;
-import org.eclipse.gyrex.cds.documents.Document;
 import org.eclipse.gyrex.cds.documents.IDocument;
 import org.eclipse.gyrex.cds.documents.IDocumentAttribute;
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
@@ -153,14 +153,14 @@ public class JsonListingServlet extends HttpServlet {
 		if ((null != path) && (path.length() > 1)) {
 			if (path.startsWith(ID_PATH_PREFIX)) {
 				// ID path
-				query.setFilterQueries(Document.ID + ":" + path.substring(ID_PATH_PREFIX.length()));
+				query.setFilterQueries(IDocument.ATTRIBUTE_ID + ":" + path.substring(ID_PATH_PREFIX.length()));
 			} else if (path.startsWith(AUTOCOMPLETE_PATH_PREFIX)) {
 				// auto complete
 				doAutoComplete(req, resp, path.substring(AUTOCOMPLETE_PATH_PREFIX.length()));
 				return;
 			} else {
 				// URI path
-				query.setFilterQueries(Document.URI_PATH + ":" + path.substring(1));
+				query.setFilterQueries(IDocument.ATTRIBUTE_URI_PATH + ":" + path.substring(1));
 			}
 			query.setResultDimension(ResultDimension.FULL);
 			query.setMaxResults(1);
@@ -393,34 +393,34 @@ public class JsonListingServlet extends HttpServlet {
 		writeValue("uri", getBaseUrl(req).append(listing.getUriPath()).toString(), json);
 		writeValue("uripath", listing.getUriPath(), json);
 
-		final IDocumentAttribute categoryAttribute = listing.getAttribute("category");
-		if ((null != categoryAttribute) && (categoryAttribute.getValues().length > 0)) {
-			writeValue("category", categoryAttribute.getValues()[0].toString(), json);
+		final IDocumentAttribute categoryAttribute = listing.get("category");
+		if ((null != categoryAttribute) && (categoryAttribute.getValues().size() > 0)) {
+			writeValue("category", categoryAttribute.getValues().iterator().next().toString(), json);
 		}
 
-		final IDocumentAttribute priceAttribute = listing.getAttribute("price");
-		if ((null != priceAttribute) && (priceAttribute.getValues().length > 0)) {
+		final IDocumentAttribute priceAttribute = listing.get("price");
+		if ((null != priceAttribute) && (priceAttribute.getValues().size() > 0)) {
 			// the first price the formated store price
-			writeValue("shopPrice", MeasureFormat.getCurrencyFormat(ULocale.US).format(new CurrencyAmount((Double) priceAttribute.getValues()[0], com.ibm.icu.util.Currency.getInstance("USD"))), json);
+			writeValue("shopPrice", MeasureFormat.getCurrencyFormat(ULocale.US).format(new CurrencyAmount((Double) priceAttribute.getValues().iterator().next(), com.ibm.icu.util.Currency.getInstance("USD"))), json);
 		}
 
-		final IDocumentAttribute typeAttribute = listing.getAttribute("type");
-		if ((null != typeAttribute) && (typeAttribute.getValues().length > 0)) {
-			writeValue("type", typeAttribute.getValues()[0].toString(), json);
+		final IDocumentAttribute typeAttribute = listing.get("type");
+		if ((null != typeAttribute) && (typeAttribute.getValues().size() > 0)) {
+			writeValue("type", typeAttribute.getValues().iterator().next().toString(), json);
 		}
 
-		final IDocumentAttribute parentIdAttribute = listing.getAttribute("parentid");
-		if ((null != parentIdAttribute) && (parentIdAttribute.getValues().length > 0)) {
-			writeValue("parentid", parentIdAttribute.getValues()[0].toString(), json);
+		final IDocumentAttribute parentIdAttribute = listing.get("parentid");
+		if ((null != parentIdAttribute) && (parentIdAttribute.getValues().size() > 0)) {
+			writeValue("parentid", parentIdAttribute.getValues().iterator().next().toString(), json);
 		}
 
-		final IDocumentAttribute[] attributes = listing.getAttributes();
-		if (attributes.length > 0) {
+		final Map<String, IDocumentAttribute> attributes = listing.getAttributes();
+		if (!attributes.isEmpty()) {
 			json.writeFieldName("attributes");
 			json.writeStartObject();
 			final ObjectMapper javaTypeMapper = new ObjectMapper();
-			for (final IDocumentAttribute attribute : attributes) {
-				json.writeFieldName(attribute.getName());
+			for (final IDocumentAttribute attribute : attributes.values()) {
+				json.writeFieldName(attribute.getId());
 				json.writeStartArray();
 				for (final Object object : attribute.getValues()) {
 					javaTypeMapper.writeValue(json, object);
@@ -544,9 +544,9 @@ public class JsonListingServlet extends HttpServlet {
 
 				@Override
 				public void enhanceWithinObject(final JsonGenerator json) throws IOException {
-					final String productType = (String) product.getAttribute("type").getValues()[0];
+					final String productType = (String) product.get("type").getValues().iterator().next();
 					if ("variable-product".equals(productType)) {
-						final Object[] variationids = product.getAttribute("variationids").getValues();
+						final Collection<?> variationids = product.get("variationids").getValues();
 						json.writeFieldName("variations");
 						json.writeStartObject();
 						final IDocumentManager manager = ModelUtil.getManager(IDocumentManager.class, getContext());
@@ -559,7 +559,7 @@ public class JsonListingServlet extends HttpServlet {
 						}
 						json.writeEndObject();
 					} else if ("variation".equals(productType)) {
-						final String masterid = (String) product.getAttribute("parentid").getValues()[0];
+						final String masterid = (String) product.get("parentid").getValues().iterator().next();
 						final IDocumentManager manager = ModelUtil.getManager(IDocumentManager.class, getContext());
 						final IDocument master = manager.findById(masterid);
 						if (null != master) {

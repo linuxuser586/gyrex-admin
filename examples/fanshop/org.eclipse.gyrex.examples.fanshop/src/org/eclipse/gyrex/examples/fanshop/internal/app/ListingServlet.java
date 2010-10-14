@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.gyrex.cds.documents.Document;
+import org.eclipse.gyrex.cds.documents.IDocument;
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.gyrex.context.IRuntimeContext;
@@ -133,7 +133,7 @@ public class ListingServlet extends HttpServlet {
 
 		final String path = req.getPathInfo();
 		if ((null != path) && (path.length() > 1)) {
-			query.setFilterQueries(Document.URI_PATH + ":" + path.substring(1));
+			query.setFilterQueries(IDocument.ATTRIBUTE_URI_PATH + ":" + path.substring(1));
 			query.setFields("id", "title", "price", "name", "score", "img480", "uripath", "description");
 			facet = false;
 			checkVariations = true;
