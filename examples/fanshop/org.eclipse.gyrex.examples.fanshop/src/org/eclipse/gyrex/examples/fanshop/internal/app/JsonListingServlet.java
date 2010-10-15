@@ -17,23 +17,25 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.eclipse.gyrex.cds.IListingService;
+import org.eclipse.gyrex.cds.IContentDeliveryService;
 import org.eclipse.gyrex.cds.documents.IDocument;
 import org.eclipse.gyrex.cds.documents.IDocumentAttribute;
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
 import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
-import org.eclipse.gyrex.cds.query.ListingQuery;
-import org.eclipse.gyrex.cds.query.ListingQuery.ResultDimension;
-import org.eclipse.gyrex.cds.query.ListingQuery.SortDirection;
-import org.eclipse.gyrex.cds.result.IListingResult;
-import org.eclipse.gyrex.cds.result.IListingResultFacet;
-import org.eclipse.gyrex.cds.result.IListingResultFacetValue;
+import org.eclipse.gyrex.cds.query.IQuery;
+import org.eclipse.gyrex.cds.query.QueryUtil;
+import org.eclipse.gyrex.cds.query.ResultProjection;
+import org.eclipse.gyrex.cds.query.SortDirection;
+import org.eclipse.gyrex.cds.result.IResult;
+import org.eclipse.gyrex.cds.result.IResultFacet;
+import org.eclipse.gyrex.cds.result.IResultFacetValue;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.http.application.ApplicationException;
 import org.eclipse.gyrex.model.common.ModelUtil;
@@ -145,24 +147,24 @@ public class JsonListingServlet extends HttpServlet {
 			return;
 		}
 
-		final IListingService listingService = ServiceUtil.getService(IListingService.class, getContext());
-		final ListingQuery query = new ListingQuery();
+		final IContentDeliveryService cds = ServiceUtil.getService(IContentDeliveryService.class, getContext());
+		final IQuery query = cds.createQuery();
 		boolean isSingleListing = false;
 
 		final String path = req.getPathInfo();
 		if ((null != path) && (path.length() > 1)) {
 			if (path.startsWith(ID_PATH_PREFIX)) {
 				// ID path
-				query.setFilterQueries(IDocument.ATTRIBUTE_ID + ":" + path.substring(ID_PATH_PREFIX.length()));
+				query.addAttributeFilter(IDocument.ATTRIBUTE_ID).matchValue(QueryUtil.escapeQueryChars(path.substring(ID_PATH_PREFIX.length())));
 			} else if (path.startsWith(AUTOCOMPLETE_PATH_PREFIX)) {
 				// auto complete
 				doAutoComplete(req, resp, path.substring(AUTOCOMPLETE_PATH_PREFIX.length()));
 				return;
 			} else {
 				// URI path
-				query.setFilterQueries(IDocument.ATTRIBUTE_URI_PATH + ":" + path.substring(1));
+				query.addAttributeFilter(IDocument.ATTRIBUTE_URI_PATH).matchValue(QueryUtil.escapeQueryChars(path.substring(1)));
 			}
-			query.setResultDimension(ResultDimension.FULL);
+			query.setResultProjection(ResultProjection.FULL);
 			query.setMaxResults(1);
 			isSingleListing = true;
 		} else {
@@ -226,7 +228,15 @@ public class JsonListingServlet extends HttpServlet {
 			}
 		}
 
-		final IListingResult result = listingService.findListings(query);
+		final IResult result;
+		try {
+			result = cds.findByQuery(query).get();
+		} catch (final InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new ApplicationException(503, "search down");
+		} catch (final ExecutionException e) {
+			throw new ApplicationException(e.getCause());
+		}
 
 		//		final Future<IListingResult> findListings = listingService.findListings(query, null);
 		//		IListingResult result;
@@ -356,19 +366,19 @@ public class JsonListingServlet extends HttpServlet {
 		json.writeEndObject();
 	}
 
-	private void writeFacet(final IListingResultFacet facet, final JsonGenerator json) throws IOException {
+	private void writeFacet(final IResultFacet facet, final JsonGenerator json) throws IOException {
 		if (null == facet) {
 			return;
 		}
 		json.writeStartObject();
 
 		json.writeFieldName("label");
-		json.writeString(facet.getLabel());
+		json.writeString(facet.getFacet().getName());
 
 		json.writeFieldName("values");
 		json.writeStartArray();
-		final IListingResultFacetValue[] values = facet.getValues();
-		for (final IListingResultFacetValue value : values) {
+		final Collection<IResultFacetValue> values = facet.getValues().values();
+		for (final IResultFacetValue value : values) {
 			json.writeStartObject();
 			writeValue("value", value.getValue(), json);
 			writeValue("count", value.getCount(), json);
@@ -437,7 +447,7 @@ public class JsonListingServlet extends HttpServlet {
 		json.writeEndObject();
 	}
 
-	private void writeProductsResult(final IListingResult result, final JsonGenerator json, final HttpServletRequest req) throws IOException {
+	private void writeProductsResult(final IResult result, final JsonGenerator json, final HttpServletRequest req) throws IOException {
 		json.writeStartObject();
 
 		writeValue("version", "1.0", json);
@@ -452,7 +462,7 @@ public class JsonListingServlet extends HttpServlet {
 
 		json.writeFieldName("facets");
 		json.writeStartArray();
-		for (final IListingResultFacet facet : result.getFacets()) {
+		for (final IResultFacet facet : result.getFacets().values()) {
 			writeFacet(facet, json);
 		}
 		json.writeEndArray();
@@ -467,7 +477,7 @@ public class JsonListingServlet extends HttpServlet {
 		json.writeEndObject();
 	}
 
-	private void writeQuery(final ListingQuery query, final JsonGenerator json) throws IOException {
+	private void writeQuery(final IQuery query, final JsonGenerator json) throws IOException {
 		if (null == query) {
 			return;
 		}
@@ -509,7 +519,7 @@ public class JsonListingServlet extends HttpServlet {
 		}
 
 		json.writeFieldName("dimension");
-		switch (query.getResultDimension()) {
+		switch (query.getResultProjection()) {
 			case FULL:
 				json.writeString("full");
 				break;
@@ -523,7 +533,7 @@ public class JsonListingServlet extends HttpServlet {
 		json.writeEndObject();
 	}
 
-	private void writeSingleProductResult(final IListingResult result, final JsonGenerator json, final HttpServletRequest req) throws IOException {
+	private void writeSingleProductResult(final IResult result, final JsonGenerator json, final HttpServletRequest req) throws IOException {
 		json.writeStartObject();
 
 		writeValue("version", "1.0", json);
