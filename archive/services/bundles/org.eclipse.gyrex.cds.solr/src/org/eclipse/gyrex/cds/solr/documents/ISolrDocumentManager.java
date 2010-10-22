@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.cds.model.solr;
+package org.eclipse.gyrex.cds.solr.documents;
 
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
 
@@ -17,21 +17,22 @@ import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * A <a href="http://lucene.apache.org/solr/" target="_blank">Apache Solr</a>
- * based listing manager.
+ * based document manager.
  * <p>
- * This is an extension interface provided by the Solr based listing manager via
- * it's {@link IAdaptable#getAdapter(Class) adaptable} capabilities. It allows
- * to interfere directly with the Solr specific behavior in order to optimize
- * clients. Clients using this API <strong>must</strong> understand that they
- * chain themselves to a specific listings manager implementation. Thus, it's
- * strongly advised to only use this interface in very specific scenarios where
- * it's acceptable to tighten a context to a specific implementation.
+ * This is an extension interface provided by the Solr based
+ * {@link IDocumentManager document manager} implementation via it's
+ * {@link IAdaptable#getAdapter(Class) adaptable} capabilities. It allows to
+ * interfere directly with the SolrJ API. Clients using this API
+ * <strong>must</strong> understand that they chain themselves to a specific CDS
+ * manager implementation. Thus, it's strongly advised to only use this
+ * interface in very specific scenarios where it's acceptable to tighten a
+ * context to a specific implementation.
  * </p>
  * 
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
  */
-public interface ISolrListingManager {
+public interface ISolrDocumentManager {
 
 	/**
 	 * Commits everything to the underlying Solr repository.

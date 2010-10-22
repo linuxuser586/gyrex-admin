@@ -1,29 +1,33 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.cds.model.solr;
+package org.eclipse.gyrex.cds.solr.solrj;
+
+import org.eclipse.gyrex.cds.documents.IDocumentManager;
+
+import org.eclipse.core.runtime.IAdaptable;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.response.QueryResponse;
-import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * A <a href="http://lucene.apache.org/solr/" target="_blank">Apache Solr</a>
- * query executor.
+ * query executor using SolrJ.
  * <p>
- * This is an extension interface provided by the Solr based listing manager via
- * it's {@link IAdaptable#getAdapter(Class) adaptable} capabilities. It allows
- * to interfere directly with the Solr API. Clients using this API
- * <strong>must</strong> understand that they chain themselves to a specific
- * listings manager implementation. Thus, it's strongly advised to only use this
+ * This is an extension interface provided by the Solr based
+ * {@link IDocumentManager document manager} implementation via it's
+ * {@link IAdaptable#getAdapter(Class) adaptable} capabilities. It allows to
+ * interfere directly with the SolrJ API. Clients using this API
+ * <strong>must</strong> understand that they chain themselves to a specific CDS
+ * manager implementation. Thus, it's strongly advised to only use this
  * interface in very specific scenarios where it's acceptable to tighten a
  * context to a specific implementation.
  * </p>

@@ -13,12 +13,16 @@ package org.eclipse.gyrex.examples.fanshop.internal;
 
 import java.io.File;
 
+import org.eclipse.gyrex.cds.facets.IFacet;
+import org.eclipse.gyrex.cds.facets.IFacetManager;
+import org.eclipse.gyrex.cds.query.FacetSelectionStrategy;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.context.preferences.IRuntimeContextPreferences;
-import org.eclipse.gyrex.context.preferences.PreferencesUtil;
 import org.eclipse.gyrex.context.registry.IRuntimeContextRegistry;
 import org.eclipse.gyrex.examples.fanshop.internal.app.FanShopApplicationProvider;
 import org.eclipse.gyrex.http.application.manager.IApplicationManager;
+import org.eclipse.gyrex.model.common.ModelException;
+import org.eclipse.gyrex.model.common.ModelUtil;
 import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
 import org.eclipse.gyrex.preferences.PlatformScope;
 
@@ -57,7 +61,7 @@ public class FanShopRTSetupComponent {
 		}
 
 		// lookup the configured URL
-		final IRuntimeContextPreferences preferences = PreferencesUtil.getPreferences(eclipseFanShopContext);
+		final IRuntimeContextPreferences preferences = eclipseFanShopContext.getPreferences();
 		url = preferences.get(FanShopActivator.PLUGIN_ID, IFanShopConstants.KEY_URL, null);
 		if (null == url) {
 			LOG.debug("No URL configured for the fan shop, not registering the application");
@@ -92,27 +96,26 @@ public class FanShopRTSetupComponent {
 		}
 
 		// configure the facets
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/style", "Style,field,style_n", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/color", "Color,field,color_n", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/source", "Merchant,field,source_n", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/size", "Size,field,size_n", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/category", "Category,field,category", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/thickness", "Thickness,field,thickness", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/fit", "Fit,field,fit", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/tags", "Tags,field,tags", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/paper", "Paper,field,paper", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/finish", "Finish,field,finish", false);
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "facets/price", "Price,queries,price:[* TO 10]=$10 and below;price:[10 TO 25]=$10 to $25;price:[25 TO 40]=$25 to $40;price:[40 TO *]=$40 and above", false);
-
-		preferences.put("org.eclipse.gyrex.cds.service.solr", "activeFacets", "style,color,source,size,category,thickness,fit,tags,paper,finish,price", false);
 		try {
-			preferences.flush("org.eclipse.gyrex.cds.service.solr");
+			final IFacetManager facetManager = ModelUtil.getManager(IFacetManager.class, eclipseFanShopContext);
+			preferences.put("org.eclipse.gyrex.cds.service.solr", "activeFacets", ",,,,,,,,,,", false);
+			createFacet(facetManager, "style", "Style", true);
+			createFacet(facetManager, "color", "Color", true);
+			createFacet(facetManager, "source", "Merchant", true);
+			createFacet(facetManager, "size", "Size", true);
+			createFacet(facetManager, "category", "Category", true);
+			createFacet(facetManager, "thickness", "Thickness", true);
+			createFacet(facetManager, "fit", "Fit", true);
+			createFacet(facetManager, "tags", "Tags", true);
+			createFacet(facetManager, "paper", "Paper", true);
+			createFacet(facetManager, "finish", "Finish", true);
+			createFacet(facetManager, "price", "Price", false);
 		} catch (final Exception e) {
 			LOG.error("Error while flushing preferences after configuring the facets: " + e, e);
 			return;
 		}
 
-		// define & mount the Eclipse BugSearch application
+		// define & mount the Eclipse FanShop application
 		try {
 			applicationManager.register(IFanShopConstants.APPLICATION_ID, FanShopApplicationProvider.ID, eclipseFanShopContext, null);
 			applicationManager.mount(url, IFanShopConstants.APPLICATION_ID);
@@ -123,6 +126,14 @@ public class FanShopRTSetupComponent {
 
 		// let's populate some default data in dev mode
 		new FanShopDataImport(eclipseFanShopContext).schedule(1000);
+	}
+
+	private void createFacet(final IFacetManager facetManager, final String attributeId, final String name, final boolean enabled) throws ModelException {
+		final IFacet facet = facetManager.create(attributeId);
+		facet.setName(name);
+		facet.setSelectionStrategy(FacetSelectionStrategy.MULTI);
+		facet.setEnabled(enabled);
+		facetManager.save(facet);
 	}
 
 	protected void deactivate(final ComponentContext context) {

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.eclipse.gyrex.cds.documents.IDocument;
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
-import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
+import org.eclipse.gyrex.cds.solr.solrj.ISolrQueryExecutor;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.model.common.ModelUtil;
 

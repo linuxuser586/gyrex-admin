@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ExecutionException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +27,6 @@ import org.eclipse.gyrex.cds.IContentDeliveryService;
 import org.eclipse.gyrex.cds.documents.IDocument;
 import org.eclipse.gyrex.cds.documents.IDocumentAttribute;
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
-import org.eclipse.gyrex.cds.model.solr.ISolrQueryExecutor;
 import org.eclipse.gyrex.cds.query.IQuery;
 import org.eclipse.gyrex.cds.query.QueryUtil;
 import org.eclipse.gyrex.cds.query.ResultProjection;
@@ -36,6 +34,7 @@ import org.eclipse.gyrex.cds.query.SortDirection;
 import org.eclipse.gyrex.cds.result.IResult;
 import org.eclipse.gyrex.cds.result.IResultFacet;
 import org.eclipse.gyrex.cds.result.IResultFacetValue;
+import org.eclipse.gyrex.cds.solr.solrj.ISolrQueryExecutor;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.http.application.ApplicationException;
 import org.eclipse.gyrex.model.common.ModelUtil;
@@ -228,15 +227,7 @@ public class JsonListingServlet extends HttpServlet {
 			}
 		}
 
-		final IResult result;
-		try {
-			result = cds.findByQuery(query).get();
-		} catch (final InterruptedException e) {
-			Thread.currentThread().interrupt();
-			throw new ApplicationException(503, "search down");
-		} catch (final ExecutionException e) {
-			throw new ApplicationException(e.getCause());
-		}
+		final IResult result = cds.findByQuery(query);
 
 		//		final Future<IListingResult> findListings = listingService.findListings(query, null);
 		//		IListingResult result;
@@ -382,7 +373,6 @@ public class JsonListingServlet extends HttpServlet {
 			json.writeStartObject();
 			writeValue("value", value.getValue(), json);
 			writeValue("count", value.getCount(), json);
-			writeValue("filter", value.toFilterQuery(), json);
 			json.writeEndObject();
 		}
 		json.writeEndArray();
