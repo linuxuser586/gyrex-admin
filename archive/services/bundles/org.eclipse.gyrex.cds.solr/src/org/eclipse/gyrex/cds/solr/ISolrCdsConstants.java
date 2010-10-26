@@ -26,11 +26,11 @@ public interface ISolrCdsConstants {
 	 * The {@link RepositoryContentType content type} required for
 	 * {@link IDocumentManager document model implementation}.
 	 */
-	RepositoryContentType DOCUMENT_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-documents", SolrServerRepository.class.getName(), "1.0");
+	RepositoryContentType DOCUMENT_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-documents", SolrServerRepository.TYPE_NAME, "1.0");
 
 	/**
 	 * The {@link RepositoryContentType content type} required for
 	 * {@link IFacetManager facet model implementation}.
 	 */
-	RepositoryContentType FACET_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-facets", ContextPreferencesRepository.class.getName(), "1.0");
+	RepositoryContentType FACET_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-facets", ContextPreferencesRepository.TYPE_NAME, "1.0");
 }
