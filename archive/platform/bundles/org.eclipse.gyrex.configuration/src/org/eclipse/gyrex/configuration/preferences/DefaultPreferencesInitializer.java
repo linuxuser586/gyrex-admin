@@ -11,9 +11,10 @@
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.preferences;
 
-import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.gyrex.configuration.ConfigurationMode;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
+
+import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 
 /**
  * Abstract class used to aid in default preference value initialization for the
@@ -98,11 +99,11 @@ public abstract class DefaultPreferencesInitializer extends AbstractPreferenceIn
 	public final void initializeDefaultPreferences() {
 		switch (PlatformConfiguration.getConfigurationMode()) {
 			case DEVELOPMENT:
-				initializeDefaultProductionPreferences();
+				initializeDefaultDevelopmentPreferences();
 				break;
 			case PRODUCTION:
 			default:
-				initializeDefaultDevelopmentPreferences();
+				initializeDefaultProductionPreferences();
 				break;
 		}
 
