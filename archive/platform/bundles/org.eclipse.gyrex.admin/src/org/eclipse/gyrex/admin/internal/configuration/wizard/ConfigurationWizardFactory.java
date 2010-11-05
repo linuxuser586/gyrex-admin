@@ -15,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.boot.internal.app.AppActivator;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
-import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
+import org.eclipse.gyrex.server.internal.opsmode.OpsMode;
 import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
 import org.eclipse.gyrex.toolkit.commands.Command;
@@ -165,8 +166,10 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 
 		createPlatformStatusInfo(container);
 
+		final OpsMode opsMode = AppActivator.getOpsMode();
+
 		// add a restart button
-		if (!ConfigurationModeHolder.isConfigurationModeInitialized() || AdminActivator.getInstance().shouldRestartServer()) {
+		if ((opsMode == null) || !opsMode.isSet() || AdminActivator.getInstance().shouldRestartServer()) {
 			final Button button = new Button("restart-button", container, Toolkit.NONE);
 			button.setLabel("Restart");
 			button.setDescription("Press the button to restart the platform.");

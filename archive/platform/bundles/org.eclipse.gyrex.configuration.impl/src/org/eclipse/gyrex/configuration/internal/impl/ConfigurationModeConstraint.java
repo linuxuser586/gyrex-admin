@@ -11,23 +11,23 @@
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.internal.impl;
 
+import org.eclipse.gyrex.boot.internal.app.AppActivator;
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
+import org.eclipse.gyrex.server.internal.opsmode.OperationMode;
+import org.eclipse.gyrex.server.internal.opsmode.OpsMode;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.gyrex.configuration.ConfigurationMode;
-import org.eclipse.gyrex.configuration.PlatformConfiguration;
-import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
-import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * This constraint issues a warning when the platform is in development mode.
- * 
- * @see PlatformConfiguration#getConfigurationMode()
  */
 public class ConfigurationModeConstraint extends PlatformConfigurationConstraint {
 
@@ -46,8 +46,10 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 	 */
 	@Override
 	public IStatus evaluateConfiguration(final IProgressMonitor progressMonitor) {
+		final OpsMode opsMode = AppActivator.getOpsMode();
+
 		// 1st: check that the configuration mode has been initialized correctly
-		if (!ConfigurationModeHolder.isConfigurationModeInitialized()) {
+		if ((opsMode == null) || !opsMode.isSet()) {
 			if (ConfigImplDebug.debugMode) {
 				LOG.debug("[ConfigurationModeConstraint] not initialized");
 			}
@@ -55,7 +57,7 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 		}
 
 		// get the configuration mode
-		final ConfigurationMode configurationMode = PlatformConfiguration.getConfigurationMode();
+		final OperationMode configurationMode = opsMode != null ? opsMode.getMode() : OperationMode.DEVELOPMENT;
 
 		// 2nd: check that the configuration mode never changed
 		try {
@@ -78,7 +80,7 @@ public class ConfigurationModeConstraint extends PlatformConfigurationConstraint
 		}
 
 		// issue a message in development mode
-		if (configurationMode == ConfigurationMode.DEVELOPMENT) {
+		if (configurationMode == OperationMode.DEVELOPMENT) {
 			if (ConfigImplDebug.debugMode) {
 				LOG.debug("[ConfigurationModeConstraint] development");
 			}

@@ -9,9 +9,10 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.configuration.internal.impl;
+package org.eclipse.gyrex.preferences.internal;
 
-import org.eclipse.gyrex.configuration.preferences.DefaultPreferencesInitializer;
+import org.eclipse.gyrex.preferences.DefaultPreferencesInitializer;
+
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
@@ -27,12 +28,9 @@ public class DefaultPreferencesInitializerTracker extends ServiceTracker {
 	 * @param context
 	 */
 	public DefaultPreferencesInitializerTracker(final BundleContext context) {
-		super(context, DefaultPreferencesInitializer.class.getName(), null);
+		super(context, DefaultPreferencesInitializer.SERVICE_NAME, null);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.osgi.util.tracker.ServiceTracker#addingService(org.osgi.framework.ServiceReference)
-	 */
 	@Override
 	public Object addingService(final ServiceReference reference) {
 		final DefaultPreferencesInitializer initializer = (DefaultPreferencesInitializer) super.addingService(reference);

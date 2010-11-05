@@ -12,8 +12,9 @@
 package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
-import org.eclipse.gyrex.configuration.ConfigurationMode;
-import org.eclipse.gyrex.configuration.internal.ConfigurationActivator;
+import org.eclipse.gyrex.boot.internal.app.AppActivator;
+import org.eclipse.gyrex.server.internal.opsmode.OperationMode;
+import org.eclipse.gyrex.server.internal.opsmode.OpsMode;
 import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.BooleanContent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
@@ -49,8 +50,7 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 
 		final DialogFieldGroup configModeFieldGroup = new DialogFieldGroup("configurationMode", configModePage, Toolkit.NONE);
 		configModeFieldGroup.setLabel("Configuration Mode");
-		configModeFieldGroup
-				.setDescription("The platform supports operating in different configuration modes. This allows to apply different default configurations depending on the environment where the platform is operating. For example, in a development environment the platform should show more details about the occurred errors whereas in production customer friendly error messages are preferred as well as more strict security settings.");
+		configModeFieldGroup.setDescription("The platform supports operating in different configuration modes. This allows to apply different default configurations depending on the environment where the platform is operating. For example, in a development environment the platform should show more details about the occurred errors whereas in production customer friendly error messages are preferred as well as more strict security settings.");
 
 		final RadioButton prodModeButton = new RadioButton("modeProduction", configModeFieldGroup, Toolkit.REQUIRED);
 		prodModeButton.setLabel("Production");
@@ -72,16 +72,21 @@ public class ConfigModeStep extends ConfigurationWizardStep {
 	@Override
 	public IStatus wizardFinished(final CommandExecutionEvent finishEvent, final IProgressMonitor monitor) {
 		try {
+			final OpsMode opsMode = AppActivator.getOpsMode();
+			if (opsMode == null) {
+				return Status.CANCEL_STATUS;
+			}
+
 			// check if production mode is selected
 			BooleanContent content = (BooleanContent) finishEvent.getContentSet().getEntry("modeProduction");
 			if ((null != content) && content.getValue()) {
-				ConfigurationActivator.getInstance().persistConfigurationMode(ConfigurationMode.PRODUCTION);
+				opsMode.setMode(OperationMode.PRODUCTION);
 			}
 
 			// check if development mode is selected
 			content = (BooleanContent) finishEvent.getContentSet().getEntry("modeDevelopment");
 			if ((null != content) && content.getValue()) {
-				ConfigurationActivator.getInstance().persistConfigurationMode(ConfigurationMode.DEVELOPMENT);
+				opsMode.setMode(OperationMode.DEVELOPMENT);
 			}
 		} catch (final IllegalStateException e) {
 			// inactive

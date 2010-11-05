@@ -1,34 +1,29 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.internal;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
+import org.eclipse.gyrex.common.services.IServiceProxy;
+import org.eclipse.gyrex.configuration.service.IConfigurationService;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
-import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
-import org.eclipse.gyrex.common.services.IServiceProxy;
-import org.eclipse.gyrex.configuration.ConfigurationMode;
-import org.eclipse.gyrex.configuration.IConfigurationConstants;
-import org.eclipse.gyrex.configuration.internal.holders.ConfigurationModeHolder;
-import org.eclipse.gyrex.configuration.service.IConfigurationService;
-import org.osgi.framework.Bundle;
+
 import org.osgi.framework.BundleContext;
 
 /**
@@ -82,7 +77,7 @@ public class ConfigurationActivator extends BaseBundleActivator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -94,14 +89,11 @@ public class ConfigurationActivator extends BaseBundleActivator {
 
 		// track configuration service
 		configurationServiceRef.set(getServiceHelper().trackService(IConfigurationService.class));
-
-		// initialize the configuration mode
-		initializeConfigurationMode(context);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
 	 */
 	@Override
@@ -173,120 +165,5 @@ public class ConfigurationActivator extends BaseBundleActivator {
 
 		// return the service instance
 		return service.getService();
-	}
-
-	/**
-	 * Initialize the configuration mode.
-	 * 
-	 * @param context
-	 */
-	private void initializeConfigurationMode(final BundleContext context) {
-		// read instance state
-		String mode = readInstanceState(context);
-
-		// fallback to config.ini property
-		if (null == mode) {
-			mode = context.getProperty(IConfigurationConstants.PROPERTY_KEY_CONFIGURATION_MODE);
-
-			// persist state
-			if (null != mode) {
-				persistInstanceState(context, ConfigurationMode.fromString(mode));
-			}
-		}
-
-		// initialize
-		if (null != mode) {
-			ConfigurationModeHolder.setConfigurationMode(ConfigurationMode.fromString(mode));
-		}
-	}
-
-	public void persistConfigurationMode(final ConfigurationMode configurationMode) {
-		final Bundle bundle = getBundle();
-		if (null != bundle) {
-			persistInstanceState(bundle.getBundleContext(), configurationMode);
-		}
-	}
-
-	/**
-	 * Writes the instance state
-	 * 
-	 * @param context
-	 * @param mode
-	 */
-	private void persistInstanceState(final BundleContext context, final ConfigurationMode mode) {
-		if (null == mode) {
-			return;
-		}
-		final File instanceState = getInstanceStateFile();
-		if ((null == instanceState) || instanceState.exists()) {
-			// never overwrite existing file
-			return;
-		}
-
-		// make sure the folders exists
-		instanceState.getParentFile().mkdirs();
-
-		FileOutputStream stream = null;
-		try {
-			stream = new FileOutputStream(instanceState);
-			switch (mode) {
-				case PRODUCTION:
-					stream.write('p');
-					break;
-
-				case DEVELOPMENT:
-				default:
-					stream.write('d');
-					break;
-			}
-		} catch (final IOException e) {
-			// ignore
-			// TODO consider logging this
-		} finally {
-			if (null != stream) {
-				try {
-					stream.close();
-				} catch (final IOException e) {
-					// ignore
-				}
-			}
-		}
-
-	}
-
-	/**
-	 * Reads the persistent state from the instance.
-	 * 
-	 * @param context
-	 *            the bundle context
-	 * @return the persistent state
-	 */
-	private String readInstanceState(final BundleContext context) {
-		final File instanceState = getInstanceStateFile();
-		if ((null == instanceState) || !instanceState.canRead()) {
-			return null;
-		}
-
-		FileInputStream stream = null;
-		try {
-			stream = new FileInputStream(instanceState);
-			final int data = stream.read();
-			if (data == 'p') {
-				return PRODUCTION;
-			} else {
-				return DEVELOPMENT;
-			}
-		} catch (final IOException e) {
-			// ignore;
-			return null;
-		} finally {
-			if (null != stream) {
-				try {
-					stream.close();
-				} catch (final IOException e) {
-					// ignore
-				}
-			}
-		}
 	}
 }

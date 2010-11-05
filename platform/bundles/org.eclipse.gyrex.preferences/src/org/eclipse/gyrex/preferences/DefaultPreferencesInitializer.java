@@ -9,37 +9,39 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.configuration.preferences;
+package org.eclipse.gyrex.preferences;
 
-import org.eclipse.gyrex.configuration.ConfigurationMode;
-import org.eclipse.gyrex.configuration.PlatformConfiguration;
+import org.eclipse.gyrex.server.Platform;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 
 /**
- * Abstract class used to aid in default preference value initialization for the
- * Gyrex.
+ * Abstract class used to aid in default preference value initialization.
  * <p>
  * This class is based on {@link AbstractPreferenceInitializer} and provides a
  * specialized implementation of
  * {@link AbstractPreferenceInitializer#initializeDefaultPreferences()} which
- * delegates to protected methods depending on the platform configuration mode.
+ * delegates to protected methods depending on the operation mode.
  * </p>
  * <p>
  * As an alternative to registering a subclass of this with the
  * <code>org.eclipse.core.runtime.preferences</code> extension point clients may
- * also simply register them as OSGi services of this class. The Gyrex platform
- * will ensure that {@link #initializeDefaultPreferences()} is called on new
- * registered services. This behavior might be desired for clients that do not
- * wish to use the extension registry. However,
- * {@link #initializeDefaultPreferences()} is called on every registered
- * service. Thus, if multiple versions of your bundles are active, care must be
- * taken to not override the defaults of the others.
+ * also simply register them as OSGi services using this class name as service
+ * name. The Gyrex platform will ensure that
+ * {@link #initializeDefaultPreferences()} is called on every new registered
+ * services. This behavior might be desired for clients that do not wish to use
+ * the extension registry. However, {@link #initializeDefaultPreferences()} is
+ * called on every registered service. Thus, if multiple versions of your
+ * bundles are active, care must be taken to not override the defaults of the
+ * others.
  * </p>
  * 
  * @see AbstractPreferenceInitializer
  */
 public abstract class DefaultPreferencesInitializer extends AbstractPreferenceInitializer {
+
+	/** OSGi service name */
+	public static final String SERVICE_NAME = DefaultPreferencesInitializer.class.getName();
 
 	/**
 	 * Default constructor for the class.
@@ -97,14 +99,10 @@ public abstract class DefaultPreferencesInitializer extends AbstractPreferenceIn
 	 */
 	@Override
 	public final void initializeDefaultPreferences() {
-		switch (PlatformConfiguration.getConfigurationMode()) {
-			case DEVELOPMENT:
-				initializeDefaultDevelopmentPreferences();
-				break;
-			case PRODUCTION:
-			default:
-				initializeDefaultProductionPreferences();
-				break;
+		if (Platform.inDevelopmentMode()) {
+			initializeDefaultDevelopmentPreferences();
+		} else {
+			initializeDefaultProductionPreferences();
 		}
 
 	}

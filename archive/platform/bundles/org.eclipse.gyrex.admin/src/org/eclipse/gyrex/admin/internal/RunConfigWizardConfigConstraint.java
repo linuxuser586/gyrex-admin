@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2010 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -15,12 +15,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
+import org.eclipse.gyrex.preferences.PlatformScope;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
-import org.eclipse.gyrex.preferences.PlatformScope;
+
 import org.osgi.service.prefs.BackingStoreException;
 
 /**
@@ -42,7 +44,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 		try {
 			adminPref.flush();
 		} catch (final BackingStoreException e) {
-			// TODO consider logging this but do not fail 
+			// TODO consider logging this but do not fail
 		}
 	}
 
@@ -75,7 +77,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 		try {
 			adminPref.flush();
 		} catch (final BackingStoreException e) {
-			// TODO consider logging this but do not fail 
+			// TODO consider logging this but do not fail
 		}
 	}
 
@@ -87,7 +89,14 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 	 */
 	public static boolean shouldBringUpSetupWizard() throws IllegalStateException {
 		try {
-			final String stepsExecutedOk = new PlatformScope().getNode(AdminActivator.SYMBOLIC_NAME).get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
+			final IEclipsePreferences node = new PlatformScope().getNode(AdminActivator.SYMBOLIC_NAME);
+//			node.addPreferenceChangeListener(new IPreferenceChangeListener() {
+//				@Override
+//				public void preferenceChange(final PreferenceChangeEvent event) {
+//					System.err.println(event.getKey() + ": " + event.getOldValue() + " --> " + event.getNewValue());
+//				}
+//			});
+			final String stepsExecutedOk = node.get(PREF_KEY_CONFIG_WIZARD_STEPS_OK, null);
 			if (null == stepsExecutedOk) {
 				return true; // nothing executed yet
 			}
@@ -103,7 +112,7 @@ public final class RunConfigWizardConfigConstraint extends PlatformConfiguration
 			// all steps executed
 			return false;
 		} catch (final IllegalStateException e) {
-			// TODO consider logging this, something may not be properly started 
+			// TODO consider logging this, something may not be properly started
 			// assume yes to try to bing up the wizard
 			return true;
 		}

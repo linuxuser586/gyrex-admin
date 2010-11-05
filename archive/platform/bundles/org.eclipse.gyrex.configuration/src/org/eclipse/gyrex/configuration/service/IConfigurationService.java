@@ -47,7 +47,7 @@ import org.eclipse.gyrex.context.IRuntimeContext;
  * <li><strong>DEFAULT</strong> - This is the default scope which defines
  * default preferences. Default preferences cannot be modified through API
  * defined here. Default preferences are initialized during bundle start (see
- * {@link org.eclipse.gyrex.preferences.DefaultPreferencesInitializer} ).</li>
+ * {@link org.eclipse.gyrex.preferences.preferences.DefaultPreferencesInitializer} ).</li>
  * </ul>
  * All other scopes (i.e., INSTANCE, CONFIGURATION, PROJECT) will
  * <strong>not</strong> be consulted when searching or modifying preferences
@@ -68,7 +68,7 @@ import org.eclipse.gyrex.context.IRuntimeContext;
  * 
  * @see PlatformConfiguration
  * @see org.eclipse.gyrex.preferences.PlatformScope
- * @see org.eclipse.gyrex.preferences.DefaultPreferencesInitializer
+ * @see org.eclipse.gyrex.preferences.preferences.DefaultPreferencesInitializer
  * @noimplement This interface is not intended to be implemented by clients.
  * @noextend This interface is not intended to be extended by clients.
  * @deprecated please use the context preferences where appropriate

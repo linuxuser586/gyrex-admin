@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -13,11 +13,11 @@ package org.eclipse.gyrex.configuration.internal.impl;
 
 import java.util.concurrent.atomic.AtomicReference;
 
-
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.holders.PlatformStatusHolder;
 import org.eclipse.gyrex.configuration.service.IConfigurationService;
+
 import org.osgi.framework.BundleContext;
 
 public class ConfigImplActivator extends BaseBundleActivator {
@@ -62,9 +62,6 @@ public class ConfigImplActivator extends BaseBundleActivator {
 	/** the configuration status check service instance */
 	private final AtomicReference<PlatformConfigurationConstraintTracker> configurationConstraintTracker = new AtomicReference<PlatformConfigurationConstraintTracker>();
 
-	/** the configuration status check service instance */
-	private final AtomicReference<DefaultPreferencesInitializerTracker> defaultPreferencesInitializer = new AtomicReference<DefaultPreferencesInitializerTracker>();
-
 	/**
 	 * Creates a new instance.
 	 */
@@ -78,10 +75,6 @@ public class ConfigImplActivator extends BaseBundleActivator {
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		instance.set(this);
-
-		// start default preferences tracker
-		defaultPreferencesInitializer.compareAndSet(null, new DefaultPreferencesInitializerTracker(context));
-		defaultPreferencesInitializer.get().open();
 
 		// register configuration service
 		getServiceHelper().registerService(IConfigurationService.class.getName(), new ConfigurationServiceImpl(), DEFAULT_SERVICE_VENDOR, "Configuration Service", null, null);
@@ -109,15 +102,8 @@ public class ConfigImplActivator extends BaseBundleActivator {
 		PlatformStatusRefreshJob.disable();
 
 		// stop constraint tracker
-		final PlatformConfigurationConstraintTracker configurationConstraintTracker = this.configurationConstraintTracker.get();
+		final PlatformConfigurationConstraintTracker configurationConstraintTracker = this.configurationConstraintTracker.getAndSet(null);
 		configurationConstraintTracker.close();
-
-		// stop default preferences tracker
-		final DefaultPreferencesInitializerTracker defaultPreferencesInitializer = this.defaultPreferencesInitializer.get();
-		defaultPreferencesInitializer.close();
-
-		this.configurationConstraintTracker.set(null);
-		this.defaultPreferencesInitializer.set(null);
 
 		// disable activator
 		instance.set(null);

@@ -19,12 +19,12 @@ import java.util.Set;
 
 import javax.servlet.ServletException;
 
-import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.examples.fanshop.internal.FanShopActivator;
 import org.eclipse.gyrex.http.application.Application;
 import org.eclipse.gyrex.http.application.context.IResourceProvider;
 import org.eclipse.gyrex.persistence.solr.internal.SolrActivator;
+import org.eclipse.gyrex.server.Platform;
 
 import org.eclipse.core.runtime.CoreException;
 
@@ -77,7 +77,7 @@ public class FanShopApplication extends Application {
 			getApplicationServiceSupport().registerServlet("/json", new JsonListingServlet(getContext()), null);
 
 			// let's expose the Solr admin interface in dev mode
-			if (PlatformConfiguration.isOperatingInDevelopmentMode()) {
+			if (Platform.inDevelopmentMode()) {
 				//getApplicationServiceSupport().registerServlet("/solr/admin/*.jsp", new SolrAdminJspServlet("/solr", SolrActivator.getInstance().getEmbeddedCoreContainer(), IFanShopConstants.REPOSITORY_ID), null);
 				getApplicationServiceSupport().registerResources("/solr", "web", new BundleResourceProvider(FanShopActivator.getInstance().getBundle("org.apache.solr.servlet")));
 

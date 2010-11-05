@@ -33,4 +33,7 @@ public class AdminConsoleEnvironment implements Serializable {
 	 */
 	public String[][] topMenu;
 
+	/** is the server operating in debug mode? */
+	public boolean debugMode;
+
 }
