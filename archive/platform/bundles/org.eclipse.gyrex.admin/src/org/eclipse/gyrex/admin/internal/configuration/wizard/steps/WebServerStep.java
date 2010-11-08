@@ -12,13 +12,13 @@
 package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
 import java.io.File;
-import java.net.URL;
 
 import org.eclipse.equinox.http.jetty.JettyConstants;
 
 import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.preferences.PlatformScope;
+import org.eclipse.gyrex.server.Platform;
 import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.NumberContent;
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
@@ -33,7 +33,6 @@ import org.eclipse.gyrex.toolkit.wizard.WizardPage;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 
@@ -104,19 +103,19 @@ public class WebServerStep extends ConfigurationWizardStep {
 			// configure SSL
 			final NumberContent sslPort = (NumberContent) finishEvent.getContentSet().getEntry("webserver-ssl-port");
 			if ((null != sslPort) && (null != sslPort.getNumber())) {
-				final File keystoreFileSource = new File(FileLocator.toFileURL(AdminActivator.getInstance().getBundle().getEntry("jetty-ssl-keystore")).getFile());
-				final URL instanceLocation = AdminActivator.getInstance().getInstanceLocation().getURL();
-				if (null == instanceLocation) {
-					throw new IllegalStateException("no instance location available");
-				}
-				final File jettyKeystore = new Path(instanceLocation.getFile()).append("jetty-keystore").toFile();
-				if (!jettyKeystore.exists()) {
-					FileUtils.copyFile(keystoreFileSource, jettyKeystore);
-				}
-				preferences.put(JettyConstants.SSL_KEYSTORE, jettyKeystore.getAbsolutePath());
-				preferences.put(JettyConstants.SSL_PASSWORD, "cloudfree");
-				preferences.put(JettyConstants.SSL_KEYPASSWORD, "cloudfree");
+				// set https port (will enable HTTPS)
 				preferences.putInt(JettyConstants.HTTPS_PORT, sslPort.getNumber().intValue());
+
+				// deploy a default key-store if non exists
+				final boolean isKeystoreSet = preferences.get(JettyConstants.SSL_KEYSTORE, null) != null;
+				if (!isKeystoreSet) {
+					final File jettyKeystore = Platform.getInstanceLocation().append("etc/jetty/ssl-keystore").toFile();
+					final File keystoreFileSource = new File(FileLocator.toFileURL(AdminActivator.getInstance().getBundle().getEntry("jetty-ssl-keystore")).getFile());
+					FileUtils.copyFile(keystoreFileSource, jettyKeystore);
+					preferences.put(JettyConstants.SSL_KEYSTORE, jettyKeystore.getAbsolutePath());
+					preferences.put(JettyConstants.SSL_PASSWORD, "gyrex");
+					preferences.put(JettyConstants.SSL_KEYPASSWORD, "gyrex");
+				}
 				preferences.flush();
 			}
 		} catch (final Exception e) {
