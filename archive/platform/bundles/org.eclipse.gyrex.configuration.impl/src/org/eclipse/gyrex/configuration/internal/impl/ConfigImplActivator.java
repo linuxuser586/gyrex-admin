@@ -16,7 +16,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.holders.PlatformStatusHolder;
-import org.eclipse.gyrex.configuration.service.IConfigurationService;
 
 import org.osgi.framework.BundleContext;
 
@@ -75,9 +74,6 @@ public class ConfigImplActivator extends BaseBundleActivator {
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		instance.set(this);
-
-		// register configuration service
-		getServiceHelper().registerService(IConfigurationService.class.getName(), new ConfigurationServiceImpl(), DEFAULT_SERVICE_VENDOR, "Configuration Service", null, null);
 
 		// register constraints
 		getServiceHelper().registerService(PlatformConfigurationConstraint.class.getName(), new ConfigurationModeConstraint(), DEFAULT_SERVICE_VENDOR, "Configuration Mode Check", null, null);

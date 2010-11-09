@@ -12,7 +12,6 @@
 package org.eclipse.gyrex.configuration;
 
 import org.eclipse.gyrex.configuration.internal.holders.PlatformStatusHolder;
-import org.eclipse.gyrex.configuration.service.IConfigurationService;
 
 import org.eclipse.core.runtime.IStatus;
 
@@ -38,7 +37,6 @@ import org.eclipse.core.runtime.IStatus;
  * make use of.
  * </p>
  * 
- * @see IConfigurationService
  * @noextend This class is not intended to be subclassed by clients.
  * @noinstantiate This class is not intended to be instantiated by clients.
  */

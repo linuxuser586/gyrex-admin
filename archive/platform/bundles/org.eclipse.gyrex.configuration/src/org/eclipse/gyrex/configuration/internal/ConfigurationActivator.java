@@ -11,17 +11,11 @@
  *******************************************************************************/
 package org.eclipse.gyrex.configuration.internal;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
 import org.eclipse.gyrex.common.services.IServiceProxy;
-import org.eclipse.gyrex.configuration.service.IConfigurationService;
 
-import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.preferences.IPreferencesService;
 
 import org.osgi.framework.BundleContext;
@@ -40,9 +34,6 @@ import org.osgi.framework.BundleContext;
  * </p>
  */
 public class ConfigurationActivator extends BaseBundleActivator {
-
-	private static final String DEVELOPMENT = "development";
-	private static final String PRODUCTION = "production";
 
 	/** PLUGIN_ID */
 	public static final String PLUGIN_ID = "org.eclipse.gyrex.configuration";
@@ -66,7 +57,6 @@ public class ConfigurationActivator extends BaseBundleActivator {
 	}
 
 	private final AtomicReference<IServiceProxy<IPreferencesService>> preferencesServiceRef = new AtomicReference<IServiceProxy<IPreferencesService>>();
-	private final AtomicReference<IServiceProxy<IConfigurationService>> configurationServiceRef = new AtomicReference<IServiceProxy<IConfigurationService>>();
 
 	/**
 	 * Creates a new instance.
@@ -75,77 +65,23 @@ public class ConfigurationActivator extends BaseBundleActivator {
 		super(PLUGIN_ID);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStart(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		sharedInstance.set(this);
 
 		// track the preferences service
 		preferencesServiceRef.set(getServiceHelper().trackService(IPreferencesService.class));
-
-		// track configuration service
-		configurationServiceRef.set(getServiceHelper().trackService(IConfigurationService.class));
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#doStop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	protected void doStop(final BundleContext context) throws Exception {
 		sharedInstance.set(null);
 		preferencesServiceRef.set(null);
-		configurationServiceRef.set(null);
 	}
 
-	public IConfigurationService getConfigurationService() {
-		final IServiceProxy<IConfigurationService> configurationService = configurationServiceRef.get();
-		if (null == configurationService) {
-			throw createBundleInactiveException();
-		}
-		return configurationService.getService();
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.common.runtime.BaseBundleActivator#getDebugOptions()
-	 */
 	@Override
 	protected Class getDebugOptions() {
 		return ConfigDebug.class;
-	}
-
-	/**
-	 * Returns the instance state file.
-	 * 
-	 * @return the instance state file (maybe <code>null</code>)
-	 */
-	private File getInstanceStateFile() {
-		// we use "platform:/meta" URL to resolve the instance location ("workspace/.metadata/bundle")
-		URL instanceStateUrl;
-		try {
-			instanceStateUrl = new URL("platform:/meta/".concat(PLUGIN_ID).concat("/configurationMode.state"));
-		} catch (final MalformedURLException e1) {
-			// should not happen because the URL is hard coded during development
-			return null;
-		}
-
-		// resolve url
-		try {
-			instanceStateUrl = FileLocator.toFileURL(instanceStateUrl);
-			// check if resolve was ok
-			if (!instanceStateUrl.getProtocol().equals("file")) {
-				return null;
-			}
-		} catch (final IOException e1) {
-			// TODO consider logging this
-			return null;
-		}
-		return new File(instanceStateUrl.getFile());
 	}
 
 	/**
