@@ -39,4 +39,3 @@ Export-Package: org.eclipse.gyrex.toolkit.gwt,
  org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.widgets;x-friends:="org.eclipse.gyrex.toolkit.gwt.server",
  org.eclipse.gyrex.toolkit.gwt.serialization.internal.stoolkit.wizard;x-friends:="org.eclipse.gyrex.toolkit.gwt.server"
 Require-Bundle: org.eclipse.gyrex.gwt.common;bundle-version="1.0.0";resolution:=optional
-Eclipse-BundleShape: dir
