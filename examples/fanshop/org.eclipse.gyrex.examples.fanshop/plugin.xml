@@ -32,7 +32,7 @@
       </role>
    </extension>
    <extension
-         point="org.eclipse.gyrex.admin.configuration.wizard">
+         point="org.eclipse.gyrex.admin.setupwizard">
       <step
             class="org.eclipse.gyrex.examples.fanshop.internal.setup.FanShopSetupStep"
             id="org.eclipse.gyrex.examples.fanshop.setup">

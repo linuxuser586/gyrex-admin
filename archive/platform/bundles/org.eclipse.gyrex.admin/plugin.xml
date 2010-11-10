@@ -12,5 +12,7 @@
         Gunnar Wagenknecht - initial API and implementation
  -->
 <plugin>
-   <extension-point id="org.eclipse.gyrex.admin.configuration.wizard" name="Configuration Wizard Extension Point" schema="schema/org.eclipse.gyrex.admin.configuration.wizard.exsd"/>
+   <extension-point id="setupwizard" name="Gyrex Setup Wizard Extension Point" schema="schema/setupwizard.exsd"/>
+   <extension-point id="widgets" name="Gyrex Admin Console Widgets Extension Point" schema="schema/widgets.exsd"/>
+   <extension-point id="controlpanel" name="Gyrex Control Panel Extension Point" schema="schema/controlpanel.exsd"/>
 </plugin>

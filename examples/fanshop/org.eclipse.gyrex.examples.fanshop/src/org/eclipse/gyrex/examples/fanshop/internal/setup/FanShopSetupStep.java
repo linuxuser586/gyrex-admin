@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.examples.fanshop.internal.setup;
 
-import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.setupwizard.SetupWizardStep;
 import org.eclipse.gyrex.context.IRuntimeContext;
 import org.eclipse.gyrex.context.preferences.IRuntimeContextPreferences;
 import org.eclipse.gyrex.context.preferences.PreferencesUtil;
@@ -34,7 +34,7 @@ import org.eclipse.core.runtime.Status;
 
 import org.osgi.service.prefs.BackingStoreException;
 
-public class FanShopSetupStep extends ConfigurationWizardStep {
+public class FanShopSetupStep extends SetupWizardStep {
 
 	public FanShopSetupStep() {
 		super("org.eclipse.gyrex.examples.fanshop.setup");

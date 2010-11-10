@@ -12,6 +12,8 @@
 package org.eclipse.gyrex.admin.internal.controlpanel;
 
 import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
+import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.resources.ImageResource;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
@@ -90,6 +92,20 @@ public class ControlPanelFactory implements IWidgetFactory {
 		final Menu networkAndCloud = new Menu("network-cloud", controlPanel, Toolkit.NONE);
 		networkAndCloud.setLabel("Network And Cloud");
 		networkAndCloud.setImage(ImageResource.createFromUrl(IMG_MENU_NETWORK_CLOUD));
+
+		final Command openCloudMembershipWidgetCommand = new Command("open-cloud-membership", new ShowWidgetAction("cloud-membership"));
+		final MenuItem cloudMembership = new MenuItem("cloud-membership", networkAndCloud, Toolkit.NONE);
+		cloudMembership.setLabel("Membership");
+		cloudMembership.setCommand(openCloudMembershipWidgetCommand);
+		cloudMembership.setDescription("Manager members of the cloud.");
+
+		final MenuItem featured1 = new MenuItem("cloud-membership-featured", Toolkit.NONE);
+		featured1.setLabel("Manage cloud membership");
+		featured1.setCommand(openCloudMembershipWidgetCommand);
+		featured1.setDescription("Manager members of the cloud.");
+
+		networkAndCloud.setFeaturedItems(featured1);
+
 	}
 
 	private void software(final Menu controlPanel) {

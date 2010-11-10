@@ -66,4 +66,14 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 		// lookup from registry
 		return super.getWidget(id, environment);
 	}
+
+	/**
+	 * Sets the extension registry
+	 * 
+	 * @param registry
+	 */
+	public void setRegistry(final Object registry) {
+		// TODO Auto-generated method stub
+
+	}
 }

@@ -9,7 +9,7 @@
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
-package org.eclipse.gyrex.admin.configuration.wizard;
+package org.eclipse.gyrex.admin.setupwizard;
 
 import org.eclipse.gyrex.toolkit.runtime.commands.CommandExecutionEvent;
 import org.eclipse.gyrex.toolkit.wizard.WizardContainer;
@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.IStatus;
  * Clients which wish to proved a setup wizard step need to subclass this class.
  * </p>
  */
-public abstract class ConfigurationWizardStep {
+public abstract class SetupWizardStep {
 
 	/** the step id */
 	private final String id;
@@ -33,7 +33,7 @@ public abstract class ConfigurationWizardStep {
 	 * 
 	 * @param id
 	 */
-	protected ConfigurationWizardStep(final String id) {
+	protected SetupWizardStep(final String id) {
 		if (null == id) {
 			throw new IllegalArgumentException("step id must not be null");
 		}

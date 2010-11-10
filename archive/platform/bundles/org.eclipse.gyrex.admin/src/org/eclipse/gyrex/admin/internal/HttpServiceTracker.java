@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import org.eclipse.gyrex.common.logging.LogAudience;
-import org.eclipse.gyrex.common.logging.LogImportance;
-import org.eclipse.gyrex.common.logging.LogSource;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.http.HttpService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A server tracker that registers the root servlet with every tracked HTTP
@@ -64,6 +63,8 @@ import org.osgi.service.http.HttpService;
 		}
 	}
 
+	private static final Logger LOG = LoggerFactory.getLogger(HttpServiceTracker.class);
+
 	/** ROOT_ALIAS */
 	private static final String ROOT_ALIAS = "/";
 
@@ -98,7 +99,7 @@ import org.osgi.service.http.HttpService;
 		try {
 			httpService.registerServlet(ROOT_ALIAS, rootServlet, null, null);
 		} catch (final Exception e) {
-			AdminActivator.getInstance().getLog().log("An error occurred while registering the root servlet.", e, (Object) null, LogImportance.CRITICAL, LogAudience.DEVELOPER, LogAudience.ADMIN, LogSource.PLATFORM);
+			LOG.error("An error occurred while registering the root servlet. {}", e.getMessage(), e);
 		}
 		return httpService;
 	}

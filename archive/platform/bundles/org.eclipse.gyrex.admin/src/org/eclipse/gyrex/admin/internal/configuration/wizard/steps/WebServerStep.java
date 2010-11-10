@@ -15,8 +15,8 @@ import java.io.File;
 
 import org.eclipse.equinox.http.jetty.JettyConstants;
 
-import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.setupwizard.SetupWizardStep;
 import org.eclipse.gyrex.preferences.PlatformScope;
 import org.eclipse.gyrex.server.Platform;
 import org.eclipse.gyrex.toolkit.Toolkit;
@@ -41,7 +41,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * TODO should also configure SSL
  */
-public class WebServerStep extends ConfigurationWizardStep {
+public class WebServerStep extends SetupWizardStep {
 
 	/**
 	 * Creates a new instance.
@@ -113,8 +113,8 @@ public class WebServerStep extends ConfigurationWizardStep {
 					final File keystoreFileSource = new File(FileLocator.toFileURL(AdminActivator.getInstance().getBundle().getEntry("jetty-ssl-keystore")).getFile());
 					FileUtils.copyFile(keystoreFileSource, jettyKeystore);
 					preferences.put(JettyConstants.SSL_KEYSTORE, jettyKeystore.getAbsolutePath());
-					preferences.put(JettyConstants.SSL_PASSWORD, "gyrex");
-					preferences.put(JettyConstants.SSL_KEYPASSWORD, "gyrex");
+					preferences.put(JettyConstants.SSL_PASSWORD, "gyrexgyrex");
+					preferences.put(JettyConstants.SSL_KEYPASSWORD, "gyrexgyrex");
 				}
 				preferences.flush();
 			}

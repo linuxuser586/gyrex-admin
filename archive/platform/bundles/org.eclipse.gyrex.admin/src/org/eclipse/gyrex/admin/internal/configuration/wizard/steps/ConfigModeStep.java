@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.configuration.wizard.steps;
 
-import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
+import org.eclipse.gyrex.admin.setupwizard.SetupWizardStep;
 import org.eclipse.gyrex.boot.internal.app.AppActivator;
 import org.eclipse.gyrex.server.internal.opsmode.OperationMode;
 import org.eclipse.gyrex.server.internal.opsmode.OpsMode;
@@ -28,7 +28,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
-public class ConfigModeStep extends ConfigurationWizardStep {
+public class ConfigModeStep extends SetupWizardStep {
 
 	/**
 	 * Creates a new instance.

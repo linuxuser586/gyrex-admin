@@ -11,9 +11,9 @@
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
-import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.admin.internal.RunConfigWizardConfigConstraint;
+import org.eclipse.gyrex.admin.setupwizard.SetupWizardStep;
 import org.eclipse.gyrex.boot.internal.app.ServerApplication;
 import org.eclipse.gyrex.toolkit.actions.RefreshAction;
 import org.eclipse.gyrex.toolkit.actions.ShowWidgetAction;
@@ -58,8 +58,8 @@ public class ConfigurationWizardCommandHandler implements ICommandHandler {
 	 */
 	private CommandExecutionResult finish(final CommandExecutionEvent executionEvent) {
 		final MultiStatus wizardStatus = new MultiStatus(AdminActivator.SYMBOLIC_NAME, 0, null, null);
-		final ConfigurationWizardStep[] steps = AdminActivator.getInstance().getConfigurationWizardService().getSteps();
-		for (final ConfigurationWizardStep step : steps) {
+		final SetupWizardStep[] steps = AdminActivator.getInstance().getConfigurationWizardService().getSteps();
+		for (final SetupWizardStep step : steps) {
 			final IStatus status = step.wizardFinished(executionEvent, null);
 			if (status.isOK()) {
 				RunConfigWizardConfigConstraint.addStepToExecutedList(step.getId());

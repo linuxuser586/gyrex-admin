@@ -23,5 +23,5 @@
  * optional but encouraged.
  * </p> 
  */
-package org.eclipse.gyrex.admin.configuration.wizard;
+package org.eclipse.gyrex.admin.setupwizard;
 

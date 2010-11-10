@@ -16,24 +16,21 @@ import java.util.Hashtable;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.equinox.http.jetty.JettyConfigurator;
 import org.eclipse.equinox.http.jetty.JettyConstants;
 
-import org.eclipse.gyrex.admin.configuration.wizard.IConfigurationWizardService;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardAdapterFactory;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardFactory;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceImpl;
-import org.eclipse.gyrex.admin.internal.configuration.wizard.ConfigurationWizardServiceRegistryHelper;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.steps.ConfigModeStep;
 import org.eclipse.gyrex.admin.internal.configuration.wizard.steps.WebServerStep;
 import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetAdapterServiceImpl;
 import org.eclipse.gyrex.admin.internal.widgets.AdminWidgetServiceImpl;
+import org.eclipse.gyrex.admin.setupwizard.ISetupWizardService;
 import org.eclipse.gyrex.admin.widgets.IAdminWidgetAdapterService;
 import org.eclipse.gyrex.admin.widgets.IAdminWidgetService;
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
-import org.eclipse.gyrex.common.services.IServiceProxy;
 import org.eclipse.gyrex.configuration.constraints.PlatformConfigurationConstraint;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
 import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
@@ -41,13 +38,15 @@ import org.eclipse.gyrex.toolkit.runtime.lookup.RegistrationException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.osgi.service.datalocation.Location;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.util.tracker.ServiceTracker;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Bundle activator for the Admin plug-in
@@ -63,6 +62,8 @@ public class AdminActivator extends BaseBundleActivator {
 			return Status.OK_STATUS;
 		}
 	}
+
+	private static final Logger LOG = LoggerFactory.getLogger(AdminActivator.class);
 
 	/** the plug-in id */
 	public static final String SYMBOLIC_NAME = "org.eclipse.gyrex.admin";
@@ -117,12 +118,11 @@ public class AdminActivator extends BaseBundleActivator {
 	private ServiceTracker registryServiceTracker;
 
 	/** the configuration wizard service */
-	private ConfigurationWizardServiceImpl configurationWizardService;
+	private ConfigurationWizardServiceImpl setupWizardService;
 
 	/** the service registration of the configuration wizard service */
 	private ServiceRegistration configurationWizardServiceRegistration;
 
-	private final AtomicReference<IServiceProxy<Location>> instanceLocationRef = new AtomicReference<IServiceProxy<Location>>();
 	private final Set<String> adminApplicationBases = new CopyOnWriteArraySet<String>();
 	boolean mustRestartPlatform;
 
@@ -179,9 +179,6 @@ public class AdminActivator extends BaseBundleActivator {
 		registerDefaultWidgetAdapters();
 
 		openRegistryServiceTracker(context);
-
-		// get instance location
-		instanceLocationRef.set(getServiceHelper().trackService(Location.class, context.createFilter(Location.INSTANCE_FILTER)));
 
 		// start the admin server
 		JettyConfigurator.startServer("admin", createAdminSettings());
@@ -256,58 +253,34 @@ public class AdminActivator extends BaseBundleActivator {
 	 * @return the configurationWizardService
 	 */
 	public ConfigurationWizardServiceImpl getConfigurationWizardService() {
-		return configurationWizardService;
-	}
-
-	public Location getInstanceLocation() {
-		final IServiceProxy<Location> serviceProxy = instanceLocationRef.get();
-		if (null == serviceProxy) {
-			throw createBundleInactiveException();
-		}
-
-		return serviceProxy.getService();
+		return setupWizardService;
 	}
 
 	private void openRegistryServiceTracker(final BundleContext context) {
-		// use the string for the class name here in case the registry isn't around
 		registryServiceTracker = new ServiceTracker(context, "org.eclipse.core.runtime.IExtensionRegistry", null) {
 
-			/* (non-Javadoc)
-			 * @see org.osgi.util.tracker.ServiceTracker#addingService(org.osgi.framework.ServiceReference)
-			 */
 			@Override
 			public Object addingService(final ServiceReference reference) {
-				// get service
 				final Object service = super.addingService(reference);
-				// this check is important as it avoids early loading of PreferenceServiceRegistryHelper and allows
-				// this bundle to operate with out necessarily resolving against the registry
 				if (service != null) {
 					try {
-						final Object helper = new ConfigurationWizardServiceRegistryHelper(configurationWizardService, service);
-						configurationWizardService.setRegistryHelper(helper);
+						setupWizardService.setRegistry(service);
+						adminWidgetService.setRegistry(service);
+						adminWidgetAdapterService.setRegistry(service);
 					} catch (final Exception e) {
-						// TODO: should log
-						e.printStackTrace();
-					} catch (final NoClassDefFoundError error) {
-						// Normally this catch would not be needed since we should never see the
-						// IExtensionRegistry service without resolving against registry.
-						// However, the check is very lenient with split packages and this can happen when
-						// the preferences bundle is already resolved at the time the registry bundle is installed.
-						// For this case we ignore the error. When refreshed the bundle will be rewired correctly.
-						// null is returned because we don't want to track this particular service reference.
+						LOG.error("Error while initializing extension registry helpers.", e);
+					} catch (final LinkageError error) {
+						// something is invalid regarding class visibility, ignore for now
 						return null;
 					}
 				}
-				//return the registry service so we track it
 				return service;
 			}
 
-			/* (non-Javadoc)
-			 * @see org.osgi.util.tracker.ServiceTracker#removedService(org.osgi.framework.ServiceReference, java.lang.Object)
-			 */
 			@Override
 			public void removedService(final ServiceReference reference, final Object service) {
-				configurationWizardService.setRegistryHelper(null);
+				setupWizardService.setRegistry(null);
+
 				// unget service
 				super.removedService(reference, service);
 			}
@@ -383,8 +356,8 @@ public class AdminActivator extends BaseBundleActivator {
 		}
 
 		// create the service instance
-		if (null == configurationWizardService) {
-			configurationWizardService = new ConfigurationWizardServiceImpl();
+		if (null == setupWizardService) {
+			setupWizardService = new ConfigurationWizardServiceImpl();
 		}
 
 		// prepare service properties
@@ -393,13 +366,13 @@ public class AdminActivator extends BaseBundleActivator {
 		serviceProperties.put(Constants.SERVICE_DESCRIPTION, DEFAULT_SERVICE_DESCRIPTION_CONFIG_WIZARD_SERVICE);
 
 		// register the service
-		configurationWizardServiceRegistration = context.registerService(IConfigurationWizardService.class.getName(), configurationWizardService, serviceProperties);
+		configurationWizardServiceRegistration = context.registerService(ISetupWizardService.class.getName(), setupWizardService, serviceProperties);
 
 		// add our registration
-		configurationWizardService.addStep(new ConfigModeStep());
+		setupWizardService.addStep(new ConfigModeStep());
 
 		// TODO: move into separate bundle shipped with Jetty only
-		configurationWizardService.addStep(new WebServerStep());
+		setupWizardService.addStep(new WebServerStep());
 	}
 
 	private synchronized void stopAdminWidgetAdapterService(final BundleContext context) {
@@ -430,10 +403,9 @@ public class AdminActivator extends BaseBundleActivator {
 			configurationWizardServiceRegistration.unregister();
 			configurationWizardServiceRegistration = null;
 		}
-		if (null != configurationWizardService) {
-			configurationWizardService.setRegistryHelper(null);
-			configurationWizardService.clear();
-			configurationWizardService = null;
+		if (null != setupWizardService) {
+			setupWizardService.shutdown();
+			setupWizardService = null;
 		}
 	}
 }

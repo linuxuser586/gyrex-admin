@@ -13,8 +13,8 @@ package org.eclipse.gyrex.admin.internal.configuration.wizard;
 
 import java.util.concurrent.TimeUnit;
 
-import org.eclipse.gyrex.admin.configuration.wizard.ConfigurationWizardStep;
 import org.eclipse.gyrex.admin.internal.AdminActivator;
+import org.eclipse.gyrex.admin.setupwizard.SetupWizardStep;
 import org.eclipse.gyrex.boot.internal.app.AppActivator;
 import org.eclipse.gyrex.configuration.PlatformConfiguration;
 import org.eclipse.gyrex.configuration.internal.impl.PlatformStatusRefreshJob;
@@ -118,8 +118,8 @@ public class ConfigurationWizardFactory implements IWidgetFactory {
 	}
 
 	private void createAdditionalPages(final WizardContainer wizard) {
-		final ConfigurationWizardStep[] steps = AdminActivator.getInstance().getConfigurationWizardService().getSteps();
-		for (final ConfigurationWizardStep step : steps) {
+		final SetupWizardStep[] steps = AdminActivator.getInstance().getConfigurationWizardService().getSteps();
+		for (final SetupWizardStep step : steps) {
 			step.createPages(wizard);
 		}
 	}
