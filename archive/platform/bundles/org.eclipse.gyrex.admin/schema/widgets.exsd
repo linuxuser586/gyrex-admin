@@ -44,6 +44,60 @@
       </complexType>
    </element>
 
+   <element name="widgetFactory">
+      <annotation>
+         <documentation>
+            Adds a widget factory to the admin console.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  widget factory implementation (must implement &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory&lt;/code&gt;)
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="widgetIds" type="string" use="required">
+            <annotation>
+               <documentation>
+                  comma separated list of ids of widgets contributed by the factory (see JavaDoc of &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry.registerFactory(IWidgetFactory, String...)&lt;/code&gt; for details)
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="widgetAdapterFactory">
+      <annotation>
+         <documentation>
+            Adds a widget adapter factory to the admin console.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  widget adapter factory implementation (must implement &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory&lt;/code&gt;)
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="widgetIds" type="string" use="required">
+            <annotation>
+               <documentation>
+                  comma separated list of ids of widgets the factory contributes adapters to (see JavaDoc of &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterRegistry.registerFactory(IWidgetAdapterFactory, String...)&lt;/code&gt; for details)
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <annotation>
       <appInfo>
          <meta.section type="since"/>

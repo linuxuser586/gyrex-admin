@@ -29,6 +29,8 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 	/** the setup wizard factory */
 	private final ConfigurationWizardFactory configurationWizardFactory = new ConfigurationWizardFactory();
 
+	private Object registryHelper;
+
 	/**
 	 * Creates a new instance.
 	 */
@@ -44,11 +46,6 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 		}
 
 		setDefaultFactory(new DefaultAdminWidgetFactory());
-	}
-
-	@Override
-	public void clear() {
-		super.clear();
 	}
 
 	@Override
@@ -73,7 +70,14 @@ public class AdminWidgetServiceImpl extends BaseWidgetRegistry implements IAdmin
 	 * @param registry
 	 */
 	public void setRegistry(final Object registry) {
-		// TODO Auto-generated method stub
+		if (registryHelper != null) {
+			((AdminWidgetServiceRegistryHelper) registryHelper).stop();
+		}
+		registryHelper = new AdminWidgetServiceRegistryHelper(this, registry);
+	}
 
+	public void shutdown() {
+		setRegistry(null);
+		clear();
 	}
 }

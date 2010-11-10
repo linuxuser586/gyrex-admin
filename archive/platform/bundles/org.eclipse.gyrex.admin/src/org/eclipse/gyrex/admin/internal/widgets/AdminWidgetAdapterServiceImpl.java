@@ -20,13 +20,7 @@ import org.eclipse.gyrex.toolkit.runtime.lookup.BaseWidgetAdapterRegistry;
  */
 public class AdminWidgetAdapterServiceImpl extends BaseWidgetAdapterRegistry implements IAdminWidgetAdapterService {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.BaseRegistry#clear()
-	 */
-	@Override
-	public void clear() {
-		super.clear();
-	}
+	private Object registryHelper;
 
 	/**
 	 * Sets the extension registry
@@ -34,7 +28,15 @@ public class AdminWidgetAdapterServiceImpl extends BaseWidgetAdapterRegistry imp
 	 * @param registry
 	 */
 	public void setRegistry(final Object registry) {
-		// TODO Auto-generated method stub
-
+		if (registryHelper != null) {
+			((AdminWidgetAdapterServiceRegistryHelper) registryHelper).stop();
+		}
+		registryHelper = new AdminWidgetAdapterServiceRegistryHelper(this, registry);
 	}
+
+	public void shutdown() {
+		setRegistry(null);
+		clear();
+	}
+
 }

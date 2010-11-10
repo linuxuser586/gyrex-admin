@@ -381,7 +381,7 @@ public class AdminActivator extends BaseBundleActivator {
 			adminWidgetAdapterServiceRegistration = null;
 		}
 		if (null != adminWidgetAdapterService) {
-			adminWidgetAdapterService.clear();
+			adminWidgetAdapterService.shutdown();
 			adminWidgetAdapterService = null;
 		}
 	}
@@ -392,7 +392,7 @@ public class AdminActivator extends BaseBundleActivator {
 			adminWidgetServiceRegistration = null;
 		}
 		if (null != adminWidgetService) {
-			adminWidgetService.clear();
+			adminWidgetService.shutdown();
 			adminWidgetService = null;
 		}
 	}
