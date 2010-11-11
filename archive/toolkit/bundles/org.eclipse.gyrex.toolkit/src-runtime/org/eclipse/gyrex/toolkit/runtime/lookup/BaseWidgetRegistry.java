@@ -1,16 +1,15 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.runtime.lookup;
-
 
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
@@ -61,21 +60,12 @@ public class BaseWidgetRegistry extends BaseRegistry<IWidgetFactory> implements 
 		return factory.getWidget(id, environment);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry#registerFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory,
-	 *      java.lang.String[])
-	 */
+	@Override
 	public void registerFactory(final IWidgetFactory factory, final String... widgetIds) throws RegistrationException {
 		addFactory(factory, widgetIds);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry#unregisterFactory(org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory)
-	 */
+	@Override
 	public void unregisterFactory(final IWidgetFactory factory) {
 		removeFactory(factory);
 	}
