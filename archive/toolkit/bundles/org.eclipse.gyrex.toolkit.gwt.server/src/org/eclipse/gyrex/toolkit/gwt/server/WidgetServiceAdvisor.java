@@ -76,7 +76,7 @@ public class WidgetServiceAdvisor {
 	/**
 	 * Determines the default locale.
 	 * <p>
-	 * The default implementation will return the {@link ULocale#getDefault()
+	 * The default implementation will return the {@link Locale#getDefault()
 	 * current default locale}. Subclasses may overwrite to provide a different
 	 * default locale.
 	 * </p>
