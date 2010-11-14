@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,12 +14,12 @@ package org.eclipse.gyrex.toolkit.rap.client.editor;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.rap.client.WidgetFactory;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
+
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -33,8 +33,8 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.part.EditorPart;
 
 /**
- * This class forms a base of form editor that typically shows a Gyrex
- * widget of the editor input.
+ * This class forms a base of form editor that typically shows a Gyrex widget of
+ * the editor input.
  */
 public class WidgetFormEditor extends EditorPart {
 
@@ -60,7 +60,7 @@ public class WidgetFormEditor extends EditorPart {
 		try {
 			if (null != widget) {
 				if (null != widget.getControl()) {
-					CWT.error(CWT.ERROR_ALREADY_INITIALIZED, "widget");
+					Toolkit.error(Toolkit.ERROR_ALREADY_INITIALIZED, "widget");
 				}
 
 				// create widget control
@@ -148,15 +148,15 @@ public class WidgetFormEditor extends EditorPart {
 	String getWidgetId() {
 		final IEditorInput editorInput = getEditorInput();
 		if (null == editorInput) {
-			CWT.error(CWT.ERROR_NOT_INITIALIZED, "missing input");
+			Toolkit.error(Toolkit.ERROR_NOT_INITIALIZED, "missing input");
 		}
 		if (!WidgetFormEditorInput.class.isAssignableFrom(editorInput.getClass())) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "invalid input");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "invalid input");
 		}
 		final WidgetFormEditorInput input = (WidgetFormEditorInput) editorInput;
 		final String widgetId = input.getWidgetId();
 		if (null == widgetId) {
-			CWT.error(CWT.ERROR_NOT_INITIALIZED, "missing widget id");
+			Toolkit.error(Toolkit.ERROR_NOT_INITIALIZED, "missing widget id");
 		}
 		return widgetId;
 	}

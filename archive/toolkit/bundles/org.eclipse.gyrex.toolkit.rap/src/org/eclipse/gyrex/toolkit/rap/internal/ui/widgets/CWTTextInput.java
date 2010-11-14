@@ -1,18 +1,17 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
-
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.ContentObject;
 import org.eclipse.gyrex.toolkit.content.TextContent;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
@@ -20,6 +19,7 @@ import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldValidator
 import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationContext;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationResult;
 import org.eclipse.gyrex.toolkit.widgets.TextInput;
+
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -112,7 +112,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 	@Override
 	protected void fillIntoGrid(final int columns) {
 		if (columns < getNumberOfColumns()) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "unsifficient number of columns");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "unsifficient number of columns");
 		}
 
 		if (null == getDescriptionControl()) {
@@ -157,7 +157,7 @@ public class CWTTextInput extends CWTDialogField<TextInput> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override

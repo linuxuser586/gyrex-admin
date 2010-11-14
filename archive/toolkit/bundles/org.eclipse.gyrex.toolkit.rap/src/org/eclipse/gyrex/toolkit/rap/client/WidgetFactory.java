@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,9 +14,8 @@ package org.eclipse.gyrex.toolkit.rap.client;
 import java.util.HashMap;
 import java.util.Map;
 
-
-import org.eclipse.gyrex.toolkit.CWT;
-import org.eclipse.gyrex.toolkit.CWTException;
+import org.eclipse.gyrex.toolkit.Toolkit;
+import org.eclipse.gyrex.toolkit.ToolkitException;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.content.ContentSet;
 import org.eclipse.gyrex.toolkit.rap.WidgetService;
@@ -30,7 +29,7 @@ import org.eclipse.gyrex.toolkit.widgets.Widget;
  * This is the factory for creating SWT/JFace/Forms UI widgets exposed by a
  * service.
  * <p>
- * The factory uses a widget service to lookup CWT widgets, execute widgets
+ * The factory uses a widget service to lookup Toolkit widgets, execute widgets
  * commands, etc.
  * </p>
  * <p>
@@ -79,15 +78,15 @@ public final class WidgetFactory {
 	 * @param widgetService
 	 *            the widget service (may not be <code>null</code>)
 	 * @param toolkit
-	 *            the underlying toolkit for rendering CWT widgets (may not be
-	 *            <code>null</code>)
+	 *            the underlying toolkit for rendering Toolkit widgets (may not
+	 *            be <code>null</code>)
 	 */
 	public WidgetFactory(final WidgetService widgetService, final CWTToolkit toolkit) {
 		if (null == widgetService) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widgetService");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widgetService");
 		}
 		if (null == toolkit) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "toolkit");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "toolkit");
 		}
 
 		this.widgetService = widgetService;
@@ -136,7 +135,7 @@ public final class WidgetFactory {
 	 * @throws CWTException
 	 *             if an error occurred during widget initialization
 	 */
-	public CWTWidget getWidget(final String widgetId) throws CWTException {
+	public CWTWidget getWidget(final String widgetId) throws ToolkitException {
 		// try raw cache if enabled
 		if (isCacheFlagSet(CACHE_WIDGETS) && widgetCache.containsKey(widgetId)) {
 			final Widget widget = widgetCache.get(widgetId);

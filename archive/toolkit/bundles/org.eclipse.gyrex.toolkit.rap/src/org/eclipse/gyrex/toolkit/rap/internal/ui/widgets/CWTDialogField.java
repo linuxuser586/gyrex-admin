@@ -1,24 +1,24 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
-
-import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldRuleEventHandler;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.DialogFieldValidator;
 import org.eclipse.gyrex.toolkit.widgets.DialogField;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
+
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -57,7 +57,7 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 
 		/*
 		 * (non-Javadoc)
-		 * 
+		 *
 		 * @see org.eclipse.gyrex.toolkit.gwt.client.ui.widgets.DialogFieldRuleHelper.RuleEventHandler#handleRuleEvaluationResult(boolean)
 		 */
 		@Override
@@ -161,13 +161,13 @@ public abstract class CWTDialogField<T extends DialogField> extends CWTWidget<T>
 		// apply a default layout
 		if (null != getDescriptionControl()) {
 			if (columns < 2) {
-				CWT.error(CWT.ERROR_INVALID_ARGUMENT, "at least 2 columns needed");
+				Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "at least 2 columns needed");
 			}
 			GridDataFactory.generate(getLabelControl(), 1, 1);
 			GridDataFactory.generate(getDescriptionControl(), columns - 1, 1);
 		} else {
 			if (columns < 1) {
-				CWT.error(CWT.ERROR_INVALID_ARGUMENT, "at least 1 column needed");
+				Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "at least 1 column needed");
 			}
 			GridDataFactory.generate(getLabelControl(), columns, 1);
 		}

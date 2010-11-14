@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,26 +14,26 @@ package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.eclipse.core.databinding.observable.ChangeEvent;
-import org.eclipse.core.databinding.observable.IChangeListener;
-import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.content.ContentSet;
 import org.eclipse.gyrex.toolkit.rap.client.WidgetFactory;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.commands.ExecuteCommandCallback;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
+
+import org.eclipse.core.databinding.observable.ChangeEvent;
+import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
- * The toolkit is responsible for creating SWT/JFace/Forms UI widgets from
- * Gyrex widgets. In addition to applying default presentation properties
- * (styles, etc.), various listeners are attached to make them behave correctly
- * in the Gyrex context.
+ * The toolkit is responsible for creating SWT/JFace/Forms UI widgets from Gyrex
+ * widgets. In addition to applying default presentation properties (styles,
+ * etc.), various listeners are attached to make them behave correctly in the
+ * Gyrex context.
  * <p>
  * Typically, one toolkit object is created per widget services and not shared
  * between them.
@@ -140,7 +140,7 @@ public class CWTToolkit {
 	 */
 	public final void addChangeListener(final CWTToolkitListener changeListener) {
 		if (null == changeListener) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "changeListener");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "changeListener");
 		}
 		if (null == changeListeners) {
 			changeListeners = new ArrayList<CWTToolkitListener>();
@@ -179,7 +179,7 @@ public class CWTToolkit {
 		}
 
 		widgetClassName = "org.eclipse.gyrex.toolkit.rap.internal.ui.".concat(widgetClassName);
-		widgetClassName = widgetClassName.concat(".CWT").concat(widget.getClass().getSimpleName());
+		widgetClassName = widgetClassName.concat(".Toolkit").concat(widget.getClass().getSimpleName());
 
 		try {
 			final CWTWidget<T> cwtWidget = (CWTWidget<T>) getClass().getClassLoader().loadClass(widgetClassName).newInstance();
@@ -188,7 +188,7 @@ public class CWTToolkit {
 		} catch (final ClassNotFoundException e) {
 			// not found
 		} catch (final Exception e) {
-			CWT.error(CWT.ERROR_WIDGET_INITIALIZATION_FAILED, e, NLS.bind("class{0} for widget type {1}", widgetClassName, widget.getClass().getName()));
+			Toolkit.error(Toolkit.ERROR_WIDGET_INITIALIZATION_FAILED, e, NLS.bind("class{0} for widget type {1}", widgetClassName, widget.getClass().getName()));
 		}
 
 		// TODO support extensible widget creation
@@ -216,7 +216,7 @@ public class CWTToolkit {
 	 */
 	void fireWidgetChanged(final CWTWidget source) {
 		if (null == source) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "source");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "source");
 		}
 
 		if (null == changeListeners) {
@@ -261,7 +261,7 @@ public class CWTToolkit {
 	 */
 	public final void removeChangeListener(final CWTToolkitListener changeListener) {
 		if (null == changeListener) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "changeListener");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "changeListener");
 		}
 		if (null != changeListeners) {
 			changeListeners.remove(changeListener);
@@ -280,10 +280,10 @@ public class CWTToolkit {
 	 */
 	public void setWidgetFactory(final WidgetFactory widgetFactory) {
 		if (null == widgetFactory) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widgetFactory");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widgetFactory");
 		}
 		if (null != this.widgetFactory) {
-			CWT.error(CWT.ERROR_ALREADY_INITIALIZED);
+			Toolkit.error(Toolkit.ERROR_ALREADY_INITIALIZED);
 		}
 		this.widgetFactory = widgetFactory;
 	}
@@ -300,7 +300,7 @@ public class CWTToolkit {
 	 */
 	void widgetCreated(final CWTWidget widget) {
 		if (null == widget) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widget");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widget");
 		}
 
 		// listen for changes
@@ -322,7 +322,7 @@ public class CWTToolkit {
 	 */
 	void widgetDisposed(final CWTWidget widget) {
 		if (null == widget) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widget");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widget");
 		}
 
 		// remove change listener

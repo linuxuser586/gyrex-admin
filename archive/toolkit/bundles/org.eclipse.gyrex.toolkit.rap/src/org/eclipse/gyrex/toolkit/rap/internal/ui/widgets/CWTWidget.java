@@ -11,17 +11,18 @@
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.runtime.internal.fixme.AdapterManagerAccess;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
+
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * Base class that renders a {@link Widget CWT widget} for Eclipse
+ * Base class that renders a {@link Widget Toolkit widget} for Eclipse
  * SWT/JFace/Forms UI.
  * <p>
  * Typically, rendered widgets are instantiated via from the rendering
@@ -31,7 +32,7 @@ import org.eclipse.swt.widgets.Control;
  * in a later step when {@link #createControl(Composite)} is called.
  * </p>
  * <p>
- * CWT widgets use the adaptable pattern to support optional features (event
+ * Toolkit widgets use the adaptable pattern to support optional features (event
  * sourcing, focus handling, etc). See {@link #getAdapter(Class)} for details.
  * </p>
  * <p>
@@ -58,7 +59,7 @@ public abstract class CWTWidget<T extends Widget> implements IAdaptable {
 
 	private void checkInitialized() {
 		if ((null == widget) || (null == toolkit)) {
-			CWT.error(CWT.ERROR_NOT_INITIALIZED);
+			Toolkit.error(Toolkit.ERROR_NOT_INITIALIZED);
 		}
 	}
 
@@ -72,7 +73,7 @@ public abstract class CWTWidget<T extends Widget> implements IAdaptable {
 	public final void createControl(final Composite parent) {
 		final Control control = createWidgetControl(parent);
 		if (control == null) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "null control returned");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "null control returned");
 		}
 
 		// set control
@@ -165,9 +166,9 @@ public abstract class CWTWidget<T extends Widget> implements IAdaptable {
 	}
 
 	/**
-	 * Initializes the CWT widget.
+	 * Initializes the Toolkit widget.
 	 * <p>
-	 * This method will be called with the CWT widget. Subsequent calls will
+	 * This method will be called with the Toolkit widget. Subsequent calls will
 	 * fail once the widget has been initialized.
 	 * </p>
 	 * 
@@ -178,16 +179,16 @@ public abstract class CWTWidget<T extends Widget> implements IAdaptable {
 	 */
 	protected final void init(final T widget, final CWTToolkit toolkit) {
 		if ((null != this.widget) || (null != this.toolkit)) {
-			CWT.error(CWT.ERROR_ALREADY_INITIALIZED, getWidgetId());
+			Toolkit.error(Toolkit.ERROR_ALREADY_INITIALIZED, getWidgetId());
 		}
 
 		if (null == widget) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widget (in widget '" + getWidgetId() + "')");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widget (in widget '" + getWidgetId() + "')");
 		}
 		this.widget = widget;
 
 		if (null == toolkit) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "toolkit (in widget '" + getWidgetId() + "')");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "toolkit (in widget '" + getWidgetId() + "')");
 		}
 		this.toolkit = toolkit;
 	}
@@ -223,10 +224,10 @@ public abstract class CWTWidget<T extends Widget> implements IAdaptable {
 	 */
 	final void setParentContainer(final CWTContainer parent) {
 		if (null != parentContainer) {
-			CWT.error(CWT.ERROR_PARENT_ALREADY_SET, "widget '" + getWidgetId() + "'");
+			Toolkit.error(Toolkit.ERROR_PARENT_ALREADY_SET, "widget '" + getWidgetId() + "'");
 		}
 		if (null == parent) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "parent (in widget '" + getWidgetId() + "')");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "parent (in widget '" + getWidgetId() + "')");
 		}
 		parentContainer = parent;
 	}

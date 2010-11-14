@@ -1,18 +1,18 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.client.editor;
 
+import org.eclipse.gyrex.toolkit.Toolkit;
 
-import org.eclipse.gyrex.toolkit.CWT;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
@@ -31,7 +31,7 @@ public class WidgetFormEditorInput implements IEditorInput {
 	 */
 	public WidgetFormEditorInput(final String widgetId) {
 		if (null == widgetId) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "widgetId");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "widgetId");
 		}
 		this.widgetId = widgetId;
 	}

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,9 +14,9 @@ package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.eclipse.gyrex.toolkit.widgets.Container;
 import org.eclipse.gyrex.toolkit.widgets.Widget;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
@@ -132,7 +132,7 @@ public class CWTContainer<T extends Container> extends CWTWidget<T> {
 		Control result = null;
 		Composite composite = null;
 		if ((container.getParent() != null) && (getContainerTitle().length() > 0)) {
-			// wrap into composite into Section 
+			// wrap into composite into Section
 			final FormToolkit formToolkit = getToolkit().getFormToolkit();
 			final Section outer = formToolkit.createSection(parent, Section.DESCRIPTION | ExpandableComposite.SHORT_TITLE_BAR);
 			outer.setText(getContainerTitle());
@@ -189,7 +189,7 @@ public class CWTContainer<T extends Container> extends CWTWidget<T> {
 	}
 
 	public String getContainerTitle() {
-		final String title = getWidget().getTitle();
+		final String title = getWidget().getLabel();
 		return null != title ? title : "";
 	}
 

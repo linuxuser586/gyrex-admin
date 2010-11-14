@@ -1,18 +1,17 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.internal;
 
-
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.commands.Command;
 import org.eclipse.gyrex.toolkit.rap.IWidgetServiceUICallback;
 import org.eclipse.gyrex.toolkit.rap.WidgetService;
@@ -65,13 +64,13 @@ public class WidgetServiceImpl {
 		// get the factory
 		final IWidgetFactory widgetFactory = getWidgetFactory();
 		if (null == widgetFactory) {
-			CWT.error(CWT.ERROR_WIDGET_NOT_FOUND, "no widget factory available");
+			Toolkit.error(Toolkit.ERROR_WIDGET_NOT_FOUND, "no widget factory available");
 		}
 
 		// lookup view
 		final Widget widget = lookupWidget(widgetId, widgetFactory);
 		if (null == widget) {
-			CWT.error(CWT.ERROR_WIDGET_NOT_FOUND, "widget not found: " + widgetId);
+			Toolkit.error(Toolkit.ERROR_WIDGET_NOT_FOUND, "widget not found: " + widgetId);
 		}
 
 		// TODO: cache result

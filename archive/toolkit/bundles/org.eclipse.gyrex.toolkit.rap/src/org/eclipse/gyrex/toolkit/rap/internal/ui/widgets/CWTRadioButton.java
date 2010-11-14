@@ -1,18 +1,17 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
 package org.eclipse.gyrex.toolkit.rap.internal.ui.widgets;
 
-
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.content.BooleanContent;
 import org.eclipse.gyrex.toolkit.content.ContentObject;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
@@ -21,6 +20,7 @@ import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationContext;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.validation.ValidationResult;
 import org.eclipse.gyrex.toolkit.widgets.Container;
 import org.eclipse.gyrex.toolkit.widgets.RadioButton;
+
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -128,7 +128,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 	@Override
 	protected void fillIntoGrid(final int columns) {
 		if (columns < 2) {
-			CWT.error(CWT.ERROR_INVALID_ARGUMENT, "at least 2 columns needed");
+			Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "at least 2 columns needed");
 		}
 
 		GridDataFactory.generate(emptyLabelControl, 1, 1);
@@ -183,7 +183,7 @@ public class CWTRadioButton extends CWTDialogField<RadioButton> {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.eclipse.gyrex.toolkit.gwt.client.internal.ui.widgets.DialogFieldComposite#setEnabled(boolean)
 	 */
 	@Override

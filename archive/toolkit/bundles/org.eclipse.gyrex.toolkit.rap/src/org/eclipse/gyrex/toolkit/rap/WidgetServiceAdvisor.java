@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -16,14 +16,12 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
 
-
 import org.eclipse.gyrex.toolkit.runtime.BaseWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory;
 import org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory;
-import org.eclipse.rwt.RWT;
 
-import com.ibm.icu.util.ULocale;
+import org.eclipse.rwt.RWT;
 
 /**
  * Public base class for configuring a {@link WidgetService widget service}.
@@ -75,21 +73,7 @@ public class WidgetServiceAdvisor {
 	}
 
 	/**
-	 * Determines the default locale.
-	 * <p>
-	 * The default implementation will return the {@link ULocale#getDefault()
-	 * current default locale}. Subclasses may overwrite to provide a different
-	 * default locale.
-	 * </p>
-	 * 
-	 * @return the default locale (may not be <code>null</code>)
-	 */
-	protected ULocale getDefaultLocale() {
-		return ULocale.getDefault();
-	}
-
-	/**
-	 * Determines the locale from the specified environment.
+	 * Determines the locale from the RWT environment.
 	 * <p>
 	 * If the environment is <code>null</code> or no locale id is set a
 	 * {@link #getDefaultLocale() default locale} will be returned. Subclasses
@@ -101,13 +85,8 @@ public class WidgetServiceAdvisor {
 	 * @return a locale (may not be <code>null</code>)
 	 * @see #getDefaultLocale()
 	 */
-	protected ULocale getLocale() {
-		final Locale locale = RWT.getLocale();
-		if (null != locale) {
-			return ULocale.forLocale(locale);
-		}
-
-		return getDefaultLocale();
+	protected Locale getLocale() {
+		return RWT.getLocale();
 	}
 
 	/**
@@ -158,7 +137,7 @@ public class WidgetServiceAdvisor {
 	 * @return a widget environment
 	 */
 	public IWidgetEnvironment getWidgetEnvironment() {
-		final ULocale locale = getLocale();
+		final Locale locale = getLocale();
 		final Principal userPrincipal = getUserPrincipal();
 		final Map<String, Object> attributesMap = getAttributesMap();
 		return new BaseWidgetEnvironment(locale, userPrincipal, attributesMap);

@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -14,16 +14,15 @@ package org.eclipse.gyrex.toolkit.rap.internal.ui.validation;
 import java.util.HashSet;
 import java.util.Set;
 
-
-import org.eclipse.gyrex.toolkit.CWT;
+import org.eclipse.gyrex.toolkit.Toolkit;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.content.IContentAdapter;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTContainer;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTDialogField;
 import org.eclipse.gyrex.toolkit.rap.internal.ui.widgets.CWTWidget;
 import org.eclipse.gyrex.toolkit.widgets.DialogField;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule;
-import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
 import org.eclipse.gyrex.toolkit.widgets.DialogFieldRule.FieldSelectionType;
+import org.eclipse.gyrex.toolkit.widgets.MultiDialogFieldRule;
 
 /**
  * Helper for working with dialog field rules.
@@ -82,10 +81,10 @@ public final class DialogFieldRuleHelper {
 	 */
 	public static boolean evaluateRule(final DialogFieldRule dialogFieldRule, final CWTContainer context) {
 		if (null == dialogFieldRule) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "dialogFieldRule");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "dialogFieldRule");
 		}
 		if (null == context) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "context");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "context");
 		}
 
 		if (dialogFieldRule instanceof MultiDialogFieldRule) {
@@ -178,10 +177,10 @@ public final class DialogFieldRuleHelper {
 	 */
 	public static CWTDialogField<?>[] findAffectedDialogFields(final DialogFieldRule dialogFieldRule, final CWTContainer context) {
 		if (null == dialogFieldRule) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "dialogFieldRule");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "dialogFieldRule");
 		}
 		if (null == context) {
-			CWT.error(CWT.ERROR_NULL_ARGUMENT, "context");
+			Toolkit.error(Toolkit.ERROR_NULL_ARGUMENT, "context");
 		}
 
 		// find scope
@@ -274,7 +273,7 @@ public final class DialogFieldRuleHelper {
 			}
 			// TODO: support search in context children for scope?
 			if (null == scope) {
-				CWT.error(CWT.ERROR_INVALID_ARGUMENT, "context '" + context.getWidgetId() + "' not member of scope '" + dialogFieldRule + "'");
+				Toolkit.error(Toolkit.ERROR_INVALID_ARGUMENT, "context '" + context.getWidgetId() + "' not member of scope '" + dialogFieldRule + "'");
 			}
 		}
 		return scope;
