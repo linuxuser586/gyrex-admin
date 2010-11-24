@@ -13,14 +13,10 @@ package org.eclipse.gyrex.toolkit.content;
 
 /**
  * A content object indicating that content is not supported.
- * <p>
- * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
- * Toolkit implementation.
- * </p>
  * 
  * @noextend This class is not intended to be subclassed by clients.
  */
-public class NoContent extends StructuredContent {
+public final class NoContent extends StructuredContent {
 
 	/** serialVersionUID */
 	private static final long serialVersionUID = 5158570990007663698L;
