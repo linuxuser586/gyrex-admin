@@ -51,7 +51,7 @@ import org.eclipse.gyrex.toolkit.widgets.styledtext.StyledTextModel;
  * can be specified using the 'alt' attribute.</li>
  * <li><b>a</b> - to render a hyperlink. Element accepts attribute 'href' which
  * specifies either an external or an internal hyperlink. Internal hyperlinks
- * are in the form 'gyrex:///<command_id>' and trigger a {@link Command command}
+ * are in the form 'command:/<command_id>' and trigger a {@link Command command}
  * . External hyperlinks will be opened at runtime directly. The element also
  * accepts 'nowrap' attribute (default is <code>false</code>). When set to
  * 'true', the hyperlink will not be wrapped. Hyperlinks automatically created
