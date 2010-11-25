@@ -11,7 +11,6 @@
  */
 package org.eclipse.gyrex.admin.web.gwt.client.internal.console.widgets;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -25,7 +24,6 @@ import com.google.gwt.user.client.ui.SimplePanel;
  */
 public class NovaMenuItem extends SimplePanel {
 
-	static final Scheduler scheduler = GWT.create(Scheduler.class);
 	private final Anchor anchor;
 
 	/**
@@ -45,7 +43,7 @@ public class NovaMenuItem extends SimplePanel {
 			@Override
 			public void onClick(final ClickEvent event) {
 				event.preventDefault();
-				scheduler.scheduleDeferred(cmd);
+				Scheduler.get().scheduleDeferred(cmd);
 			}
 		});
 
