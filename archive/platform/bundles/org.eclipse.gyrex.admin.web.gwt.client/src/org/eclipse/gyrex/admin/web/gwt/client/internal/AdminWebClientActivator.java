@@ -13,9 +13,6 @@ package org.eclipse.gyrex.admin.web.gwt.client.internal;
 
 import org.eclipse.gyrex.admin.internal.AdminActivator;
 import org.eclipse.gyrex.admin.web.gwt.client.internal.shared.IAdminConsoleConstants;
-import org.eclipse.gyrex.common.logging.LogAudience;
-import org.eclipse.gyrex.common.logging.LogImportance;
-import org.eclipse.gyrex.common.logging.LogSource;
 import org.eclipse.gyrex.common.runtime.BaseBundleActivator;
 import org.eclipse.gyrex.gwt.service.GwtService;
 
@@ -26,7 +23,12 @@ import org.osgi.service.http.NamespaceException;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class AdminWebClientActivator extends BaseBundleActivator implements ServiceTrackerCustomizer {
+
+	private static final Logger LOG = LoggerFactory.getLogger(AdminWebClientActivator.class);
 
 	static final String ADMIN_APP_BASE = "/admin/";
 	static final String ALIAS_ADMIN = "/admin";
@@ -67,25 +69,27 @@ public class AdminWebClientActivator extends BaseBundleActivator implements Serv
 
 	@Override
 	public Object addingService(final ServiceReference reference) {
+		@SuppressWarnings("unchecked")
 		final Object service = getBundle().getBundleContext().getService(reference);
 		if (service instanceof GwtService) {
 			final GwtService gwtService = (GwtService) service;
 			try {
 				gwtService.registerModule(ALIAS_ADMIN, IAdminConsoleConstants.MODULE_ID, "/web", "AdminConsole.html", null);
 			} catch (final NamespaceException e) {
-				getLog().log("An error occurred while registering the admin client resources.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
+				LOG.error("An error occurred while registering the admin client resources.", e);
 			}
 		} else if (service instanceof HttpService) {
 			final HttpService httpService = (HttpService) service;
 			try {
 				httpService.registerResources(ALIAS_ECLIPSE_ORG_COMMON, "/resources-nova", null);
 			} catch (final NamespaceException e) {
-				getLog().log("An error occurred while registering the admin client resources.", e, (Object) null, LogImportance.ERROR, LogAudience.DEVELOPER, LogSource.PLATFORM);
+				LOG.error("An error occurred while registering the admin client resources.", e);
 			}
 		}
 		return service;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doStart(final BundleContext context) throws Exception {
 		sharedInstance = this;
