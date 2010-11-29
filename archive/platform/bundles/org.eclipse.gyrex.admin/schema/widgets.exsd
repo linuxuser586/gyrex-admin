@@ -17,6 +17,10 @@
          </appInfo>
       </annotation>
       <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="factory"/>
+            <element ref="adapterFactory"/>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -44,13 +48,16 @@
       </complexType>
    </element>
 
-   <element name="widgetFactory">
+   <element name="factory">
       <annotation>
          <documentation>
             Adds a widget factory to the admin console.
          </documentation>
       </annotation>
       <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="widget"/>
+         </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
@@ -61,23 +68,19 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="widgetIds" type="string" use="required">
-            <annotation>
-               <documentation>
-                  comma separated list of ids of widgets contributed by the factory (see JavaDoc of &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetRegistry.registerFactory(IWidgetFactory, String...)&lt;/code&gt; for details)
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 
-   <element name="widgetAdapterFactory">
+   <element name="adapterFactory">
       <annotation>
          <documentation>
             Adds a widget adapter factory to the admin console.
          </documentation>
       </annotation>
       <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="widget"/>
+         </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
@@ -88,51 +91,29 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="widgetIds" type="string" use="required">
+      </complexType>
+   </element>
+
+   <element name="widget">
+      <annotation>
+         <documentation>
+            A widget association.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  comma separated list of ids of widgets the factory contributes adapters to (see JavaDoc of &lt;code&gt;org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterRegistry.registerFactory(IWidgetAdapterFactory, String...)&lt;/code&gt; for details)
+                  widget id
                </documentation>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="since"/>
-      </appInfo>
-      <documentation>
-         [Enter the first release in which this extension point appears.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="examples"/>
-      </appInfo>
-      <documentation>
-         [Enter extension point usage example here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="apiinfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
 
-   <annotation>
-      <appInfo>
-         <meta.section type="implementation"/>
-      </appInfo>
-      <documentation>
-         [Enter information about supplied implementation of this extension point.]
-      </documentation>
-   </annotation>
 
    <annotation>
       <appInfo>

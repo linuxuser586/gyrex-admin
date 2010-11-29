@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.eclipse.gyrex.admin.internal.widgets;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicReference;
@@ -27,7 +29,6 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionRegistry;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -71,10 +72,11 @@ public class AdminWidgetServiceRegistryHelper implements Listener {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AdminWidgetServiceRegistryHelper.class);
 
-	private static final String SETUP_WIZARD_EXTENSION_POINT = "org.eclipse.gyrex.admin.widgets";
-	private static final String ATTRIBUTE_WIDGET_IDS = "widgetIds";
+	private static final String WIDGETS_EXTENSION_POINT = "org.eclipse.gyrex.admin.widgets";
+	private static final String ATTRIBUTE_ID = "id";
 	private static final String ATTRIBUTE_CLASS = "class";
-	private static final String ELEMENT_WIDGET_FACTORY = "widgetFactory";
+	private static final String ELEMENT_FACTORY = "factory";
+	private static final String ELEMENT_WIDGET = "widget";
 
 	private final AdminWidgetServiceImpl service;
 	private final ExtensionPointTracker tracker;
@@ -89,7 +91,7 @@ public class AdminWidgetServiceRegistryHelper implements Listener {
 	 */
 	public AdminWidgetServiceRegistryHelper(final AdminWidgetServiceImpl service, final Object registryObject) {
 		this.service = service;
-		tracker = new ExtensionPointTracker((IExtensionRegistry) registryObject, SETUP_WIZARD_EXTENSION_POINT, this);
+		tracker = new ExtensionPointTracker((IExtensionRegistry) registryObject, WIDGETS_EXTENSION_POINT, this);
 		tracker.open();
 	}
 
@@ -97,21 +99,28 @@ public class AdminWidgetServiceRegistryHelper implements Listener {
 	public void added(final IExtension extension) {
 		final IConfigurationElement[] elements = extension.getConfigurationElements();
 		for (int j = 0; j < elements.length; j++) {
-			if (ELEMENT_WIDGET_FACTORY.equalsIgnoreCase(elements[j].getName())) {
+			if (ELEMENT_FACTORY.equalsIgnoreCase(elements[j].getName())) {
 				factoryAdded(elements[j]);
 			}
 		}
 	}
 
 	private void factoryAdded(final IConfigurationElement configurationElement) {
-		final String[] widgetIds = StringUtils.split(configurationElement.getAttribute(ATTRIBUTE_WIDGET_IDS), ',');
-		if ((widgetIds != null) && (widgetIds.length > 0)) {
+		final IConfigurationElement[] widgets = configurationElement.getChildren(ELEMENT_WIDGET);
+		if ((widgets != null) && (widgets.length > 0)) {
+			final Set<String> widgetIds = new HashSet<String>(widgets.length);
+			for (final IConfigurationElement widgetElem : widgets) {
+				final String id = widgetElem.getAttribute(ATTRIBUTE_ID);
+				if ((id != null) && !widgetIds.contains(id)) {
+					widgetIds.add(id);
+				}
+			}
 			final IWidgetFactory factory = new LazyWidgetFactory(configurationElement);
 			if (factories.putIfAbsent(configurationElement, factory) == null) {
 				try {
-					service.registerFactory(factory, widgetIds);
+					service.registerFactory(factory, widgetIds.toArray(new String[widgetIds.size()]));
 				} catch (final RegistrationException e) {
-					LOG.warn("Faild to register widget factory contributed by {}: {}", configurationElement.getContributor(), e.toString());
+					LOG.warn("Failed to register widget factory contributed by {}: {}", configurationElement.getContributor(), e.toString());
 				}
 			}
 		}

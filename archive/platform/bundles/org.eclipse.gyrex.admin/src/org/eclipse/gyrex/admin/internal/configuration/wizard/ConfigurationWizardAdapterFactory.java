@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -28,9 +28,7 @@ public class ConfigurationWizardAdapterFactory implements IWidgetAdapterFactory 
 		return (T) object;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetAdapterFactory#getAdapter(java.lang.String, java.lang.Class, org.eclipse.gyrex.toolkit.runtime.IWidgetEnvironment)
-	 */
+	@Override
 	public <T> T getAdapter(final String widgetId, final Class<T> adapterType, final IWidgetEnvironment environment) {
 		if (ICommandHandler.class.equals(adapterType)) {
 			return cast(handler, adapterType);

@@ -115,7 +115,7 @@ public class AdminActivator extends BaseBundleActivator {
 	private ServiceRegistration adminWidgetAdapterServiceRegistration;
 
 	/** tracker for the extension registry */
-	private ServiceTracker registryServiceTracker;
+	private ServiceTracker<Object, Object> registryServiceTracker;
 
 	/** the configuration wizard service */
 	private ConfigurationWizardServiceImpl setupWizardService;
@@ -257,10 +257,10 @@ public class AdminActivator extends BaseBundleActivator {
 	}
 
 	private void openRegistryServiceTracker(final BundleContext context) {
-		registryServiceTracker = new ServiceTracker(context, "org.eclipse.core.runtime.IExtensionRegistry", null) {
+		registryServiceTracker = new ServiceTracker<Object, Object>(context, "org.eclipse.core.runtime.IExtensionRegistry", null) {
 
 			@Override
-			public Object addingService(final ServiceReference reference) {
+			public Object addingService(final ServiceReference<Object> reference) {
 				final Object service = super.addingService(reference);
 				if (service != null) {
 					try {
@@ -278,7 +278,7 @@ public class AdminActivator extends BaseBundleActivator {
 			}
 
 			@Override
-			public void removedService(final ServiceReference reference, final Object service) {
+			public void removedService(final ServiceReference<Object> reference, final Object service) {
 				setupWizardService.setRegistry(null);
 
 				// unget service
