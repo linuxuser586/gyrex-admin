@@ -102,9 +102,18 @@ public class HistoryStateBuilder {
 
 	/**
 	 * Sets the widget specific state info.
+	 * <p>
+	 * Note, although no special limitations are mentioned, care should be taken
+	 * regarding the widget state. It may consist only of ASCII chars
+	 * <code>a-z</code>, digits <code>0-9</code>, dash (<code>-</code>),
+	 * underscore <code>(_</code>) and dot (<code>.</code>). Other chars may
+	 * work but may also cause special treatment in the browser. Typically, a
+	 * widget state is produced by widgets and must not be consider expressed
+	 * API, i.e. it may change in an incompatible way between widget versions.
+	 * </p>
 	 * 
 	 * @param widgetState
-	 *            the state info
+	 *            the state info (maybe <code>null</code> to unset)
 	 * @return the builder instance
 	 */
 	public HistoryStateBuilder setWidgetState(final String widgetState) {
