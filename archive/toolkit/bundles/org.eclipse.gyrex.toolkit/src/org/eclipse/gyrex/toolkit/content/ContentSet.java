@@ -23,7 +23,6 @@ import org.eclipse.gyrex.toolkit.Toolkit;
  * between the rendered widgets and the application code defining the widget
  * (eg. your business code) back and forth.
  * </p>
- * .
  * <p>
  * IMPORTANT: This class is intended to be subclassed <em>only</em> within the
  * Toolkit implementation.
@@ -71,9 +70,6 @@ public class ContentSet {
 		return entries.get(widgetId);
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return String.format("ContentSet[%s]", null != entries ? entries.keySet().toArray() : null);

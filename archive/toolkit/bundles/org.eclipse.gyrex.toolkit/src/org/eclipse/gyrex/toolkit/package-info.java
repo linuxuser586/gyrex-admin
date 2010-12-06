@@ -12,7 +12,7 @@
 /**
  * Gyrex Widget Toolkit (Toolkit).
  * <p>
- * The Gyrex Widget Toolkit (Toolkit) is ans attempt to define a
+ * The Gyrex Widget Toolkit (Toolkit) is an attempt to define a
  * cross-technology toolkit. Its base concept is a widget model for defining
  * the user interface. This model is rendered by technology specific renders.
  * For example, one could generate an Eclipse Forms UI based user
@@ -23,8 +23,8 @@
  * The Toolkit is designed with a distributed runtime model in mind. Therefore,
  * certain parts are not strictly coupled through object references but by
  * an identifier. For example, once a widget was created and rendered in the
- * UI the rendering layer generally used the widget identifier when calling
- * back into client code. Factories/registries are used to lookup the actual
+ * UI the rendering layer generally uses the widget identifier when calling
+ * back into client code. Factories and registries are used to lookup the actual
  * objects for an identifier.
  * </p>
  * <p>
@@ -35,10 +35,6 @@
  * <a href="http://en.wikipedia.org/wiki/XUL">XUL</a>. However, Toolkit follows a
  * different approach in defining the UI in pure Java and goes beyond XUL by also
  * providing a cross-technology concept for data transport.
- * </p>
- * <p>
- * Note, this is experimental API. It will not be stable until version 1.0 is
- * officially released.
  * </p>
  */
 package org.eclipse.gyrex.toolkit;

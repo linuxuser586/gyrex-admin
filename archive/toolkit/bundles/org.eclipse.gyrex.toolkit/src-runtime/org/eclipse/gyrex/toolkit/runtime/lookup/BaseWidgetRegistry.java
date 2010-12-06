@@ -48,9 +48,7 @@ public class BaseWidgetRegistry extends BaseRegistry<IWidgetFactory> implements 
 		super(initialFactoryCapacity, estimatedWidgetRatio);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetFactory#getWidget(java.lang.String, org.eclipse.gyrex.toolkit.runtime.lookup.IWidgetEnvironment)
-	 */
+	@Override
 	public Widget getWidget(final String id, final IWidgetEnvironment environment) {
 		final IWidgetFactory factory = lookupFactory(id);
 		if (null == factory) {

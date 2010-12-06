@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright (c) 2008, 2009 Gunnar Wagenknecht and others.
  * All rights reserved.
- *  
- * This program and the accompanying materials are made available under the 
+ *
+ * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
- * 
+ *
  * Contributors:
  *     Gunnar Wagenknecht - initial API and implementation
  *******************************************************************************/
@@ -58,9 +58,6 @@ public class AggregateHyperlinkSegment extends ParagraphSegment implements IHype
 		return segments.toArray(new IHyperlinkSegment[segments.size()]);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.IHyperlinkSegment#getText()
-	 */
 	@Override
 	public String getText() {
 		final StringBuffer buf = new StringBuffer();
@@ -71,9 +68,6 @@ public class AggregateHyperlinkSegment extends ParagraphSegment implements IHype
 		return buf.toString();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gyrex.toolkit.widgets.styledtext.ParagraphSegment#getTooltipText()
-	 */
 	@Override
 	public String getTooltipText() {
 		if (segments.size() > 0) {

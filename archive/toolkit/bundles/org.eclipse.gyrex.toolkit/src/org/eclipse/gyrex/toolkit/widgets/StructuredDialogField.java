@@ -24,6 +24,7 @@ import org.eclipse.gyrex.toolkit.content.StructuredContent;
  * 
  * @param <T>
  *            the content used by the dialog field
+ * @noextend This class is not intended to be subclassed by clients.
  */
 public abstract class StructuredDialogField<T extends StructuredContent> extends DialogField<T> {
 

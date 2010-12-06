@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008, 2010 Gunnar Wagenknecht and others.
+ * Copyright (c) 2010 <enter-company-name-here> and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -7,10 +7,23 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html.
  *
  * Contributors:
- *     Gunnar Wagenknecht - initial API and implementation
+ *     <enter-developer-name-here> - initial API and implementation
  *******************************************************************************/
-/**
- * Widgets of the Toolkit.
- */
-package org.eclipse.gyrex.toolkit.widgets;
+package org.eclipse.gyrex.toolkit.runtime.content;
 
+/**
+ * Provider of widget content.
+ * <p>
+ * This interface may be implemented by clients.
+ * </p>
+ */
+public interface IContentHandler {
+
+	/**
+	 * Populates the specified widget with content.
+	 * 
+	 * @param widgetId
+	 */
+	void populate(String widgetId);
+
+}
