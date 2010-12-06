@@ -5,7 +5,6 @@ com.google.gwt.user.client.rpc.InvocationException, true, false, false, false, c
 com.google.gwt.user.client.rpc.SerializationException, true, true, false, false, com.google.gwt.user.client.rpc.SerializationException/2836333220, 2836333220
 com.google.gwt.user.client.rpc.ServiceDefTarget$NoServiceEntryPointSpecifiedException, true, true, false, false, com.google.gwt.user.client.rpc.ServiceDefTarget$NoServiceEntryPointSpecifiedException/3408313447, 3408313447
 java.io.IOException, true, true, false, false, java.io.IOException/1159940531, 1159940531
-java.io.UnsupportedEncodingException, true, true, false, false, java.io.UnsupportedEncodingException/1526756933, 1526756933
 java.lang.ArithmeticException, true, true, false, false, java.lang.ArithmeticException/1539622151, 1539622151
 java.lang.ArrayIndexOutOfBoundsException, true, true, false, false, java.lang.ArrayIndexOutOfBoundsException/600550433, 600550433
 java.lang.ArrayStoreException, true, true, false, false, java.lang.ArrayStoreException/3540507190, 3540507190
@@ -34,12 +33,6 @@ java.lang.Throwable, true, true, true, false, java.lang.Throwable/2953622131, 29
 java.lang.UnsupportedOperationException, true, true, false, false, java.lang.UnsupportedOperationException/3744010015, 3744010015
 java.lang.annotation.AnnotationFormatError, true, true, false, false, java.lang.annotation.AnnotationFormatError/2257184627, 2257184627
 java.lang.annotation.AnnotationTypeMismatchException, true, true, false, false, java.lang.annotation.AnnotationTypeMismatchException/976205828, 976205828
-java.math.BigDecimal, true, true, true, true, java.math.BigDecimal/3109731104, 3109731104
-java.math.BigInteger, true, true, true, true, java.math.BigInteger/2219022195, 2219022195
-java.security.DigestException, true, true, false, false, java.security.DigestException/629316798, 629316798
-java.security.GeneralSecurityException, true, true, false, false, java.security.GeneralSecurityException/2669239907, 2669239907
-java.security.NoSuchAlgorithmException, true, true, false, false, java.security.NoSuchAlgorithmException/2892037213, 2892037213
-java.util.Collections$EmptyMap, false, false, true, true, java.util.Collections$EmptyMap/2636129644, 2636129644
 java.util.ConcurrentModificationException, true, true, false, false, java.util.ConcurrentModificationException/2717383897, 2717383897
 java.util.EmptyStackException, true, true, false, false, java.util.EmptyStackException/89438517, 89438517
 java.util.HashMap, false, false, true, true, java.util.HashMap/962170901, 962170901
