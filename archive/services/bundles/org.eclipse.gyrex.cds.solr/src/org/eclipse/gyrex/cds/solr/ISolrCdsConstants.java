@@ -13,7 +13,7 @@ package org.eclipse.gyrex.cds.solr;
 
 import org.eclipse.gyrex.cds.documents.IDocumentManager;
 import org.eclipse.gyrex.cds.facets.IFacetManager;
-import org.eclipse.gyrex.persistence.context.preferences.ContextPreferencesRepository;
+import org.eclipse.gyrex.persistence.context.preferences.IContextPreferencesRepositoryConstants;
 import org.eclipse.gyrex.persistence.solr.SolrServerRepository;
 import org.eclipse.gyrex.persistence.storage.content.RepositoryContentType;
 
@@ -32,5 +32,5 @@ public interface ISolrCdsConstants {
 	 * The {@link RepositoryContentType content type} required for
 	 * {@link IFacetManager facet model implementation}.
 	 */
-	RepositoryContentType FACET_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-facets", ContextPreferencesRepository.TYPE_NAME, "1.0");
+	RepositoryContentType FACET_CONTENT_TYPE = new RepositoryContentType("application", "x-gyrex-cds-solr-facets", IContextPreferencesRepositoryConstants.TYPE_NAME, "1.0");
 }
