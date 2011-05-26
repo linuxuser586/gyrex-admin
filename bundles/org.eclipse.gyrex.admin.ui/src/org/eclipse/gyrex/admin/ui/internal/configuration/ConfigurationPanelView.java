@@ -322,9 +322,6 @@ public class ConfigurationPanelView extends ViewPart implements ISelectionListen
 		updateHeader();
 		updateSaveActions();
 
-		// set selection provider
-		getSite().setSelectionProvider(currentPage.getSelectionProvider());
-
 		// activate
 		if (currentPage != null) {
 			currentPage.addPropertyListener(pagePropertyListener);
